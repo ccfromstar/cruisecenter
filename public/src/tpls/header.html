@@ -1,0 +1,174 @@
+<!--<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand">
+        	<img src="../../src/image/logo3.png" alt="用AngularJS开发下一代WEB应用" height="40px">
+        </a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li>
+            <a ui-sref="index">首页</a>
+        </li>
+        <li>
+            <a ui-sref="index.api.filter">API文档</a>
+        </li>
+        <li>
+            <a ui-sref="index.resource">学习资源</a>
+        </li>
+        <li>
+            <a ui-sref="index.question">常见问题</a>
+        </li>
+    </ul>
+</nav>-->
+<header>
+	<div class="header_center center">
+		<div class="navigate">
+			<div class="left">
+				<img src="../../src/image/logo3.png" alt="Logo" width="305px">
+			</div>
+			<div class="right">
+				<div class="right_top">热线服务：400-123-1234 <span class="login"> 登陆 | 注册 </span></div>
+				<div class="right_search">
+					<input type="text" name="search_key" class="search_key" id="search_key" placeholder="请输入关键字查询" />
+					<div id="goto" class="goto">搜索</div>
+				</div>
+			</div>
+			<div style="clear:both"></div>
+			<ul id="menu" class="menu">
+				<li onmouseover="showlist(0)">首页</li>
+				<li onmouseover="showlist(1)">邮轮服务</li>
+				<li onmouseover="showlist(2)">行业动态</li>
+				<li onmouseover="showlist(3)">邮轮产品</li>
+				<li onmouseover="showlist(4)">免税购物</li>
+				<li onmouseover="showlist(5)">邮轮宝典</li>
+				<li onmouseover="showlist(6)">关于我们</li>
+			</ul>
+		</div>
+	</div>
+	<div class="shadow"></div>
+</header>
+<div class="fix_header"></div>
+<!--邮轮服务下拉-->
+<div id="nav1" class="nav_div none">
+	<div class="center">
+		<dl>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">船票查询</h1>
+					</li>
+				</ul>
+			</dd>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">游客须知</h1>
+					</li>
+					<li>游客注意事项</li>
+					<li>港口指南</li>
+					<li>登离船流程</li>
+					<li>边检政策</li>
+					<li>海关政策</li>
+					<li>检验检疫政策</li>
+					<li>旅游局政策</li>
+				</ul>
+			</dd>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">行前服务</h1></li>
+					<li>巴士服务</li>
+					<li>保险服务</li>
+				</ul>
+			</dd>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">港口服务</h1></li>
+					<li>航班查询</li>
+					<li>港口天气</li>
+					<li>港口交通</li>
+					<li>停车服务</li>
+					<li>贵宾服务</li>
+					<li>WIFI租赁</li>
+					<li>行李服务</li>
+					<li>外币兑换</li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+</div>
+<!--行业动态下拉-->
+<div id="nav2" class="nav_div none">
+	<div class="center">
+		<dl>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">热点新闻</h1></li>
+				</ul>
+			</dd>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">紧急公告</h1></li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+</div>
+<!--邮轮宝典下拉-->
+<div id="nav5" class="nav_div none">
+	<div class="center">
+		<dl>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">邮轮公司荟萃</h1></li>
+				</ul>
+			</dd>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">邮轮度假目的地</h1></li>
+				</ul>
+			</dd>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">邮轮度假主题</h1></li>
+				</ul>
+			</dd>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">邮轮生活分享</h1></li>
+				</ul>
+			</dd>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">常见问题</h1></li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+</div>
+<!--关于我们下拉-->
+<div id="nav6" class="nav_div none">
+	<div class="center">
+		<dl>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">公司介绍</h1></li>
+				</ul>
+			</dd>
+			<dd>
+				<ul>
+					<li>
+						<h1 class="nav_header">联系我们</h1></li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+</div>

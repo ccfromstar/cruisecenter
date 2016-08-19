@@ -1,0 +1,20 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">$location</h3>
+	</div>
+	<div class="panel-body" ng-controller="LocationCtrl" >
+		<p>$location服务解析地址栏中的URL（基于window.location），让你在应用代码中能获取到。改变地址栏中的URL会反应$location服务中，反之亦然。</p>
+		<h4>1.$location.absUrl()</h4>
+		<p>获取当前完整URL</p>
+		<pre>执行结果：{{ location_absUrl }} </pre>
+		<h4>2.$location.url()</h4>
+		<p>获取当前URL#后面的地址</p>
+		<pre>执行结果：{{ location_url }} </pre>
+		<h4>3.$location.host()</h4>
+		<p>获取当前URL的主机地址/域名</p>
+		<pre>执行结果：{{ location_host }} </pre>
+		<h4>4.$location.search().foo</h4>
+		<p>获取指定参数的值，也可以通过$location.search()['baz']</p>
+		<pre>执行结果：{{ location_foo }} {{ location_baz }}</pre>
+	</div>
+</div>

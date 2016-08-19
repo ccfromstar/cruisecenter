@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">$apply</h3>
+	</div>
+	<div class="panel-body" >
+		<p>scope提供$apply方法传播model的变化。</p>
+		<p>一般在AngularJS自己的方法里已经都包含了$apply,如ng−click，controller的初始化，http的回调函数等</p>
+		<p>如果我们需要在一个新的执行序列中运行代码时才真正需要用到它，而且当且仅当这个新的执行序列不是被angular JS的库的方法创建的，这个时候我们需要将代码用scope.apply()包起来。</p>
+		<pre ng-non-bindable>&lt;div ng-controller="applyCtrl"&gt;{{message}}&lt;/div&gt;</pre>
+		<pre ng-non-bindable>applyApp.controller("applyCtrl", function($scope) {
+	$scope.message = "Waiting 2000ms for update";
+	setTimeout(function() {　　
+		$scope.message = "Timeout called!";
+		// AngularJS unaware of update to $scope
+	}, 2000);
+});</pre>
+		<p>上面的代码执行后页面上会显示：Waiting 2000ms for update。显然数据的更新没有被angular JS觉察到。</p>
+		<p>我们只要将Javascript的代码稍作修改，用scope.apply()包起来。</p>
+		<pre>applyApp.controller("applyCtrl", function($scope) {
+	$scope.message = "Waiting 2000ms for update";
+	setTimeout(function() {　　
+		$scope.$apply(function() {　　
+			$scope.message = "Timeout called!";
+		});
+	}, 2000);
+});</pre>
+		<p>运行结果：</p>
+		<div ng-controller="applyCtrl">{{message}}</div>
+		<p>&nbsp;</p>
+		<p><span class="label label-default">NOTE</span> 在实际的项目中，我们不应该这样做，而是用angular JS提供的timeout方法，这样它就会被自动用apply方法包起来了。</p>
+	</div>
+</div>
+

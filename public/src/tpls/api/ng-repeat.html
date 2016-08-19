@@ -1,0 +1,64 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">ng-repeat</h3>
+	</div>
+	<div class="panel-body">
+		<p>ng-repeat指令生命在需要循环内容的元素上，items和控制器上的变量名对应，item是为数组中单个对象起的别名。$index可以返回当前引用对象的序号，从0开始，另外还有$first、$middle、$last可以返回布尔值，用于告诉你当前元素是否是集合中的第一个中间的最后一个元素。</p>
+		<pre ng-non-bindable>&lt;table class="table" ng-controller="CartController"&gt;
+    &lt;caption&gt;我的购物车&lt;/caption&gt;
+    &lt;tr&gt;
+        &lt;th&gt;序号&lt;/th&gt;
+        &lt;th&gt;商品&lt;/th&gt;
+        &lt;th&gt;单价&lt;/th&gt;
+        &lt;th&gt;数量&lt;/th&gt;
+        &lt;th&gt;金额&lt;/th&gt;
+        &lt;th&gt;操作&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr ng-repeat="item in items"&gt;
+        &lt;td&gt;{{$index + 1}}&lt;/td&gt;
+        &lt;td&gt;{{item.name}}&lt;/td&gt;
+        &lt;td&gt;{{item.price | currency}}&lt;/td&gt;
+        &lt;td&gt;&lt;input ng-model="item.quantity"&gt;&lt;/td&gt;
+        &lt;td&gt;{{item.quantity * item.price | currency}}&lt;/td&gt;
+        &lt;td&gt;
+            &lt;button ng-click="remove($index)"&gt;Remove&lt;/button&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</pre>
+		<pre ng-non-bindable>    repeatApp.controller("CartController", function($scope) {
+        $scope.items = [
+            {name: "商品1", quantity: 1, price: 199.00},
+            {name: "商品2", quantity: 1, price: 139.00},
+            {name: "商品3", quantity: 2, price: 84.20}
+        ];
+ 
+        $scope.remove = function (index) {
+            $scope.items.splice(index, 1);
+        }
+    });</pre>
+		<p>运行结果：</p>
+		<table class="table" ng-controller="CartController">
+			<caption>我的购物车</caption>
+			<tr>
+				<th>序号</th>
+				<th>商品</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>金额</th>
+				<th>操作</th>
+			</tr>
+			<tr ng-repeat="item in items">
+				<td>{{$index + 1}}</td>
+				<td>{{item.name}}</td>
+				<td>{{item.price | currency}}</td>
+				<td>
+					<input ng-model="item.quantity">
+				</td>
+				<td>{{item.quantity * item.price | currency}}</td>
+				<td>
+					<button ng-click="remove($index)">Remove</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

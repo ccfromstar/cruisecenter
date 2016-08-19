@@ -1,0 +1,15 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">学习资源</h3>
+	</div>
+	<div class="panel-body"  ng-controller="resCtrl">
+		<div ng-repeat="res in ress">
+			<h5>
+				<span class="label label-primary">{{res.type}}</span> {{res.title}}
+			</h5>
+			<p>
+				<span class="label label-warning">地址</span> <a target="_blank" ng-href="{{res.url}}">{{res.url}}</a>
+			</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,186 @@
+<!--首页滚动广告-->
+<!--<div ng-controller="PostListController">
+    <carousel interval="myInterval">
+        <slide ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="{{slide.image}}" style="margin:auto;">
+            <div class="carousel-caption">
+                <p>{{slide.text}}</p>
+            </div>
+        </slide>
+    </carousel>
+</div>-->
+<div id="myCarousel" class="carousel slide carousel_home">
+	<!-- 轮播（Carousel）指标 -->
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+		<li data-target="#myCarousel" data-slide-to="3"></li>
+	</ol>
+	<!-- 轮播（Carousel）项目 -->
+	<div class="carousel-inner">
+		<div class="item active">
+			<img src="../../src/image/bg1.jpg" alt="First slide">
+		</div>
+		<div class="item">
+			<img src="../../src/image/bg2.jpg" alt="Second slide">
+		</div>
+		<div class="item">
+			<img src="../../src/image/bg3.jpg" alt="Third slide">
+		</div>
+		<div class="item">
+			<img src="../../src/image/bg4.jpg" alt="Fourth slide">
+		</div>
+	</div>
+	<!-- 轮播（Carousel）导航 -->
+	<a class="carousel-control left" href="#myCarousel" data-slide="prev"></a>
+	<a class="carousel-control right" href="#myCarousel" data-slide="next"></a>
+</div>
+<!--查询区域-->
+
+<!--邮轮服务-->
+<div class="center home_section">
+	<div class="header_a"><img class="home_icon" src="../../src/image/topic_1.png"> 邮轮服务</div>
+	<ul class="menu_a">
+		<li>邮轮注意事项</li>
+		<li>游客登轮须知</li>
+		<li>港口服务内容</li>
+	</ul>
+	<div class="more">更多内容>>></div>
+	<div class="shadow_a"></div>
+	<img src="../../src/image/service.png">
+</div>
+<!--邮轮宝典-->
+<div class="center home_section">
+	<div class="header_a"><img class="home_icon" src="../../src/image/topic_2.png"> 邮轮宝典</div>
+	<ul class="menu_a">
+		<li>邮轮公司荟萃</li>
+		<li>邮轮度假目的地</li>
+		<li>邮轮度假主题</li>
+	</ul>
+	<div class="more">更多内容>>></div>
+	<div class="shadow_a"></div>
+	<img src="../../src/image/baodian.png">
+</div>
+<!--邮轮产品特推-->
+<div class="center home_section">
+	<div class="home_header">
+		<div class="header_a"><img class="home_icon" src="../../src/image/topic_3.png"> 邮轮产品特推</div>
+		<div class="more">更多内容>>></div>
+		<div class="shadow_a"></div>
+	</div>
+	<img src="../../src/image/product.png">
+</div>
+<!--行业动态-->
+<div class="center home_section">
+	<div class="home_header">
+		<div class="header_a"><img class="home_icon" src="../../src/image/topic_4.png"> 行业动态</div>
+		<div class="shadow_a"></div>
+	</div>
+	<img src="../../src/image/notice.png">
+</div>
+<!--联系我们-->
+<div class="center home_section">
+	<div class="home_header">
+		<div class="header_a"><img class="home_icon" src="../../src/image/topic_5.png"> 联系我们</div>
+		<div class="shadow_a"></div>
+	</div>
+	<div class="linkus">
+		<div class="linkus_left">
+			<div class="top_header">
+				<p>您的姓名</p>
+				<input type="text" />
+			</div>
+			<div class="top_header input_right">
+				<p>您的电子邮箱</p>
+				<input type="text" />
+			</div>
+			<div class="bottom_text">
+				<p>您的留言</p>
+				<textarea name="" rows="" cols=""></textarea>
+			</div>
+			<div class="submit_link">提交</div>
+		</div>
+		<div class="linkus_center">
+			<div class="mid">
+				<img src="../../src/image/phone.png">
+				<p>联系我们</p>
+				<p>400-123-1234</p>
+			</div>
+			<div class="mid mid_bottom">
+				<img src="../../src/image/email.png">
+				<p>Email</p>
+				<p>service@cruisesh.com</p>
+			</div>
+		</div>
+		<div class="linkus_right">
+			<img class="qrcode_l" src="../../src/image/weixin.jpg">
+			<h1>欢迎关注微信公众号</h1>
+			<p>在下面留下您的个人信息，我们将即时为您推送最新的邮轮特价产品</p>
+			<img class="linkus_imgrbottom" src="../../src/image/sg.jpg">
+			<div class="linkus_rbottom">
+				<input type="text" class="linkus_right_bottom" placeholder="您的姓名" />
+				<div class="linkus_right_box">
+					<input type="text" name="" class="" placeholder="您的Email地址" />
+					<div id="" class="">订阅</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--服务图标-->
+<div class="center home_section">
+	<ul class="home_service">
+		<li><img class="service_icon" src="../../src/image/service_1.png">
+			<p>船票查询</p>
+		</li>
+		<li><img class="service_icon" src="../../src/image/service_2.png">
+			<p>航班查询</p>
+		</li>
+		<li><img class="service_icon" src="../../src/image/service_3.png">
+			<p>注意事项</p>
+		</li>
+		<li><img class="service_icon" src="../../src/image/service_4.png">
+			<p>港口指南</p>
+		</li>
+		<li><img class="service_icon" src="../../src/image/service_5.png">
+			<p>相关政策</p>
+		</li>
+		<li><img class="service_icon" src="../../src/image/service_6.png">
+			<p>邮轮产品</p>
+		</li>
+		<li><img class="service_icon" src="../../src/image/service_7.png">
+			<p>贵宾服务</p>
+		</li>
+		<li><img class="service_icon" src="../../src/image/service_8.png">
+			<p>WIFI租赁</p>
+		</li>
+	</ul>
+</div>
+<!--左侧悬浮功能导航条-->
+<ul class="left_nav">
+	<li><img class="left_icon" src="../../src/image/service_1.png">
+		<p>船票查询</p>
+	</li>
+	<li><img class="left_icon" src="../../src/image/service_2.png">
+		<p>航班查询</p>
+	</li>
+	<li><img class="left_icon" src="../../src/image/service_3.png">
+		<p>注意事项</p>
+	</li>
+	<li><img class="left_icon" src="../../src/image/service_4.png">
+		<p>港口指南</p>
+	</li>
+	<li><img class="left_icon" src="../../src/image/service_5.png">
+		<p>相关政策</p>
+	</li>
+	<li><img class="left_icon" src="../../src/image/service_6.png">
+		<p>邮轮产品</p>
+	</li>
+	<li><img class="left_icon" src="../../src/image/service_7.png">
+		<p>贵宾服务</p>
+	</li>
+	<li><img class="left_icon" src="../../src/image/service_8.png">
+		<p>WIFI租赁</p>
+	</li>
+</ul>

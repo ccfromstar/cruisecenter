@@ -1,0 +1,15 @@
+<div class="panel panel-primary">
+   <div class="panel-heading">
+      <h3 class="panel-title">常见问题</h3>
+   </div>
+   <div class="panel-body">
+   		<h5 ng-non-bindable><span class="label label-primary">问题</span> 如果我的页面html中想显示"{{ }}"，不想被angular解析为表达式，该怎么办？</h5>
+   		<p><span class="label label-success">回答</span></p> 
+   		<p>1.可以通过给dom对象增加ng-non-bindable属性来让angular不解析当前标签内的内容</p>
+   		<p ng-non-bindable>2.可以定义一个model  model的值是"{{"，然后将"{{"替换为"{{ noanalysis_left }}"</p>
+   		<pre>controller: function($scope) {
+  $scope.noanalysis_left = '{{';
+}</pre>
+		<pre ng-non-bindable>{{ noanalysis_left}} 12.45 | currency:'￥' }}</pre>
+   </div>
+</div>

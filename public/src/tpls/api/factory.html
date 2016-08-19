@@ -1,0 +1,40 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">factory</h3>
+	</div>
+	<div class="panel-body">
+		<p>创建一个工厂方法，可以在其他服务和控制器里调用</p>
+		<pre ng-non-bindable>&lt;div ng-controller="CalcController"&gt;
+	&lt;input type="text" ng-model="number" /&gt;
+	&lt;button ng-click="square()"&gt;计算次方数&lt;/button&gt;
+	结果：{{result}}
+&lt;/div&gt;</pre>
+		<pre>var factoryApp = angular.module("factoryApp", []);
+/*定义一个工厂对象，里面有一个乘法的方法multiply*/
+factoryApp.factory('MathService', function() {
+	var factory = {};
+	factory.multiply = function(a, b) {
+		return a * b;
+	}
+	return factory;
+});
+/*定义一个服务，计算次方*/
+factoryApp.service('CalcService', function(MathService) {
+	this.quare = function(a) {
+		return MathService.multiply(a,a);
+	}
+});
+/*在控制器里调用service*/
+factoryApp.controller('CalcController', function($scope, CalcService) {
+	$scope.square = function() {
+		$scope.result = CalcService.quare($scope.number);
+	}
+});</pre>
+		<p>运行结果：</p>
+		<div ng-controller="CalcController">
+			<input type="text" ng-model="number" />
+			<button ng-click="square()">计算次方数</button>
+			结果：{{result}}
+		</div>
+	</div>
+</div>

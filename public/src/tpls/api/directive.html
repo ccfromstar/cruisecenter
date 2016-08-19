@@ -1,0 +1,98 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">directive</h3>
+	</div>
+	<div class="panel-body" ng-controller="LocationCtrl" >
+		<p>AngularJS指令</p>
+		<p>Angular对directive的定义是一段代码片段，可以用它来操作DOM，directive也是进行用户交互的很好选择</p>
+		<h4>实例1.</h4>
+		<pre ng-non-bindable>&lt;hello&gt;&lt;/hello&gt;</pre>
+		<pre ng-non-bindable>var appModule = angular.module('directiveapp', []);
+appModule.directive('hello', function() {
+    return {
+        restrict: 'E',
+        template: '&lt;div&gt;Hi there&lt;/div&gt;',
+        replace: true
+    };
+});</pre>
+		<p>运行结果:</p>
+		<hello></hello>
+		<p>&nbsp;</p>
+		<p><span class="label label-default">说明</span></p>
+		<p>1.restrict 指令声明方式</p>
+		<p>
+			<img src="../../src/image/directive1.png" alt="" />
+		</p>
+		<p>2.template 代码模板</p>
+		<p>如果我们需要替换的HTML标签很长，显然不能用 拼接字符串的方式来写，这时候我们可以用templateUrl来替代template，从而可以把模板写到一个独立的HTML文件中</p>
+		<p>3.replace 是否替换原来的标签</p>
+		<p>&nbsp;</p>
+		<h4>实例2.</h4>
+		<pre ng-non-bindable>&lt;hello2&gt;
+    &lt;br/&gt;
+    &lt;span&gt;原始的内容，&lt;/span&gt;&lt;br/&gt;
+    &lt;span&gt;还会在这里。&lt;/span&gt;
+&lt;/hello2&gt;</pre>
+        <pre ng-non-bindable>
+appModule.directive('hello2', function() {
+    return {
+        restrict: 'E',
+        template: '&lt;div&gt;Hi there &lt;span ng-transclude&gt;&lt;/span&gt;&lt;/div&gt;',
+        transclude: true
+    };
+});
+</pre>
+		<p>运行结果:</p>
+		<hello2>
+			<br/>
+            <span>原始的内容，</span><br/>
+            <span>还会在这里。</span>
+		</hello2>
+		<p>&nbsp;</p>
+		<p><span class="label label-default">说明</span> transclude可以用来保留内部出现的子标签</p>
+		<p>&nbsp;</p>
+		<h4>实例3.</h4>
+		<pre ng-non-bindable>&lt;div ng-controller='SomeController'&gt;
+    &lt;expander class='expander' expander-title='title'&gt;
+        {{text}}
+    &lt;/expander&gt;
+&lt;/div&gt;</pre>
+        <pre ng-non-bindable>var expanderModule=angular.module('expanderModule', []);
+expanderModule.directive('expander', function() {
+    return {
+        restrict : 'EA',
+        replace : true,
+        transclude : true,
+        scope : {
+            title : '=expanderTitle'
+        },
+        template : '&lt;div&gt;'
+                 + '&lt;div class="title" ng-click="toggle()"&gt;{{title}}&lt;/div&gt;'
+                 + '&lt;div class="body" ng-show="showMe" ng-transclude&gt;&lt;/div&gt;'
+                 + '&lt;/div&gt;',
+        link : function(scope, element, attrs) {
+            scope.showMe = false;
+            scope.toggle = function toggle() {
+                scope.showMe = !scope.showMe;
+            }
+        }
+    }
+});
+expanderModule.controller('SomeController',function($scope) {
+    $scope.title = '点击展开';
+    $scope.text = '这里是内部的内容。';
+});</pre>
+		<p>运行结果:</p>
+		<div ng-controller='SomeController'>
+            <expander class='expander' expander-title='title'>
+                {{text}}
+            </expander>
+        </div>
+        <p>&nbsp;</p>
+		<p><span class="label label-default">说明</span></p>
+		<p>link 进行数据绑定等操作</p>
+		<p>scope：$scope对象</p>
+		<p>element：DOM元素对象</p>
+		<p>attrs：DOM元素的属性</p>
+	</div>
+</div>
