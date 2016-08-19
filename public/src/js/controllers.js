@@ -277,13 +277,8 @@ resApp.controller('resCtrl',function($scope){
 });
 
 var ftitAppModule = angular.module('ftitApp',[]);
-ftitAppModule.controller('PostListController', function ($scope) {
-        // 设置轮播图图片间隔
-        $scope.myInterval = 5000;
-        // 轮播图数据初始化
-        var slides = $scope.slides = [];
-        // 添加轮播图源
-        slides.push({ image: '../../src/image/bg1.jpg', text: '亲爱的你，情人节快乐' });
-        slides.push({ image: '../../src/image/bg1.jpg', text: '亲爱的你，情人节快乐' });
-        slides.push({ image: '../../src/image/bg1.jpg', text: '亲爱的你，情人节快乐' });
+ftitAppModule.controller('WeiboController', function ($scope) {
+	$scope.toWeibo = function() {
+		window.open('http://weibo.com/cruisesh?topnav=1&wvr=6&topsug=1');
+	}
 });

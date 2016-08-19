@@ -72,11 +72,11 @@
 						<li class="f_icon">
 							<section>
 								<img class="footer_right_icon" src="../../src/image/widget1_0.png">微信公众号
-								<img class="qrcode" src="../../src/image/weixin.jpg">
+								<img class="qrcode" src="../../src/image/wechat.jpg">
 							</section>
 							<section>
 								<img class="footer_right_icon" src="../../src/image/widget2_0.png">微博号
-								<img class="qrcode" src="../../src/image/weibo.png">
+								<img class="qrcode" src="../../src/image/weibo.jpg">
 							</section>
 							<section>
 								<img class="footer_right_icon" src="../../src/image/widget3_0.png">苹果客户端
@@ -103,12 +103,21 @@
 <div class="widget">
 	<ul>
 		<li><img onmouseenter="showfloat(1)" onmouseleave="hidefloat(1)" class="widget_icon" src="../../src/image/widget1.png"></li>
-		<li><img onmouseenter="showfloat(2)" onmouseleave="hidefloat(2)" class="widget_icon" src="../../src/image/widget2.png"></li>
+		<li><img onmouseenter="showfloat(2)" class="widget_icon" src="../../src/image/widget2.png"></li>
 		<li><img class="widget_icon" src="../../src/image/widget3.png"></li>
 		<li><img class="widget_icon" src="../../src/image/widget4.png"></li>
 		<li><img onclick="gotop()" class="widget_icon" src="../../src/image/widget5.png"></li>
 	</ul>
 </div>
 <!--漂浮元素-->
-<img class="none float_1 float_common" src="../../src/image/weixin.jpg">
-<img class="none float_2 float_common" src="../../src/image/weibo.png">
+<div class="none float_1 float_common">
+	<p>扫一扫</p>
+	<p>关注微信公众号</p>
+	<img  src="../../src/image/wechat.jpg">
+</div>
+<div class="none float_2 float_common" onmouseleave="hidefloat(2)" ng-controller="WeiboController">
+	<p>扫一扫</p>
+	<p>关注官方微博</p>
+	<img  src="../../src/image/weibo.jpg">
+	<div ng-click="toWeibo()">进入微博</div>
+</div>

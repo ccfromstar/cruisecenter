@@ -3,7 +3,17 @@ function showlist(i) {
 	$('#nav'+i).slideToggle();
 }
 
+function hidelist() {
+	$('.nav_div').hide();
+}
+
+function showQuery(i) {
+	$('.query_left li').removeClass('active');
+	$('.query_left li').eq(i).addClass('active');
+}
+
 function showfloat(i){
+	$('.float_common').hide();
 	$('.float_'+i).show();
 }
 

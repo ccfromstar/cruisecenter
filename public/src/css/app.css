@@ -565,13 +565,85 @@ h1 {
 .float_common {
 	position: fixed;
 	right:50px;
-	width:150px;
+	text-align: center;
+	background: #fff;
+	box-shadow: 0px 0px 8px #888888;
+	width:140px;
+	padding: 10px;
 }
 
 .float_1 {
-	bottom:220px;
+	bottom:120px;
+}
+
+.float_common img {
+	width:120px;
+}
+
+.float_common p {
+	margin:0;
+}
+
+.float_common div {
+	width:120px;
+	height:30px;
+	line-height: 30px;
+	background: #1F2A58;
+	color:#fff;
+	font-weight: bold;
+	cursor:pointer;
 }
 
 .float_2 {
-	bottom:150px;
+	bottom:40px;
+}
+
+.query {
+	height:560px;
+	position:relative;
+	width:1000px;
+	margin: -560px auto 0 auto;
+}
+
+.query_div {
+	position:absolute;
+	top:100px;
+	width:535px;
+	height:360px;
+	right:0;
+}
+
+.query_left {
+	width:140px;
+	float:left;
+}
+
+.query_left ul {
+	padding-left: 0;
+}
+
+.query_left .active {
+	color:#1F2A58;
+	background: #fff;
+}
+
+.query_left li {
+	width:140px;
+	height:87px;
+	line-height: 87px;
+	text-align: center;
+	color:#fff;
+	font-size: 18px;
+	background-color: rgba(31,42,88,0.8);
+}
+
+.li_1 {
+	margin-top:4px;
+}
+
+.query_right {
+	width:390px;
+	height:360px;
+	background: #fff;
+	float:left;
 }
