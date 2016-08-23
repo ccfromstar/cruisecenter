@@ -33,7 +33,7 @@ $(window).scroll(function() {
     if(currTop < 560){
     	currTop = currTop;
     	nav_top = nav_top - currTop;
-    	console.log(nav_top);
+    	//console.log(nav_top);
     	$('.left_nav').css('top',nav_top);
     }
 });

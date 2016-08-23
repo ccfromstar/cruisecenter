@@ -228,57 +228,95 @@ applyApp.controller("applyCtrl", function($scope) {
 
 var appModule = angular.module('directiveapp', []);
 appModule.directive('hello', function() {
-    return {
-        restrict: 'E',
-        template: '<div>Hi there</div>',
-        replace: true
-    };
+	return {
+		restrict: 'E',
+		template: '<div>Hi there</div>',
+		replace: true
+	};
 });
 appModule.directive('hello2', function() {
-    return {
-        restrict: 'E',
-        template: '<div>Hi there <span ng-transclude></span></div>',
-        transclude: true
-    };
+	return {
+		restrict: 'E',
+		template: '<div>Hi there <span ng-transclude></span></div>',
+		transclude: true
+	};
 });
 
-var expanderModule=angular.module('expanderModule', []);
+var expanderModule = angular.module('expanderModule', []);
 expanderModule.directive('expander', function() {
-    return {
-        restrict : 'EA',
-        replace : true,
-        transclude : true,
-        scope : {
-            title : '=expanderTitle'
-        },
-        template : '<div>'
-                 + '<div class="title" ng-click="toggle()">{{title}}</div>'
-                 + '<div class="body" ng-show="showMe" ng-transclude></div>'
-                 + '</div>',
-        link : function(scope, element, attrs) {
-            scope.showMe = false;
-            scope.toggle = function toggle() {
-                scope.showMe = !scope.showMe;
-            }
-        }
-    }
+	return {
+		restrict: 'EA',
+		replace: true,
+		transclude: true,
+		scope: {
+			title: '=expanderTitle'
+		},
+		template: '<div>' + '<div class="title" ng-click="toggle()">{{title}}</div>' + '<div class="body" ng-show="showMe" ng-transclude></div>' + '</div>',
+		link: function(scope, element, attrs) {
+			scope.showMe = false;
+			scope.toggle = function toggle() {
+				scope.showMe = !scope.showMe;
+			}
+		}
+	}
 });
-expanderModule.controller('SomeController',function($scope) {
-    $scope.title = '点击展开';
-    $scope.text = '这里是内部的内容。';
+expanderModule.controller('SomeController', function($scope) {
+	$scope.title = '点击展开';
+	$scope.text = '这里是内部的内容。';
 });
 
-var resApp = angular.module('resApp',[]);
-resApp.controller('resCtrl',function($scope){
-	$scope.ress = [
-		{type:"视频",title:"AngularJS实战",url:"http://www.imooc.com/learn/156"},
-		{type:"文章",title:"angularjs directive 实例 详解",url:"http://blog.51yip.com/jsjquery/1607.html"}
-	];
+var resApp = angular.module('resApp', []);
+resApp.controller('resCtrl', function($scope) {
+	$scope.ress = [{
+		type: "视频",
+		title: "AngularJS实战",
+		url: "http://www.imooc.com/learn/156"
+	}, {
+		type: "文章",
+		title: "angularjs directive 实例 详解",
+		url: "http://blog.51yip.com/jsjquery/1607.html"
+	}];
 });
 
-var ftitAppModule = angular.module('ftitApp',[]);
-ftitAppModule.controller('WeiboController', function ($scope) {
+var ftitAppModule = angular.module('ftitApp', []);
+ftitAppModule.controller('WeiboController', function($scope) {
 	$scope.toWeibo = function() {
 		window.open('http://weibo.com/cruisesh?topnav=1&wvr=6&topsug=1');
+	}
+});
+
+var navApp = angular.module('navApp', []);
+navApp.controller('NavController', function($scope) {
+	$scope.navigateTo = function(i) {
+		$('.nav_navigate a').removeClass('active');
+		$('.nav_navigate a').eq(i).addClass('active');
+		if (i == 0) {
+			$('#pathinfo').html('首页 > 行业动态 > 热点新闻');
+		} else if (i == 1) {
+			$('#pathinfo').html('首页 > 行业动态 > 紧急公告');
+		}
+	}
+});
+
+var adminApp = angular.module('adminApp', []);
+adminApp.controller('AdminController', function($scope, $interval) {
+	var setInfo = function() {
+		var d = new Date();
+		$scope.today = d.toLocaleString();
+		if ((d.getHours() > 10 && d.getMinutes() > 15) && d.getHours() < 13) {
+			$scope.info = "现在是午休时间,不要光顾着工作,要记得吃午饭哦!";
+		} else if ((d.getHours() > 16 && d.getMinutes() > 59) && (d.getHours() < 9 && d.getMinutes() < 31)) {
+			$scope.info = "现在是下班时间,做点丰富生活的事情吧,不要总是加班!";
+		} else {
+			$scope.info = "现在是上班时间,请合理安排好您一天的工作内容!";
+		}
+	}
+	setInfo();
+	var timer = $interval(function() {
+		setInfo();
+	}, 1000);
+
+	$scope.add = function(view) {
+		window.location = 'management.html#/management/' + view;
 	}
 });

@@ -1,0 +1,34 @@
+<div ui-view="nav"></div>
+<div class="center content_page">
+	<div class="page_left">
+		<div class="nav_navigate" ng-controller="NavController">
+			<dl>
+				<dt>
+					行业动态
+					<img src="../../src/image/zk.png" alt="" />
+					<div class="nav_shadow"></div>
+				</dt>
+				<dd>
+					<ul>
+						<li>
+							<a ng-click="navigateTo(0)" class="active" ui-sref="index.trends.news">
+								热点新闻
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								紧急公告
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+	</div>
+	<div class="page_right">
+		<div ui-view></div>
+	</div>
+	<div style="clear:both"></div>
+</div>

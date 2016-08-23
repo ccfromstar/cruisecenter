@@ -1,0 +1,13 @@
+<div>
+	<div ui-view="header"></div>
+	<div class="am-cf admin-main">
+		<div ui-view="nav"></div>
+		<!-- content start -->
+		<div class="admin-content" ng-controller="AdminController">
+			<div class="admin-content-body">
+				<div ui-view="main"></div>
+			</div>
+		</div>
+		<!-- content end -->
+	</div>
+</div>

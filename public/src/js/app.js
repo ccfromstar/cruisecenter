@@ -1,4 +1,4 @@
-var routerApp = angular.module('routerApp', ['ui.router', 'ngGrid','ftitApp','resApp','expanderModule','applyApp','repeatApp','directiveapp','factoryApp','tanktest','httptest','locationtest', 'BookListModule', 'BookDetailModule']);
+var routerApp = angular.module('routerApp', ['ui.router', 'ngGrid','ftitApp','adminApp','resApp','navApp','expanderModule','applyApp','repeatApp','directiveapp','factoryApp','tanktest','httptest','locationtest', 'BookListModule', 'BookDetailModule']);
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
  * 这里的run方法只会在angular启动的时候运行一次。
@@ -39,6 +39,34 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					templateUrl: 'tpls/homepage.html'
 				}
 			}
+		})
+		.state('index.trends', {
+			url: '/trends',
+			views: {
+				'main@index': {
+					templateUrl: 'tpls/trends.html',
+					controller: function($scope,$location) {
+						var url = $location.absUrl();
+						console.log(url);
+						if(url.indexOf('news') != -1){
+							$scope.path = '首页 > 行业动态 > 热点新闻';
+						}else if(url.indexOf('notice') != -1){
+							$scope.path = '首页 > 行业动态 > 紧急公告';
+						}
+					}
+				},
+				'nav@index.trends': {
+					templateUrl: 'tpls/nav.html'
+				}
+			}
+		})
+		.state('index.trends.news', {
+			url: '/news',
+			templateUrl: 'tpls/trends/news.html'	
+		})
+		.state('index.trends.notice', {
+			url: '/notice',
+			templateUrl: 'tpls/trends/notice.html'
 		})
 		.state('index.api', {
 			url: '/apilist',
@@ -120,5 +148,38 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('bookdetail', {
 			url: '/bookdetail/:bookId', //注意这里在路由中传参数的方式
 			templateUrl: 'tpls/bookDetail.html'
+		})
+		.state('management', {
+			url: '/management',
+			views: {
+				'': {
+					templateUrl: 'tpls/admin/home.html'
+				},
+				'header@management': {
+					templateUrl: 'tpls/admin/header.html'
+				},
+				'nav@management': {
+					templateUrl: 'tpls/admin/nav.html'
+				},
+				'main@management': {
+					templateUrl: 'tpls/admin/homepage.html'
+				}
+			}
+		})
+		.state('management.view_news', {
+			url: '/view_news',
+			views: {
+				'main@management': {
+					templateUrl: 'tpls/admin/view_news.html'
+				}
+			}	
+		})
+		.state('management.news', {
+			url: '/news',
+			views: {
+				'main@management': {
+					templateUrl: 'tpls/admin/news.html'
+				}
+			}	
 		})
 });

@@ -3,6 +3,12 @@
 	color:#5C5C5C;
 	font-size:12px;
 }
+a {
+	color:#5C5C5C;
+}
+a:link{text-decoration:none;}
+a:visited{text-decoration:none;}
+a:active{text-decoration:none;}
 .nav, .pagination, .carousel, .panel-title a {
     cursor: pointer;
 }
@@ -101,6 +107,14 @@
 	font-weight:900;
 	padding-bottom: 5px;
 	border-bottom: 3px solid #fff;
+}
+
+.menu li a{
+	font-size:16px;
+	font-weight:900;
+	color:#5C5C5C;
+	display: inline-block;
+	width:100px;
 }
 
 .menu li:hover {
@@ -295,6 +309,7 @@ h1 {
 	background: rgba(255,255,255,0.7);
 	z-index: 9998;
 	width:100%;
+	box-shadow: 0px 1px 3px #888888;
 }
 
 .nav_div ul{
@@ -317,6 +332,7 @@ h1 {
 	width:100px;
 	display:inline-block;
 	margin-bottom: 10px;
+	cursor: pointer;
 }
 
 .none {
@@ -646,4 +662,101 @@ h1 {
 	height:360px;
 	background: #fff;
 	float:left;
+}
+
+.page_left{
+	width:250px;
+	float: left;
+}
+
+.path,.path span {
+	font-size:14px;
+	margin-top:15px;
+	margin-bottom:40px;
+}
+
+.page_right {
+	float: left;
+	border:1px solid #E6EAED;
+	width:730px;
+	min-height: 700px;
+	margin-left: 20px;
+}
+
+.nav_navigate {
+	width:240px;
+	height: 140px;
+	background: #E6EAEB;
+}
+
+.nav_navigate dl {
+	padding-top:25px;
+}
+
+.nav_navigate dt {
+	position:relative;
+	height: 34px;
+	line-height: 34px;
+	font-size: 16px;
+	color:#202B59;
+	font-weight: bold;
+	padding:0 20px;
+}
+
+.nav_navigate dt img {
+	position:absolute;
+	width:15px;
+	right:20px;
+	top:5px;
+}
+
+.nav_navigate dt hr {
+	margin: 0;
+	height:3px;
+	border:none;
+	border-top:3px double  #D5D9DC;
+}
+
+.nav_navigate dd ul {
+	margin-top:10px;
+	padding-left: 0;
+}
+
+.nav_navigate dd li {
+	
+}
+
+.nav_navigate dd a {
+	font-size: 14px;
+	padding: 5px 0 5px 35px;
+	display:inline-block;
+	width:100%;
+	font-weight: bold;
+}
+
+.nav_navigate dd img {
+	width:15px;
+	position: absolute;
+	right:12px;
+	top:8px;
+}
+
+.nav_navigate dd .active {
+	background-color: #fff;
+	color:#C20C23;
+	border-left:3px solid #C20C23;
+	padding-left: 32px;
+	position:relative;
+}
+
+.nav_shadow {
+    height: 2px;
+    border-top: 1px solid #d6d6d6;
+    background-color: rgba(0,0,0,.06);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#11000000',endColorstr='#11000000');
+    overflow: hidden;
+}
+
+.content_page {
+	margin-bottom: 40px;
 }
