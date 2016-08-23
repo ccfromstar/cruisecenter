@@ -606,3 +606,43 @@
     at next (I:\workspace\git\cruisecenter\node_modules\express\node_modules\connect\lib\proto.js:193:15)
 [2016-08-23 10:16:41.821] [INFO] console - 80 start
 [2016-08-23 10:19:15.084] [INFO] console - 80 start
+[2016-08-23 10:47:30.566] [TRACE] normal - 127.0.0.1 - - "GET /login.html HTTP/1.1" 404 - "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:30.572] [TRACE] normal - 127.0.0.1 - - "GET /css/basic.css HTTP/1.1" 404 - "http://127.0.0.1/login.html" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:30.576] [TRACE] normal - 127.0.0.1 - - "GET /css/amazeui.min.css HTTP/1.1" 404 - "http://127.0.0.1/login.html" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:30.580] [TRACE] normal - 127.0.0.1 - - "GET /login.html HTTP/1.1" 404 - "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:30.583] [TRACE] normal - 127.0.0.1 - - "GET /js/amazeui.min.js HTTP/1.1" 404 - "http://127.0.0.1/login.html" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:30.585] [TRACE] normal - 127.0.0.1 - - "GET /js/basic.js HTTP/1.1" 404 - "http://127.0.0.1/login.html" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:30.589] [TRACE] normal - 127.0.0.1 - - "GET /js/setting.js HTTP/1.1" 404 - "http://127.0.0.1/login.html" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:32.769] [INFO] console - 80 start
+[2016-08-23 10:47:37.673] [TRACE] normal - 127.0.0.1 - - "GET /js/jquery.min.js HTTP/1.1" 404 - "http://127.0.0.1/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:37.685] [TRACE] normal - 127.0.0.1 - - "GET /js/amazeui.min.js HTTP/1.1" 404 - "http://127.0.0.1/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:37.689] [TRACE] normal - 127.0.0.1 - - "GET /js/basic.js HTTP/1.1" 404 - "http://127.0.0.1/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:37.694] [TRACE] normal - 127.0.0.1 - - "GET /js/setting.js HTTP/1.1" 404 - "http://127.0.0.1/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:37.699] [TRACE] normal - 127.0.0.1 - - "GET /js/login.js HTTP/1.1" 404 - "http://127.0.0.1/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:37.704] [TRACE] normal - 127.0.0.1 - - "GET /css/amazeui.min.css HTTP/1.1" 404 - "http://127.0.0.1/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:47:37.711] [TRACE] normal - 127.0.0.1 - - "GET /css/basic.css HTTP/1.1" 404 - "http://127.0.0.1/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:49:22.659] [TRACE] normal - 127.0.0.1 - - "GET /css/basic.css HTTP/1.1" 404 - "http://127.0.0.1/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+[2016-08-23 10:55:49.799] [INFO] console - 80 start
+[2016-08-23 10:55:54.662] [ERROR] console - Error: ER_NO_SUCH_TABLE: Table 'cruisesh.user' doesn't exist
+    at Query.Sequence._packetToError (I:\workspace\git\cruisecenter\node_modules\mysql\lib\protocol\sequences\Sequence.js:30:14)
+    at Query.ErrorPacket (I:\workspace\git\cruisecenter\node_modules\mysql\lib\protocol\sequences\Query.js:82:18)
+    at Protocol._parsePacket (I:\workspace\git\cruisecenter\node_modules\mysql\lib\protocol\Protocol.js:213:24)
+    at Parser.write (I:\workspace\git\cruisecenter\node_modules\mysql\lib\protocol\Parser.js:62:12)
+    at Protocol.write (I:\workspace\git\cruisecenter\node_modules\mysql\lib\protocol\Protocol.js:37:16)
+    at Socket.<anonymous> (I:\workspace\git\cruisecenter\node_modules\mysql\lib\Connection.js:75:28)
+    at Socket.EventEmitter.emit (events.js:95:17)
+    at Socket.<anonymous> (_stream_readable.js:746:14)
+    at Socket.EventEmitter.emit (events.js:92:17)
+    at emitReadable_ (_stream_readable.js:408:10)
+    --------------------
+    at Pool.query (I:\workspace\git\cruisecenter\node_modules\mysql\lib\Pool.js:182:23)
+    at exports.userdo (I:\workspace\git\cruisecenter\routes\index.js:44:9)
+    at callbacks (I:\workspace\git\cruisecenter\node_modules\express\lib\router\index.js:164:37)
+    at param (I:\workspace\git\cruisecenter\node_modules\express\lib\router\index.js:138:11)
+    at param (I:\workspace\git\cruisecenter\node_modules\express\lib\router\index.js:135:11)
+    at pass (I:\workspace\git\cruisecenter\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (I:\workspace\git\cruisecenter\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (I:\workspace\git\cruisecenter\node_modules\express\lib\router\index.js:33:10)
+    at next (I:\workspace\git\cruisecenter\node_modules\express\node_modules\connect\lib\proto.js:193:15)
+    at Object.staticMiddleware [as handle] (I:\workspace\git\cruisecenter\node_modules\express\node_modules\connect\lib\middleware\static.js:55:61)
+[2016-08-23 10:56:16.289] [INFO] console - 80 start

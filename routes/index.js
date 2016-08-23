@@ -15,6 +15,12 @@ exports.home = function(req, res) {
 	});
 }
 
+exports.login = function(req, res) {
+	res.render('login', {
+		layout: false
+	});
+}
+
 exports.view_news = function(req, res) {
 	res.render('view_news', {
 		layout: "layout"
@@ -25,6 +31,29 @@ exports.news = function(req, res) {
 	res.render('news', {
 		layout: "layout"
 	});
+}
+
+exports.userdo = function(req, res) {
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	var sql = req.params.sql;
+	if (sql == "checkLogin") {
+		var uname = req.param("uname");
+		var pwd = req.param("pwd");
+		var sql = "select * from admin where username = '" + uname + "'";
+		debug(sql);
+		mysql.query(sql, function(err, result) {
+			if (err) return console.error(err.stack);
+			if (!result[0]) {
+				res.send("400");
+				return;
+			}
+			if (result[0].password == pwd) {
+				res.json(result[0]);
+			} else {
+				res.send("400");
+			}
+		});
+	}
 }
 
 exports.newsdo = function(req, res) {
@@ -114,7 +143,7 @@ exports.newsdo = function(req, res) {
 				res.send("300");
 			}
 		});
-	} else if (sql == "getById"){
+	} else if (sql == "getById") {
 		var id = req.param("id");
 		var sql = "select * from news where id = " + id;
 		mysql.query(sql, function(err, result) {

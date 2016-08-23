@@ -3,7 +3,15 @@ $(function() {
 	setInterval(function() {
 		setInfo();
 	}, 1000);
+
+	$('#cname').html(window.sessionStorage.getItem('cname'));
 });
+
+function exit() {
+	window.sessionStorage.removeItem("cname");
+	window.sessionStorage.removeItem('cid');
+	window.location = '/login';
+}
 
 function setInfo() {
 	var d = new Date();
@@ -98,11 +106,11 @@ function delDoc(i) {
 	}
 }
 
-function editDoc(i,id){
+function editDoc(i, id) {
 	if (i == 1) {
 		//新闻
-		window.sessionStorage.setItem("editid",id);
-		window.sessionStorage.setItem("mode","edit");
+		window.sessionStorage.setItem("editid", id);
+		window.sessionStorage.setItem("mode", "edit");
 		window.location = '/news';
 	}
 }
@@ -130,7 +138,7 @@ function toPage(page) {
 			console.log(data);
 			var html = "";
 			var record = data.record;
-			for (var i in record) { 
+			for (var i in record) {
 				html += "<tr>";
 				html += "<td>" + record[i].title + "</td>";
 				html += "<td>" + record[i].publishAt + "</td>";
