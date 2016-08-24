@@ -403,3 +403,7 @@ gallery.html css
 .am-g {
 	margin-left: 0 !important;
 }
+
+#json_tbody td {
+	max-width:300px;
+}

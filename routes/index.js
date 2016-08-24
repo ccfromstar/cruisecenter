@@ -92,7 +92,7 @@ exports.newsdo = function(req, res) {
 		}
 	} else if (sql == "get") {
 		var page = parseInt(req.param("indexPage"));
-		var LIMIT = 6;
+		var LIMIT = 8;
 		page = (page && page > 0) ? page : 1;
 		var limit = (limit && limit > 0) ? limit : LIMIT;
 

@@ -1,4 +1,5 @@
-var routerApp = angular.module('routerApp', ['ui.router', 'ngGrid','ftitApp','adminApp','resApp','navApp','expanderModule','applyApp','repeatApp','directiveapp','factoryApp','tanktest','httptest','locationtest', 'BookListModule', 'BookDetailModule']);
+var routerApp = angular.module('routerApp', ['ui.router', 'listApp', 'ngGrid', 'ftitApp', 'adminApp', 'resApp', 'navApp', 'expanderModule', 'applyApp', 'repeatApp', 'directiveapp', 'factoryApp', 'tanktest', 'httptest', 'locationtest', 'BookListModule', 'BookDetailModule']);
+var hosts = "http://127.0.0.1/";
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
  * 这里的run方法只会在angular启动的时候运行一次。
@@ -45,12 +46,12 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 			views: {
 				'main@index': {
 					templateUrl: 'tpls/trends.html',
-					controller: function($scope,$location) {
+					controller: function($scope, $location) {
 						var url = $location.absUrl();
-						console.log(url);
-						if(url.indexOf('news') != -1){
+						//console.log(url);
+						if (url.indexOf('news') != -1) {
 							$scope.path = '首页 > 行业动态 > 热点新闻';
-						}else if(url.indexOf('notice') != -1){
+						} else if (url.indexOf('notice') != -1) {
 							$scope.path = '首页 > 行业动态 > 紧急公告';
 						}
 					}
@@ -62,11 +63,15 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state('index.trends.news', {
 			url: '/news',
-			templateUrl: 'tpls/trends/news.html'	
+			templateUrl: 'tpls/trends/news.html'
 		})
 		.state('index.trends.notice', {
 			url: '/notice',
 			templateUrl: 'tpls/trends/notice.html'
+		})
+		.state('index.trends.newsform', {
+			url: '/newsform',
+			templateUrl: 'tpls/trends/newsform.html'
 		})
 		.state('index.api', {
 			url: '/apilist',
@@ -172,7 +177,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 				'main@management': {
 					templateUrl: 'tpls/admin/view_news.html'
 				}
-			}	
+			}
 		})
 		.state('management.news', {
 			url: '/news',
@@ -180,6 +185,6 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 				'main@management': {
 					templateUrl: 'tpls/admin/news.html'
 				}
-			}	
+			}
 		})
 });

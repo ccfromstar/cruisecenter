@@ -1,1 +1,15 @@
-新闻
+<h1>热点新闻</h1>
+<div class="nav_shadow"></div>
+<ul class="listitem">
+	<li ng-repeat="item in items">
+		<div class="dateclass">
+			{{ item.publishAt | limitTo:10 }}
+			<img class="img1" src="../../src/image/arrow.png" alt="" />
+			<img class="img2" src="../../src/image/{{item.img }}.png" alt="" />
+		</div>
+		<hgroup ng-click="openDoc('news',item.id)">
+			<h2>{{ item.title }}</h2>
+			<h3>{{ item.summary }}</h3>
+		</hgroup>
+	</li>
+</ul>

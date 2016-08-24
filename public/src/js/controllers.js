@@ -320,3 +320,63 @@ adminApp.controller('AdminController', function($scope, $interval) {
 		window.location = 'management.html#/management/' + view;
 	}
 });
+
+var listApp = angular.module('listApp', []);
+listApp.controller('listController', function($scope, $http, $location, $state) {
+	var PageNum = window.sessionStorage.getItem("PageNum");
+	PageNum = PageNum ? PageNum : 1;
+	$http({
+		url: hosts + 'news/get',
+		method: 'POST',
+		data: {
+			indexPage: PageNum,
+		}
+	}).success(function(data) {
+		var d = data.record;
+		var l = -1;
+		for (var i in d) {
+			l++;
+		}
+		for (var i in d) {
+			if (i == 0) {
+				d[i].img = 'red_1';
+			} else if (i == l) {
+				d[i].img = 'red_3';
+			} else {
+				d[i].img = 'red_2';
+			}
+		}
+		//console.log(d);
+		$scope.items = d;
+	}).error(function() {
+		console.log("error");
+	});
+
+	$scope.openDoc = function(page, id) {
+		if (page == 'news') {
+			window.sessionStorage.setItem("newsid", id);
+			window.location = '#/index/trends/newsform?id=' + id;
+			//$state.go('index.trends.newsform#id='+id,{data: id},{reload:true});   
+		}
+	}
+
+	$scope.getDocById = function() {
+		var l = $location.absUrl();
+		var arr1 = l.split("?id=");
+		var editid = arr1[1];
+		$.ajax({
+			type: "post",
+			url: hosts + "news/getById",
+			data: {
+				id: editid
+			},
+			success: function(data) {
+				$scope.data = data;
+				//console.log(data[0].title);
+				$('#title').html(data[0].title);
+				$('#publishAt').html(new Date(data[0].publishAt).toLocaleString());
+				$('#post').html(data[0].post);
+			}
+		});
+	}
+});
