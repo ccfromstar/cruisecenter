@@ -11,13 +11,13 @@
 				<dd>
 					<ul>
 						<li>
-							<a ng-click="navigateTo(0)" class="active" ui-sref="index.trends.news">
+							<a ng-click="navigateTo(0)" class="{{class1}}" ui-sref="index.trends.news">
 								热点新闻
 								<img src="../../src/image/read-select.png" alt="" />
 							</a>
 						</li>
 						<li>
-							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+							<a ng-click="navigateTo(1)" class="{{class2}}" ui-sref="index.trends.notice">
 								紧急公告
 								<img src="../../src/image/read-select.png" alt="" />
 							</a>
@@ -27,7 +27,7 @@
 			</dl>
 		</div>
 	</div>
-	<div class="page_right" ng-controller="listController">
+	<div class="page_right">
 		<div ui-view></div>
 	</div>
 	<div style="clear:both"></div>

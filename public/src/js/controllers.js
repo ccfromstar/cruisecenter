@@ -294,6 +294,14 @@ navApp.controller('NavController', function($scope) {
 			$('#pathinfo').html('首页 > 行业动态 > 热点新闻');
 		} else if (i == 1) {
 			$('#pathinfo').html('首页 > 行业动态 > 紧急公告');
+		} 
+	}
+	$scope.ServicesTo = function(i) {
+		$('.nav_navigate a').removeClass('active');
+		$('.nav_navigate a').eq(i).addClass('active');
+		if (i == -1) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 船票查询');
+			$('.nav_navigate a').removeClass('active');
 		}
 	}
 });
@@ -323,34 +331,62 @@ adminApp.controller('AdminController', function($scope, $interval) {
 
 var listApp = angular.module('listApp', []);
 listApp.controller('listController', function($scope, $http, $location, $state) {
-	var PageNum = window.sessionStorage.getItem("PageNum");
-	PageNum = PageNum ? PageNum : 1;
-	$http({
-		url: hosts + 'news/get',
-		method: 'POST',
-		data: {
-			indexPage: PageNum,
-		}
-	}).success(function(data) {
-		var d = data.record;
-		var l = -1;
-		for (var i in d) {
-			l++;
-		}
-		for (var i in d) {
-			if (i == 0) {
-				d[i].img = 'red_1';
-			} else if (i == l) {
-				d[i].img = 'red_3';
-			} else {
-				d[i].img = 'red_2';
+	var toPage = function(i) {
+		//console.log(i);
+		window.sessionStorage.setItem("PageNum", i);
+		var PageNum = window.sessionStorage.getItem("PageNum");
+		PageNum = PageNum ? PageNum : 1;
+		$http({
+			url: hosts + 'news/get',
+			method: 'POST',
+			data: {
+				indexPage: PageNum,
 			}
-		}
-		//console.log(d);
-		$scope.items = d;
-	}).error(function() {
-		console.log("error");
-	});
+		}).success(function(data) {
+			var d = data.record;
+			var l = -1;
+			for (var i in d) {
+				l++;
+			}
+			for (var i in d) {
+				if (i == 0) {
+					d[i].img = 'red_1';
+				} else if (i == l) {
+					d[i].img = 'red_3';
+				} else {
+					d[i].img = 'red_2';
+				}
+			}
+			$scope.items = d;
+			var iPa = PageNum;
+            iPa = iPa ? iPa : 1;
+			var pager = '[';
+			for (var i = 1; i < data.totalpage + 1; i++) {
+                var hasClass = "";
+                if (i == iPa) {
+                    hasClass = "am-active";
+                }
+                var tmp_p = '{"id":'+i+',"class":"'+hasClass+'"}';
+                if(i == data.totalpage){
+                	pager += tmp_p;
+                }else{
+                	pager += tmp_p+',';
+                }
+
+            }
+			pager += ']';
+			console.log(pager);
+			$scope.pages = $.parseJSON(pager);
+		}).error(function() {
+			console.log("error");
+		});
+	}
+
+	toPage(1);
+	
+	$scope.toPages = function(i) {
+		toPage(i);
+	}
 
 	$scope.openDoc = function(page, id) {
 		if (page == 'news') {
@@ -378,5 +414,105 @@ listApp.controller('listController', function($scope, $http, $location, $state) 
 				$('#post').html(data[0].post);
 			}
 		});
+	}
+});
+
+listApp.controller('noticeController', function($scope, $http, $location, $state) {
+	var toPage = function(i) {
+		//console.log(i);
+		window.sessionStorage.setItem("PageNum", i);
+		var PageNum = window.sessionStorage.getItem("PageNum");
+		PageNum = PageNum ? PageNum : 1;
+		$http({
+			url: hosts + 'notice/get',
+			method: 'POST',
+			data: {
+				indexPage: PageNum,
+			}
+		}).success(function(data) {
+			var d = data.record;
+			var l = -1;
+			for (var i in d) {
+				l++;
+			}
+			for (var i in d) {
+				if (i == 0) {
+					d[i].img = 'red_1';
+				} else if (i == l) {
+					d[i].img = 'red_3';
+				} else {
+					d[i].img = 'red_2';
+				}
+			}
+			$scope.items = d;
+			var iPa = PageNum;
+            iPa = iPa ? iPa : 1;
+			var pager = '[';
+			for (var i = 1; i < data.totalpage + 1; i++) {
+                var hasClass = "";
+                if (i == iPa) {
+                    hasClass = "am-active";
+                }
+                var tmp_p = '{"id":'+i+',"class":"'+hasClass+'"}';
+                if(i == data.totalpage){
+                	pager += tmp_p;
+                }else{
+                	pager += tmp_p+',';
+                }
+
+            }
+			pager += ']';
+			console.log(pager);
+			$scope.pages = $.parseJSON(pager);
+		}).error(function() {
+			console.log("error");
+		});
+	}
+
+	toPage(1);
+	
+	$scope.toPages = function(i) {
+		toPage(i);
+	}
+
+	$scope.openDoc = function(page, id) {
+		if (page == 'notice') {
+			window.sessionStorage.setItem("noticeid", id);
+			window.location = '#/index/trends/noticeform?id=' + id;
+			//$state.go('index.trends.newsform#id='+id,{data: id},{reload:true});   
+		}
+	}
+
+	$scope.getDocById = function() {
+		var l = $location.absUrl();
+		var arr1 = l.split("?id=");
+		var editid = arr1[1];
+		$.ajax({
+			type: "post",
+			url: hosts + "notice/getById",
+			data: {
+				id: editid
+			},
+			success: function(data) {
+				$scope.data = data;
+				//console.log(data[0].title);
+				$('#title').html(data[0].title);
+				$('#publishAt').html(new Date(data[0].publishAt).toLocaleString());
+				$('#post').html(data[0].post);
+			}
+		});
+	}
+});
+
+var headerApp = angular.module('headerApp', []);
+headerApp.controller('headerController', function($scope) {
+	$scope.HeaderTo = function(i) {
+		$('.nav_navigate a').removeClass('active');
+		$('.nav_navigate a').eq(i).addClass('active');
+		if (i == 0) {
+			$('#pathinfo').html('首页 > 行业动态 > 热点新闻');
+		} else if (i == 1) {
+			$('#pathinfo').html('首页 > 行业动态 > 紧急公告');
+		} 
 	}
 });

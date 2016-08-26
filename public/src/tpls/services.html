@@ -1,0 +1,148 @@
+<div ui-view="nav"></div>
+<div class="center content_page">
+	<div class="page_left">
+		<div class="nav_navigate" ng-controller="NavController">
+			<dl>
+				<dt>
+					<a ng-click="ServicesTo(-1)" class="active" ui-sref="index.services.query">
+						船票查询
+					</a>
+					<div class="nav_shadow"></div>
+				</dt>
+				<dt>
+					游客须知
+					<img src="../../src/image/zk.png" alt="" />
+					<div class="nav_shadow"></div>
+				</dt>
+				<dd>
+					<ul>
+						<li>
+							<a ng-click="navigateTo(0)" ui-sref="index.trends.news">
+								游客注意事项
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								港口指南
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								登离船流程
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								边检政策
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								海关政策
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								检验检疫政策
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								旅游局政策
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+					</ul>
+				</dd>
+				<dt>
+					行前服务
+					<img src="../../src/image/zk.png" alt="" />
+					<div class="nav_shadow"></div>
+				</dt>
+				<dd>
+					<ul>
+						<li>
+							<a ng-click="navigateTo(0)" ui-sref="index.trends.news">
+								巴士服务
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								保险服务
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+					</ul>
+				</dd>
+				<dt>
+					港口服务
+					<img src="../../src/image/zk.png" alt="" />
+					<div class="nav_shadow"></div>
+				</dt>
+				<dd>
+					<ul>
+						<li>
+							<a ng-click="navigateTo(0)" ui-sref="index.trends.news">
+								航班查询
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								港口天气
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								港口交通
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								停车服务
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								贵宾服务
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								WIFI租赁
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								行李服务
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+						<li>
+							<a ng-click="navigateTo(1)" ui-sref="index.trends.notice">
+								外币兑换
+								<img src="../../src/image/read-select.png" alt="" />
+							</a>
+						</li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+	</div>
+	<div class="page_right" ng-controller="listController">
+		<div ui-view></div>
+	</div>
+	<div style="clear:both"></div>
+</div>

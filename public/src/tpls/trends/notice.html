@@ -1,1 +1,26 @@
-紧急公告
+<div ng-controller="noticeController">
+	<h1>紧急公告</h1>
+	<div class="nav_shadow"></div>
+	<ul class="listitem">
+		<li ng-repeat="item in items">
+			<div class="dateclass">
+				{{ item.publishAt | limitTo:10 }}
+				<img class="img1" src="../../src/image/arrow.png" alt="" />
+				<img class="img2" src="../../src/image/{{item.img }}.png" alt="" />
+			</div>
+			<hgroup ng-click="openDoc('notice',item.id)">
+				<h2>{{ item.title }}</h2>
+				<h3></h3>
+			</hgroup>
+		</li>
+	</ul>
+	<div class="am-cf">
+		<div class="am-fr">
+			<ul class="am-pagination" id="pagination">
+				<li ng-repeat="page in pages" class="{{ page.class }}">
+					<a ng-click="toPages(page.id)">{{ page.id }}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

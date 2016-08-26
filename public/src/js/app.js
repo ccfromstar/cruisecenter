@@ -1,4 +1,4 @@
-var routerApp = angular.module('routerApp', ['ui.router', 'listApp', 'ngGrid', 'ftitApp', 'adminApp', 'resApp', 'navApp', 'expanderModule', 'applyApp', 'repeatApp', 'directiveapp', 'factoryApp', 'tanktest', 'httptest', 'locationtest', 'BookListModule', 'BookDetailModule']);
+var routerApp = angular.module('routerApp', ['ui.router', 'listApp','headerApp','ngGrid', 'ftitApp', 'adminApp', 'resApp', 'navApp', 'expanderModule', 'applyApp', 'repeatApp', 'directiveapp', 'factoryApp', 'tanktest', 'httptest', 'locationtest', 'BookListModule', 'BookDetailModule']);
 var hosts = "http://127.0.0.1/";
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
@@ -51,8 +51,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						//console.log(url);
 						if (url.indexOf('news') != -1) {
 							$scope.path = '首页 > 行业动态 > 热点新闻';
+							$scope.class1 = "active";
 						} else if (url.indexOf('notice') != -1) {
 							$scope.path = '首页 > 行业动态 > 紧急公告';
+							$scope.class2 = "active";
 						}
 					}
 				},
@@ -72,6 +74,31 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.trends.newsform', {
 			url: '/newsform',
 			templateUrl: 'tpls/trends/newsform.html'
+		})
+		.state('index.trends.noticeform', {
+			url: '/noticeform',
+			templateUrl: 'tpls/trends/noticeform.html'
+		})
+		.state('index.services', {
+			url: '/services',
+			views: {
+				'main@index': {
+					templateUrl: 'tpls/services.html',
+					controller: function($scope, $location) {
+						var url = $location.absUrl();
+						if (url.indexOf('query') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 船票查询';
+						} 
+					}
+				},
+				'nav@index.services': {
+					templateUrl: 'tpls/nav.html'
+				}
+			}
+		})
+		.state('index.services.query', {
+			url: '/query',
+			templateUrl: 'tpls/services/query.html'
 		})
 		.state('index.api', {
 			url: '/apilist',

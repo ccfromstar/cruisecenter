@@ -58,7 +58,9 @@
 			<dd>
 				<ul>
 					<li>
-						<h1 class="nav_header">船票查询</h1>
+						<a ui-sref="index.services.query">
+							<h1 class="nav_header">船票查询</h1>
+						</a>
 					</li>
 				</ul>
 			</dd>
@@ -108,7 +110,7 @@
 			<dd>
 				<ul>
 					<li>
-						<a ui-sref="index.trends.news">
+						<a ng-click="HeaderTo(0)" ui-sref="index.trends.news">
 							<h1 class="nav_header">热点新闻</h1>
 						</a>
 					</li>
@@ -117,7 +119,7 @@
 			<dd>
 				<ul>
 					<li>
-						<a ui-sref="index.trends.notice">
+						<a ng-click="HeaderTo(1)" ui-sref="index.trends.notice">
 							<h1 class="nav_header">紧急公告</h1>
 						</a>
 					</li>
