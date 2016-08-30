@@ -1,5 +1,6 @@
 var routerApp = angular.module('routerApp', ['ui.router', 'listApp','headerApp','ngGrid', 'ftitApp', 'adminApp', 'resApp', 'navApp', 'expanderModule', 'applyApp', 'repeatApp', 'directiveapp', 'factoryApp', 'tanktest', 'httptest', 'locationtest', 'BookListModule', 'BookDetailModule']);
 var hosts = "http://127.0.0.1/";
+//var hosts = "http://139.196.87.14/";
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
  * 这里的run方法只会在angular启动的时候运行一次。
@@ -88,7 +89,28 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						var url = $location.absUrl();
 						if (url.indexOf('query') != -1) {
 							$scope.path = '首页 > 邮轮服务 > 船票查询';
-						} 
+							$('.nav_navigate a').removeClass('active');
+						}else if (url.indexOf('cal') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 航班查询';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(10).addClass('active');
+						}else if (url.indexOf('immigration') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 边检政策';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(4).addClass('active');
+						}else if (url.indexOf('customs') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 海关政策';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(5).addClass('active');
+						}else if (url.indexOf('inspection') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 检验检疫政策';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(6).addClass('active');
+						}else if (url.indexOf('tourism') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 旅游局政策';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(7).addClass('active');
+						}
 					}
 				},
 				'nav@index.services': {
@@ -99,6 +121,26 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.query', {
 			url: '/query',
 			templateUrl: 'tpls/services/query.html'
+		})
+		.state('index.services.cal', {
+			url: '/cal',
+			templateUrl: 'tpls/services/cal.html'
+		})
+		.state('index.services.immigration', {
+			url: '/immigration',
+			templateUrl: 'tpls/services/immigration.html'
+		})
+		.state('index.services.customs', {
+			url: '/customs',
+			templateUrl: 'tpls/services/customs.html'
+		})
+		.state('index.services.inspection', {
+			url: '/inspection',
+			templateUrl: 'tpls/services/inspection.html'
+		})
+		.state('index.services.tourism', {
+			url: '/tourism',
+			templateUrl: 'tpls/services/tourism.html'
 		})
 		.state('index.api', {
 			url: '/apilist',

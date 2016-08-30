@@ -84,13 +84,13 @@ function saveForm(table) {
 	} else if (table == 'notice') {
 		var title = $('#title').val();
 
-		html = editor.html();
-		editor.sync();
+		//html = editor.html();
+		//editor.sync();
 
 		var post = $('#post').val();
-
+		
 		if (!title) {
-			showErr("新闻标题不能为空");
+			showErr("公告标题不能为空");
 			return false;
 		}
 

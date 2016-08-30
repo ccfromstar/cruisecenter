@@ -58,7 +58,7 @@
 			<dd>
 				<ul>
 					<li>
-						<a ui-sref="index.services.query">
+						<a ng-click="ServicesTo(-1)" ui-sref="index.services.query">
 							<h1 class="nav_header">船票查询</h1>
 						</a>
 					</li>
@@ -69,13 +69,27 @@
 					<li>
 						<h1 class="nav_header">游客须知</h1>
 					</li>
-					<li>游客注意事项</li>
-					<li>港口指南</li>
-					<li>登离船流程</li>
-					<li>边检政策</li>
-					<li>海关政策</li>
-					<li>检验检疫政策</li>
-					<li>旅游局政策</li>
+					<li><a>
+							游客注意事项
+						</a></li>
+					<li><a>
+							港口指南
+						</a></li>
+					<li><a>
+							登离船流程
+						</a></li>
+					<li><a ng-click="ServicesTo(4)" ui-sref="index.services.immigration">
+							边检政策
+						</a></li>
+					<li><a ng-click="ServicesTo(5)" ui-sref="index.services.customs">
+							海关政策
+						</a></li>
+					<li><a ng-click="ServicesTo(6)" ui-sref="index.services.inspection">
+							检验检疫政策
+						</a></li>
+					<li><a ng-click="ServicesTo(7)" ui-sref="index.services.tourism">
+							旅游局政策
+						</a></li>
 				</ul>
 			</dd>
 			<dd>
@@ -90,7 +104,11 @@
 				<ul>
 					<li>
 						<h1 class="nav_header">港口服务</h1></li>
-					<li>航班查询</li>
+					<li>
+						<a ng-click="ServicesTo(10)" ui-sref="index.services.cal">
+							航班查询
+						</a>
+					</li>
 					<li>港口天气</li>
 					<li>港口交通</li>
 					<li>停车服务</li>

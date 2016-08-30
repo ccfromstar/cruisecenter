@@ -9,7 +9,7 @@
         </slide>
     </carousel>
 </div>-->
-<div class="home_content">
+<div class="home_content" ng-controller="homeController">
 	<div id="myCarousel" class="carousel slide carousel_home">
 		<!-- 轮播（Carousel）指标 -->
 		<ol class="carousel-indicators">
@@ -39,17 +39,57 @@
 	</div>
 	<!--查询区域-->
 	<div class="query">
+		<!--紧急公告-->
+		<div class="notice_div">
+			<img src="../../src/image/notice_news.png" />
+			<p>紧急公告：</p>
+			<marquee behavior="scroll" contenteditable="false" data-ng-bind-html="emergency_notice"></marquee>
+		</div>
 		<div class="query_div">
 			<div class="query_left">
 				<ul>
-					<li class="active" onmouseover="showQuery(0)">今日航班</li>
-					<li onmouseover="showQuery(1)" class="li_1">船票查询</li>
-					<li onmouseover="showQuery(2)" class="li_1">航班查询</li>
-					<li onmouseover="showQuery(3)" class="li_1">邮轮服务</li>
+					<li class="active" onmouseover="showQuery(0)" ng-mouseenter="changQuery(1)">今日航班</li>
+					<li onmouseover="showQuery(1)" ng-mouseenter="changQuery(2)" class="li_1">船票查询</li>
+					<li onmouseover="showQuery(2)" ng-mouseenter="changQuery(3)" class="li_1">航班查询</li>
+					<li onmouseover="showQuery(3)" ng-mouseenter="changQuery(4)" class="li_1">邮轮服务</li>
 				</ul>
 			</div>
 			<div class="query_right">
-				
+				<div id="query_1" class="query_d">
+					<img src="../../src/image/query_1.jpg" style="width:360px;margin-left:20px;" />
+				</div>
+				<div id="query_2" class="query_d none">
+					<img src="../../src/image/query_2.jpg" style="width:380px" />
+				</div>
+				<div id="query_3" class="query_d none"></div>
+				<div id="query_4" class="query_d none">
+					<ul class="query_service">
+						<li><img class="service_icon" src="../../src/image/service_1.png">
+							<p>船票查询</p>
+						</li>
+						<li><img class="service_icon" src="../../src/image/service_2.png">
+							<p>航班查询</p>
+						</li>
+						<li><img class="service_icon" src="../../src/image/service_3.png">
+							<p>注意事项</p>
+						</li>
+						<li><img class="service_icon" src="../../src/image/service_4.png">
+							<p>港口指南</p>
+						</li>
+						<li><img class="service_icon" src="../../src/image/service_5.png">
+							<p>相关政策</p>
+						</li>
+						<li><img class="service_icon" src="../../src/image/service_6.png">
+							<p>邮轮产品</p>
+						</li>
+						<li><img class="service_icon" src="../../src/image/service_7.png">
+							<p>贵宾服务</p>
+						</li>
+						<li><img class="service_icon" src="../../src/image/service_8.png">
+							<p>WIFI租赁</p>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

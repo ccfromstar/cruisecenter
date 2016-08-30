@@ -1,0 +1,49 @@
+<div id='calendar'></div>
+<script>
+	$(document).ready(function() {
+
+		$('#calendar').fullCalendar({
+			buttonText: {
+				today: '今天',
+				month: '月视图',
+				week: '周视图',
+				day: '日视图'
+			},
+			allDayText: "全天",
+			timeFormat: {
+				'': 'H:mm{-H:mm}'
+			},
+			weekMode: "variable",
+			columnFormat: {
+				month: 'dddd',
+				week: 'dddd M-d',
+				day: 'dddd M-d'
+			},
+			titleFormat: {
+				month: 'YYYY年 MMMM月',
+				week: "[YYYY年] MMMM月d日 { '&#8212;' [YYYY年] MMMM月d日}",
+				day: 'YYYY年 MMMM月d日 dddd'
+			},
+			monthNames: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+			dayNames: ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+			header: {
+				left: 'prev',
+				center: 'title',
+				right: 'next'
+			},
+			eventClick: function(date, allDay, jsEvent, view) {
+				//...
+			},
+			events: function(start, end, callback) {
+				//...
+			}
+		});
+
+	});
+</script>
+<style>
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+</style>

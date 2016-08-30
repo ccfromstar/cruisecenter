@@ -12,7 +12,7 @@
 
 	<div class="am-g am-margin-top">
 		<div class="am-u-sm-12 am-u-md-12">
-			<textarea id="post" name="post"></textarea>
+			<textarea id="post" name="post" rows="10"></textarea>
 		</div>
 	</div>
 </div>
@@ -27,6 +27,7 @@
 		uploadJson: '/uploadImg',
 		height: 500
 	};
+	/*
 	KindEditor.ready(function(k) {
 		editor = k.create('#post', options);
 		var mode = window.sessionStorage.getItem('mode');
@@ -44,5 +45,20 @@
 				}
 			});
 		}
-	});
+	});*/
+	var mode = window.sessionStorage.getItem('mode');
+	if (mode == "edit") {
+		var editid = window.sessionStorage.getItem("editid");
+		$.ajax({
+			type: "post",
+			url: "notice/getById",
+			data: {
+				id: editid
+			},
+			success: function(data) {
+				$('#title').val(data[0].title);
+				$('#post').html(data[0].post);
+			}
+		});
+	}
 </script>

@@ -294,7 +294,7 @@ navApp.controller('NavController', function($scope) {
 			$('#pathinfo').html('首页 > 行业动态 > 热点新闻');
 		} else if (i == 1) {
 			$('#pathinfo').html('首页 > 行业动态 > 紧急公告');
-		} 
+		}
 	}
 	$scope.ServicesTo = function(i) {
 		$('.nav_navigate a').removeClass('active');
@@ -302,6 +302,16 @@ navApp.controller('NavController', function($scope) {
 		if (i == -1) {
 			$('#pathinfo').html('首页 > 邮轮服务 > 船票查询');
 			$('.nav_navigate a').removeClass('active');
+		}else if (i == 10) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 航班查询');
+		}else if (i == 4) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 边检政策');
+		}else if (i == 5) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 海关政策');
+		}else if (i == 6) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 检验检疫政策');
+		}else if (i == 7) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 旅游局政策');
 		}
 	}
 });
@@ -350,7 +360,11 @@ listApp.controller('listController', function($scope, $http, $location, $state) 
 			}
 			for (var i in d) {
 				if (i == 0) {
-					d[i].img = 'red_1';
+					if (i == l) {
+						d[i].img = 'red_0';
+					} else {
+						d[i].img = 'red_1';
+					}
 				} else if (i == l) {
 					d[i].img = 'red_3';
 				} else {
@@ -359,21 +373,21 @@ listApp.controller('listController', function($scope, $http, $location, $state) 
 			}
 			$scope.items = d;
 			var iPa = PageNum;
-            iPa = iPa ? iPa : 1;
+			iPa = iPa ? iPa : 1;
 			var pager = '[';
 			for (var i = 1; i < data.totalpage + 1; i++) {
-                var hasClass = "";
-                if (i == iPa) {
-                    hasClass = "am-active";
-                }
-                var tmp_p = '{"id":'+i+',"class":"'+hasClass+'"}';
-                if(i == data.totalpage){
-                	pager += tmp_p;
-                }else{
-                	pager += tmp_p+',';
-                }
+				var hasClass = "";
+				if (i == iPa) {
+					hasClass = "am-active";
+				}
+				var tmp_p = '{"id":' + i + ',"class":"' + hasClass + '"}';
+				if (i == data.totalpage) {
+					pager += tmp_p;
+				} else {
+					pager += tmp_p + ',';
+				}
 
-            }
+			}
 			pager += ']';
 			console.log(pager);
 			$scope.pages = $.parseJSON(pager);
@@ -383,7 +397,7 @@ listApp.controller('listController', function($scope, $http, $location, $state) 
 	}
 
 	toPage(1);
-	
+
 	$scope.toPages = function(i) {
 		toPage(i);
 	}
@@ -437,7 +451,11 @@ listApp.controller('noticeController', function($scope, $http, $location, $state
 			}
 			for (var i in d) {
 				if (i == 0) {
-					d[i].img = 'red_1';
+					if (i == l) {
+						d[i].img = 'red_0';
+					} else {
+						d[i].img = 'red_1';
+					}
 				} else if (i == l) {
 					d[i].img = 'red_3';
 				} else {
@@ -446,21 +464,21 @@ listApp.controller('noticeController', function($scope, $http, $location, $state
 			}
 			$scope.items = d;
 			var iPa = PageNum;
-            iPa = iPa ? iPa : 1;
+			iPa = iPa ? iPa : 1;
 			var pager = '[';
 			for (var i = 1; i < data.totalpage + 1; i++) {
-                var hasClass = "";
-                if (i == iPa) {
-                    hasClass = "am-active";
-                }
-                var tmp_p = '{"id":'+i+',"class":"'+hasClass+'"}';
-                if(i == data.totalpage){
-                	pager += tmp_p;
-                }else{
-                	pager += tmp_p+',';
-                }
+				var hasClass = "";
+				if (i == iPa) {
+					hasClass = "am-active";
+				}
+				var tmp_p = '{"id":' + i + ',"class":"' + hasClass + '"}';
+				if (i == data.totalpage) {
+					pager += tmp_p;
+				} else {
+					pager += tmp_p + ',';
+				}
 
-            }
+			}
 			pager += ']';
 			console.log(pager);
 			$scope.pages = $.parseJSON(pager);
@@ -470,7 +488,7 @@ listApp.controller('noticeController', function($scope, $http, $location, $state
 	}
 
 	toPage(1);
-	
+
 	$scope.toPages = function(i) {
 		toPage(i);
 	}
@@ -513,6 +531,39 @@ headerApp.controller('headerController', function($scope) {
 			$('#pathinfo').html('首页 > 行业动态 > 热点新闻');
 		} else if (i == 1) {
 			$('#pathinfo').html('首页 > 行业动态 > 紧急公告');
-		} 
+		}
+	}
+	$scope.ServicesTo = function(i) {
+		$('.nav_navigate a').removeClass('active');
+		$('.nav_navigate a').eq(i).addClass('active');
+		if (i == -1) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 船票查询');
+			$('.nav_navigate a').removeClass('active');
+		}else if (i == 10) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 航班查询');
+		}else if (i == 4) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 边检政策');
+		}else if (i == 5) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 海关政策');
+		}else if (i == 6) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 检验检疫政策');
+		}else if (i == 7) {
+			$('#pathinfo').html('首页 > 邮轮服务 > 旅游局政策');
+		}
+	}
+});
+
+headerApp.controller('homeController', function($scope,$http, $sce) {
+	$http({
+		url: hosts + 'notice/getemergency',
+		method: 'POST'
+	}).success(function(data) {
+		$scope.emergency_notice = $sce.trustAsHtml(data[0].post);
+	}).error(function() {
+		console.log("error");
+	});
+	$scope.changQuery = function(i){
+		$('.query_d').addClass('none');
+		$('#query_'+i).removeClass('none');
 	}
 });

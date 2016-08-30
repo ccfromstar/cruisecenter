@@ -162,7 +162,7 @@ exports.newsdo = function(req, res) {
 			if (err) return console.error(err.stack);
 			res.json(result);
 		});
-	}
+	} 
 }
 
 exports.noticedo = function(req, res) {
@@ -253,6 +253,12 @@ exports.noticedo = function(req, res) {
 	} else if (sql == "getById") {
 		var id = req.param("id");
 		var sql = "select * from notice where id = " + id;
+		mysql.query(sql, function(err, result) {
+			if (err) return console.error(err.stack);
+			res.json(result);
+		});
+	} else if (sql == "getemergency") {
+		var sql = "select * from notice where showInhome = 1";
 		mysql.query(sql, function(err, result) {
 			if (err) return console.error(err.stack);
 			res.json(result);
