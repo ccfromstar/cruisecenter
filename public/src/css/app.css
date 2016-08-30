@@ -398,13 +398,14 @@ h1 {
 }
 
 .query_service {
-	padding-left: 0;
+	padding-left: 25px;
+	padding-top: 23px;
 }
 
 .query_service li {
 	display: inline-block;
 	text-align: center;
-	width: 120px;
+	width: 110px;
 }
 
 .query_service p {
@@ -414,8 +415,8 @@ h1 {
 }
 
 .query_service .service_icon {
-	width: 50px;
-	margin-top: 20px;
+	width: 60px;
+	margin-top: 0px;
 }
 
 .home_service .service_icon {
