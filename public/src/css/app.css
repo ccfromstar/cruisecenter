@@ -1010,7 +1010,7 @@ h1 {
 
 .qn div img {
 	position:absolute;
-	right:5px;
+	right:10px;
 	top:0;
 	width:20px;
 }
@@ -1037,7 +1037,7 @@ h1 {
 
 .port>li>hgroup{
 	margin-top:-150px;
-	color:#fff; 
+	color:#fff;
 }
 
 .port>li>hgroup>h1{
