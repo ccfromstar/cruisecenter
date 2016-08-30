@@ -1027,8 +1027,8 @@ h1 {
 }
 
 .port li img {
-	width:320px;
-	margin-bottom: 20px;
+	width:325px;
+	margin-bottom: 10px;
 }
 
 .port li img:hover {
@@ -1056,7 +1056,7 @@ h1 {
 }
 
 .pro_left {
-	width:340px;
+	width:325px;
 	padding-top:20px;
 	float:left;
 }
@@ -1069,6 +1069,12 @@ h1 {
 .pro_left div p{
 	width:240px;
 }
+
+.pro_left>img{
+	width:325px;
+	height:477px;
+}
+
 
 .pro_left>div>hgroup{
 	position:absolute;
@@ -1093,14 +1099,15 @@ h1 {
 }
 
 .pro_right {
-	width:660px;
+	width:670px;
 	padding-top:20px;
 	float:left;
 }
 
 .pro_right>div{
 	display: inline-block;
-	width:325px;
+	width:332px;
+	padding-left:10px;
 }
 
 .pro_right div p{
@@ -1108,13 +1115,13 @@ h1 {
 }
 
 .pro_right>div>img{
-	width:320px;
+	width:325px;
 }
 
 .pro_right>div>div{
 	position: relative;
 	margin-top:20px;
-	margin-bottom: 23px;
+	margin-bottom: 0;
 }
 
 .pro_right>div>div>hgroup{
