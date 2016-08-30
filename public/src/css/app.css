@@ -1054,3 +1054,87 @@ h1 {
 	font-weight:normal;
 	text-shadow:2px 2px 2px rgba(0,0,0,0.8);
 }
+
+.pro_left {
+	width:340px;
+	padding-top:20px;
+	float:left;
+}
+
+.pro_left>div{
+	position:relative;
+	margin-top:20px;
+}
+
+.pro_left div p{
+	width:240px;
+}
+
+.pro_left>div>hgroup{
+	position:absolute;
+	right:10px;
+	top:0;
+}
+
+.pro_left>div>hgroup>img{
+	width:70px;
+	cursor:pointer;
+}
+
+.pro_left>div>hgroup>h1{
+	font-size: 16px;
+	color:#EF7B00;
+}
+
+.pro_left>div>hgroup>h1>span{
+	font-size: 12px;
+	color:#EF7B00;
+	font-weight: normal;
+}
+
+.pro_right {
+	width:660px;
+	padding-top:20px;
+	float:left;
+}
+
+.pro_right>div{
+	display: inline-block;
+	width:325px;
+}
+
+.pro_right div p{
+	width:220px;
+}
+
+.pro_right>div>img{
+	width:320px;
+}
+
+.pro_right>div>div{
+	position: relative;
+	margin-top:20px;
+	margin-bottom: 23px;
+}
+
+.pro_right>div>div>hgroup{
+	position:absolute;
+	right:10px;
+	top:0;
+}
+
+.pro_right>div>div>hgroup>img{
+	width:70px;
+	cursor:pointer;
+}
+
+.pro_right>div>div>hgroup>h1{
+	font-size: 16px;
+	color:#EF7B00;
+}
+
+.pro_right>div>div>hgroup>h1>span{
+	font-size: 12px;
+	color:#EF7B00;
+	font-weight: normal;
+}
