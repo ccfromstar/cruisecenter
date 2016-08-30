@@ -558,7 +558,7 @@ headerApp.controller('homeController', function($scope,$http, $sce) {
 		url: hosts + 'notice/getemergency',
 		method: 'POST'
 	}).success(function(data) {
-		$scope.emergency_notice = $sce.trustAsHtml(data[0].post);
+		$scope.emergency_notice = $sce.trustAsHtml('<marquee behavior="scroll" contenteditable="false">'+data[0].post+'</marquee>');
 	}).error(function() {
 		console.log("error");
 	});
