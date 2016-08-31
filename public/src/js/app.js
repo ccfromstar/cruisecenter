@@ -110,6 +110,50 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 							$scope.path = '首页 > 邮轮服务 > 旅游局政策';
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(7).addClass('active');
+						}else if (url.indexOf('traffic') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 港口交通';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(11).addClass('active');
+						}else if (url.indexOf('parking') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 停车服务';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(12).addClass('active');
+						}else if (url.indexOf('vip') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 贵宾服务';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(13).addClass('active');
+						}else if (url.indexOf('wifi') != -1) {
+							$scope.path = '首页 > 邮轮服务 > WIFI租赁';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(14).addClass('active');
+						}else if (url.indexOf('luggage') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 行李服务';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(15).addClass('active');
+						}else if (url.indexOf('currency') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 外币兑换';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(16).addClass('active');
+						}else if (url.indexOf('bus') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 巴士服务';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(8).addClass('active');
+						}else if (url.indexOf('insurance') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 保险服务';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(9).addClass('active');
+						}else if (url.indexOf('boarding') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 登离船流程';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(3).addClass('active');
+						}else if (url.indexOf('guide') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 港口指南';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(2).addClass('active');
+						}else if (url.indexOf('note') != -1) {
+							$scope.path = '首页 > 邮轮服务 > 游客注意事项';
+							$('.nav_navigate a').removeClass('active');
+							$('.nav_navigate a').eq(1).addClass('active');
 						}
 					}
 				},
@@ -141,6 +185,50 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.tourism', {
 			url: '/tourism',
 			templateUrl: 'tpls/services/tourism.html'
+		})
+		.state('index.services.traffic', {
+			url: '/traffic',
+			templateUrl: 'tpls/services/traffic.html'
+		})
+		.state('index.services.parking', {
+			url: '/parking',
+			templateUrl: 'tpls/services/parking.html'
+		})
+		.state('index.services.vip', {
+			url: '/vip',
+			templateUrl: 'tpls/services/vip.html'
+		})
+		.state('index.services.wifi', {
+			url: '/wifi',
+			templateUrl: 'tpls/services/wifi.html'
+		})
+		.state('index.services.luggage', {
+			url: '/luggage',
+			templateUrl: 'tpls/services/luggage.html'
+		})
+		.state('index.services.currency', {
+			url: '/currency',
+			templateUrl: 'tpls/services/currency.html'
+		})
+		.state('index.services.bus', {
+			url: '/bus',
+			templateUrl: 'tpls/services/bus.html'
+		})
+		.state('index.services.insurance', {
+			url: '/insurance',
+			templateUrl: 'tpls/services/insurance.html'
+		})
+		.state('index.services.boarding', {
+			url: '/boarding',
+			templateUrl: 'tpls/services/boarding.html'
+		})
+		.state('index.services.guide', {
+			url: '/guide',
+			templateUrl: 'tpls/services/guide.html'
+		})
+		.state('index.services.note', {
+			url: '/note',
+			templateUrl: 'tpls/services/note.html'
 		})
 		.state('index.api', {
 			url: '/apilist',
