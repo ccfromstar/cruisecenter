@@ -276,7 +276,35 @@
 			<div class="header_a"><img class="home_icon" src="../../src/image/topic_4.png"> 行业动态</div>
 			<div class="shadow_a"></div>
 		</div>
-		<img src="../../src/image/notice.png">
+		<div class="news_home">
+			<div class="news_left">
+				<p>热点新闻 NEWS</p>
+				<div class="news_list">
+					<ul class="news_ul_left">
+						<li>&nbsp;</li>
+						<li data-ng-bind-html="newsarray[1]"></li>
+						<li>&nbsp;</li>
+						<li data-ng-bind-html="newsarray[3]"></li>
+						<li>&nbsp;</li>
+					</ul>
+					<img src="../../src/image/newsline.png">
+					<ul class="news_ul_right">
+						<li data-ng-bind-html="newsarray[0]"></li>
+						<li>&nbsp;</li>
+						<li data-ng-bind-html="newsarray[2]"></li>
+						<li>&nbsp;</li>
+						<li data-ng-bind-html="newsarray[4]"></li>
+					</ul>
+				</div>
+				<div class="news_more">更多内容</div>
+			</div>
+			<div class="news_right">
+				<p><img src="../../src/image/notice_news.png" />紧急公告 NOTICE</p>
+				<div class="notice_home" data-ng-bind-html="notice_list">
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
 	</div>
 	<!--联系我们-->
 	<div class="center home_section">

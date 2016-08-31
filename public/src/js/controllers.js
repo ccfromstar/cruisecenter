@@ -532,6 +532,41 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 	}).error(function() {
 		console.log("error");
 	});
+	$http({
+		url: hosts + 'news/get',
+		method: 'POST'
+	}).success(function(data) {
+		var o = data.record;
+		var arr = [];
+		for(var i in o){
+			var title = o[i].title;
+			if(title.length >18){
+				title = title.substring(0,18) + '...';
+			}
+			arr.push($sce.trustAsHtml((o[i].publishAt+'').substring(0,10) + '<br/>' + title));
+		}
+		$scope.newsarray = arr;
+		//$scope.news1 = $sce.trustAsHtml((data.record[0].publishAt).substring(0,10) + '<br/>' + data.record[0].title);
+	}).error(function() {
+		console.log("error");
+	});
+	$http({
+		url: hosts + 'notice/get',
+		method: 'POST'
+	}).success(function(data) {
+		var o = data.record;
+		var _list = "";
+		for(var i in o){
+			var title = o[i].title;
+			if(title.length >18){
+				title = title.substring(0,18) + '...';
+			}
+			_list += '<p>【'+(o[i].publishAt+'').substring(0,10) + '】' + title + '</p>';
+		}
+		$scope.notice_list = $sce.trustAsHtml(_list);
+	}).error(function() {
+		console.log("error");
+	});
 	$scope.changQuery = function(i) {
 		$('.query_d').addClass('none');
 		$('#query_' + i).removeClass('none');
