@@ -27,7 +27,7 @@ function gotop(){
 
 $(window).scroll(function() {
     currTop = $(window).scrollTop();
-    var nav_top = 700;
+    var nav_top = 710;
     //console.log(currTop);
     //console.log(nav_top);
     if(currTop < 560){
@@ -35,5 +35,7 @@ $(window).scroll(function() {
     	nav_top = nav_top - currTop;
     	//console.log(nav_top);
     	$('.left_nav').css('top',nav_top);
+    }else{
+    	$('.left_nav').css('top',123);
     }
 });
