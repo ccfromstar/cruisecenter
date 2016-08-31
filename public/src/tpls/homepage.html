@@ -282,25 +282,26 @@
 				<div class="news_list">
 					<ul class="news_ul_left">
 						<li>&nbsp;</li>
-						<li data-ng-bind-html="newsarray[1]"></li>
+						<li data-ng-bind-html="newsarray[1]" ng-click="openDoc('news',id[1])"></li>
 						<li>&nbsp;</li>
-						<li data-ng-bind-html="newsarray[3]"></li>
+						<li data-ng-bind-html="newsarray[3]" ng-click="openDoc('news',id[3])"></li>
 						<li>&nbsp;</li>
 					</ul>
 					<img src="../../src/image/newsline.png">
 					<ul class="news_ul_right">
-						<li data-ng-bind-html="newsarray[0]"></li>
+						<li data-ng-bind-html="newsarray[0]" ng-click="openDoc('news',id[0])"></li>
 						<li>&nbsp;</li>
-						<li data-ng-bind-html="newsarray[2]"></li>
+						<li data-ng-bind-html="newsarray[2]" ng-click="openDoc('news',id[2])"></li>
 						<li>&nbsp;</li>
-						<li data-ng-bind-html="newsarray[4]"></li>
+						<li data-ng-bind-html="newsarray[4]" ng-click="openDoc('news',id[4])"></li>
 					</ul>
 				</div>
-				<div class="news_more">更多内容</div>
+				<div class="news_more" ng-click="HeaderTo(0)" ui-sref="index.trends.news">更多内容</div>
 			</div>
 			<div class="news_right">
 				<p><img src="../../src/image/notice_news.png" />紧急公告 NOTICE</p>
-				<div class="notice_home" data-ng-bind-html="notice_list">
+				<div class="notice_home" ng-repeat="item in notice_list">
+					<p ng-click="openDoc('notice',item.id)" >【{{ item.publishAt | limitTo:10 }}】{{ item.title }}</p>
 				</div>
 			</div>
 			<div style="clear:both;"></div>

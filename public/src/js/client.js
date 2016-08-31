@@ -27,7 +27,7 @@ function gotop(){
 
 $(window).scroll(function() {
     currTop = $(window).scrollTop();
-    var nav_top = 710;
+    var nav_top = 683;
     //console.log(currTop);
     //console.log(nav_top);
     if(currTop < 560){

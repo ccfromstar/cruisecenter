@@ -538,14 +538,17 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 	}).success(function(data) {
 		var o = data.record;
 		var arr = [];
+		var arr1 = [];
 		for(var i in o){
 			var title = o[i].title;
 			if(title.length >18){
 				title = title.substring(0,18) + '...';
 			}
 			arr.push($sce.trustAsHtml((o[i].publishAt+'').substring(0,10) + '<br/>' + title));
+			arr1.push(o[i].id);
 		}
 		$scope.newsarray = arr;
+		$scope.id = arr1;
 		//$scope.news1 = $sce.trustAsHtml((data.record[0].publishAt).substring(0,10) + '<br/>' + data.record[0].title);
 	}).error(function() {
 		console.log("error");
@@ -558,18 +561,30 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 		var _list = "";
 		for(var i in o){
 			var title = o[i].title;
-			if(title.length >18){
-				title = title.substring(0,18) + '...';
+			if(title.length >22){
+				title = title.substring(0,22) + '...';
 			}
-			_list += '<p>【'+(o[i].publishAt+'').substring(0,10) + '】' + title + '</p>';
+			//_list += '<p>【'+(o[i].publishAt+'').substring(0,10) + '】' + title + '</p>';
+			o[i].title = title;
 		}
-		$scope.notice_list = $sce.trustAsHtml(_list);
+		$scope.notice_list = o;
 	}).error(function() {
 		console.log("error");
 	});
 	$scope.changQuery = function(i) {
 		$('.query_d').addClass('none');
 		$('#query_' + i).removeClass('none');
+	}
+	$scope.openDoc = function(page, id) {
+		if (page == 'news') {
+			window.sessionStorage.setItem("newsid", id);
+			window.location = '#/index/trends/newsform?id=' + id;
+			//$state.go('index.trends.newsform#id='+id,{data: id},{reload:true});   
+		}else if (page == 'notice') {
+			window.sessionStorage.setItem("noticeid", id);
+			window.location = '#/index/trends/noticeform?id=' + id;
+			//$state.go('index.trends.newsform#id='+id,{data: id},{reload:true});   
+		}
 	}
 });
 

@@ -375,6 +375,7 @@ h1 {
 .home_icon {
 	width: 25px;
 	height: 25px;
+	margin-top: -5px;
 }
 
 .home_header {
@@ -426,7 +427,7 @@ h1 {
 
 .linkus {
 	display: -webkit-box;
-	padding-top: 15px;
+	padding-top: 8px;
 }
 
 .linkus_left {
@@ -592,7 +593,7 @@ h1 {
 
 .left_nav {
 	position: fixed;
-	top: 710px;
+	top: 683px;
 	left: 10px;
 	border-top: 8px solid #C30D23;
 	padding: 15px 0;
@@ -992,6 +993,8 @@ h1 {
 
 .qn {
 	padding-left:0;
+	margin-top:8px;
+	margin-bottom:0;
 }
 
 .qn li {
@@ -1024,6 +1027,7 @@ h1 {
 
 .port {
 	padding-left:0;
+	margin-top:8px;
 }
 
 .port li {
@@ -1064,7 +1068,7 @@ h1 {
 
 .pro_left {
 	width:325px;
-	padding-top:20px;
+	padding-top:8px;
 	float:left;
 }
 
@@ -1114,7 +1118,7 @@ h1 {
 
 .pro_right {
 	width:670px;
-	padding-top:20px;
+	padding-top:8px;
 	float:left;
 }
 
@@ -1191,6 +1195,8 @@ h1 {
 	width:1000px;
 	height:226px;
 	background-image: url('../../src/image/newsbg.jpg');
+	margin-top:8px;
+	margin-bottom: 20px;
 }
 
 .news_left{
@@ -1230,6 +1236,7 @@ h1 {
 	color:#fff;
 	font-size: 12px;
 	line-height: 15px;
+	cursor:pointer;
 }
 
 .news_ul_left>li {
@@ -1247,6 +1254,7 @@ h1 {
 	font-size: 14px;
 	color:#3A4771;
 	font-weight: bold;
+	cursor:pointer;
 }
 
 .news_right {
@@ -1273,11 +1281,12 @@ h1 {
 	margin-left:70px;
 	width:370px;
 	height:167px;
-	background: rgba(255,255,255,0.7);
+	background: rgba(255,255,255,0.8);
 	border-radius: 8px;
 	padding:10px;
 }
 
 .notice_home p {
 	font-size: 12px;
+	cursor:pointer;
 }
