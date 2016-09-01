@@ -384,6 +384,7 @@ listApp.controller('listController', function($scope, $http, $location, $state) 
 	toPage(1);
 
 	$scope.toPages = function(i) {
+		gotop();
 		toPage(i);
 	}
 
@@ -592,39 +593,43 @@ function ServicesTo(i) {
 	$('.nav_navigate a').removeClass('active');
 	$('.nav_navigate a').eq(i).addClass('active');
 	if (i == -1) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 船票查询');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 船票查询');
 		$('.nav_navigate a').removeClass('active');
 	} else if (i == 10) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 航班查询');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 航班查询');
 	} else if (i == 4) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 边检政策');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 边检政策');
 	} else if (i == 5) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 海关政策');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 海关政策');
 	} else if (i == 6) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 检验检疫政策');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 检验检疫政策');
 	} else if (i == 7) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 旅游局政策');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 旅游局政策');
 	} else if (i == 11) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 港口交通');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 港口交通');
 	} else if (i == 12) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 停车服务');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 停车服务');
 	} else if (i == 13) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 贵宾服务');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 贵宾服务');
 	} else if (i == 14) {
-		$('#pathinfo').html('首页 > 邮轮服务 > WIFI租赁');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > WIFI租赁');
 	} else if (i == 15) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 行李服务');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 行李服务');
 	} else if (i == 16) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 外币兑换');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 外币兑换');
 	} else if (i == 8) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 巴士服务');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 巴士服务');
 	} else if (i == 9) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 保险服务');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 保险服务');
 	} else if (i == 3) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 登离船流程');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 登离船流程');
 	} else if (i == 2) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 港口指南');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 港口指南');
 	} else if (i == 1) {
-		$('#pathinfo').html('首页 > 邮轮服务 > 游客注意事项');
+		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 游客注意事项');
 	}
+}
+
+function gotop(){
+	$('body,html').animate({scrollTop:0},500);
 }

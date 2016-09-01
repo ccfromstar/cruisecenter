@@ -1,6 +1,4 @@
 var routerApp = angular.module('routerApp', ['ui.router', 'listApp','headerApp','ngGrid', 'ftitApp', 'adminApp', 'resApp', 'navApp', 'expanderModule', 'applyApp', 'repeatApp', 'directiveapp', 'factoryApp', 'tanktest', 'httptest', 'locationtest', 'BookListModule', 'BookDetailModule']);
-var hosts = "http://127.0.0.1/";
-//var hosts = "http://139.196.87.14/";
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
  * 这里的run方法只会在angular启动的时候运行一次。
@@ -85,73 +83,73 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 			views: {
 				'main@index': {
 					templateUrl: 'tpls/services.html',
-					controller: function($scope, $location) {
+					controller: function($scope, $location,$sce) {
 						var url = $location.absUrl();
 						if (url.indexOf('query') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 船票查询';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 船票查询');
 							$('.nav_navigate a').removeClass('active');
 						}else if (url.indexOf('cal') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 航班查询';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 航班查询');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(10).addClass('active');
 						}else if (url.indexOf('immigration') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 边检政策';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 边检政策');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(4).addClass('active');
 						}else if (url.indexOf('customs') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 海关政策';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 海关政策');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(5).addClass('active');
 						}else if (url.indexOf('inspection') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 检验检疫政策';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 检验检疫政策');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(6).addClass('active');
 						}else if (url.indexOf('tourism') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 旅游局政策';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 旅游局政策');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(7).addClass('active');
 						}else if (url.indexOf('traffic') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 港口交通';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 港口交通');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(11).addClass('active');
 						}else if (url.indexOf('parking') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 停车服务';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 停车服务');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(12).addClass('active');
 						}else if (url.indexOf('vip') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 贵宾服务';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 贵宾服务');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(13).addClass('active');
 						}else if (url.indexOf('wifi') != -1) {
-							$scope.path = '首页 > 邮轮服务 > WIFI租赁';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > WIFI租赁');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(14).addClass('active');
 						}else if (url.indexOf('luggage') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 行李服务';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 行李服务');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(15).addClass('active');
 						}else if (url.indexOf('currency') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 外币兑换';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 外币兑换');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(16).addClass('active');
 						}else if (url.indexOf('bus') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 巴士服务';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 巴士服务');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(8).addClass('active');
 						}else if (url.indexOf('insurance') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 保险服务';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 保险服务');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(9).addClass('active');
 						}else if (url.indexOf('boarding') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 登离船流程';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 登离船流程');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(3).addClass('active');
 						}else if (url.indexOf('guide') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 港口指南';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 港口指南');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(2).addClass('active');
 						}else if (url.indexOf('note') != -1) {
-							$scope.path = '首页 > 邮轮服务 > 游客注意事项';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 游客注意事项');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(1).addClass('active');
 						}

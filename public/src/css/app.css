@@ -297,6 +297,7 @@ h1 {
 
 .f_icon {
 	width: 250px;
+	margin-top:-11px;
 }
 
 .f_icon section {
@@ -740,6 +741,10 @@ h1 {
 	font-size: 14px;
 	margin-top: 15px;
 	margin-bottom: 40px;
+}
+
+.path span a{
+	font-size: 14px;
 }
 
 .page_right {
