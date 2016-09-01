@@ -45,14 +45,14 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 			views: {
 				'main@index': {
 					templateUrl: 'tpls/trends.html',
-					controller: function($scope, $location) {
+					controller: function($scope, $location,$sce) {
 						var url = $location.absUrl();
 						//console.log(url);
 						if (url.indexOf('news') != -1) {
-							$scope.path = '首页 > 行业动态 > 热点新闻';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 行业动态 > 热点新闻');
 							$scope.class1 = "active";
 						} else if (url.indexOf('notice') != -1) {
-							$scope.path = '首页 > 行业动态 > 紧急公告';
+							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 行业动态 > 紧急公告');
 							$scope.class2 = "active";
 						}
 					}

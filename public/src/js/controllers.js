@@ -291,9 +291,9 @@ navApp.controller('NavController', function($scope) {
 		$('.nav_navigate a').removeClass('active');
 		$('.nav_navigate a').eq(i).addClass('active');
 		if (i == 0) {
-			$('#pathinfo').html('首页 > 行业动态 > 热点新闻');
+			$('#pathinfo').html('<a href="#/index">首页</a> > 行业动态 > 热点新闻');
 		} else if (i == 1) {
-			$('#pathinfo').html('首页 > 行业动态 > 紧急公告');
+			$('#pathinfo').html('<a href="#/index">首页</a> > 行业动态 > 紧急公告');
 		}
 	}
 	$scope.ServicesTo = function(i) {
@@ -514,9 +514,9 @@ headerApp.controller('headerController', function($scope) {
 		$('.nav_navigate a').removeClass('active');
 		$('.nav_navigate a').eq(i).addClass('active');
 		if (i == 0) {
-			$('#pathinfo').html('首页 > 行业动态 > 热点新闻');
+			$('#pathinfo').html('<a href="#/index">首页</a> > 行业动态 > 热点新闻');
 		} else if (i == 1) {
-			$('#pathinfo').html('首页 > 行业动态 > 紧急公告');
+			$('#pathinfo').html('<a href="#/index">首页</a> > 行业动态 > 紧急公告');
 		}
 	}
 	$scope.ServicesTo = function(i) {
