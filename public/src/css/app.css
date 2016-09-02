@@ -1344,7 +1344,7 @@ h1 {
 
 .newsitem .dateclass .img2 {
 	position: absolute;
-	height: 36px;
+	width: 26px;
 	left:0;
 }
 
@@ -1386,7 +1386,7 @@ h1 {
 }
 
 .nav_left_top>img{
-	margin-left:3px;
+	margin-left:0px;
 }
 
 .title_top {
