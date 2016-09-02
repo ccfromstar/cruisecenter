@@ -671,6 +671,7 @@ function ServicesTo(i) {
 	} else if (i == 1) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 游客注意事项');
 	}
+	gotop();
 }
 
 function gotop() {
