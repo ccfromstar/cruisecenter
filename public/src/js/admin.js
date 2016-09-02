@@ -70,6 +70,7 @@ function saveForm(table) {
 				title: title,
 				post: post,
 				summary: summary,
+				source: $('#source').val(),
 				editid: window.sessionStorage.getItem("editid")
 			},
 			success: function(data) {

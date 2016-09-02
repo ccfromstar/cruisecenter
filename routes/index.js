@@ -76,6 +76,7 @@ exports.newsdo = function(req, res) {
 		var title = req.param("title");
 		var post = req.param("post");
 		var summary = req.param("summary");
+		var source = req.param("source");
 		var editid = req.param("editid");
 		/*对单引号进行转义*/
 		title = title.replace(/'/g, "\\'");
@@ -85,6 +86,7 @@ exports.newsdo = function(req, res) {
 			var sql = "update news set ";
 			sql += " title = '" + title + "',";
 			sql += " summary = '" + summary + "',";
+			sql += " source = '" + source + "',";
 			sql += " post = '" + post + "'";
 			sql += " where id = " + editid;
 			mysql.query(sql, function(err, result) {
@@ -94,7 +96,7 @@ exports.newsdo = function(req, res) {
 				}
 			});
 		} else {
-			var sql = "insert into news (title,post,summary,publishAt) values ('" + title + "','" + post + "','" + summary + "',now())";
+			var sql = "insert into news (title,post,summary,publishAt,source) values ('" + title + "','" + post + "','" + summary + "',now(),'" + source + "')";
 			mysql.query(sql, function(err, result) {
 				if (err) return console.error(err.stack);
 				if (result.affectedRows == 1) {
@@ -162,7 +164,24 @@ exports.newsdo = function(req, res) {
 			if (err) return console.error(err.stack);
 			res.json(result);
 		});
-	} 
+	} else if (sql == "getByIdAndNext") {
+		var id = req.param("id");
+		var sql = "select * from news where id = " + id;
+		mysql.query(sql, function(err, result) {
+			if (err) return console.error(err.stack);
+			var sql1 = "select * from news where id = (select max(id) from news where id < "+id+")";
+			mysql.query(sql1, function(err1, result1) {
+				if (err1) return console.error(err1.stack);
+				var sql2 = "select * from news where id = (select min(id) from news where id > "+id+")";
+				mysql.query(sql2, function(err2, result2) {
+					if (err2) return console.error(err2.stack);
+					result[0].front = result1;
+					result[0].next = result2;
+					res.json(result);
+				});
+			});
+		});
+	}
 }
 
 exports.noticedo = function(req, res) {

@@ -9,6 +9,13 @@
 			<input type="text" id="title" class="am-input-sm" />
 		</div>
 	</div>
+	
+	<div class="am-g am-margin-top">
+		<div class="am-u-sm-12 am-u-md-12">
+			来源
+			<input type="text" id="source" class="am-input-sm" />
+		</div>
+	</div>
 
 	<div class="am-g am-margin-top">
 		<div class="am-u-sm-12 am-u-md-12">
@@ -47,6 +54,7 @@
 				},
 				success: function(data) {
 					$('#title').val(data[0].title);
+					$('#source').val(data[0].source);
 					$('#summary').val(data[0].summary);
 					editor.html(data[0].post);
 				}

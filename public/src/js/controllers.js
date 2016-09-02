@@ -332,21 +332,29 @@ listApp.controller('newsFormController', function($scope, $http, $location, $sta
 		var editid = arr1[1];
 		$.ajax({
 			type: "post",
-			url: hosts + "news/getById",
+			url: hosts + "news/getByIdAndNext",
 			data: {
 				id: editid
 			},
 			success: function(data) {
+				//console.log(data);
 				$scope.data = data;
 				//console.log(data[0].title);
 				$('#title').html(data[0].title);
-				$('#publishAt').html(new Date(data[0].publishAt).toLocaleString());
+				var s = data[0].source?data[0].source:"";
+				$('#publishAt').html(new Date(data[0].publishAt).toLocaleString()+ " 来源:" + s);
 				$('#post').html(data[0].post);
+				if(data[0].front[0].title){
+					$('#pfront').html('上一篇 : <span onclick="openDoc('+data[0].front[0].id+')">'+data[0].front[0].title+'</span>');
+				}
+				if(data[0].next[0].title){
+					$('#pnext').html('下一篇 : <span onclick="openDoc('+data[0].next[0].id+')">'+data[0].next[0].title+'</span>');
+				}
 			}
 		});
 	}
 	$scope.openDoc = function(page, id) {
-		if (page == 'news') {
+		if (page == 'news' || !page) {
 			window.sessionStorage.setItem("newsid", id);
 			window.location = '#/index/trends/newsform?id=' + id;
 			window.location.reload();

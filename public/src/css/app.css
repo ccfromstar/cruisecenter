@@ -830,6 +830,23 @@ h1 {
 	right:20px;
 }
 
+.changePage {
+	position: absolute;
+	cursor: pointer;
+	bottom:30px;
+	left:20px;
+}
+
+.changePage>p {
+	margin:5px;
+	font-size: 14px;
+	width:400px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	-webkit-text-overflow: ellipsis;
+}
+
 .nav_navigate {
 	width: 240px;
 	background: #E6EAEB;
@@ -1316,6 +1333,7 @@ h1 {
 
 .newsitem li {
 	cursor: pointer;
+	text-align: left;
 }
 
 .newsitem .dateclass {
