@@ -299,6 +299,7 @@ navApp.controller('NavController', function($scope) {
 	$scope.ServicesTo = function(i) {
 		ServicesTo(i);
 	}
+	gotop();
 });
 
 var adminApp = angular.module('adminApp', []);
@@ -633,6 +634,7 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 });
 
 function ServicesTo(i) {
+	gotop();
 	$('.nav_navigate a').removeClass('active');
 	$('.nav_navigate a').eq(i).addClass('active');
 	if (i == -1) {
@@ -671,7 +673,6 @@ function ServicesTo(i) {
 	} else if (i == 1) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 游客注意事项');
 	}
-	gotop();
 }
 
 function gotop() {
