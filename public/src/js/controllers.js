@@ -325,6 +325,38 @@ adminApp.controller('AdminController', function($scope, $interval) {
 });
 
 var listApp = angular.module('listApp', []);
+listApp.controller('newsFormController', function($scope, $http, $location, $state) {
+	$scope.getDocById = function() {
+		var l = $location.absUrl();
+		var arr1 = l.split("?id=");
+		var editid = arr1[1];
+		$.ajax({
+			type: "post",
+			url: hosts + "news/getById",
+			data: {
+				id: editid
+			},
+			success: function(data) {
+				$scope.data = data;
+				//console.log(data[0].title);
+				$('#title').html(data[0].title);
+				$('#publishAt').html(new Date(data[0].publishAt).toLocaleString());
+				$('#post').html(data[0].post);
+			}
+		});
+	}
+	$scope.openDoc = function(page, id) {
+		if (page == 'news') {
+			window.sessionStorage.setItem("newsid", id);
+			window.location = '#/index/trends/newsform?id=' + id;
+			window.location.reload();
+		}
+	}
+	var newsitems = window.sessionStorage.getItem("newsitems");
+	newsitems = newsitems.replace(/red/g,"gray");
+	$scope.items = ($.parseJSON(newsitems));
+});
+
 listApp.controller('listController', function($scope, $http, $location, $state) {
 	var toPage = function(i) {
 		//console.log(i);
@@ -357,6 +389,9 @@ listApp.controller('listController', function($scope, $http, $location, $state) 
 				}
 			}
 			$scope.items = d;
+
+			//将item缓存到session里
+			window.sessionStorage.setItem("newsitems", JSON.stringify(d));
 			var iPa = PageNum;
 			iPa = iPa ? iPa : 1;
 			var pager = '[';
@@ -374,7 +409,7 @@ listApp.controller('listController', function($scope, $http, $location, $state) 
 
 			}
 			pager += ']';
-			console.log(pager);
+			//console.log(pager);
 			$scope.pages = $.parseJSON(pager);
 		}).error(function() {
 			console.log("error");
@@ -540,12 +575,12 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 		var o = data.record;
 		var arr = [];
 		var arr1 = [];
-		for(var i in o){
+		for (var i in o) {
 			var title = o[i].title;
-			if(title.length >18){
-				title = title.substring(0,18) + '...';
+			if (title.length > 18) {
+				title = title.substring(0, 18) + '...';
 			}
-			arr.push($sce.trustAsHtml((o[i].publishAt+'').substring(0,10) + '<br/>' + title));
+			arr.push($sce.trustAsHtml((o[i].publishAt + '').substring(0, 10) + '<br/>' + title));
 			arr1.push(o[i].id);
 		}
 		$scope.newsarray = arr;
@@ -560,10 +595,10 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 	}).success(function(data) {
 		var o = data.record;
 		var _list = "";
-		for(var i in o){
+		for (var i in o) {
 			var title = o[i].title;
-			if(title.length >22){
-				title = title.substring(0,22) + '...';
+			if (title.length > 22) {
+				title = title.substring(0, 22) + '...';
 			}
 			//_list += '<p>【'+(o[i].publishAt+'').substring(0,10) + '】' + title + '</p>';
 			o[i].title = title;
@@ -581,7 +616,7 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 			window.sessionStorage.setItem("newsid", id);
 			window.location = '#/index/trends/newsform?id=' + id;
 			//$state.go('index.trends.newsform#id='+id,{data: id},{reload:true});   
-		}else if (page == 'notice') {
+		} else if (page == 'notice') {
 			window.sessionStorage.setItem("noticeid", id);
 			window.location = '#/index/trends/noticeform?id=' + id;
 			//$state.go('index.trends.newsform#id='+id,{data: id},{reload:true});   
@@ -630,6 +665,8 @@ function ServicesTo(i) {
 	}
 }
 
-function gotop(){
-	$('body,html').animate({scrollTop:0},500);
+function gotop() {
+	$('body,html').animate({
+		scrollTop: 0
+	}, 500);
 }

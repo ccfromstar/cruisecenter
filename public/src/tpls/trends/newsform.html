@@ -1,9 +1,24 @@
-<div ng-controller="listController" ng-init="getDocById()">
-	<h4 id="title"></h4>
-	<div class="nav_shadow"></div>
-	<h5 id="publishAt"></h5>
-	<div id="post"></div>
-	<div class="stateitem">
-		<a ui-sref="index.trends.news" class="return">返回</a>
+<div class="p_right" ng-controller="newsFormController" ng-init="getDocById()">
+	<div class="title_top">
+		<h4 id="title"></h4>
+		<div class="nav_shadow"></div>
+		<h5 id="publishAt"></h5>
+		<div id="post"></div>
+		<div class="stateitem">
+			<a ui-sref="index.trends.news" class="return">返回</a>
+		</div>
+	</div>
+	<div class="float_line">
+		<div class="nav_left_top">
+			<img src="../../src/image/gray.png"  />
+			<p>正在发生的热点新闻</p>
+		</div>
+		<ul class="newsitem">
+			<li ng-repeat="item in items" ng-click="openDoc('news',item.id)">
+				<div class="dateclass">
+					<img class="img2" src="../../src/image/{{item.img }}.png" alt="" /> {{ item.publishAt | limitTo:10 }}<span>{{ item.title }}</span>
+				</div>
+			</li>
+		</ul>
 	</div>
 </div>

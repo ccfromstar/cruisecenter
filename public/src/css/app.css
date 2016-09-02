@@ -753,6 +753,7 @@ h1 {
 	width: 730px;
 	margin-left: 20px;
 	padding: 24px 30px;
+	position:relative;
 }
 
 .page_right > div > p{
@@ -1304,4 +1305,88 @@ h1 {
 .notice_home p {
 	font-size: 12px;
 	cursor:pointer;
+}
+
+.newsitem {
+	padding-left: 0;
+	margin-top:-6px;
+}
+
+.newsitem li {
+	cursor: pointer;
+}
+
+.newsitem .dateclass {
+	width: 245px;
+	height: 30px;
+	line-height: 35px;
+	color: #A7A7A7;
+	font-size: 12px;
+	text-align: center;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	text-indent: 20px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	-webkit-text-overflow: ellipsis;
+	text-indent: 35px;
+}
+
+.newsitem .dateclass span {
+	margin-left:10px;
+	color: #A7A7A7;
+	font-size: 12px;
+}
+
+.newsitem .dateclass .img2 {
+	position: absolute;
+	height: 36px;
+	left:0;
+}
+
+.newsitem hgroup {
+	display: inline-block;
+	width: 120px;
+}
+
+.newsitem li :hover {
+	text-shadow: 0px 0px 3px #B6B6B6;
+}
+
+.newsitem h2 {
+	margin: 8px 0 10px 0;
+	font-size: 12px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	-webkit-text-overflow: ellipsis;
+	color:#A7A7A7;
+	font-weight: normal;
+}
+
+.float_line {
+	left:-270px;
+	top:200px;
+	position:absolute;
+}
+
+.nav_left_top {
+	display: -webkit-box;
+}
+
+.nav_left_top>p {
+	margin-left:15px;
+	margin-top:3px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.nav_left_top>img{
+	margin-left:3px;
+}
+
+.title_top {
+	min-height: 700px;
 }
