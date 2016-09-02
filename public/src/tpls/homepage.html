@@ -425,28 +425,49 @@
 </div>
 <!--左侧悬浮功能导航条-->
 <ul class="left_nav">
-	<li><img class="left_icon" src="../../src/image/service_1.png">
-		<p>船票查询</p>
+	<li>
+		<a ng-click="ServicesTo(-1)" ui-sref="index.services.query">
+			<img class="left_icon" src="../../src/image/service_1.png">
+			<p>船票查询</p>
+		</a>
 	</li>
-	<li><img class="left_icon" src="../../src/image/service_2.png">
-		<p>航班查询</p>
+	<li>
+		<a ng-click="ServicesTo(10)" ui-sref="index.services.cal">
+			<img class="left_icon" src="../../src/image/service_2.png">
+			<p>航班查询</p>
+		</a>
 	</li>
-	<li><img class="left_icon" src="../../src/image/service_3.png">
-		<p>注意事项</p>
+	<li>
+		<a ng-click="ServicesTo(1)" ui-sref="index.services.note">
+			<img class="left_icon" src="../../src/image/service_3.png">
+			<p>注意事项</p>
+		</a>
 	</li>
-	<li><img class="left_icon" src="../../src/image/service_4.png">
-		<p>港口指南</p>
+	<li>
+		<a ng-click="ServicesTo(2)" ui-sref="index.services.guide">
+			<img class="left_icon" src="../../src/image/service_4.png">
+			<p>港口指南</p>
+		</a>
 	</li>
-	<li><img class="left_icon" src="../../src/image/service_5.png">
-		<p>相关政策</p>
+	<li>
+		<a ng-click="ServicesTo(4)" ui-sref="index.services.immigration">
+			<img class="left_icon" src="../../src/image/service_5.png">
+			<p>相关政策</p>
+		</a>
 	</li>
 	<li><img class="left_icon" src="../../src/image/service_6.png">
 		<p>邮轮产品</p>
 	</li>
-	<li><img class="left_icon" src="../../src/image/service_7.png">
-		<p>贵宾服务</p>
+	<li>
+		<a ng-click="ServicesTo(13)" ui-sref="index.services.vip">
+			<img class="left_icon" src="../../src/image/service_7.png">
+			<p>贵宾服务</p>
+		</a>
 	</li>
-	<li><img class="left_icon" src="../../src/image/service_8.png">
-		<p>WIFI租赁</p>
+	<li>
+		<a ng-click="ServicesTo(14)" ui-sref="index.services.wifi">
+			<img class="left_icon" src="../../src/image/service_8.png">
+			<p>WIFI租赁</p>
+		</a>
 	</li>
 </ul>
