@@ -102,6 +102,7 @@ a:active {
 	text-align: center;
 	border-top-right-radius: 20px;
 	border-bottom-right-radius: 20px;
+	cursor:pointer;
 	/*margin-left:-5px;*/
 }
 
@@ -1331,6 +1332,7 @@ h1 {
 .notice_home p {
 	font-size: 12px;
 	cursor: pointer;
+	margin:5px 0;
 }
 
 .newsitem {

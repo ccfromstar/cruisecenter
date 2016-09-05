@@ -316,8 +316,8 @@
 			</div>
 			<div class="news_right">
 				<p><img src="../../src/image/notice_news.png" />紧急公告 NOTICE</p>
-				<div class="notice_home" ng-repeat="item in notice_list">
-					<p ng-click="openDoc('notice',item.id)">【{{ item.publishAt | limitTo:10 }}】{{ item.title }}</p>
+				<div class="notice_home" >
+					<p ng-repeat="item in notice_list" ng-click="openDoc('notice',item.id)">【{{ item.publishAt | limitTo:10 }}】{{ item.title }}</p>
 				</div>
 			</div>
 			<div style="clear:both;"></div>
