@@ -1,0 +1,282 @@
+<%
+var  txtTitle = "";
+var  rtfImg = "";
+var  txtText = "";
+var  txtCategory1 = "";
+var  list1 = "邮轮入门;邮轮资讯;邮轮游记;主题;邮轮视频";
+var tnp1 = list1.split(";");
+var  txtCategory2 = "";
+var  list2 = "";
+for (var k in theme) {
+      if(list2==""){
+list2 = theme[k].txtName;
+        }else{
+list2 = list2+";"+theme[k].txtName;
+        }
+}
+var tnp2 = list2.split(";");
+var  txtCategory3 = "";
+var docid = "";
+var txtAbbr = "";
+if(id){
+for (var k in re3) {
+if(re3[k].id==id){
+txtTitle = re3[k].txtTitle;
+rtfImg = re3[k].rtfImg;
+txtText = re3[k].txtText;
+txtCategory1 = re3[k].txtCategory1;
+txtCategory2 = re3[k].txtCategory2;
+txtCategory3 = re3[k].txtCategory3;
+docid = re3[k].id;
+txtAbbr = re3[k].txtAbbr;
+}
+}
+}
+var tnp3 =  txtCategory3.split(",");
+%>
+<script type="text/javascript">
+	var editor;
+	var options = {
+		uploadJson: '/uploadImg',
+		height: 500
+	};
+	KindEditor.ready(function(k) {
+		editor = k.create('#post', options);
+	});
+</script>
+<div class="easyui-panel" title="新建文章">
+	<div style="padding:10px 60px 20px 60px">
+		<form id="supplyformFile" name="formFile" method="post">
+			<table class="tableborder" cellpadding="5" border="1">
+				<tr>
+					<td style="width: 150px;">文章一级分类</td>
+					<td>
+						<select name="txtCategory1">
+                            <option value="*">全部</option>
+                            <%
+                            for(var i=0;i<tnp1.length;i++){
+                            if(tnp1[i]== txtCategory1){
+                            %>
+                            <option selected value="<%=tnp1[i]%>"><%=tnp1[i]%></option>
+                            <%
+                            }else{
+                            %>
+                            <option value="<%=tnp1[i]%>"><%=tnp1[i]%></option>
+                            <%
+                            }
+                            }
+                            %>
+                        </select>
+					</td>
+				</tr>
+				<tr>
+					<td>主题分类</td>
+					<td>
+						<select id="txtCategory2" name="txtCategory2">
+                            <option value="*">全部</option>
+                            <%
+                            for(var i=0;i<tnp2.length;i++){
+                            if(tnp2[i]== txtCategory2){
+                            %>
+                            <option selected value="<%=tnp2[i]%>"><%=tnp2[i]%></option>
+                            <%
+                            }else{
+                            %>
+                            <option value="<%=tnp2[i]%>"><%=tnp2[i]%></option>
+                            <%
+                            }
+                            }
+                            %>
+                        </select>
+					</td>
+				</tr>
+				<tr>
+					<td>二级分类明细</td>
+					<td>
+						<span style="color: #0000ff">目的地：</span><br/>
+						<span id="sec1" style="display: inline">
+                                 <%
+                                 var checkstr = "";
+                                 var tra = "";
+                                 var it = "0";
+                                 for (var i in med) {
+                                    it = "0";
+                                    for(var j=0;j<tnp3.length;j++){
+                                    if(med[i].txtCruiseArea == tnp3[j]){
+                                          it = "1";
+                                    }
+                                    }
+                                    if(it == "1"){
+                                 %>
+
+                                     <input type="checkbox" checked="checked" style="vertical-align: middle" name="txtCategory3" value ="<%=med[i].txtCruiseArea%>" ><%=med[i].txtCruiseArea%>
+                                 <%
+                                    }else{
+
+                                 %>
+
+                                     <input type="checkbox" style="vertical-align: middle" name="txtCategory3" value ="<%=med[i].txtCruiseArea%>" ><%=med[i].txtCruiseArea%>
+                                 <%
+                                        }
+                                 }
+                                 %>
+
+                        </span>
+						<br/><span style="color: #0000ff">邮轮:</span><br/>
+						<span id="sec2" style="display: inline">
+
+                                 <%
+                                 var checkstr = "";
+                                 var tra = "";
+                                 var it = "0";
+                                 for (var i in cruiseship) {
+                                    it = "0";
+                                    for(var j=0;j<tnp3.length;j++){
+                                    if(cruiseship[i].txtShipName == tnp3[j]){
+                                          it = "1";
+                                    }
+                                    }
+                                    if(it == "1"){
+                                 %>
+
+                                     <input type="checkbox" checked="checked" style="vertical-align: middle" name="txtCategory3" value ="<%=cruiseship[i].txtShipName%>" ><%=cruiseship[i].txtShipName%>
+                                 <%
+                                    }else{
+
+                                 %>
+
+                                     <input type="checkbox" style="vertical-align: middle" name="txtCategory3" value ="<%=cruiseship[i].txtShipName%>" ><%=cruiseship[i].txtShipName%>
+                                 <%
+                                        }
+                                 }
+                                 %>
+                        </span>
+						<br/><span style="color: #0000ff">公司：</span><br/>
+						<span id="sec3" style="display: inline">
+                                 <%
+                                 var checkstr = "";
+                                 var tra = "";
+                                 var it = "0";
+                                 for (var i in cruisecompany) {
+                                    it = "0";
+                                    for(var j=0;j<tnp3.length;j++){
+                                    if(cruisecompany[i].txtCompanyName == tnp3[j]){
+                                          it = "1";
+                                    }
+                                    }
+                                    if(it == "1"){
+                                 %>
+
+                                     <input type="checkbox" checked="checked" style="vertical-align: middle" name="txtCategory3" value ="<%=cruisecompany[i].txtCompanyName%>" ><%=cruisecompany[i].txtCompanyName%>
+                                 <%
+                                    }else{
+
+                                 %>
+
+                                     <input type="checkbox" style="vertical-align: middle" name="txtCategory3" value ="<%=cruisecompany[i].txtCompanyName%>" ><%=cruisecompany[i].txtCompanyName%>
+                                 <%
+                                        }
+                                 }
+                                 %>
+
+                        </span>
+					</td>
+				</tr>
+				<tr>
+					<td>主题名称</td>
+					<td><input class="textbox" name="txtTitle" style="width: 100%" value="<%=txtTitle%>"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>主题图片</td>
+					<td>
+
+						<div class="am-form-file">
+							<button type="button" class="am-btn am-btn-default am-btn-sm">
+									<i class="am-icon-cloud-upload"></i> 选择要上传的文件
+								</button>
+							<input type="file" id="fileUp" onchange="UploadSupplyer()" name="fileUp" />
+						</div>
+						<div id="supplyfile_div">
+							<%if(rtfImg){%>
+								<span class="am-icon-file-o"></span> <a target="_blank" href="<%=rtfImg%>">图片预览</a>
+							<%}%>
+						</div>
+
+						<iframe id="frameFile" name="frameFile" style="display:none"></iframe>
+						<input type="hidden" id="supplyfile" />
+					</td>
+				</tr>
+				<tr>
+					<td>主题缩略介绍</td>
+					<td>
+						<input class="textbox" name="txtAbbr" style="width: 100%" value="<%=txtAbbr%>"></input>
+					</td>
+					</td>
+				</tr>
+				<tr>
+					<td>内容</td>
+					<td>
+						<textarea style="width:100%;" cols="50" id="post" name="editor01"><%=txtText%></textarea>
+					</td>
+				</tr>
+			</table>
+			<br/>
+			<div id="toolbar">
+				<%if(id){%>
+				<a href="javascript:void(0)" class="btn-c am-btn am-btn-primary am-btn-xs" onclick="updateFrom()">更新</a>
+				<%}else{%>
+				<a href="javascript:void(0)" class="btn-c am-btn am-btn-primary am-btn-xs" onclick="saveForm()">新建</a>
+				<%}%>
+				<button type="button" onclick="history.go('-1');" class="btn-c am-btn am-btn-primary am-btn-xs">关闭</button>
+			</div>
+			<input type="text" name="stype" id="stype" style="display: none" />
+			<input type="text" name="editor02" id="editor02" style="display: none" />
+			<input type="text" name="docid" id="docid" style="display: none" value="<%=docid%>" />
+			<input type="hidden" name="rtfImg" id="rtfImg" style="width: 100%" value="<%=rtfImg%>"></input>
+		</form>
+	</div>
+</div>
+<script>
+	function saveDoc(){
+		$("#supplyformFile").removeAttr("target").removeAttr("encType").removeAttr("action");
+		html = editor.html();
+		editor.sync();
+		var post = $('#post').val();
+		$('#editor02').val(post);
+	}
+	
+	function updateFrom() {
+		saveDoc();
+		$('#stype').val('2');
+		document.forms[0].submit();
+	}
+
+	function saveForm() {
+		saveDoc();
+		$('#stype').val('1');
+		document.forms[0].submit();
+	}
+
+	function UploadSupplyer() {
+		$("#supplyformFile").attr("target", "frameFile").attr("encType", "multipart/form-data").attr('action', "/post/uploaddo");
+		var path = document.all.fileUp.value;
+		if (!path) {
+			return false;
+		}
+		$('.loadinfo').html('<p>文件上传中...</p>').removeClass("none");
+		$('#supplyformFile').submit();
+	}
+
+	window.addEventListener('message', function(e) {
+		var fname = e.data;
+		$('#supplyfile').val(fname);
+		$(".loadinfo").addClass("none");
+		$(".successinfo").html("<p>文件上传成功</p>").removeClass("none");
+		setTimeout(function() {
+			$(".successinfo").addClass("none");
+		}, 2000);
+		$("#supplyfile_div").html('<span class="am-icon-file-o"></span> <a target="_blank" href="' + '/upload/' + fname + '">图片预览</a>');
+		$("#rtfImg").val('/upload/' + fname);
+	}, false);
+</script>

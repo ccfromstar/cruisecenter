@@ -27,10 +27,27 @@ function gotop() {
 	}, 500);
 }
 
+function gotop_quickly(){
+	scroll(0,0);
+}
+
 function openDoc(id) {
 	window.sessionStorage.setItem("newsid", id);
 	window.location = '#/index/trends/newsform?id=' + id;
 	window.location.reload();
+}
+
+function iFrameHeight() {
+	
+	var ifm = document.getElementById("iframepage");
+	var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;
+	if (ifm != null && subWeb != null) {
+		ifm.height = subWeb.body.scrollHeight;
+		//ifm.width = subWeb.body.scrollWidth;
+		ifm.width = 1000;
+	}
+	ifm.style.display = "block";
+	ifm.style.marginTop = "-20px";
 }
 
 $(window).scroll(function() {

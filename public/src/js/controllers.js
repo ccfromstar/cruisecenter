@@ -546,7 +546,9 @@ listApp.controller('noticeController', function($scope, $http, $location, $state
 				//console.log(data[0].title);
 				$('#title').html(data[0].title);
 				$('#publishAt').html(new Date(data[0].publishAt).toLocaleString());
-				$('#post').html(data[0].post);
+				//公告内容需要做换行的转换
+				var post = data[0].post;
+				$('#post').html(post.replace(/\n/g,"<br/>"));
 			}
 		});
 	}
@@ -565,6 +567,10 @@ headerApp.controller('headerController', function($scope) {
 	}
 	$scope.ServicesTo = function(i) {
 		ServicesTo(i);
+	}
+	$scope.URLTo = function(page) {
+		window.location = '#/index/' + page;
+		window.location.reload();
 	}
 });
 

@@ -228,6 +228,86 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 			url: '/note',
 			templateUrl: 'tpls/services/note.html'
 		})
+		.state('index.destination', {
+			url: '/destination',
+			views: {
+				'main@index': {
+					templateUrl: 'tpls/canon/destination.html',
+					controller: function($scope, $location,$sce) {
+						$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > <a onclick="window.location.reload();" href="#/index/destination">邮轮度假目的地</a>');
+						var url = $location.absUrl();
+						var arr = url.split('?page=');
+						$scope.srcPage = arr[1]?arr[1].replace(/%2F/g,'/').replace('%3F','?').replace('*','='):'/c_destination';
+					}
+				},
+				'nav@index.destination': {
+					templateUrl: 'tpls/nav.html'
+				}
+			}
+		})
+		.state('index.curisecompany', {
+			url: '/curisecompany',
+			views: {
+				'main@index': {
+					templateUrl: 'tpls/canon/curisecompany.html',
+					controller: function($scope, $location,$sce) {
+						$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > <a onclick="window.location.reload();" href="#/index/curisecompany">邮轮公司荟萃</a>');
+						var url = $location.absUrl();
+						var arr = url.split('?page=');
+						var src ="/c_curisecompany";
+					    if(arr[1]){
+					    	src = arr[1].replace(/%2F/g,'/').replace('%3F','?').replace('*','=');
+					    }
+						$scope.srcPage = src;
+					}
+				},
+				'nav@index.curisecompany': {
+					templateUrl: 'tpls/nav.html'
+				}
+			}
+		})
+		.state('index.theme', {
+			url: '/theme',
+			views: {
+				'main@index': {
+					templateUrl: 'tpls/canon/theme.html',
+					controller: function($scope, $location,$sce) {
+						$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > <a onclick="window.location.reload();" href="#/index/theme">邮轮度假主题</a>');
+						var url = $location.absUrl();
+						var arr = url.split('?page=');
+						var src ="/c_theme";
+					    if(arr[1]){
+					    	src = arr[1].replace(/%2F/g,'/').replace('%3F','?').replace('*','=');
+					    }
+						$scope.srcPage = src;
+					}
+				},
+				'nav@index.theme': {
+					templateUrl: 'tpls/nav.html'
+				}
+			}
+		})
+		.state('index.share', {
+			url: '/share',
+			views: {
+				'main@index': {
+					templateUrl: 'tpls/canon/share.html',
+					controller: function($scope, $location,$sce) {
+						$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > <a onclick="window.location.reload();" href="#/index/share">邮轮生活分享</a>');
+						var url = $location.absUrl();
+						var arr = url.split('?page=');
+						var src ="/c_share";
+					    if(arr[1]){
+					    	src = arr[1].replace(/%2F/g,'/').replace('%3F','?').replace('*','=');
+					    }
+						$scope.srcPage = src;
+					}
+				},
+				'nav@index.share': {
+					templateUrl: 'tpls/nav.html'
+				}
+			}
+		})
 		.state('index.api', {
 			url: '/apilist',
 			views: {

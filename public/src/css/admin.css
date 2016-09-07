@@ -383,7 +383,7 @@ gallery.html css
 }
 
 .bg-form input {
-	width:50% !important;
+	max-width:50% !important;
 	display: inline-block !important;
 	margin-left:10px;
 }
@@ -406,4 +406,14 @@ gallery.html css
 
 #json_tbody td {
 	max-width:300px;
+}
+
+.tableborder td{
+	padding:5px;
+}
+
+input[type="checkbox"] {
+	margin-top:-2px; 
+	margin-bottom:1px;
+	vertical-align:text-bottom; 
 }

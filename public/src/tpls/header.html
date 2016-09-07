@@ -25,12 +25,16 @@
 			<div class="left">
 				<img src="../../src/image/logo3.png" alt="Logo" width="305px">
 			</div>
+
 			<div class="right">
-				<div class="right_top">热线服务：400-123-1234 <span class="login"> 登陆 | 注册 </span></div>
-				<div class="right_search">
-					<input type="text" name="search_key" class="search_key" id="search_key" placeholder="请输入关键字查询" />
-					<div id="goto" class="goto">搜索</div>
-				</div>
+				<form>
+					<div class="right_top">热线服务：400-123-1234 <span class="login"> 登陆 | 注册 </span></div>
+					<div class="right_search">
+
+						<input type="text" name="search_key" class="search_key" id="bdcsMain" placeholder="请输入关键字查询" />
+						<div id="goto" class="goto" onclick="document.forms[0].submit();">搜索</div>
+					</div>
+				</form>
 			</div>
 			<div style="clear:both"></div>
 			<ul id="menu" class="menu">
@@ -173,25 +177,36 @@
 			<dd>
 				<ul>
 					<li>
-						<h1 class="nav_header">邮轮公司荟萃</h1></li>
+						<a ng-click="URLTo('curisecompany')">
+							<h1 class="nav_header">							
+								邮轮公司荟萃							
+						</h1></a>
+					</li>
 				</ul>
 			</dd>
 			<dd>
 				<ul>
 					<li>
-						<h1 class="nav_header">邮轮度假目的地</h1></li>
+						<a ng-click="URLTo('destination')"><h1 class="nav_header">							
+								邮轮度假目的地							
+						</h1></a></li>
 				</ul>
 			</dd>
 			<dd>
 				<ul>
 					<li>
-						<h1 class="nav_header">邮轮度假主题</h1></li>
+						<a ng-click="URLTo('theme')">
+							<h1 class="nav_header">邮轮度假主题</h1>
+						</a>
+					</li>
 				</ul>
 			</dd>
 			<dd>
 				<ul>
 					<li>
-						<h1 class="nav_header">邮轮生活分享</h1></li>
+						<a ng-click="URLTo('share')">
+							<h1 class="nav_header">邮轮生活分享</h1></li>
+						</a>
 				</ul>
 			</dd>
 			<dd>
