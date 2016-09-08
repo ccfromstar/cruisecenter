@@ -10,6 +10,10 @@ module.exports = function (app, routes) {
     app.get('/notice',routes.notice);
     app.post('/notice/:sql',routes.noticedo);
     
+    app.get('/view_static',routes.view_static);
+    app.get('/static',routes.static_page);
+    app.post('/static/:sql',routes.staticdo);
+    
     app.get('/view_travel',routes.view_travel);
     app.get('/travel',routes.travel);
     app.post('/travel/:sql',routes.traveldo);

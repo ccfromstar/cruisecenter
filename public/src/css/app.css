@@ -1423,3 +1423,7 @@ h1 {
 #post {
 	margin-bottom: 80px;
 }
+
+.static_post {
+	margin-top:10px;
+}

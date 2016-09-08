@@ -113,6 +113,37 @@ function saveForm(table) {
 				}
 			}
 		});
+	}else if (table == 'static') {
+		var name = $('#name').val();
+
+		html = editor.html();
+		editor.sync();
+
+		var post = $('#post').val();
+
+		if (!name) {
+			showErr("标题不能为空");
+			return false;
+		}
+		
+		$.ajax({
+			type: "post",
+			url: "/static/create",
+			data: {
+				mode: mode,
+				name: name,
+				post: post,
+				editid: window.sessionStorage.getItem("editid")
+			},
+			success: function(data) {
+				if (data == "300") {
+					$('.successinfo').html('<p>保存成功</p>').removeClass("none");
+					setTimeout(function() {
+						window.location = 'view_static';
+					}, 1000);
+				}
+			}
+		});
 	}
 }
 
@@ -171,6 +202,24 @@ function delDoc(i) {
 				}
 			}
 		});
+	}else if (i == 3) {
+		//游记
+		$.ajax({
+			type: "post",
+			url: "static/del",
+			data: {
+				id: window.sessionStorage.getItem("delid")
+			},
+			success: function(data) {
+				if (data == "300") {
+					toPage(2,window.sessionStorage.getItem("indexPage"));
+					$('.successinfo').html('<p>删除成功</p>').removeClass("none");
+					setTimeout(function() {
+						$('.successinfo').addClass("none");
+					}, 2000);
+				}
+			}
+		});
 	}
 }
 
@@ -188,6 +237,11 @@ function editDoc(i, id) {
 	}else if (i == 2) {
 		//游记
 		window.location = "/travel?id="+id;
+	}else if (i == 3) {
+		//新闻
+		window.sessionStorage.setItem("editid", id);
+		window.sessionStorage.setItem("mode", "edit");
+		window.location = '/static';
 	}
 }
 
@@ -331,6 +385,46 @@ function toPage(i, page) {
 				$modal.modal('close');
 			}
 		});
+	}else if (i == 3) {
+		$.ajax({
+			type: "post",
+			url: "/static/get",
+			data: {
+				indexPage: indexPage
+			},
+			success: function(data) {
+				console.log(data);
+				var html = "";
+				var record = data.record;
+				for (var i in record) {
+					html += "<tr>";
+					html += "<td>" + record[i].name + "</td>";
+					html += "<td><button type='button' onclick='editDoc(3," + record[i].id + ")' class='am-btn am-btn-default am-btn-xs am-text-secondary'><span class='am-icon-pencil-square-o'></span> 编辑</button>";
+					html += "</tr>";
+				}
+				var isFirstPage = data.isFirstPage ? "am-disabled" : "";
+				var isLastPage = data.isLastPage ? "am-disabled" : "";
+				var pager = "";
+				var iPa = Number(window.sessionStorage.getItem("indexPage"));
+				iPa = iPa ? iPa : 1;
+				for (var i = 1; i < data.totalpage + 1; i++) {
+					var hasClass = "";
+					if (i == iPa) {
+						hasClass = "am-active";
+					}
+
+					pager += '<li class="' + hasClass + '"><a href="#" onclick="toPage(2,' + i + ')">' + i + '</a></li>';
+
+				}
+				var pagination = "<li class='" + isFirstPage + "'><a href='#' onClick='toPage(2," + (Number(window.sessionStorage.getItem("indexPage")) - 1) + ")'>«</a></li>";
+				pagination += pager;
+				pagination += "<li class='" + isLastPage + "'><a href='#' onClick='toPage(2," + (Number(window.sessionStorage.getItem("indexPage")) + 1) + ")'}>»</a></li>";
+				$("#json_tbody").html(html);
+				$("#total").html(data.total);
+				$('#pagination').html(pagination);
+				$modal.modal('close');
+			}
+		});
 	}
 }
 
@@ -344,5 +438,9 @@ function loadNotice() {
 
 function loadTravel() {
 	toPage(2, 1);
+}
+
+function loadStatic() {
+	toPage(3, 1);
 }
 
