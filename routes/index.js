@@ -1045,6 +1045,73 @@ exports.c_share = function(req, res) {
 	});
 };
 
+exports.c_theme_sec = function (req, res) {
+    var pathid = req.query.id;
+    var theme = new Theme();
+    theme.get(function (result) {
+        if (result[1] == "r") {
+            console.log("get info error!");
+        } else {
+            var travelnotes = new Travelnotes();
+            travelnotes.get(function (result1) {
+                if (result1[1] == "r") {
+                    console.log("get info error!");
+                } else {
+                    res.render('c_theme_sec', {title: '邮轮度假主题',layout: 'c_layouts',menu_path: pathid, share: result,r1:result1});
+                }
+            });
+        }
+    });
+};
+
+exports.c_share_sec = function (req, res) {
+    var pathid = req.query.pid;
+    var share = new Share();
+    share.get(function (result) {
+        if (result[1] == "r") {
+            console.log("get info error!");
+        } else {
+            var travelnotes = new Travelnotes();
+            travelnotes.get(function (result1) {
+                if (result1[1] == "r") {
+                    console.log("get info error!");
+                } else {
+                    res.render('c_share_sec', {
+                    	layout: 'c_layouts',
+                        title: '游记文章',
+                        menu_path: pathid,
+                        share: result, r1: result1
+                    });
+                }
+            });
+        }
+    });
+};
+
+exports.c_sharetheme_sec = function (req, res) {
+    var pathid = req.query.id;
+    var share = new Share();
+    share.get(function (result) {
+        if (result[1] == "r") {
+            console.log("get info error!");
+        } else {
+            var travelnotes = new Travelnotes();
+            travelnotes.get(function (result1) {
+                if (result1[1] == "r") {
+                    console.log("get info error!");
+                } else {
+                    res.render('c_sharetheme_sec', {
+                    	layout: 'c_layouts',
+                        title: '游记文章',
+                        menu_path: pathid,
+                        share: result, r1: result1
+                    });
+                }
+            });
+        }
+    });
+};
+
 Date.prototype.Format = function(fmt) {
 	var d = this;
 	var o = {

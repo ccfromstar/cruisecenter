@@ -413,12 +413,12 @@ function toPage(i, page) {
 						hasClass = "am-active";
 					}
 
-					pager += '<li class="' + hasClass + '"><a href="#" onclick="toPage(2,' + i + ')">' + i + '</a></li>';
+					pager += '<li class="' + hasClass + '"><a href="#" onclick="toPage(3,' + i + ')">' + i + '</a></li>';
 
 				}
-				var pagination = "<li class='" + isFirstPage + "'><a href='#' onClick='toPage(2," + (Number(window.sessionStorage.getItem("indexPage")) - 1) + ")'>«</a></li>";
+				var pagination = "<li class='" + isFirstPage + "'><a href='#' onClick='toPage(3," + (Number(window.sessionStorage.getItem("indexPage")) - 1) + ")'>«</a></li>";
 				pagination += pager;
-				pagination += "<li class='" + isLastPage + "'><a href='#' onClick='toPage(2," + (Number(window.sessionStorage.getItem("indexPage")) + 1) + ")'}>»</a></li>";
+				pagination += "<li class='" + isLastPage + "'><a href='#' onClick='toPage(3," + (Number(window.sessionStorage.getItem("indexPage")) + 1) + ")'}>»</a></li>";
 				$("#json_tbody").html(html);
 				$("#total").html(data.total);
 				$('#pagination').html(pagination);

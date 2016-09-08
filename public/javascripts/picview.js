@@ -2194,15 +2194,31 @@ function getwheel(evt) { //滚轮事件计算
 	}
 }
 
+//var hosts = "http://127.0.0.1/";
+//var hosts = "http://139.196.87.14/";
+var hosts = "http://www.cruisesh.cn/";
+
 function urlTo(url) {
 	//alert("http://127.0.0.1/src/#/index/destination?page="+url);
 	window.parent.gotop_quickly();
-	window.parent.location = "http://127.0.0.1/src/#/index/destination?page=" + url;
+	window.parent.location = hosts+"src/#/index/destination?page=" + url;
 	window.parent.location.reload();
 }
 
 function urlTo1(url) {
 	window.parent.gotop_quickly();
-	window.parent.location = "http://127.0.0.1/src/#/index/curisecompany?page=" + url;
+	window.parent.location = hosts+"src/#/index/curisecompany?page=" + url;
+	window.parent.location.reload();
+}
+
+function urlTo2(url) {
+	window.parent.gotop_quickly();
+	window.parent.location = hosts+"src/#/index/theme?page=" + url;
+	window.parent.location.reload();
+}
+
+function urlTo3(url) {
+	window.parent.gotop_quickly();
+	window.parent.location = hosts+"src/#/index/share?page=" + url;
 	window.parent.location.reload();
 }
