@@ -144,6 +144,37 @@ function saveForm(table) {
 				}
 			}
 		});
+	} else if (table == 'faq') {
+		var title = $('#title').val();
+
+		//html = editor.html();
+		//editor.sync();
+
+		var post = $('#post').val();
+		
+		if (!title) {
+			showErr("问题不能为空");
+			return false;
+		}
+
+		$.ajax({
+			type: "post",
+			url: "/faq/create",
+			data: {
+				mode: mode,
+				title: title,
+				post: post,
+				editid: window.sessionStorage.getItem("editid")
+			},
+			success: function(data) {
+				if (data == "300") {
+					$('.successinfo').html('<p>保存成功</p>').removeClass("none");
+					setTimeout(function() {
+						window.location = 'view_faq';
+					}, 1000);
+				}
+			}
+		});
 	}
 }
 
@@ -220,6 +251,24 @@ function delDoc(i) {
 				}
 			}
 		});
+	}else if (i == 4) {
+		//常见问题
+		$.ajax({
+			type: "post",
+			url: "faq/del",
+			data: {
+				id: window.sessionStorage.getItem("delid")
+			},
+			success: function(data) {
+				if (data == "300") {
+					toPage(4,window.sessionStorage.getItem("indexPage"));
+					$('.successinfo').html('<p>删除成功</p>').removeClass("none");
+					setTimeout(function() {
+						$('.successinfo').addClass("none");
+					}, 2000);
+				}
+			}
+		});
 	}
 }
 
@@ -230,7 +279,7 @@ function editDoc(i, id) {
 		window.sessionStorage.setItem("mode", "edit");
 		window.location = '/news';
 	}else if (i == 1) {
-		//新闻
+		//公告
 		window.sessionStorage.setItem("editid", id);
 		window.sessionStorage.setItem("mode", "edit");
 		window.location = '/notice';
@@ -238,10 +287,15 @@ function editDoc(i, id) {
 		//游记
 		window.location = "/travel?id="+id;
 	}else if (i == 3) {
-		//新闻
+		//静态内容
 		window.sessionStorage.setItem("editid", id);
 		window.sessionStorage.setItem("mode", "edit");
 		window.location = '/static';
+	}else if (i == 4) {
+		//常见问题
+		window.sessionStorage.setItem("editid", id);
+		window.sessionStorage.setItem("mode", "edit");
+		window.location = '/faq';
 	}
 }
 
@@ -425,6 +479,47 @@ function toPage(i, page) {
 				$modal.modal('close');
 			}
 		});
+	}else if (i == 4) {
+		$.ajax({
+			type: "post",
+			url: "/faq/get",
+			data: {
+				indexPage: indexPage
+			},
+			success: function(data) {
+				console.log(data);
+				var html = "";
+				var record = data.record;
+				for (var i in record) {
+					html += "<tr>";
+					html += "<td>" + record[i].title + "</td>";
+					html += "<td><button type='button' onclick='editDoc(4," + record[i].id + ")' class='am-btn am-btn-default am-btn-xs am-text-secondary'><span class='am-icon-pencil-square-o'></span> 编辑</button>";
+					html += "<button type='button' onclick='showDelCofirm(" + record[i].id + ")' class='am-btn am-btn-default am-btn-xs am-text-danger'><span class='am-icon-trash-o'></span> 删除</button></td>";
+					html += "</tr>";
+				}
+				var isFirstPage = data.isFirstPage ? "am-disabled" : "";
+				var isLastPage = data.isLastPage ? "am-disabled" : "";
+				var pager = "";
+				var iPa = Number(window.sessionStorage.getItem("indexPage"));
+				iPa = iPa ? iPa : 1;
+				for (var i = 1; i < data.totalpage + 1; i++) {
+					var hasClass = "";
+					if (i == iPa) {
+						hasClass = "am-active";
+					}
+
+					pager += '<li class="' + hasClass + '"><a href="#" onclick="toPage(4,' + i + ')">' + i + '</a></li>';
+
+				}
+				var pagination = "<li class='" + isFirstPage + "'><a href='#' onClick='toPage(4," + (Number(window.sessionStorage.getItem("indexPage")) - 1) + ")'>«</a></li>";
+				pagination += pager;
+				pagination += "<li class='" + isLastPage + "'><a href='#' onClick='toPage(4," + (Number(window.sessionStorage.getItem("indexPage")) + 1) + ")'}>»</a></li>";
+				$("#json_tbody").html(html);
+				$("#total").html(data.total);
+				$('#pagination').html(pagination);
+				$modal.modal('close');
+			}
+		});
 	}
 }
 
@@ -442,5 +537,9 @@ function loadTravel() {
 
 function loadStatic() {
 	toPage(3, 1);
+}
+
+function loadFaq() {
+	toPage(4, 1);
 }
 

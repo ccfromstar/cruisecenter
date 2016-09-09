@@ -666,6 +666,16 @@ h1 {
 	margin: -560px auto 0 auto;
 }
 
+@media only screen and (max-width: 1760px) {
+	.query {
+		height: 450px;
+		margin: -450px auto 0 auto !important;
+	}
+	.query_div {
+		top:90px !important;
+	}
+}
+
 .notice_div {
 	position: absolute;
 	top: 50px;
