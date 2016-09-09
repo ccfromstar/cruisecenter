@@ -379,7 +379,7 @@ exports.noticedo = function(req, res) {
 			res.json(result);
 		});
 	} else if (sql == "getemergency") {
-		var sql = "select * from notice where showInhome = 1";
+		var sql = "select * from notice order by id desc";
 		mysql.query(sql, function(err, result) {
 			if (err) return console.error(err.stack);
 			res.json(result);
@@ -484,7 +484,7 @@ exports.staticdo = function(req, res) {
 			res.json(result);
 		});
 	} else if (sql == "getemergency") {
-		var sql = "select * from notice where showInhome = 1";
+		var sql = "select top 1 * from notice where showInhome = 1";
 		mysql.query(sql, function(err, result) {
 			if (err) return console.error(err.stack);
 			res.json(result);
