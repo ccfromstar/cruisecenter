@@ -1123,6 +1123,7 @@ h1 {
 	display: inline-block;
 	text-align: center;
 	width: 330px;
+	cursor:pointer;
 }
 
 .qn p {
@@ -1147,6 +1148,11 @@ h1 {
 	width: 20px;
 }
 
+.qn>li>figure>img {
+	width:325px;
+	height:200px;
+}
+
 .port {
 	padding-left: 0;
 	margin-top: 8px;
@@ -1155,7 +1161,7 @@ h1 {
 .port li {
 	display: inline-block;
 	text-align: center;
-	width: 330px;
+	width: 333px;
 	margin-bottom: 70px;
 	cursor: pointer;
 }

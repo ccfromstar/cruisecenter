@@ -603,6 +603,7 @@ headerApp.controller('footerController', function($scope) {
 
 headerApp.controller('homeController', function($scope, $http, $sce) {
 	setBD(1);
+	setFW(0);
 	$http({
 		url: hosts + 'notice/getemergency',
 		method: 'POST'
@@ -853,4 +854,27 @@ function setBD(i){
 		}
 	}
 	$(".port").html(html);
+}
+
+function setFW(i){
+	$('#FW li').removeClass('active');
+	$('#FW li').eq(i).addClass('active');
+	if(i == 0){
+		var s1 = "天海新世纪号;皇家加勒比海洋量子号;歌诗达赛琳娜号";
+		var tmp1 = s1.split(";");
+		var html = "";
+		for(var i=0;i<tmp1.length;i++){
+			html += "<li onclick='window.location=\"#/index/services/note\"'>";
+			html += "<figure>";
+			html += "<img src='../../src/image/qn_"+(i+1)+".jpg'/>";
+			html += "<div>";
+			html += "<h1>"+tmp1[i]+"</h1>";
+			html += "<img src='../../src/image/go.png' />";
+			html += "</div>";
+			html += "<p>"+tmp1[i]+"登轮须知</p>";
+			html += "</figure>";
+			html += "</li>";
+		}
+	}
+	$(".qn").html(html);
 }

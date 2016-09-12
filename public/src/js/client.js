@@ -12,6 +12,69 @@ function showQuery(i) {
 	$('.query_left li').eq(i).addClass('active');
 }
 
+function setFW(i){
+	$('#FW li').removeClass('active');
+	$('#FW li').eq(i).addClass('active');
+	if(i == 0){
+		var s1 = "天海新世纪号;皇家加勒比海洋量子号;歌诗达赛琳娜号";
+		var tmp1 = s1.split(";");
+		var html = "";
+		for(var i=0;i<tmp1.length;i++){
+			html += "<li onclick='window.location=\"#/index/services/note\"'>";
+			html += "<figure>";
+			html += "<img src='../../src/image/qn_"+(i+1)+".jpg'/>";
+			html += "<div>";
+			html += "<h1>"+tmp1[i]+"</h1>";
+			html += "<img src='../../src/image/go.png' />";
+			html += "</div>";
+			html += "<p>"+tmp1[i]+"登轮须知</p>";
+			html += "</figure>";
+			html += "</li>";
+		}
+	}else if(i == 1){
+		var s1 = "港口指南;登离船流程;边检政策";
+		var s2 = "guide;boarding;immigration";
+		var s3 = "passenger_map_pic.gif;passenger_departure_pic.gif;W_EDIT_1458114141m377.png";
+		var tmp1 = s1.split(";");
+		var tmp2 = s2.split(";");
+		var tmp3 = s3.split(";");
+		var html = "";
+		for(var i=0;i<tmp1.length;i++){
+			html += "<li onclick='window.location=\"#/index/services/"+tmp2[i]+"\"'>";
+			html += "<figure>";
+			html += "<img src='http://o9mbu84vh.bkt.clouddn.com/"+tmp3[i]+"'/>";
+			html += "<div>";
+			html += "<h1>"+tmp1[i]+"</h1>";
+			html += "<img src='../../src/image/go.png' />";
+			html += "</div>";
+			html += "<p>"+tmp1[i]+"须知</p>";
+			html += "</figure>";
+			html += "</li>";
+		}
+	}else if(i == 2){
+		var s1 = "航班查询;港口交通;停车服务";
+		var s2 = "cal;traffic;parking";
+		var s3 = "42-15061Q41Q0H5.jpg;W_EDIT_1426490125Y4WY.jpg;transport_parking_pic.gif";
+		var tmp1 = s1.split(";");
+		var tmp2 = s2.split(";");
+		var tmp3 = s3.split(";");
+		var html = "";
+		for(var i=0;i<tmp1.length;i++){
+			html += "<li onclick='window.location=\"#/index/services/"+tmp2[i]+"\"'>";
+			html += "<figure>";
+			html += "<img src='http://o9mbu84vh.bkt.clouddn.com/"+tmp3[i]+"'/>";
+			html += "<div>";
+			html += "<h1>"+tmp1[i]+"</h1>";
+			html += "<img src='../../src/image/go.png' />";
+			html += "</div>";
+			html += "<p>"+tmp1[i]+"须知</p>";
+			html += "</figure>";
+			html += "</li>";
+		}
+	}
+	$(".qn").html(html);
+}
+
 function setBD(i){
 	$('#BD li').removeClass('active');
 	$('#BD li').eq(i).addClass('active');

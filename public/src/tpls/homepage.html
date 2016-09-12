@@ -21,7 +21,7 @@
 		</ol>
 		<!-- 轮播（Carousel）项目 -->
 		<div class="carousel-inner">
-			<div class="item active">
+			<div class="item active" ng-click="toTop()" ui-sref="index.product">
 				<img src="../../src/image/bg0.jpg" alt="First slide">
 			</div>
 			<div class="item">
@@ -42,7 +42,7 @@
 		<a class="carousel-control right" href="#myCarousel" data-slide="next"></a>
 	</div>
 	<!--查询区域-->
-	<div class="query">
+	<div class="query" ng-click="toTop()" ui-sref="index.product">
 		<!--紧急公告-->
 		<div class="notice_div">
 			<img src="../../src/image/notice_news.png" />
@@ -134,44 +134,15 @@
 	<!--邮轮服务-->
 	<div class="center home_section">
 		<div class="header_a"><img class="home_icon" src="../../src/image/topic_1.png"> 邮轮服务</div>
-		<ul class="menu_a">
-			<li class="active">邮轮注意事项</li>
-			<li>游客登轮须知</li>
-			<li>港口服务内容</li>
+		<ul id="FW" class="menu_a">
+			<li onclick="setFW(0)" class="active">邮轮注意事项</li>
+			<li onclick="setFW(1)">游客登轮须知</li>
+			<li onclick="setFW(2)">港口服务内容</li>
 		</ul>
 		<div class="more" ng-click="ServicesTo(-1)" ui-sref="index.services.query">更多内容>>></div>
 		<div class="shadow_a"></div>
 		<ul class="qn">
-			<li>
-				<figure>
-					<img src="../../src/image/qn_1.jpg" />
-					<div>
-						<h1>天海新世纪号</h1>
-						<img src="../../src/image/go.png" />
-					</div>
-					<p>天海新世纪号登轮须知</p>
-				</figure>
-			</li>
-			<li>
-				<figure>
-					<img src="../../src/image/qn_2.jpg" />
-					<div>
-						<h1>皇家加勒比海洋量子号</h1>
-						<img src="../../src/image/go.png" />
-					</div>
-					<p>皇家加勒比海洋量子号登轮须知</p>
-				</figure>
-			</li>
-			<li>
-				<figure>
-					<img src="../../src/image/qn_3.jpg" />
-					<div>
-						<h1>歌诗达赛琳娜号</h1>
-						<img src="../../src/image/go.png" />
-					</div>
-					<p>歌诗达赛琳娜号登轮须知</p>
-				</figure>
-			</li>
+			
 		</ul>
 	</div>
 	<!--邮轮宝典-->
