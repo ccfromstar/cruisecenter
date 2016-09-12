@@ -1,0 +1,12 @@
+<div ui-view="nav"></div>
+
+<div class="center content_page">
+	<ul class="listitem_faq">
+		<li ng-repeat="item in items">
+			<hgroup>
+				<h2>{{ item.title }}</h2>
+				<h3>{{ item.post }}</h3>
+			</hgroup>
+		</li>
+	</ul>
+</div>

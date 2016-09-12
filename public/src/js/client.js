@@ -12,6 +12,70 @@ function showQuery(i) {
 	$('.query_left li').eq(i).addClass('active');
 }
 
+function setBD(i){
+	$('#BD li').removeClass('active');
+	$('#BD li').eq(i).addClass('active');
+	if(i==0){
+		var s1 = "皇家加勒比;歌诗达邮轮;丽星邮轮;公主邮轮;挪威邮轮;地中海邮轮";
+		var s2 = "1;2;3;4;5;6";
+		var s3 = "RCCL;COSTA;STAR;PRINCESS;NCL;MSC";
+		var s4 = "Royal Caribbean;Costa Cruises;Star Cruises;Princess Cruises;Norwegian Cruises;MSC Cruises";
+		var tmp1 = s1.split(";");
+		var tmp2 = s2.split(";");
+		var tmp3 = s3.split(";");
+		var tmp4 = s4.split(";");
+		var html = "";
+		for(var i=0;i<tmp1.length;i++){
+			html += "<li onclick='window.location=\""+"#/index/curisecompany?page=%2Fc_curisecompany_sec%3Fpid*V0"+tmp2[i]+"\"'>";
+			html += "<img src='http://www.youlunshidai.com/databaseimages/"+tmp3[i]+"_md.jpg'/>";
+			html += "<hgroup>";
+			html += "<h1>"+tmp1[i]+"</h1>";
+			html += "<h2>"+tmp4[i]+"</h2>";
+			html += "</hgroup>";
+			html += "</li>";
+		}
+	}else if(i==1){
+		var s1 = "地中海;欧洲;加勒比海;阿拉斯加;澳洲新西兰;日韩";
+		var s2 = "1;2;3;4;5;6";
+		var s3 = "MED;EUR;CAB;ALSK;AUZ;JK";
+		var s4 = "Mediterranean;Europe;Caribbean;Alaska;Aotea Aust;Japan | South Korea";
+		var tmp1 = s1.split(";");
+		var tmp2 = s2.split(";");
+		var tmp3 = s3.split(";");
+		var tmp4 = s4.split(";");
+		var html = "";
+		for(var i=0;i<tmp1.length;i++){
+			html += "<li onclick='window.location=\""+"#/index/destination?page=%2Fc_destination_sec%3Fpid*hq"+tmp2[i]+"\"'>";
+			html += "<img src='http://www.youlunshidai.com/databaseimages/"+tmp3[i]+"_md.jpg'/>";
+			html += "<hgroup>";
+			html += "<h1>"+tmp1[i]+"</h1>";
+			html += "<h2>"+tmp4[i]+"</h2>";
+			html += "</hgroup>";
+			html += "</li>";
+		}
+	}else if(i==2){
+		var s1 = "家庭邮轮;老年邮轮;奢华邮轮;会议邮轮;探险邮轮;环球邮轮";
+		var s2 = "1;2;3;4;5;6";
+		var s3 = "theme1_family;theme2_sunset;theme3_luxury;theme4_group;theme5_explore;theme6_world";
+		var s4 = "Family Cruise;Sunset Cruise;Luxury Cruise;Group Cruise;Explore Cruise;World Cruise";
+		var tmp1 = s1.split(";");
+		var tmp2 = s2.split(";");
+		var tmp3 = s3.split(";");
+		var tmp4 = s4.split(";");
+		var html = "";
+		for(var i=0;i<tmp1.length;i++){
+			html += "<li onclick='window.location=\""+"#/index/theme?page=%2Fc_theme_sec%3Fid*T000"+tmp2[i]+"\"'>";
+			html += "<img src='http://www.youlunshidai.com/databaseimages/"+tmp3[i]+"_md.jpg'/>";
+			html += "<hgroup>";
+			html += "<h1>"+tmp1[i]+"</h1>";
+			html += "<h2>"+tmp4[i]+"</h2>";
+			html += "</hgroup>";
+			html += "</li>";
+		}
+	}
+	$(".port").html(html);
+}
+
 function showfloat(i) {
 	$('.float_common').hide();
 	$('.float_' + i).show();
@@ -64,3 +128,5 @@ $(window).scroll(function() {
 		$('.left_nav').css('top', 123);
 	}
 });
+
+setBD(1);

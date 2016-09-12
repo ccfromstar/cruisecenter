@@ -18,7 +18,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
 		var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
 		$scope.books = pagedData;
 		$scope.totalServerItems = data.length;
-		if (!$scope.$$phase) {
+		if(!$scope.$$phase) {
 			$scope.$apply();
 		}
 	};
@@ -28,7 +28,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
 	$scope.getPagedDataAsync = function(pageSize, page, searchText) {
 		setTimeout(function() {
 			var data;
-			if (searchText) {
+			if(searchText) {
 				var ft = searchText.toLowerCase();
 				$http.get('../data/books' + $stateParams.bookType + '.json')
 					.success(function(largeLoad) {
@@ -49,12 +49,12 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $state, $state
 	$scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
 
 	$scope.$watch('pagingOptions', function(newVal, oldVal) {
-		if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+		if(newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
 			$scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
 		}
 	}, true);
 	$scope.$watch('filterOptions', function(newVal, oldVal) {
-		if (newVal !== oldVal) {
+		if(newVal !== oldVal) {
 			$scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
 		}
 	}, true);
@@ -290,9 +290,9 @@ navApp.controller('NavController', function($scope) {
 	$scope.navigateTo = function(i) {
 		$('.nav_navigate a').removeClass('active');
 		$('.nav_navigate a').eq(i).addClass('active');
-		if (i == 0) {
+		if(i == 0) {
 			$('#pathinfo').html('<a href="#/index">首页</a> > 行业动态 > 热点新闻');
-		} else if (i == 1) {
+		} else if(i == 1) {
 			$('#pathinfo').html('<a href="#/index">首页</a> > 行业动态 > 紧急公告');
 		}
 	}
@@ -307,9 +307,9 @@ adminApp.controller('AdminController', function($scope, $interval) {
 	var setInfo = function() {
 		var d = new Date();
 		$scope.today = d.toLocaleString();
-		if ((d.getHours() > 10 && d.getMinutes() > 15) && d.getHours() < 13) {
+		if((d.getHours() > 10 && d.getMinutes() > 15) && d.getHours() < 13) {
 			$scope.info = "现在是午休时间,不要光顾着工作,要记得吃午饭哦!";
-		} else if ((d.getHours() > 16 && d.getMinutes() > 59) && (d.getHours() < 9 && d.getMinutes() < 31)) {
+		} else if((d.getHours() > 16 && d.getMinutes() > 59) && (d.getHours() < 9 && d.getMinutes() < 31)) {
 			$scope.info = "现在是下班时间,做点丰富生活的事情吧,不要总是加班!";
 		} else {
 			$scope.info = "现在是上班时间,请合理安排好您一天的工作内容!";
@@ -342,27 +342,27 @@ listApp.controller('newsFormController', function($scope, $http, $location, $sta
 				$scope.data = data;
 				//console.log(data[0].title);
 				$('#title').html(data[0].title);
-				var s = data[0].source?data[0].source:"";
-				$('#publishAt').html(new Date(data[0].publishAt).toLocaleString()+ " 来源:" + s);
+				var s = data[0].source ? data[0].source : "";
+				$('#publishAt').html(new Date(data[0].publishAt).toLocaleString() + " 来源:" + s);
 				$('#post').html(data[0].post);
-				if(data[0].front[0].title){
-					$('#pfront').html('上一篇 : <span onclick="openDoc('+data[0].front[0].id+')">'+data[0].front[0].title+'</span>');
+				if(data[0].front[0].title) {
+					$('#pfront').html('上一篇 : <span onclick="openDoc(' + data[0].front[0].id + ')">' + data[0].front[0].title + '</span>');
 				}
-				if(data[0].next[0].title){
-					$('#pnext').html('下一篇 : <span onclick="openDoc('+data[0].next[0].id+')">'+data[0].next[0].title+'</span>');
+				if(data[0].next[0].title) {
+					$('#pnext').html('下一篇 : <span onclick="openDoc(' + data[0].next[0].id + ')">' + data[0].next[0].title + '</span>');
 				}
 			}
 		});
 	}
 	$scope.openDoc = function(page, id) {
-		if (page == 'news' || !page) {
+		if(page == 'news' || !page) {
 			window.sessionStorage.setItem("newsid", id);
 			window.location = '#/index/trends/newsform?id=' + id;
 			window.location.reload();
 		}
 	}
 	var newsitems = window.sessionStorage.getItem("newsitems");
-	newsitems = newsitems.replace(/red/g,"gray");
+	newsitems = newsitems.replace(/red/g, "gray");
 	$scope.items = ($.parseJSON(newsitems));
 });
 
@@ -381,17 +381,17 @@ listApp.controller('listController', function($scope, $http, $location, $state) 
 		}).success(function(data) {
 			var d = data.record;
 			var l = -1;
-			for (var i in d) {
+			for(var i in d) {
 				l++;
 			}
-			for (var i in d) {
-				if (i == 0) {
-					if (i == l) {
+			for(var i in d) {
+				if(i == 0) {
+					if(i == l) {
 						d[i].img = 'red_0';
 					} else {
 						d[i].img = 'red_1';
 					}
-				} else if (i == l) {
+				} else if(i == l) {
 					d[i].img = 'red_3';
 				} else {
 					d[i].img = 'red_2';
@@ -404,13 +404,13 @@ listApp.controller('listController', function($scope, $http, $location, $state) 
 			var iPa = PageNum;
 			iPa = iPa ? iPa : 1;
 			var pager = '[';
-			for (var i = 1; i < data.totalpage + 1; i++) {
+			for(var i = 1; i < data.totalpage + 1; i++) {
 				var hasClass = "";
-				if (i == iPa) {
+				if(i == iPa) {
 					hasClass = "am-active";
 				}
 				var tmp_p = '{"id":' + i + ',"class":"' + hasClass + '"}';
-				if (i == data.totalpage) {
+				if(i == data.totalpage) {
 					pager += tmp_p;
 				} else {
 					pager += tmp_p + ',';
@@ -433,7 +433,7 @@ listApp.controller('listController', function($scope, $http, $location, $state) 
 	}
 
 	$scope.openDoc = function(page, id) {
-		if (page == 'news') {
+		if(page == 'news') {
 			window.sessionStorage.setItem("newsid", id);
 			window.location = '#/index/trends/newsform?id=' + id;
 			//$state.go('index.trends.newsform#id='+id,{data: id},{reload:true});   
@@ -476,17 +476,17 @@ listApp.controller('noticeController', function($scope, $http, $location, $state
 		}).success(function(data) {
 			var d = data.record;
 			var l = -1;
-			for (var i in d) {
+			for(var i in d) {
 				l++;
 			}
-			for (var i in d) {
-				if (i == 0) {
-					if (i == l) {
+			for(var i in d) {
+				if(i == 0) {
+					if(i == l) {
 						d[i].img = 'red_0';
 					} else {
 						d[i].img = 'red_1';
 					}
-				} else if (i == l) {
+				} else if(i == l) {
 					d[i].img = 'red_3';
 				} else {
 					d[i].img = 'red_2';
@@ -496,13 +496,13 @@ listApp.controller('noticeController', function($scope, $http, $location, $state
 			var iPa = PageNum;
 			iPa = iPa ? iPa : 1;
 			var pager = '[';
-			for (var i = 1; i < data.totalpage + 1; i++) {
+			for(var i = 1; i < data.totalpage + 1; i++) {
 				var hasClass = "";
-				if (i == iPa) {
+				if(i == iPa) {
 					hasClass = "am-active";
 				}
 				var tmp_p = '{"id":' + i + ',"class":"' + hasClass + '"}';
-				if (i == data.totalpage) {
+				if(i == data.totalpage) {
 					pager += tmp_p;
 				} else {
 					pager += tmp_p + ',';
@@ -524,7 +524,7 @@ listApp.controller('noticeController', function($scope, $http, $location, $state
 	}
 
 	$scope.openDoc = function(page, id) {
-		if (page == 'notice') {
+		if(page == 'notice') {
 			window.sessionStorage.setItem("noticeid", id);
 			window.location = '#/index/trends/noticeform?id=' + id;
 			//$state.go('index.trends.newsform#id='+id,{data: id},{reload:true});   
@@ -548,7 +548,7 @@ listApp.controller('noticeController', function($scope, $http, $location, $state
 				$('#publishAt').html(new Date(data[0].publishAt).toLocaleString());
 				//公告内容需要做换行的转换
 				var post = data[0].post;
-				$('#post').html(post.replace(/\n/g,"<br/>"));
+				$('#post').html(post.replace(/\n/g, "<br/>"));
 			}
 		});
 	}
@@ -559,9 +559,9 @@ headerApp.controller('headerController', function($scope) {
 	$scope.HeaderTo = function(i) {
 		$('.nav_navigate a').removeClass('active');
 		$('.nav_navigate a').eq(i).addClass('active');
-		if (i == 0) {
+		if(i == 0) {
 			$('#pathinfo').html('<a href="#/index">首页</a> > 行业动态 > 热点新闻');
-		} else if (i == 1) {
+		} else if(i == 1) {
 			$('#pathinfo').html('<a href="#/index">首页</a> > 行业动态 > 紧急公告');
 		}
 	}
@@ -569,12 +569,40 @@ headerApp.controller('headerController', function($scope) {
 		ServicesTo(i);
 	}
 	$scope.URLTo = function(page) {
+		gotopQ();
 		window.location = '#/index/' + page;
 		window.location.reload();
+	}
+	$scope.toTop = function(i) {
+		gotop();
+	}
+});
+
+headerApp.controller('footerController', function($scope) {
+	$scope.HeaderTo = function(i) {
+		$('.nav_navigate a').removeClass('active');
+		$('.nav_navigate a').eq(i).addClass('active');
+		if(i == 0) {
+			$('#pathinfo').html('<a href="#/index">首页</a> > 行业动态 > 热点新闻');
+		} else if(i == 1) {
+			$('#pathinfo').html('<a href="#/index">首页</a> > 行业动态 > 紧急公告');
+		}
+	}
+	$scope.ServicesTo = function(i) {
+		ServicesTo(i);
+	}
+	$scope.URLTo = function(page) {
+		gotopQ();
+		window.location = '#/index/' + page;
+		window.location.reload();
+	}
+	$scope.toTop = function(i) {
+		gotop();
 	}
 });
 
 headerApp.controller('homeController', function($scope, $http, $sce) {
+	setBD(1);
 	$http({
 		url: hosts + 'notice/getemergency',
 		method: 'POST'
@@ -583,6 +611,16 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 	}).error(function() {
 		console.log("error");
 	});
+	/*今日航班*/
+	$http({
+		url: hosts + 'notice/getcal',
+		method: 'POST'
+	}).success(function(data) {
+		$scope.cals = data;
+	}).error(function() {
+		console.log("error");
+	});
+	/*新闻*/
 	$http({
 		url: hosts + 'news/get',
 		method: 'POST'
@@ -590,9 +628,9 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 		var o = data.record;
 		var arr = [];
 		var arr1 = [];
-		for (var i in o) {
+		for(var i in o) {
 			var title = o[i].title;
-			if (title.length > 18) {
+			if(title.length > 18) {
 				title = title.substring(0, 18) + '...';
 			}
 			arr.push($sce.trustAsHtml((o[i].publishAt + '').substring(0, 10) + '<br/>' + title));
@@ -610,9 +648,9 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 	}).success(function(data) {
 		var o = data.record;
 		var _list = "";
-		for (var i in o) {
+		for(var i in o) {
 			var title = o[i].title;
-			if (title.length > 22) {
+			if(title.length > 22) {
 				title = title.substring(0, 22) + '...';
 			}
 			//_list += '<p>【'+(o[i].publishAt+'').substring(0,10) + '】' + title + '</p>';
@@ -627,56 +665,118 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 		$('#query_' + i).removeClass('none');
 	}
 	$scope.openDoc = function(page, id) {
-		if (page == 'news') {
+		if(page == 'news') {
 			window.sessionStorage.setItem("newsid", id);
 			window.location = '#/index/trends/newsform?id=' + id;
 			//$state.go('index.trends.newsform#id='+id,{data: id},{reload:true});   
-		} else if (page == 'notice') {
+		} else if(page == 'notice') {
 			window.sessionStorage.setItem("noticeid", id);
 			window.location = '#/index/trends/noticeform?id=' + id;
 			//$state.go('index.trends.newsform#id='+id,{data: id},{reload:true});   
 		}
 	}
+	$scope.URLTo = function(page) {
+		gotopQ();
+		window.location = '#/index/' + page;
+		window.location.reload();
+	}
+	$scope.ServicesTo = function(i) {
+		ServicesTo(i);
+	}
+	$scope.toTop = function(i) {
+		gotop();
+	}
+	$scope.booking = function() {
+		var bk_name = $("#bk_name").val();
+		var bk_email = $("#bk_email").val();
+		if(!bk_name) {
+			alert("您的姓名没有填写!");
+			return false;
+		}
+		if(!bk_email) {
+			alert("您的Email地址没有填写!");
+			return false;
+		}
+		if(!checkEmail(bk_email)){
+			return false;
+		}
+		alert("订阅成功!");
+		$("#bk_name").val("");
+		$("#bk_email").val("");
+	}
+	$scope.linkus = function() {
+		var l_name = $("#l_name").val();
+		var l_email = $("#l_email").val();
+		var l_post = $("#l_post").val();
+		if(!l_name) {
+			alert("您的姓名没有填写!");
+			return false;
+		}
+		if(!l_email) {
+			alert("您的电子邮箱没有填写!");
+			return false;
+		}
+		if(!l_post) {
+			alert("您的留言内容没有填写!");
+			return false;
+		}
+		if(!checkEmail(l_email)){
+			return false;
+		}
+		alert("提交成功！我们会尽快通过邮件和您联系！");
+		$("#l_name").val("");
+		$("#l_email").val("");
+		$("#l_post").val("");
+	}
 });
+
+function checkEmail(str) {
+	var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+	if(!re.test(str)) {
+		alert("E-mail格式错误！");
+		return false;
+	}
+	return true;
+}
 
 function ServicesTo(i) {
 	gotop();
 	$('.nav_navigate a').removeClass('active');
 	$('.nav_navigate a').eq(i).addClass('active');
-	if (i == -1) {
+	if(i == -1) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 船票查询');
 		$('.nav_navigate a').removeClass('active');
-	} else if (i == 10) {
+	} else if(i == 10) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 航班查询');
-	} else if (i == 4) {
+	} else if(i == 4) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 边检政策');
-	} else if (i == 5) {
+	} else if(i == 5) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 海关政策');
-	} else if (i == 6) {
+	} else if(i == 6) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 检验检疫政策');
-	} else if (i == 7) {
+	} else if(i == 7) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 旅游局政策');
-	} else if (i == 11) {
+	} else if(i == 11) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 港口交通');
-	} else if (i == 12) {
+	} else if(i == 12) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 停车服务');
-	} else if (i == 13) {
+	} else if(i == 13) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 贵宾服务');
-	} else if (i == 14) {
+	} else if(i == 14) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > WIFI租赁');
-	} else if (i == 15) {
+	} else if(i == 15) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 行李服务');
-	} else if (i == 16) {
+	} else if(i == 16) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 外币兑换');
-	} else if (i == 8) {
+	} else if(i == 8) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 巴士服务');
-	} else if (i == 9) {
+	} else if(i == 9) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 保险服务');
-	} else if (i == 3) {
+	} else if(i == 3) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 登离船流程');
-	} else if (i == 2) {
+	} else if(i == 2) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 港口指南');
-	} else if (i == 1) {
+	} else if(i == 1) {
 		$('#pathinfo').html('<a href="#/index">首页</a> > 邮轮服务 > 游客注意事项');
 	}
 }
@@ -685,4 +785,72 @@ function gotop() {
 	$('body,html').animate({
 		scrollTop: 0
 	}, 500);
+}
+
+function gotopQ() {
+	scroll(0,0);
+}
+
+function setBD(i){
+	$('#BD li').removeClass('active');
+	$('#BD li').eq(i).addClass('active');
+	if(i==0){
+		var s1 = "皇家加勒比;歌诗达邮轮;丽星邮轮;公主邮轮;挪威邮轮;地中海邮轮";
+		var s2 = "1;2;3;4;5;6";
+		var s3 = "RCCL;COSTA;STAR;PRINCESS;NCL;MSC";
+		var s4 = "Royal Caribbean;Costa Cruises;Star Cruises;Princess Cruises;Norwegian Cruises;MSC Cruises";
+		var tmp1 = s1.split(";");
+		var tmp2 = s2.split(";");
+		var tmp3 = s3.split(";");
+		var tmp4 = s4.split(";");
+		var html = "";
+		for(var i=0;i<tmp1.length;i++){
+			html += "<li onclick='window.location=\""+"#/index/curisecompany?page=%2Fc_curisecompany_sec%3Fpid*V0"+tmp2[i]+"\"'>";
+			html += "<img src='http://www.youlunshidai.com/databaseimages/"+tmp3[i]+"_md.jpg'/>";
+			html += "<hgroup>";
+			html += "<h1>"+tmp1[i]+"</h1>";
+			html += "<h2>"+tmp4[i]+"</h2>";
+			html += "</hgroup>";
+			html += "</li>";
+		}
+	}else if(i==1){
+		var s1 = "地中海;欧洲;加勒比海;阿拉斯加;澳洲新西兰;日韩";
+		var s2 = "1;2;3;4;5;6";
+		var s3 = "MED;EUR;CAB;ALSK;AUZ;JK";
+		var s4 = "Mediterranean;Europe;Caribbean;Alaska;Aotea Aust;Japan | South Korea";
+		var tmp1 = s1.split(";");
+		var tmp2 = s2.split(";");
+		var tmp3 = s3.split(";");
+		var tmp4 = s4.split(";");
+		var html = "";
+		for(var i=0;i<tmp1.length;i++){
+			html += "<li onclick='window.location=\""+"#/index/destination?page=%2Fc_destination_sec%3Fpid*hq"+tmp2[i]+"\"'>";
+			html += "<img src='http://www.youlunshidai.com/databaseimages/"+tmp3[i]+"_md.jpg'/>";
+			html += "<hgroup>";
+			html += "<h1>"+tmp1[i]+"</h1>";
+			html += "<h2>"+tmp4[i]+"</h2>";
+			html += "</hgroup>";
+			html += "</li>";
+		}
+	}else if(i==2){
+		var s1 = "皇家加勒比;歌诗达邮轮;丽星邮轮;公主邮轮;挪威邮轮;地中海邮轮";
+		var s2 = "1;2;3;4;5;6";
+		var s3 = "RCCL;COSTA;STAR;PRINCESS;NCL;MSC";
+		var s4 = "Royal Caribbean;Costa Cruises;Star Cruises;Princess Cruises;Norwegian Cruises;MSC Cruises";
+		var tmp1 = s1.split(";");
+		var tmp2 = s2.split(";");
+		var tmp3 = s3.split(";");
+		var tmp4 = s4.split(";");
+		var html = "";
+		for(var i=0;i<tmp1.length;i++){
+			html += "<li onclick='window.location=\""+"#/index/curisecompany?page=%2Fc_curisecompany_sec%3Fpid*V0"+tmp2[i]+"\"'>";
+			html += "<img src='http://www.youlunshidai.com/databaseimages/"+tmp3[i]+"_md.jpg'/>";
+			html += "<hgroup>";
+			html += "<h1>"+tmp1[i]+"</h1>";
+			html += "<h2>"+tmp4[i]+"</h2>";
+			html += "</hgroup>";
+			html += "</li>";
+		}
+	}
+	$(".port").html(html);
 }

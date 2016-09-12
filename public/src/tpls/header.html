@@ -23,7 +23,7 @@
 	<div class="header_center center">
 		<div class="navigate">
 			<div class="left">
-				<img src="../../src/image/logo3.png" alt="Logo" width="305px">
+				<img style="cursor:pointer;" onclick="window.location='#/index';" src="../../src/image/logo3.png" alt="Logo" width="305px">
 			</div>
 
 			<div class="right">
@@ -45,7 +45,7 @@
 				</li>
 				<li onmouseover="showlist(1)">邮轮服务</li>
 				<li onmouseover="showlist(2)">行业动态</li>
-				<li onmouseover="showlist(3)">邮轮产品</li>
+				<li ui-sref="index.product" onmouseover="showlist(3)">邮轮产品</li>
 				<li onmouseover="showlist(4)">免税购物</li>
 				<li onmouseover="showlist(5)">邮轮宝典</li>
 				<li onmouseover="showlist(6)">关于我们</li>
@@ -114,7 +114,7 @@
 						<h1 class="nav_header">港口服务</h1></li>
 					<li>
 						<a ng-click="ServicesTo(10)" ui-sref="index.services.cal">
-							航班天气
+							航班查询
 						</a>
 					</li>
 					<li>
@@ -212,7 +212,10 @@
 			<dd>
 				<ul>
 					<li>
-						<h1 class="nav_header">常见问题</h1></li>
+						<a ui-sref="index.faq">
+							<h1 class="nav_header">常见问题</h1>
+						</a>
+					</li>
 				</ul>
 			</dd>
 		</dl>
@@ -225,13 +228,19 @@
 			<dd>
 				<ul>
 					<li>
-						<h1 class="nav_header">公司介绍</h1></li>
+						<a ng-click="toTop()" ui-sref="index.aboutus">
+							<h1 class="nav_header">公司介绍</h1>
+						</a>
+					</li>
 				</ul>
 			</dd>
 			<dd>
 				<ul>
 					<li>
-						<h1 class="nav_header">联系我们</h1></li>
+						<a ng-click="toTop()" ui-sref="index.aboutus">
+							<h1 class="nav_header">联系我们</h1>
+						</a>
+					</li>
 				</ul>
 			</dd>
 		</dl>

@@ -2194,9 +2194,9 @@ function getwheel(evt) { //滚轮事件计算
 	}
 }
 
-//var hosts = "http://127.0.0.1/";
+var hosts = "http://127.0.0.1/";
 //var hosts = "http://139.196.87.14/";
-var hosts = "http://www.cruisesh.cn/";
+//var hosts = "http://www.cruisesh.cn/";
 
 function urlTo(url) {
 	//alert("http://127.0.0.1/src/#/index/destination?page="+url);

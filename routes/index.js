@@ -404,6 +404,13 @@ exports.faqdo = function(req, res) {
 				});
 			});
 		});
+	} else if (sql == "getAll") {
+		var id = req.param("id");
+		var sql = "select * from faq";
+		mysql.query(sql, function(err, result) {
+			if (err) return console.error(err.stack);
+			res.json(result);
+		});
 	}
 }
 
@@ -501,6 +508,14 @@ exports.noticedo = function(req, res) {
 		});
 	} else if (sql == "getemergency") {
 		var sql = "select * from notice order by id desc";
+		mysql.query(sql, function(err, result) {
+			if (err) return console.error(err.stack);
+			res.json(result);
+		});
+	} else if (sql == "getcal") {
+		var d1 = new Date();
+		d1 = d1.Format("yyyy-MM-dd");
+		var sql = "select * from cruise_cal where datestart = '"+d1+"'";
 		mysql.query(sql, function(err, result) {
 			if (err) return console.error(err.stack);
 			res.json(result);

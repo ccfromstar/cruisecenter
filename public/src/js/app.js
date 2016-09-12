@@ -171,7 +171,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.immigration', {
 			url: '/immigration',
 			templateUrl: 'tpls/services/immigration.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -188,7 +188,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.customs', {
 			url: '/customs',
 			templateUrl: 'tpls/services/customs.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -205,7 +205,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.inspection', {
 			url: '/inspection',
 			templateUrl: 'tpls/services/inspection.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -222,7 +222,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.tourism', {
 			url: '/tourism',
 			templateUrl: 'tpls/services/tourism.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -239,7 +239,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.traffic', {
 			url: '/traffic',
 			templateUrl: 'tpls/services/traffic.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -256,7 +256,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.parking', {
 			url: '/parking',
 			templateUrl: 'tpls/services/parking.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -273,7 +273,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.vip', {
 			url: '/vip',
 			templateUrl: 'tpls/services/vip.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -290,7 +290,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.wifi', {
 			url: '/wifi',
 			templateUrl: 'tpls/services/wifi.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -307,7 +307,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.luggage', {
 			url: '/luggage',
 			templateUrl: 'tpls/services/luggage.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -324,7 +324,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.currency', {
 			url: '/currency',
 			templateUrl: 'tpls/services/currency.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -341,7 +341,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.bus', {
 			url: '/bus',
 			templateUrl: 'tpls/services/bus.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -358,7 +358,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.insurance', {
 			url: '/insurance',
 			templateUrl: 'tpls/services/insurance.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -375,7 +375,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.boarding', {
 			url: '/boarding',
 			templateUrl: 'tpls/services/boarding.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -392,7 +392,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.guide', {
 			url: '/guide',
 			templateUrl: 'tpls/services/guide.html',
-			controller: function($scope, $sce , $http) {
+			controller: function($scope, $sce, $http) {
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -465,6 +465,57 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					}
 				},
 				'nav@index.theme': {
+					templateUrl: 'tpls/nav.html'
+				}
+			}
+		})
+		.state('index.faq', {
+			url: '/faq',
+			views: {
+				'main@index': {
+					templateUrl: 'tpls/canon/faq.html',
+					controller: function($scope, $location, $sce,$http) {
+						$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮宝典 > 常见问题');
+						$http({
+							url: hosts + 'faq/getAll',
+							method: 'POST'
+						}).success(function(data) {
+							console.log(data);
+							$scope.items = data;
+						}).error(function() {
+							console.log("error");
+						});
+					}
+				},
+				'nav@index.faq': {
+					templateUrl: 'tpls/nav.html'
+				}
+			}
+		})
+		.state('index.aboutus', {
+			url: '/aboutus',
+			views: {
+				'main@index': {
+					templateUrl: 'tpls/aboutus.html',
+					controller: function($scope, $location, $sce,$http) {
+						$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 关于我们');
+					}
+				},
+				'nav@index.aboutus': {
+					templateUrl: 'tpls/nav.html'
+				}
+			}
+		})
+		.state('index.product', {
+			url: '/product',
+			views: {
+				'main@index': {
+					templateUrl: 'tpls/product.html',
+					controller: function($scope, $location, $sce,$http) {
+						$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮产品');
+					}
+				},
+				'nav@index.product': {
 					templateUrl: 'tpls/nav.html'
 				}
 			}

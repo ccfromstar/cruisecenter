@@ -10,12 +10,12 @@
 								<h1 class="footer_header">关于我们</h1>
 							</div>
 						</li>
-						<li>关于我们</li>
-						<li>热点新闻</li>
-						<li>紧急公告</li>
-						<li>邮轮产品</li>
+						<li><a ng-click="toTop()" ui-sref="index.aboutus">关于我们</a></li>
+						<li><a ng-click="HeaderTo(0)" ui-sref="index.trends.news">热点新闻</a></li>
+						<li><a ng-click="HeaderTo(1)" ui-sref="index.trends.notice">紧急公告</a></li>
+						<li><a ng-click="toTop()" ui-sref="index.product">邮轮产品</a></li>
 						<li>免税购物</li>
-						<li>联系我们</li>
+						<li><a ng-click="toTop()" ui-sref="index.aboutus">联系我们</a></li>
 					</ul>
 				</dd>
 				<dd>
@@ -26,10 +26,10 @@
 								<h1 class="footer_header">邮轮服务</h1>
 							</div>
 						</li>
-						<li>船票查询</li>
-						<li>游客须知</li>
-						<li>行前服务</li>
-						<li>港口服务</li>
+						<li><a ng-click="ServicesTo(-1)" ui-sref="index.services.query">船票查询</a></li>
+						<li><a ng-click="ServicesTo(1)" ui-sref="index.services.note">游客须知</a></li>
+						<li><a ng-click="ServicesTo(8)" ui-sref="index.services.bus">行前服务</a></li>
+						<li><a ng-click="ServicesTo(10)" ui-sref="index.services.cal">港口服务</a></li>
 					</ul>
 				</dd>
 				<dd>
@@ -40,11 +40,11 @@
 								<h1 class="footer_header">邮轮宝典</h1>
 							</div>
 						</li>
-						<li>邮轮公司荟萃</li>
-						<li>邮轮度假目的地</li>
-						<li>邮轮度假主题</li>
-						<li>邮轮生活分享</li>
-						<li>常见问题</li>
+						<li><a ng-click="URLTo('curisecompany')">邮轮公司荟萃</a></li>
+						<li><a ng-click="URLTo('destination')">邮轮度假目的地</a></li>
+						<li><a ng-click="URLTo('theme')">邮轮度假主题</a></li>
+						<li><a ng-click="URLTo('share')">邮轮生活分享</a></li>
+						<li><a ui-sref="index.faq">常见问题</a></li>
 					</ul>
 				</dd>
 				<dd>
