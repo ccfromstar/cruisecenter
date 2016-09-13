@@ -166,7 +166,35 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state('index.services.cal', {
 			url: '/cal',
-			templateUrl: 'tpls/services/cal.html'
+			templateUrl: 'tpls/services/cal.html',
+			controller: function($scope, $sce, $http) {
+				$http({
+					url: hosts + 'notice/getcalAll',
+					method: 'POST'
+				}).success(function(data) {
+					var dd = new Date();
+					var yyyy = dd.getFullYear();  
+  					var mm = (((dd.getMonth()+1)+"").length==1)?"0"+(dd.getMonth()+1):(dd.getMonth()+1);
+  					var html = "<div class='caltitle'>"+yyyy+"年"+mm+"月航班信息</div>";
+					for (i = 1; i < 32; i++) {
+  						var d = (((i)+"").length==1)?"0"+(i):(i);
+  						var time = yyyy + "-" + mm + "-" + d;
+						html += "<div class='cal_cells'>";
+						html += "<p>"+i+"</p>";
+						html += "<div class='cal_line'>";
+						for(var j in data){
+							if(data[j].datestart == time){
+								html += "<span title='"+data[j].cruiseName+" "+data[j].txtLine+"'>"+data[j].cruiseName+"</span>";
+							}
+						}
+						html += "</div>";
+						html += "</div>";
+					}
+					$scope.calitem = $sce.trustAsHtml(html);
+				}).error(function() {
+					console.log("error");
+				});
+			}
 		})
 		.state('index.services.immigration', {
 			url: '/immigration',
