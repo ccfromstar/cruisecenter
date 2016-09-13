@@ -618,8 +618,26 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 		d.setDate(d.getDate() - n);
 		for (i = 0; i < 7; i++) {
 			//var y = (d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate() + ' ' + d.getDay() + '<br>');
-			html += "<li>";
-			html += "<div>" + d.Format("yyyy-MM-dd") + "<br/>周" + tmp1[i] + "</div>";
+			if(i == (w - 1)){
+				html += "<li class='active'>";
+			}else{
+				html += "<li>";
+			}
+			html += "<div class='line_left'>" + d.Format("yyyy-MM-dd") + "<br/>周" + tmp1[i] + "</div>";
+			html += "<div class='line_right line_cruise'>";
+			for(var j in data){
+				if(data[j].datestart == d.Format("yyyy-MM-dd")){
+					html += "<p>● "+data[j].cruiseName+"</p>";
+				}
+			}
+			html += "</div>";
+			html += "<div class='line_rightr'>";
+			for(var j in data){
+				if(data[j].datestart == d.Format("yyyy-MM-dd")){
+					html += "<p>"+data[j].txtLine+"</p>";
+				}
+			}
+			html += "</div>";
 			html += "</li>";
 			d.setDate(d.getDate() + 1);
 		}

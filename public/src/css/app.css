@@ -1532,3 +1532,30 @@ h1 {
 	display: -webkit-box;
 }
 
+.lineitem .active{
+	background-color: #E6EAED;
+}
+
+.line_right {
+	margin-left:10px;
+}
+
+.line_cruise {
+	width:100px;
+}
+
+.line_right p{
+	margin: 0;
+}
+
+.line_rightr {
+	margin-left:10px;
+}
+
+.line_rightr p{
+	margin: 0;
+}
+
+.line_left {
+	text-align: center;
+}
