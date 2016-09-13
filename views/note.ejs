@@ -1,0 +1,49 @@
+<div class="am-cf am-padding">
+	<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">注意事项表</strong> / <small>表单</small></div>
+</div>
+<div class="am-form bg-form">
+
+	<div class="am-g am-margin-top">
+		<div class="am-u-sm-12 am-u-md-12">
+			标题
+			<input type="text" id="name" class="am-input-sm" />
+		</div>
+	</div>
+	
+	<div class="am-g am-margin-top">
+		<div class="am-u-sm-12 am-u-md-12">
+			<textarea id="post" name="post"></textarea>
+		</div>
+	</div>
+
+</div>
+
+<div class="am-margin">
+	<button type="button" onclick="saveForm('note')" class="btn-c am-btn am-btn-primary am-btn-xs">保存</button>
+	<button type="button" onclick="history.go('-1');" class="btn-c am-btn am-btn-primary am-btn-xs">关闭</button>
+</div>
+<script>
+	var editor;
+	var options = {
+		uploadJson: '/uploadImg',
+		height: 500
+	};
+	KindEditor.ready(function(k) {
+		editor = k.create('#post', options);
+		var mode = window.sessionStorage.getItem('mode');
+		if (mode == "edit") {
+			var editid = window.sessionStorage.getItem("editid");
+			$.ajax({
+				type: "post",
+				url: "note/getById",
+				data: {
+					id: editid
+				},
+				success: function(data) {
+					$('#name').val(data[0].name);
+					editor.html(data[0].post);
+				}
+			});
+		}
+	});
+</script>

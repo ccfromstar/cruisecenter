@@ -14,6 +14,10 @@ module.exports = function (app, routes) {
     app.get('/static',routes.static_page);
     app.post('/static/:sql',routes.staticdo);
     
+    app.get('/view_note',routes.view_note);
+    app.get('/note',routes.note);
+    app.post('/note/:sql',routes.notedo);
+    
     app.get('/view_faq',routes.view_faq);
     app.get('/faq',routes.faq);
     app.post('/faq/:sql',routes.faqdo);
