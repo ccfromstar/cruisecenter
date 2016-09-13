@@ -184,7 +184,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						html += "<div class='cal_line'>";
 						for(var j in data){
 							if(data[j].datestart == time){
-								html += "<span title='"+data[j].cruiseName+" "+data[j].txtLine+"'>"+data[j].cruiseName+"</span>";
+								html += "<span title='"+time+" "+data[j].cruiseName+" "+data[j].txtLine+"'>"+data[j].cruiseName+"</span>";
 							}
 						}
 						html += "</div>";
