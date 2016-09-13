@@ -42,7 +42,7 @@
                 if(port[j].txtCruiseAreaNo == med[i].txtCruiseAreaNo){
                 if(k<3){
                 %>
-                <a href="loading?page=/destinationport/<%=med[i].txtCruiseAreaNo%>@<%=port[j].id%>"><img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=tmpz[0]%>.jpg" width="200px" /></a><br/>
+                <a href="#" onclick="urlTo('/c_destinationport_sec?pid*<%=med[i].txtCruiseAreaNo%>@<%=port[j].id%>');"><img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=tmpz[0]%>.jpg" width="200px" /></a><br/>
                 <div class="myh1" style="cursor:pointer;padding-top: 10px;" onclick="urlTo('/c_destinationport_sec?pid*<%=med[i].txtCruiseAreaNo%>@<%=port[j].id%>');"><%=port[j].txtPortCityName%>,<%=port[j].txtCountry%></div><br/>
                 <br/>
                 <%
