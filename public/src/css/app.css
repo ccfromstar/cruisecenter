@@ -1512,3 +1512,23 @@ h1 {
 .static_post {
 	margin-top:10px;
 }
+
+#line_more {
+	width:100%;
+	text-align: right;
+	cursor:pointer;
+	padding:10px 20px 0 0;
+	margin-bottom:0;
+}
+
+.lineitem {
+	margin-top:5px;
+}
+
+.lineitem li{
+	border-top:1px solid #D2D2D3;
+	padding:3px;
+	width:345px;
+	display: -webkit-box;
+}
+

@@ -42,7 +42,7 @@
 		<a class="carousel-control right" href="#myCarousel" data-slide="next"></a>
 	</div>
 	<!--查询区域-->
-	<div class="query" ng-click="toTop()" ui-sref="index.product">
+	<div class="query">
 		<!--紧急公告-->
 		<div class="notice_div">
 			<img src="../../src/image/notice_news.png" />
@@ -74,7 +74,8 @@
 					<img src="../../src/image/query_2.jpg" style="width:340px;margin-left:30px;margin-top:50px" />
 				</div>
 				<div id="query_3" class="query_d none">
-					<img src="../../src/image/query_3.jpg" style="width:370px;margin-left:10px;margin-top:10px" />
+					<p id="line_more" onclick="window.location='#/index/services/cal';">查看更多航班信息 >>></p>
+					<ul class="lineitem" data-ng-bind-html="lineitem" ></ul>
 				</div>
 				<div id="query_4" class="query_d none">
 					<ul class="query_service">

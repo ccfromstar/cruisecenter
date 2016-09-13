@@ -532,6 +532,12 @@ exports.noticedo = function(req, res) {
 			if (err) return console.error(err.stack);
 			res.json(result);
 		});
+	} else if (sql == "getcalAll") {
+		var sql = "select * from cruise_cal";
+		mysql.query(sql, function(err, result) {
+			if (err) return console.error(err.stack);
+			res.json(result);
+		});
 	}
 }
 
@@ -633,6 +639,12 @@ exports.staticdo = function(req, res) {
 		});
 	} else if (sql == "getemergency") {
 		var sql = "select top 1 * from notice where showInhome = 1";
+		mysql.query(sql, function(err, result) {
+			if (err) return console.error(err.stack);
+			res.json(result);
+		});
+	} else if(sql == "getShip"){
+		var sql = "select * from note";
 		mysql.query(sql, function(err, result) {
 			if (err) return console.error(err.stack);
 			res.json(result);
