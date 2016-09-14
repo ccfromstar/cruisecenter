@@ -47,11 +47,11 @@
         }
         if(labc == 1){
         %>
-        <a href="loading?page=/sharemid1/<%=im1%>">
+        <a onclick="urlTo3('/c_share_sec?pid*<%=im1%>');" href="#">
             <img class="img_4" src="<%=im2%>" width="200px" height="124" /></a>
         <br/><div class="myh1sm" style="height: 40px;"><%=im3%></div>
         <div id="yj<%=no1%>4" class="myp1sm" style="overflow:hidden;height: 50px;;width:200px"><%=im4%>...</div>
-        <div class="myh1b" onclick="window.location='loading?page=/sharemid1/<%=im1%>';">查看详情 >>></div>
+        <div class="myh1b"  onclick="urlTo3('/c_share_sec?pid*<%=im1%>');">查看详情 >>></div>
         <%}%>
         <br/><br/>
         <%
@@ -77,14 +77,14 @@
         }
         if(labc == 1){
         %>
-        <a href="loading?page=/sharemid1/<%=im1%>">
+        <a onclick="urlTo3('/c_share_sec?pid*<%=im1%>');" href="#">
             <img class="img_4" src="<%=im2%>" width="200px" height="124" /></a>
         <br/><div class="myh1sm" style="height: 40px;"><%=im3%></div>
         <div id="yj<%=no1%>4" class="myp1sm" style="overflow:hidden;height: 50px;;width:200px"><%=im4%>...</div>
-        <div class="myh1b" onclick="window.location='loading?page=/sharemid1/<%=im1%>';">查看详情 >>></div>
+        <div class="myh1b" onclick="urlTo3('/c_share_sec?pid*<%=im1%>');">查看详情 >>></div>
         <%}%>
         <br/>
-        <div class="myh1b" onclick="window.location='loading?page=/theme_sec?id=<%=theme[i].txtNo%>';"><img src="http://www.youlunshidai.com/images/more.jpg" /></div>
+        <div class="myh1b" onclick="urlTo2('/c_theme_sec?id*<%=theme[i].txtNo%>');"><img src="http://www.youlunshidai.com/images/more.jpg" /></div>
     </td>
     </tr>
     <tr>
@@ -117,11 +117,11 @@
                 }
             %>
             <%if(img2!=""){%>
-            <a href='loading?page=/curiseship?p=<%=no1%>'>
+            <a>
                 <img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=img2%>.jpg" width="200px" height="124" /></a> <br/>
             <div class="myh1sm">主题推荐产品</div>
             <div class="myp1sm"><%=name1%></div>
-            <div class="myh1b" onclick="window.location='loading?page=/curiseship?p=<%=no1%>';">了解详情 >>></div>
+            <div class="myh1b" onclick="" >了解详情 >>></div>
             <%}%>
         </td>
         <td width="220px">
@@ -153,11 +153,11 @@
                 }
             %>
             <%if(img2!=""){%>
-            <a href='loading?page=/curiseship?p=<%=no1%>'>
+            <a>
                 <img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=img2%>.jpg" width="200px" height="124" /></a> <br/>
             <div class="myh1sm">主题推荐产品</div>
             <div class="myp1sm"><%=name1%></div>
-            <div class="myh1b" onclick="window.location='loading?page=/curiseship?p=<%=no1%>';">了解详情 >>></div>
+            <div class="myh1b" >了解详情 >>></div>
             <%}%>
         </td>
         <td width="220px">
@@ -189,11 +189,11 @@
                 }
             %>
             <%if(img2!=""){%>
-            <a href='loading?page=/curiseship?p=<%=no1%>'>
+            <a>
                 <img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=img2%>.jpg" width="200px" height="124" /></a> <br/>
             <div class="myh1sm">主题推荐产品</div>
             <div class="myp1sm"><%=name1%></div>
-            <div class="myh1b" onclick="window.location='loading?page=/curiseship?p=<%=no1%>';">了解详情 >>></div>
+            <div class="myh1b" >了解详情 >>></div>
             <%}%>
         </td>
     </tr>

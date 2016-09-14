@@ -145,7 +145,7 @@ for (var j in port) {
         if(e<4){
         %>
         <div style="float: left;width: 215px">
-            <a href="loading?page=/curisecompanyship/<%=cship[i].txtCompanyNo%>@<%=cship[j].txtShipNo%>"><img class="img_4" src="http://www.youlunshidai.com/dataimages/<%=imgc1%>" width="200px"/></a><br/>
+            <a onclick="urlTo1('/c_curisecship_sec?pid*<%=cship[i].txtCompanyNo%>@<%=cship[j].txtShipNo%>');" href="#"><img class="img_4" src="http://www.youlunshidai.com/dataimages/<%=imgc1%>" width="200px"/></a><br/>
             <span class="myh1"><%=cship[j].txtShipEnName%></span><br/>
             <span class="myh1"><%=cship[j].txtShipName%></span><br/>
             <br/>
@@ -164,25 +164,25 @@ for (var j in port) {
 <br/>
 <table width="100%" border="0">
   <tr>
-     <td width="220px"><a href="loading?page=/destinationsp/<%=med[i].txtCruiseAreaNo%>@1"><img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=tmp1[0]%>.jpg" width="200px" /></a>
+     <td width="220px"><a onclick="urlTo('/c_destinationsp_sec?pid*<%=med[i].txtCruiseAreaNo%>@1');" href="#"><img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=tmp1[0]%>.jpg" width="200px" /></a>
 	<br/><div class="myh1sm"><%=med[i].txtSellingPoint_1%></div>
 	<div class="myp1sm"><%=med[i].txtSellingPointExponent_1.substring(0,40)%>...</div>
-	<div class="myh1b" onclick="window.location='loading?page=/destinationsp/<%=med[i].txtCruiseAreaNo%>@1';">查看更多 >>></div>
+	<div class="myh1b" onclick="urlTo('/c_destinationsp_sec?pid*<%=med[i].txtCruiseAreaNo%>@1');">查看更多 >>></div>
 	</td>
-    <td width="220px"><a href="loading?page=/destinationsp/<%=med[i].txtCruiseAreaNo%>@2"><img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=tmp2[0]%>.jpg" width="200px" /></a>
+    <td width="220px"><a onclick="urlTo('/c_destinationsp_sec?pid*<%=med[i].txtCruiseAreaNo%>@2');" href="#"><img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=tmp2[0]%>.jpg" width="200px" /></a>
 	<br/><div class="myh1sm"><%=med[i].txtSellingPoint_2%></div>
 	<div class="myp1sm"><%=med[i].txtSellingPointExponent_2.substring(0,40)%>...</div>
-	<div class="myh1b" onclick="window.location='loading?page=/destinationsp/<%=med[i].txtCruiseAreaNo%>@2';">查看更多 >>></div>
+	<div class="myh1b" onclick="urlTo('/c_destinationsp_sec?pid*<%=med[i].txtCruiseAreaNo%>@2');">查看更多 >>></div>
 	</td>
-    <td width="220px"><a href="loading?page=/destinationsp/<%=med[i].txtCruiseAreaNo%>@3"><img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=tmp3[0]%>.jpg" width="200px" /></a>
+    <td width="220px"><a onclick="urlTo('/c_destinationsp_sec?pid*<%=med[i].txtCruiseAreaNo%>@3');" href="#"><img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=tmp3[0]%>.jpg" width="200px" /></a>
 	<br/><div class="myh1sm"><%=med[i].txtSellingPoint_3%></div>
 	<div class="myp1sm"><%=med[i].txtSellingPointExponent_3.substring(0,40)%>...</div>
-	<div class="myh1b" onclick="window.location='loading?page=/destinationsp/<%=med[i].txtCruiseAreaNo%>@3';">查看更多 >>></div>
+	<div class="myh1b" onclick="urlTo('/c_destinationsp_sec?pid*<%=med[i].txtCruiseAreaNo%>@3');">查看更多 >>></div>
 	</td>
-    <td width="220px"><a href="loading?page=/destinationsp/<%=med[i].txtCruiseAreaNo%>@4"><img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=tmp4[0]%>.jpg" width="200px" /></a>
+    <td width="220px"><a onclick="urlTo('/c_destinationsp_sec?pid*<%=med[i].txtCruiseAreaNo%>@4');" href="#"><img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=tmp4[0]%>.jpg" width="200px" /></a>
 	<br/><div class="myh1sm"><%=med[i].txtSellingPoint_4%></div>
 	<div class="myp1sm"><%=med[i].txtSellingPointExponent_4.substring(0,40)%>...</div>
-	<div class="myh1b" onclick="window.location='loading?page=/destinationsp/<%=med[i].txtCruiseAreaNo%>@4';">查看更多 >>></div>
+	<div class="myh1b" onclick="urlTo('/c_destinationsp_sec?pid*<%=med[i].txtCruiseAreaNo%>@4');">查看更多 >>></div>
 	</td>
   </tr>
 </table>
@@ -200,10 +200,10 @@ for (var j in port) {
         }
     %>
     <div style="float: left;width: 215px;height: 300px;">
-        <a href="loading?page=/sharemid/<%=r1[j].id%>"><img src="<%=imgc%>" width="200px" height="124"/></a><br/><br/>
+        <a onclick="urlTo3('/c_share_sec?pid*<%=r1[j].id%>');" href="#"><img src="<%=imgc%>" width="200px" height="124"/></a><br/><br/>
         <div style="overflow:hidden;height: 35px;width:200px" class="myh1"><%=r1[j].txtTitle%></div>
         <div id="yj<%=menu_path%><%=j%>" class="myp1sm" style="overflow:hidden;height: 50px;;width:200px"><%=r1[j].txtAbbr%></div>
-        <div class="myh1b" onclick="window.location='loading?page=/sharemid/<%=r1[j].id%>';">查看详情 >>></div>
+        <div class="myh1b" onclick="urlTo3('/c_share_sec?pid*<%=r1[j].id%>');">查看详情 >>></div>
         <br/><br/>
     </div>
     <%

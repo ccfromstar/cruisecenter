@@ -36,10 +36,10 @@
         var imgc = r1[j].rtfImg;
         %>
         <div style="float: left;width: 215px;height: 300px;">
-            <a href="loading?page=/sharemid1/<%=r1[j].id%>"><img  class="img_4" src="<%=imgc%>" width="200px" height="124"/></a><br/><br/>
+            <a onclick="urlTo3('/c_share_sec?pid*<%=r1[j].id%>');" href="#"><img  class="img_4" src="<%=imgc%>" width="200px" height="124"/></a><br/><br/>
             <div style="overflow:hidden;height: 35px;width:200px" class="myh1"><%=r1[j].txtTitle%></div>
             <div id="yj<%=menu_path%><%=j%>" class="myp1sm" style="overflow:hidden;height: 50px;;width:200px"><%=r1[j].txtAbbr%></div>
-            <div class="myh1b" onclick="window.location='loading?page=/sharemid1/<%=r1[j].id%>';">查看详情 >>></div>
+            <div class="myh1b" onclick="urlTo3('/c_share_sec?pid*<%=r1[j].id%>');">查看详情 >>></div>
             <br/><br/>
         </div>
         <%

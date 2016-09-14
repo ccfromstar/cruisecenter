@@ -92,11 +92,11 @@
             if(r1[w].id==id2){
             labc = 1;
                 if(r1[w].txtCategory1=="邮轮视频"){
-                    im2 = "/video/"+r1[w].rtfImg+".jpg";
-                    im1 = "/sharemid/"+r1[w].id;
+                    im2 = "http://www.youlunshidai.com/video/"+r1[w].rtfImg+".jpg";
+                    im1 = r1[w].id;
                 }else{
                     im2 = r1[w].rtfImg;
-                    im1 = "/sharemid/"+r1[w].id;
+                    im1 = r1[w].id;
                 }
             im3 = r1[w].txtTitle;
             im4 = r1[w].txtAbbr;
@@ -107,11 +107,11 @@
             }
             if(labc == 1){
             %>
-            <a href="loading?page=<%=im1%>">
+            <a onclick="urlTo3('/c_share_sec?pid*<%=im1%>');" href="#">
                 <img class="img_4" src="<%=im2%>" width="200px" height="124" /></a>
             <br/><div class="myh1sm" style="height: 40px;"><%=im3%></div>
             <div id="yjS00014" class="myp1sm"><%=im4%>...</div>
-            <div class="myh1b" onclick="window.location='loading?page=<%=im1%>';">查看详情 >>></div>
+            <div class="myh1b" onclick="urlTo3('/c_share_sec?pid*<%=im1%>');">查看详情 >>></div>
             <%}%>
             <br/><br/>
             <%
@@ -152,11 +152,11 @@
             if(r1[w].id==id2){
             labc = 1;
                 if(r1[w].txtCategory1=="邮轮视频"){
-                    im2 = "/video/"+r1[w].rtfImg+".jpg";
-                    im1 = "/sharemid/"+r1[w].id;
+                    im2 = "http://www.youlunshidai.com/video/"+r1[w].rtfImg+".jpg";
+                    im1 = r1[w].id;
                 }else{
                     im2 = r1[w].rtfImg;
-                    im1 = "/sharemid/"+r1[w].id;
+                    im1 = r1[w].id;
                 }
             im3 = r1[w].txtTitle;
             im4 = r1[w].txtAbbr;
@@ -166,11 +166,11 @@
             }
             if(labc == 1){
             %>
-            <a href="loading?page=<%=im1%>">
+            <a onclick="urlTo3('/c_share_sec?pid*<%=im1%>');" href="#">
                 <img class="img_4" src="<%=im2%>" width="200px" height="124" /></a>
             <br/><div class="myh1sm" style="height: 40px;"><%=im3%></div>
             <div id="yjS00015" class="myp1sm"><%=im4%>...</div>
-            <div class="myh1b" onclick="window.location='loading?page=<%=im1%>';">查看详情 >>></div>
+            <div class="myh1b" onclick="urlTo3('/c_share_sec?pid*<%=im1%>');">查看详情 >>></div>
             <%}%>
             <br/><br/>
         </td>
