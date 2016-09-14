@@ -190,22 +190,28 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 								  c_color = "72C7E1";
 								  break;
 								case "海洋水手号":
-								  c_color = "001560";	
+								  c_color = "293E92";	
 								  break;
 								case "歌诗达赛琳娜号":
-								  c_color = "FF9700";	
+								  c_color = "FEA52F";	
 								  break;
 								case "海洋量子号":
-								  c_color = "001560";	
+								  c_color = "293E92";	
 								  break;
 								case "歌诗达幸运号":
-								  c_color = "FF9700";	
+								  c_color = "FEA52F";	
 								  break;
 								case "天海新世纪号":
-								  c_color = "EA5514";	
+								  c_color = "8C1D64";	
+								  break;
+								case "千禧年号":
+								  c_color = "BDA2CD";	
+								  break;
+								case "歌诗达维多利亚号":
+								  c_color = "FEA52F";	
 								  break;
 								}
-								html += "<span style='color:#"+c_color+"' title='"+time+" "+data[j].cruiseName+" "+data[j].txtLine+"'>● "+data[j].cruiseName+"</span>";
+								html += "<span style='font-weight:bolder;color:#"+c_color+"' title='"+time+" "+data[j].cruiseName+" "+data[j].txtLine+"'>● "+data[j].cruiseName+"</span>";
 							}
 						}
 						html += "</div>";

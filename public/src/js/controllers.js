@@ -630,24 +630,30 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 				if(data[j].datestart == d.Format("yyyy-MM-dd")){
 					switch(data[j].cruiseName){
 					case "蓝宝石公主号":
-					  c_color = "72C7E1";
-					  break;
-					case "海洋水手号":
-					  c_color = "001560";	
-					  break;
-					case "歌诗达赛琳娜号":
-					  c_color = "FF9700";	
-					  break;
-					case "海洋量子号":
-					  c_color = "001560";	
-					  break;
-					case "歌诗达幸运号":
-					  c_color = "FF9700";	
-					  break;
-					case "天海新世纪号":
-					  c_color = "EA5514";	
-					  break;
-					}
+								  c_color = "72C7E1";
+								  break;
+								case "海洋水手号":
+								  c_color = "293E92";	
+								  break;
+								case "歌诗达赛琳娜号":
+								  c_color = "FEA52F";	
+								  break;
+								case "海洋量子号":
+								  c_color = "293E92";	
+								  break;
+								case "歌诗达幸运号":
+								  c_color = "FEA52F";	
+								  break;
+								case "天海新世纪号":
+								  c_color = "8C1D64";	
+								  break;
+								case "千禧年号":
+								  c_color = "BDA2CD";	
+								  break;
+								case "歌诗达维多利亚号":
+								  c_color = "FEA52F";	
+								  break;
+								}
 					html += "<p style='font-weight:bold;color:#"+c_color+"'>● "+data[j].cruiseName+"</p>";
 				}
 			}
