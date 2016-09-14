@@ -182,9 +182,30 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						html += "<div class='cal_cells'>";
 						html += "<p>"+i+"</p>";
 						html += "<div class='cal_line'>";
+						var c_color = "5C5C5C";
 						for(var j in data){
 							if(data[j].datestart == time){
-								html += "<span title='"+time+" "+data[j].cruiseName+" "+data[j].txtLine+"'>"+data[j].cruiseName+"</span>";
+								switch(data[j].cruiseName){
+								case "蓝宝石公主号":
+								  c_color = "72C7E1";
+								  break;
+								case "海洋水手号":
+								  c_color = "001560";	
+								  break;
+								case "歌诗达赛琳娜号":
+								  c_color = "FF9700";	
+								  break;
+								case "海洋量子号":
+								  c_color = "001560";	
+								  break;
+								case "歌诗达幸运号":
+								  c_color = "FF9700";	
+								  break;
+								case "天海新世纪号":
+								  c_color = "EA5514";	
+								  break;
+								}
+								html += "<span style='color:#"+c_color+"' title='"+time+" "+data[j].cruiseName+" "+data[j].txtLine+"'>● "+data[j].cruiseName+"</span>";
 							}
 						}
 						html += "</div>";
