@@ -645,7 +645,7 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 								  c_color = "FEA52F";	
 								  break;
 								case "天海新世纪号":
-								  c_color = "8C1D64";	
+								  c_color = "8FC31F";	
 								  break;
 								case "千禧年号":
 								  c_color = "BDA2CD";	

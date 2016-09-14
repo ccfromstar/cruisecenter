@@ -175,11 +175,17 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					var dd = new Date();
 					var yyyy = dd.getFullYear();  
   					var mm = (((dd.getMonth()+1)+"").length==1)?"0"+(dd.getMonth()+1):(dd.getMonth()+1);
+  					var day = (((dd.getDate())+"").length==1)?"0"+(dd.getDate()):(dd.getDate());
   					var html = "<div class='caltitle'>"+yyyy+"年"+mm+"月航班信息</div>";
 					for (i = 1; i < 32; i++) {
   						var d = (((i)+"").length==1)?"0"+(i):(i);
   						var time = yyyy + "-" + mm + "-" + d;
-						html += "<div class='cal_cells'>";
+  						var time_today = yyyy + "-" + mm + "-" + day;
+  						var class_active = "";
+  						if(time == time_today){
+  							class_active = "active";
+  						}
+						html += "<div class='cal_cells "+class_active+"'>";
 						html += "<p>"+i+"</p>";
 						html += "<div class='cal_line'>";
 						var c_color = "5C5C5C";
@@ -202,7 +208,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 								  c_color = "FEA52F";	
 								  break;
 								case "天海新世纪号":
-								  c_color = "8C1D64";	
+								  c_color = "8FC31F";	
 								  break;
 								case "千禧年号":
 								  c_color = "BDA2CD";	
