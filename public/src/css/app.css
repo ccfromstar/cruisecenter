@@ -1130,6 +1130,7 @@ h1 {
 	text-align: left;
 	margin: 10px 0;
 	font-size: 16px;
+	padding-left: 5px;
 }
 
 .qn h1 {
@@ -1139,6 +1140,7 @@ h1 {
 
 .qn div {
 	position: relative;
+	padding-left: 5px;
 }
 
 .qn div img {
@@ -1567,26 +1569,28 @@ h1 {
 .note_title {
 	position: absolute;
 	top: 0;
-	left: 10px;
+	left: 0;
 	padding: 15px 0;
 	width:670px;
 }
 
 .note_title li{
 	display: inline-block;
-	width: 24%;
+	width: 25%;
 	text-align: center;
 	font-size: 12px;
 	font-weight: 900;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	border-bottom: 3px solid #fff;
+	border-bottom: 2px solid #fff;
 	background: #fff;
+	border:1px solid #E6EAED;
+	box-sizing: border-box;
 }
 
 .note_title li:hover,.note_title .active {
 	color: #C30D24;
-	border-bottom: 3px solid #C30D24;
+	border-bottom: 2px solid #C30D24;
 	cursor: pointer;
 }
 

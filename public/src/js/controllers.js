@@ -929,13 +929,15 @@ function setFW(i) {
 	$('#FW li').removeClass('active');
 	$('#FW li').eq(i).addClass('active');
 	if (i == 0) {
-		var s1 = "天海新世纪号;皇家加勒比海洋量子号;歌诗达赛琳娜号";
+		var s1 = "天海新世纪号;歌诗达赛琳娜号;歌诗达大西洋号;歌诗达幸运号;歌诗达维多利亚号";
 		var tmp1 = s1.split(";");
+		var s2 = "qn_1;qn_2;AT;FO;vi";
+		var tmp2 = s2.split(";");
 		var html = "";
 		for (var i = 0; i < tmp1.length; i++) {
 			html += "<li onclick='window.location=\"#/index/services/note\"'>";
 			html += "<figure>";
-			html += "<img src='../../src/image/qn_" + (i + 1) + ".jpg'/>";
+			html += "<img src='../../src/image/" +tmp2[i]+ ".jpg'/>";
 			html += "<div>";
 			html += "<h1>" + tmp1[i] + "</h1>";
 			html += "<img src='../../src/image/go.png' />";

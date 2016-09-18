@@ -476,10 +476,16 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					method: 'POST'
 				}).success(function(data) {
 					var html = "";
+					var url = $location.absUrl();
+					var index = 0;
+					if(url.indexOf("?page=") != -1){
+						var arr1 = url.split("?page=");
+						index = Number(arr1[1]);
+					}
 					html += "<ul class='note_title'>";
 					for(var i in data){
 						var cla = "";
-						if(i==0){
+						if(i==index){
 							cla = "active";
 						}
 						html += "<li onclick='showNote("+i+")' class='"+cla+"' >"+data[i].name+"</li>";
@@ -488,7 +494,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					html += "<div style='clear:both;'></div>";
 					for(var i in data){
 						var cla = "";
-						if(i!=0){
+						if(i!=index){
 							cla = "none";
 						}
 						html += "<div class='note_post "+cla+"' id='note_"+i+"'>";
@@ -498,6 +504,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						html += "</div>";
 					}
 					$scope.post = $sce.trustAsHtml(html);
+					gotop();
 				}).error(function() {
 					console.log("error");
 				});
