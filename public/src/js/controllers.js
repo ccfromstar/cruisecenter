@@ -677,7 +677,17 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 		url: hosts + 'notice/getemergency',
 		method: 'POST'
 	}).success(function(data) {
+		var publishAt = data[0].publishAt;
+		var d = new Date(publishAt);
+		publishAt = d.Format("yyyy-MM-dd");
+		//console.log(publishAt);
+		var today = new Date();
+		today = today.Format("yyyy-MM-dd");
+		//console.log(today);
 		$scope.emergency_notice = $sce.trustAsHtml('<marquee behavior="scroll" contenteditable="false">' + data[0].post + '</marquee>');
+		if(publishAt != today){
+			$(".notice_div").css("display","none");
+		}
 	}).error(function() {
 		console.log("error");
 	});
