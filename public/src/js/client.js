@@ -177,8 +177,17 @@ function iFrameHeight() {
 	ifm.style.marginTop = "-20px";
 }
 
+function showNote(i){
+	$('.note_post').hide();
+	$('#note_' + i).show();
+	$('.note_title li').removeClass('active');
+	$('.note_title li').eq(i).addClass('active');
+	gotop();
+}
+
 $(window).scroll(function() {
 	currTop = $(window).scrollTop();
+	/*首页左侧浮动栏*/
 	var nav_top = 683;
 	//console.log(currTop);
 	//console.log(nav_top);
@@ -189,6 +198,18 @@ $(window).scroll(function() {
 		$('.left_nav').css('top', nav_top);
 	} else {
 		$('.left_nav').css('top', 123);
+	}
+	/*游客注意事项浮动栏*/
+	var nav_top = -162;
+	console.log(currTop);
+	console.log(nav_top);
+	if (currTop > 200) {
+		currTop = currTop;
+		nav_top = nav_top + currTop;
+		//console.log(nav_top);
+		$('.note_title').css('top', nav_top);
+	} else {
+		$('.note_title').css('top', 0);
 	}
 });
 

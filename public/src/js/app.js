@@ -476,10 +476,26 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					method: 'POST'
 				}).success(function(data) {
 					var html = "";
+					html += "<ul class='note_title'>";
 					for(var i in data){
+						var cla = "";
+						if(i==0){
+							cla = "active";
+						}
+						html += "<li onclick='showNote("+i+")' class='"+cla+"' >"+data[i].name+"</li>";
+					}
+					html += "</ul>";
+					html += "<div style='clear:both;'></div>";
+					for(var i in data){
+						var cla = "";
+						if(i!=0){
+							cla = "none";
+						}
+						html += "<div class='note_post "+cla+"' id='note_"+i+"'>";
 						html += "<h4>"+data[i].name+"</h4>";
 						html += "<div class='nav_shadow'></div>";
 						html += "<div>"+data[i].post+"</div>";
+						html += "</div>";
 					}
 					$scope.post = $sce.trustAsHtml(html);
 				}).error(function() {

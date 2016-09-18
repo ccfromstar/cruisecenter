@@ -1563,3 +1563,33 @@ h1 {
 .line_left {
 	text-align: center;
 }
+
+.note_title {
+	position: absolute;
+	top: 0;
+	left: 10px;
+	padding: 15px 0;
+	width:670px;
+}
+
+.note_title li{
+	display: inline-block;
+	width: 24%;
+	text-align: center;
+	font-size: 12px;
+	font-weight: 900;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 3px solid #fff;
+	background: #fff;
+}
+
+.note_title li:hover,.note_title .active {
+	color: #C30D24;
+	border-bottom: 3px solid #C30D24;
+	cursor: pointer;
+}
+
+.note_post {
+	padding-top:100px;
+}
