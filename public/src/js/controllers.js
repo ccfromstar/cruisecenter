@@ -618,6 +618,9 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 		d.setDate(d.getDate() - n);
 		for (i = 0; i < 7; i++) {
 			//var y = (d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate() + ' ' + d.getDay() + '<br>');
+			if(w==0){
+				w = 7;
+			}
 			if(i == (w - 1)){
 				html += "<li class='active'>";
 			}else{
