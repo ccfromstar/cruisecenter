@@ -1,41 +1,61 @@
 <!doctype html>
 <html lang="en" ng-app="routerApp">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="baidu-site-verification" content="ttbuSMtnbT" />
-    <title>上海邮轮中心</title>
-    <link rel="stylesheet" href="framework/bootstrap-3.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="framework/ng-grid-2.0.12/ng-grid.css">
-    <script src="framework/jquery-1.9.1.js"></script>
-    <script src="framework/angular-1.3.0.14/angular.js"></script>
-    <script src="framework/angular-1.3.0.14/angular-animate.min.js"></script>
-    <script src="framework/angular-ui-router.js"></script>
-    <script src="framework/bootstrap-3.0.0/js/bootstrap.min.js"></script>
-    <script src="framework/ui-bootstrap-tpls-0.11.0.js"></script>
-    <script src="framework/ng-grid-2.0.12/ng-grid.debug.js"></script>
-    <script src="framework/amazeui/amazeui.min.js"></script>
-    <link rel="stylesheet" href="framework/amazeui/amazeui.min.css" />
-    
-    <link href='framework/fullcalendar-2.9.1/fullcalendar.css' rel='stylesheet' />
-	<link href='framework/fullcalendar-2.9.1/fullcalendar.print.css' rel='stylesheet' media='print' />
-	<script src='framework/fullcalendar-2.9.1/lib/moment.min.js'></script>
-	<script src='framework/fullcalendar-2.9.1/lib/jquery.min.js'></script>
-	<script src='framework/fullcalendar-2.9.1/fullcalendar.min.js'></script>
+	<head>
+		<meta charset="utf-8">
+		<meta name="baidu-site-verification" content="ttbuSMtnbT" />
+		<title>上海邮轮中心</title>
+		<link rel="stylesheet" href="framework/bootstrap-3.0.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="framework/ng-grid-2.0.12/ng-grid.css">
+		<script src="framework/jquery-1.9.1.js"></script>
+		<script src="framework/angular-1.3.0.14/angular.js"></script>
+		<script src="framework/angular-1.3.0.14/angular-animate.min.js"></script>
+		<script src="framework/angular-ui-router.js"></script>
+		<script src="framework/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+		<script src="framework/ui-bootstrap-tpls-0.11.0.js"></script>
+		<script src="framework/ng-grid-2.0.12/ng-grid.debug.js"></script>
+		<script src="framework/amazeui/amazeui.min.js"></script>
+		<link rel="stylesheet" href="framework/amazeui/amazeui.min.css" />
 
-    <link rel="stylesheet" href="css/app.css">
-    <script src="js/settings.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/filters.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/client.js"></script>
-</head>
+		<link href='framework/fullcalendar-2.9.1/fullcalendar.css' rel='stylesheet' />
+		<link href='framework/fullcalendar-2.9.1/fullcalendar.print.css' rel='stylesheet' media='print' />
+		<script src='framework/fullcalendar-2.9.1/lib/moment.min.js'></script>
+		<script src='framework/fullcalendar-2.9.1/lib/jquery.min.js'></script>
+		<script src='framework/fullcalendar-2.9.1/fullcalendar.min.js'></script>
 
-<body>
-    <div ui-view></div>
-    <script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=114887239675223613' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
-</body>
+		<link rel="stylesheet" href="css/app.css">
+		<script src="js/settings.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/animations.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/filters.js"></script>
+		<script src="js/services.js"></script>
+		<script src="js/client.js"></script>
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "//hm.baidu.com/hm.js?28021ff229fd2fe92f7e4e5e22202ca5";
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+
+	</head>
+
+	<body>
+		<div ui-view></div>
+		<script type="text/javascript">
+			(function() {
+				document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));
+				var bdcs = document.createElement('script');
+				bdcs.type = 'text/javascript';
+				bdcs.async = true;
+				bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=114887239675223613' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date() / 3600000);
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(bdcs, s);
+			})();
+		</script>
+	</body>
 
 </html>
