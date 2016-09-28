@@ -48,10 +48,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					controller: function($scope, $location, $sce) {
 						var url = $location.absUrl();
 						//console.log(url);
-						if (url.indexOf('news') != -1) {
+						if(url.indexOf('news') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 行业动态 > 热点新闻');
 							$scope.class1 = "active";
-						} else if (url.indexOf('notice') != -1) {
+						} else if(url.indexOf('notice') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 行业动态 > 紧急公告');
 							$scope.class2 = "active";
 						}
@@ -85,70 +85,70 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					templateUrl: 'tpls/services.html',
 					controller: function($scope, $location, $sce) {
 						var url = $location.absUrl();
-						if (url.indexOf('query') != -1) {
+						if(url.indexOf('query') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 船票查询');
 							$('.nav_navigate a').removeClass('active');
-						} else if (url.indexOf('cal') != -1) {
+						} else if(url.indexOf('cal') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 航班查询');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(10).addClass('active');
-						} else if (url.indexOf('immigration') != -1) {
+						} else if(url.indexOf('immigration') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 边检政策');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(4).addClass('active');
-						} else if (url.indexOf('customs') != -1) {
+						} else if(url.indexOf('customs') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 海关政策');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(5).addClass('active');
-						} else if (url.indexOf('inspection') != -1) {
+						} else if(url.indexOf('inspection') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 检验检疫政策');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(6).addClass('active');
-						} else if (url.indexOf('tourism') != -1) {
+						} else if(url.indexOf('tourism') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 旅游局政策');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(7).addClass('active');
-						} else if (url.indexOf('traffic') != -1) {
+						} else if(url.indexOf('traffic') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 港口交通');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(11).addClass('active');
-						} else if (url.indexOf('parking') != -1) {
+						} else if(url.indexOf('parking') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 停车服务');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(12).addClass('active');
-						} else if (url.indexOf('vip') != -1) {
+						} else if(url.indexOf('vip') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 贵宾服务');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(13).addClass('active');
-						} else if (url.indexOf('wifi') != -1) {
+						} else if(url.indexOf('wifi') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > WIFI租赁');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(14).addClass('active');
-						} else if (url.indexOf('luggage') != -1) {
+						} else if(url.indexOf('luggage') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 行李服务');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(15).addClass('active');
-						} else if (url.indexOf('currency') != -1) {
+						} else if(url.indexOf('currency') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 外币兑换');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(16).addClass('active');
-						} else if (url.indexOf('bus') != -1) {
+						} else if(url.indexOf('bus') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 巴士服务');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(8).addClass('active');
-						} else if (url.indexOf('insurance') != -1) {
+						} else if(url.indexOf('insurance') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 保险服务');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(9).addClass('active');
-						} else if (url.indexOf('boarding') != -1) {
+						} else if(url.indexOf('boarding') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 登离船流程');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(3).addClass('active');
-						} else if (url.indexOf('guide') != -1) {
+						} else if(url.indexOf('guide') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 港口指南');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(2).addClass('active');
-						} else if (url.indexOf('note') != -1) {
+						} else if(url.indexOf('note') != -1) {
 							$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮服务 > 游客注意事项');
 							$('.nav_navigate a').removeClass('active');
 							$('.nav_navigate a').eq(1).addClass('active');
@@ -174,51 +174,96 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 				}).success(function(data) {
 					//当月
 					var dd = new Date();
-					var yyyy = dd.getFullYear();  
-  					var mm = (((dd.getMonth()+1)+"").length==1)?"0"+(dd.getMonth()+1):(dd.getMonth()+1);
-  					var day = (((dd.getDate())+"").length==1)?"0"+(dd.getDate()):(dd.getDate());
-  					var html = "<div class='caltitle'>"+yyyy+"年"+mm+"月航班信息</div>";
-					for (i = 1; i < 32; i++) {
-  						var d = (((i)+"").length==1)?"0"+(i):(i);
-  						var time = yyyy + "-" + mm + "-" + d;
-  						var time_today = yyyy + "-" + mm + "-" + day;
-  						var class_active = "";
-  						if(time == time_today){
-  							class_active = "active";
-  						}
-						html += "<div class='cal_cells "+class_active+"'>";
-						html += "<p>"+i+"</p>";
+					var yyyy = dd.getFullYear();
+					var mm = (((dd.getMonth() + 1) + "").length == 1) ? "0" + (dd.getMonth() + 1) : (dd.getMonth() + 1);
+					var day = (((dd.getDate()) + "").length == 1) ? "0" + (dd.getDate()) : (dd.getDate());
+					var html = "<div class='caltitle'>" + yyyy + "年" + mm + "月航班信息</div>";
+					html += "<div class='headerTitle'>星期天</div>";
+					html += "<div class='headerTitle'>星期一</div>";
+					html += "<div class='headerTitle'>星期二</div>";
+					html += "<div class='headerTitle'>星期三</div>";
+					html += "<div class='headerTitle'>星期四</div>";
+					html += "<div class='headerTitle'>星期五</div>";
+					html += "<div class='headerTitle'>星期六</div>";
+					html += "<div style='clear:both;'></div>";
+					//判断1号是星期几
+					var time_today = yyyy + "-" + mm + "-01";
+					var d1 = new Date(time_today);
+					var weekend = d1.getDay();
+					//补上前面空的天数
+					for(var i = 0; i < weekend; i++) {
+						html += "<div class='cal_cells'>";
+						html += "<p>&nbsp;</p>";
+						html += "<div class='cal_line'>";
+						html += "</div>";
+						html += "</div>";
+					}
+					//获得天数
+					//构造当前日期对象
+
+					//获取年份
+					var year = d1.getFullYear();
+
+					//获取当前月份
+					var mouth = d1.getMonth() + 1;
+
+					//定义当月的天数；
+					var days;
+
+					//当月份为二月时，根据闰年还是非闰年判断天数
+					if(mouth == 2) {
+						days = year % 4 == 0 ? 29 : 28;
+
+					} else if(mouth == 1 || mouth == 3 || mouth == 5 || mouth == 7 || mouth == 8 || mouth == 10 || mouth == 12) {
+						//月份为：1,3,5,7,8,10,12 时，为大月.则天数为31；
+						days = 31;
+					} else {
+						//其他月份，天数为：30.
+						days = 30;
+
+					}
+
+					for(i = 1; i < days + 1; i++) {
+						var d = (((i) + "").length == 1) ? "0" + (i) : (i);
+						var time = yyyy + "-" + mm + "-" + d;
+						var time_today = yyyy + "-" + mm + "-" + day;
+						var class_active = "";
+						if(time == time_today) {
+							class_active = "active";
+						}
+						html += "<div class='cal_cells " + class_active + "'>";
+						html += "<p>" + i + "</p>";
 						html += "<div class='cal_line'>";
 						var c_color = "5C5C5C";
-						for(var j in data){
-							if(data[j].datestart == time){
-								switch(data[j].cruiseName){
-								case "蓝宝石公主号":
-								  c_color = "72C7E1";
-								  break;
-								case "海洋水手号":
-								  c_color = "293E92";	
-								  break;
-								case "歌诗达赛琳娜号":
-								  c_color = "FEA52F";	
-								  break;
-								case "海洋量子号":
-								  c_color = "293E92";	
-								  break;
-								case "歌诗达幸运号":
-								  c_color = "FEA52F";	
-								  break;
-								case "天海新世纪号":
-								  c_color = "8FC31F";	
-								  break;
-								case "千禧年号":
-								  c_color = "BDA2CD";	
-								  break;
-								case "歌诗达维多利亚号":
-								  c_color = "FEA52F";	
-								  break;
+						for(var j in data) {
+							if(data[j].datestart == time) {
+								switch(data[j].cruiseName) {
+									case "蓝宝石公主号":
+										c_color = "72C7E1";
+										break;
+									case "海洋水手号":
+										c_color = "293E92";
+										break;
+									case "歌诗达赛琳娜号":
+										c_color = "FEA52F";
+										break;
+									case "海洋量子号":
+										c_color = "293E92";
+										break;
+									case "歌诗达幸运号":
+										c_color = "FEA52F";
+										break;
+									case "天海新世纪号":
+										c_color = "8FC31F";
+										break;
+									case "千禧年号":
+										c_color = "BDA2CD";
+										break;
+									case "歌诗达维多利亚号":
+										c_color = "FEA52F";
+										break;
 								}
-								html += "<span style='font-weight:bolder;color:#"+c_color+"' title='"+time+" "+data[j].cruiseName+" "+data[j].txtLine+"'>● "+data[j].cruiseName+"</span>";
+								html += "<span style='font-weight:bolder;color:#" + c_color + "' title='" + time + " " + data[j].cruiseName + " " + data[j].txtLine + "'>● " + data[j].cruiseName + "</span>";
 							}
 						}
 						html += "</div>";
@@ -227,56 +272,101 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					$scope.calitem = $sce.trustAsHtml(html);
 					//下月
 					var dd = new Date();
-					var yyyy = dd.getFullYear();  
-					var m = (dd.getMonth()+1)+1;
-					if(m == 12){
+					var yyyy = dd.getFullYear();
+					var m = (dd.getMonth() + 1) + 1;
+					if(m == 12) {
 						yyyy = yyyy + 1;
 						m = 1
 					}
-  					var mm = (((m)+"").length==1)?"0"+(m):(m);
-  					var day = (((dd.getDate())+"").length==1)?"0"+(dd.getDate()):(dd.getDate());
-  					var html = "<div class='caltitle'>"+yyyy+"年"+mm+"月航班信息</div>";
-					for (i = 1; i < 32; i++) {
-  						var d = (((i)+"").length==1)?"0"+(i):(i);
-  						var time = yyyy + "-" + mm + "-" + d;
-  						var time_today = yyyy + "-" + mm + "-" + day;
-  						var class_active = "";
-  						if(time == time_today){
-  							class_active = "active";
-  						}
-						html += "<div class='cal_cells "+class_active+"'>";
-						html += "<p>"+i+"</p>";
+					var mm = (((m) + "").length == 1) ? "0" + (m) : (m);
+					var day = (((dd.getDate()) + "").length == 1) ? "0" + (dd.getDate()) : (dd.getDate());
+					var html = "<br/><br/><div class='caltitle'>" + yyyy + "年" + mm + "月航班信息</div>";
+					html += "<div class='headerTitle'>星期天</div>";
+					html += "<div class='headerTitle'>星期一</div>";
+					html += "<div class='headerTitle'>星期二</div>";
+					html += "<div class='headerTitle'>星期三</div>";
+					html += "<div class='headerTitle'>星期四</div>";
+					html += "<div class='headerTitle'>星期五</div>";
+					html += "<div class='headerTitle'>星期六</div>";
+					html += "<div style='clear:both;'></div>";
+					//判断1号是星期几
+					var time_today = yyyy + "-" + mm + "-01";
+					var d1 = new Date(time_today);
+					var weekend = d1.getDay();
+					//补上前面空的天数
+					for(var i = 0; i < weekend; i++) {
+						html += "<div class='cal_cells'>";
+						html += "<p>&nbsp;</p>";
+						html += "<div class='cal_line'>";
+						html += "</div>";
+						html += "</div>";
+					}
+					//获得天数
+					//构造当前日期对象
+
+					//获取年份
+					var year = d1.getFullYear();
+
+					//获取当前月份
+					var mouth = d1.getMonth() + 1;
+
+					//定义当月的天数；
+					var days;
+
+					//当月份为二月时，根据闰年还是非闰年判断天数
+					if(mouth == 2) {
+						days = year % 4 == 0 ? 29 : 28;
+
+					} else if(mouth == 1 || mouth == 3 || mouth == 5 || mouth == 7 || mouth == 8 || mouth == 10 || mouth == 12) {
+						//月份为：1,3,5,7,8,10,12 时，为大月.则天数为31；
+						days = 31;
+					} else {
+						//其他月份，天数为：30.
+						days = 30;
+
+					}
+
+					for(i = 1; i < days+1; i++) {
+						var d = (((i) + "").length == 1) ? "0" + (i) : (i);
+						var time = yyyy + "-" + mm + "-" + d;
+						var time_today = yyyy + "-" + mm + "-" + day;
+						var class_active = "";
+						if(time == time_today) {
+							class_active = "active";
+						}
+						html += "<div class='cal_cells " + class_active + "'>";
+						html += "<p>" + i + "</p>";
 						html += "<div class='cal_line'>";
 						var c_color = "5C5C5C";
-						for(var j in data){
-							if(data[j].datestart == time){
-								switch(data[j].cruiseName){
-								case "蓝宝石公主号":
-								  c_color = "72C7E1";
-								  break;
-								case "海洋水手号":
-								  c_color = "293E92";	
-								  break;
-								case "歌诗达赛琳娜号":
-								  c_color = "FEA52F";	
-								  break;
-								case "海洋量子号":
-								  c_color = "293E92";	
-								  break;
-								case "歌诗达幸运号":
-								  c_color = "FEA52F";	
-								  break;
-								case "天海新世纪号":
-								  c_color = "8FC31F";	
-								  break;
-								case "千禧年号":
-								  c_color = "BDA2CD";	
-								  break;
-								case "歌诗达维多利亚号":
-								  c_color = "FEA52F";	
-								  break;
+						for(var j in data) {
+							if(data[j].datestart == time) {
+								switch(data[j].cruiseName) {
+									case "蓝宝石公主号":
+										c_color = "72C7E1";
+										break;
+									case "海洋水手号":
+										c_color = "293E92";
+										break;
+									case "歌诗达赛琳娜号":
+										c_color = "FEA52F";
+										break;
+									case "海洋量子号":
+										c_color = "293E92";
+										break;
+									case "歌诗达幸运号":
+										c_color = "FEA52F";
+										break;
+									case "天海新世纪号":
+										c_color = "8FC31F";
+										break;
+									case "千禧年号":
+										c_color = "BDA2CD";
+										break;
+									case "歌诗达维多利亚号":
+										c_color = "FEA52F";
+										break;
 								}
-								html += "<span style='font-weight:bolder;color:#"+c_color+"' title='"+time+" "+data[j].cruiseName+" "+data[j].txtLine+"'>● "+data[j].cruiseName+"</span>";
+								html += "<span style='font-weight:bolder;color:#" + c_color + "' title='" + time + " " + data[j].cruiseName + " " + data[j].txtLine + "'>● " + data[j].cruiseName + "</span>";
 							}
 						}
 						html += "</div>";
@@ -529,7 +619,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 		.state('index.services.note', {
 			url: '/note',
 			templateUrl: 'tpls/services/note.html',
-			controller: function($scope, $location, $sce , $http) {
+			controller: function($scope, $location, $sce, $http) {
 				$http({
 					url: hosts + 'static/getShip',
 					method: 'POST'
@@ -537,29 +627,29 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					var html = "";
 					var url = $location.absUrl();
 					var index = 0;
-					if(url.indexOf("?page=") != -1){
+					if(url.indexOf("?page=") != -1) {
 						var arr1 = url.split("?page=");
 						index = Number(arr1[1]);
 					}
 					html += "<ul class='note_title'>";
-					for(var i in data){
+					for(var i in data) {
 						var cla = "";
-						if(i==index){
+						if(i == index) {
 							cla = "active";
 						}
-						html += "<li onclick='showNote("+i+")' class='"+cla+"' >"+data[i].name+"</li>";
+						html += "<li onclick='showNote(" + i + ")' class='" + cla + "' >" + data[i].name + "</li>";
 					}
 					html += "</ul>";
 					html += "<div style='clear:both;'></div>";
-					for(var i in data){
+					for(var i in data) {
 						var cla = "";
-						if(i!=index){
+						if(i != index) {
 							cla = "none";
 						}
-						html += "<div class='note_post "+cla+"' id='note_"+i+"'>";
-						html += "<h4>"+data[i].name+"</h4>";
+						html += "<div class='note_post " + cla + "' id='note_" + i + "'>";
+						html += "<h4>" + data[i].name + "</h4>";
 						html += "<div class='nav_shadow'></div>";
-						html += "<div>"+data[i].post+"</div>";
+						html += "<div>" + data[i].post + "</div>";
 						html += "</div>";
 					}
 					$scope.post = $sce.trustAsHtml(html);
@@ -596,7 +686,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						var url = $location.absUrl();
 						var arr = url.split('?page=');
 						var src = "/c_curisecompany";
-						if (arr[1]) {
+						if(arr[1]) {
 							src = arr[1].replace(/%2F/g, '/').replace('%3F', '?').replace('*', '=');
 						}
 						$scope.srcPage = src;
@@ -617,7 +707,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						var url = $location.absUrl();
 						var arr = url.split('?page=');
 						var src = "/c_theme";
-						if (arr[1]) {
+						if(arr[1]) {
 							src = arr[1].replace(/%2F/g, '/').replace('%3F', '?').replace('*', '=');
 						}
 						$scope.srcPage = src;
@@ -689,7 +779,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						var url = $location.absUrl();
 						var arr = url.split('?page=');
 						var src = "/c_share";
-						if (arr[1]) {
+						if(arr[1]) {
 							src = arr[1].replace(/%2F/g, '/').replace('%3F', '?').replace('*', '=');
 						}
 						$scope.srcPage = src;
