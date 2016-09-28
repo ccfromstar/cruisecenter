@@ -1616,3 +1616,13 @@ h1 {
 .pro_img {
 	width:1000px;
 }
+
+.template_div {
+	margin-left:50px;
+	margin-top:40px;
+}
+.template_div p {
+	margin:0;
+	font-size: 14px;
+	color:#000066;
+}
