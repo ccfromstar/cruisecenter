@@ -37,43 +37,20 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 				},
 				'main@index': {
 					templateUrl: 'tpls/homepage.html',
-					controller: function($scope) {
-						$.ajax({
-							type: "get",
-							url: "http://weather.huiyoulun.com/BsReal",
-							timeout: 3000,
-							success: function(data) {
-								if(!data) {
-									//alert('服务器连接失败！');
-									return false;
-								}
-								$('#Temperature').html('当前温度：' +data.Temperature + '<span>℃</span>');
-								$('#CollectDate').html('更新时间：' +data.CollectDate);
-								$('#Rain_sum_60').html('降水：' + data.Rain_sum_60);
-								$('#RelativeHumidity').html('相对湿度：' + data.RelativeHumidity + ' %');
-								$('#WindSpeed').html('风速：' + data.WindSpeed + ' m/s');
-								$('#Visibility').html('能见度：' + data.Visibility + ' 米');
-								$('#AirPressure').html('气压：' + data.AirPressure);
-
-								$.ajax({
-									type: "get",
-									url: hosts + "/BsWarn",
-									success: function(data) {
-										var _list = '';
-										for(var i in data) {
-											_list += '<h3>' + data[i].WarningLevel + data[i].WarningType + '预警</h3>';
-										}
-										$('#warn').html(_list);
-										$modal.modal('close');
-									}
-								});
-							},
-							complete: function(XMLHttpRequest, status) { //请求完成后最终执行参数
-								if(status == 'timeout') { //超时,status还有success,error等值的情况
-									//ajaxTimeoutTest.abort();　　　　　
-									alert('气象局服务器连接失败！请稍后再访问！');　　　
-								}　　
-							}
+					controller: function($scope,$http) {
+						$http({
+							url: 'http://weather.huiyoulun.com/Bs7Day',
+							method: 'GET'
+						}).success(function(data) {
+							/*
+								$('#Date').html(data[0].Date);
+								$('#DayWeather').html(data[0].DayWeather);
+								$('#Temp').html(data[i].TempMin + "℃ ~" + data[i].TempMax +"℃");*/
+								$scope.Date = data[0].Date;
+								$scope.DayWeather = data[0].DayWeather;
+								$scope.Temp = data[i].TempMin + "℃ ~" + data[i].TempMax +"℃";
+						}).error(function() {
+							console.log("error");
 						});
 					}
 				}

@@ -1618,11 +1618,17 @@ h1 {
 }
 
 .template_div {
-	margin-left:50px;
-	margin-top:40px;
+	margin:50px 0 40px 50px;
 }
-.template_div p {
-	margin:0;
-	font-size: 14px;
+
+.template_div h1 {
+	margin:15px 0;
+	font-size: 16px;
 	color:#000066;
+}
+
+.template_div h2 {
+	margin:15px 0;
+	font-size: 16px;
+	color:#C30D24;
 }
