@@ -1557,7 +1557,7 @@ h1 {
 }
 
 .line_cruise {
-	width:100px;
+	width:108px;
 }
 
 .line_right p{
@@ -1565,11 +1565,16 @@ h1 {
 }
 
 .line_rightr {
-	margin-left:10px;
+	margin-left:5px;
 }
 
 .line_rightr p{
 	margin: 0;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	-webkit-text-overflow: ellipsis;
+	width:150px;
 }
 
 .line_left {

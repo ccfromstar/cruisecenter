@@ -172,6 +172,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					url: hosts + 'notice/getcalAll',
 					method: 'POST'
 				}).success(function(data) {
+					//当月
 					var dd = new Date();
 					var yyyy = dd.getFullYear();  
   					var mm = (((dd.getMonth()+1)+"").length==1)?"0"+(dd.getMonth()+1):(dd.getMonth()+1);
@@ -224,6 +225,64 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						html += "</div>";
 					}
 					$scope.calitem = $sce.trustAsHtml(html);
+					//下月
+					var dd = new Date();
+					var yyyy = dd.getFullYear();  
+					var m = (dd.getMonth()+1)+1;
+					if(m == 12){
+						yyyy = yyyy + 1;
+						m = 1
+					}
+  					var mm = (((m)+"").length==1)?"0"+(m):(m);
+  					var day = (((dd.getDate())+"").length==1)?"0"+(dd.getDate()):(dd.getDate());
+  					var html = "<div class='caltitle'>"+yyyy+"年"+mm+"月航班信息</div>";
+					for (i = 1; i < 32; i++) {
+  						var d = (((i)+"").length==1)?"0"+(i):(i);
+  						var time = yyyy + "-" + mm + "-" + d;
+  						var time_today = yyyy + "-" + mm + "-" + day;
+  						var class_active = "";
+  						if(time == time_today){
+  							class_active = "active";
+  						}
+						html += "<div class='cal_cells "+class_active+"'>";
+						html += "<p>"+i+"</p>";
+						html += "<div class='cal_line'>";
+						var c_color = "5C5C5C";
+						for(var j in data){
+							if(data[j].datestart == time){
+								switch(data[j].cruiseName){
+								case "蓝宝石公主号":
+								  c_color = "72C7E1";
+								  break;
+								case "海洋水手号":
+								  c_color = "293E92";	
+								  break;
+								case "歌诗达赛琳娜号":
+								  c_color = "FEA52F";	
+								  break;
+								case "海洋量子号":
+								  c_color = "293E92";	
+								  break;
+								case "歌诗达幸运号":
+								  c_color = "FEA52F";	
+								  break;
+								case "天海新世纪号":
+								  c_color = "8FC31F";	
+								  break;
+								case "千禧年号":
+								  c_color = "BDA2CD";	
+								  break;
+								case "歌诗达维多利亚号":
+								  c_color = "FEA52F";	
+								  break;
+								}
+								html += "<span style='font-weight:bolder;color:#"+c_color+"' title='"+time+" "+data[j].cruiseName+" "+data[j].txtLine+"'>● "+data[j].cruiseName+"</span>";
+							}
+						}
+						html += "</div>";
+						html += "</div>";
+					}
+					$scope.calitem1 = $sce.trustAsHtml(html);
 				}).error(function() {
 					console.log("error");
 				});
