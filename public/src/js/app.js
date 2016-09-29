@@ -37,7 +37,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 				},
 				'main@index': {
 					templateUrl: 'tpls/homepage.html',
-					controller: function($scope,$http) {
+					controller: function($scope, $http) {
 						$http({
 							url: 'http://weather.huiyoulun.com/Bs7Day',
 							method: 'GET'
@@ -46,9 +46,23 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 								$('#Date').html(data[0].Date);
 								$('#DayWeather').html(data[0].DayWeather);
 								$('#Temp').html(data[i].TempMin + "℃ ~" + data[i].TempMax +"℃");*/
-								$scope.Date = data[0].Date;
-								$scope.DayWeather = data[0].DayWeather;
-								$scope.Temp = data[i].TempMin + "℃ ~" + data[i].TempMax +"℃";
+							var d1 = new Date();
+							var y = d1.getFullYear();
+							var m = d1.getMonth() + 1;
+							var dd = d1.getDate();
+							var today = y + "-" + m + "-" + dd;
+							//判断今天是星期几
+							for(var i in data) {
+								if(data[i].Date == today) {
+									var d = new Date(data[i].Date);
+									var w = d.getDay();
+									console.log(w);
+									var week = ["日", "一", "二", "三", "四", "五", "六"];
+									$scope.Date = data[i].Date + " 星期" + week[w];
+									$scope.DayWeather = data[i].DayWeather;
+									$scope.Temp = data[i].TempMin + "℃ ~" + data[i].TempMax + "℃";
+								}
+							}
 						}).error(function() {
 							console.log("error");
 						});
