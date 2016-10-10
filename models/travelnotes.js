@@ -103,7 +103,28 @@ Travelnotes.prototype.update = function save(callback) {
 }
 
 Travelnotes.prototype.get = function get(callback) {
-    var selectSQL  = 'select * from travel_notes order by id desc';
+    var selectSQL  = 'select id,txtCategory1,txtCategory2,txtCategory3,rtfImg,txtTitle,txtAbbr from travel_notes order by id desc';
+    console.log(selectSQL);
+    mysql.getConnection(function (err, conn) {
+        if (err) console.log("POOL ==> " + err);
+
+        //return callback(err);
+        conn.query(selectSQL, function(err, rows, fields) {
+
+            if (err) {
+                console.log("error:" + err);
+                return callback("error");
+            }
+            console.log("SELECT ==> ");
+            //console.log(rows);
+            conn.release();
+            return callback(rows);
+        });
+    });
+}
+
+Travelnotes.prototype.getById = function getById(callback) {
+    var selectSQL  = 'select * from travel_notes where id = '+this.docid;
     console.log(selectSQL);
     mysql.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> " + err);

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="baidu-site-verification" content="ttbuSMtnbT" />
+		<title>Barcode</title>
+		<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="js/jquery-barcode.js"></script>
+		<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+		<style type="text/css">
+			.barcodeImg {
+				margin: 10px 0px
+			}
+			.QRcodeImg{
+				margin: 10px 10px
+			}
+			.barinfo{
+				margin: -10px 0 10px 10px;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+
+	<body>
+		数据（条码只包含护照号）:
+		<p>Golden Era E11225921991 QIN ZHIQIANG</p>
+		code39:
+		<div id="code39" class="barcodeImg"></div>
+		<p class="barinfo">Golden Era  QIN ZHIQIANG</p>
+		code93:
+		<div id="code93" class="barcodeImg"></div>
+		<p class="barinfo">Golden Era  QIN ZHIQIANG</p>
+		code128:
+		<div id="code128" class="barcodeImg"></div>
+		<p class="barinfo">Golden Era  QIN ZHIQIANG</p>
+		<!--
+		QR code:
+		<div id="code" class="QRcodeImg"></div>-->
+		<script>
+			$(function() {
+				var info = "E11225921991";
+				$("#code39").empty().barcode(info, "code39", {
+					barWidth: 1,
+					barHeight: 50,
+					showHRI: false
+				});
+				$("#code93").empty().barcode(info, "code93", {
+					barWidth: 1,
+					barHeight: 50,
+					showHRI: false
+				});
+				$("#code128").empty().barcode(info, "code128", {
+					barWidth: 1,
+					barHeight: 50,
+					showHRI: false
+				});
+				$("#code").qrcode({
+					render: "table", //table方式
+					width: 150, //宽度
+					height: 150, //高度
+					text: info //任意内容
+				});
+			});
+		</script>
+	</body>
+
+</html>

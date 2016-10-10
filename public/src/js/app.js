@@ -54,9 +54,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 							//判断今天是星期几
 							for(var i in data) {
 								if(data[i].Date == today) {
-									var d = new Date(data[i].Date);
+									//var d = new Date(data[i].Date);
+									var d = new Date();
 									var w = d.getDay();
-									console.log(w);
+									//console.log(w);
 									var week = ["日", "一", "二", "三", "四", "五", "六"];
 									$scope.Date = data[i].Date + " 星期" + week[w];
 									$scope.DayWeather = data[i].DayWeather;
@@ -274,7 +275,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 									case "海洋水手号":
 										c_color = "293E92";
 										break;
-									case "歌诗达赛琳娜号":
+									case "赛琳娜号":
 										c_color = "FEA52F";
 										break;
 									case "海洋量子号":
@@ -289,7 +290,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 									case "千禧年号":
 										c_color = "BDA2CD";
 										break;
-									case "歌诗达维多利亚号":
+									case "维多利亚号":
 										c_color = "FEA52F";
 										break;
 								}

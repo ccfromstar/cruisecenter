@@ -99,93 +99,100 @@ exports.view_travel = function(req, res) {
 }
 
 exports.travel = function(req, res) {
-    var med = new Med();
-    var id = req.query.id;
-    med.get(function (result) {
-        if (result[1] == "r") {
-            console.log("get info error!");
-        } else {
-            var cruiseship = new Cruiseship();
-            cruiseship.get(function (result1) {
-                if (result1[1] == "r") {
-                    console.log("get info error!");
-                } else {
-                    var cruisecompany = new Cruisecompany();
-                    cruisecompany.get(function (result2) {
-                        if (result2[1] == "r") {
-                            console.log("get info error!");
-                        } else {
-                            var travelnotes = new Travelnotes("","","","","","","");
-                            travelnotes.get(function (result3) {
-                                if (result3[1] == "r") {
-                                    console.log("get info error!");
-                                } else {
+	var med = new Med();
+	var id = req.query.id;
+	med.get(function(result) {
+		if(result[1] == "r") {
+			console.log("get info error!");
+		} else {
+			var cruiseship = new Cruiseship();
+			cruiseship.get(function(result1) {
+				if(result1[1] == "r") {
+					console.log("get info error!");
+				} else {
+					var cruisecompany = new Cruisecompany();
+					cruisecompany.get(function(result2) {
+						if(result2[1] == "r") {
+							console.log("get info error!");
+						} else {
+							var travelnotes = new Travelnotes("", "", "", "", "", "", "");
+							travelnotes.get(function(result3) {
+								if(result3[1] == "r") {
+									console.log("get info error!");
+								} else {
 
-                                    var theme = new Theme();
-                                    theme.get(function (result4) {
-                                        if (result4[1] == "r") {
-                                            console.log("get info error!");
-                                        } else {
-                                            res.render('travel', {layout:"layout",med:result,cruiseship:result1,cruisecompany:result2,id:id,re3:result3,theme:result4});
-                                        }
-                                    });
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        }
-    });
+									var theme = new Theme();
+									theme.get(function(result4) {
+										if(result4[1] == "r") {
+											console.log("get info error!");
+										} else {
+											res.render('travel', {
+												layout: "layout",
+												med: result,
+												cruiseship: result1,
+												cruisecompany: result2,
+												id: id,
+												re3: result3,
+												theme: result4
+											});
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+		}
+	});
 }
 
-exports.travelsubmit = function (req, res) {
-    var txtCategory1 = req.body['txtCategory1'];
-    var txtCategory2 = req.body['txtCategory2'];
-    var txtCategory3 = req.body['txtCategory3'];
-    var rtfImg = req.body['rtfImg'];
-    var txtText = req.body['editor02'];
-    var txtTitle = req.body['txtTitle'];
-    var stype =  req.body['stype'];
-    var txtAbbr =  req.body['txtAbbr'];
+exports.travelsubmit = function(req, res) {
+	var txtCategory1 = req.body['txtCategory1'];
+	var txtCategory2 = req.body['txtCategory2'];
+	var txtCategory3 = req.body['txtCategory3'];
+	var rtfImg = req.body['rtfImg'];
+	var txtText = req.body['editor02'];
+	var txtTitle = req.body['txtTitle'];
+	var stype = req.body['stype'];
+	var txtAbbr = req.body['txtAbbr'];
 
+	if(stype == "1") {
+		var travelnotes = new Travelnotes("", txtCategory1, txtCategory2, txtCategory3, rtfImg, txtText, txtTitle, txtAbbr);
+		travelnotes.save(function(err) {
 
-    if(stype=="1"){
-        var travelnotes = new Travelnotes("",txtCategory1,txtCategory2,txtCategory3,rtfImg,txtText,txtTitle,txtAbbr);
-        travelnotes.save(function (err) {
+			if(err == "error") {
+				console.log("error!");
+			}
+			res.redirect('/view_travel');
+		});
+	} else {
+		var travelnotes = new Travelnotes(req.body['docid'], txtCategory1, txtCategory2, txtCategory3, rtfImg, txtText, txtTitle, txtAbbr);
+		travelnotes.update(function(err) {
 
-            if (err == "error") {
-                console.log("error!");
-            }
-            res.redirect('/view_travel');
-        });
-    }else{
-        var travelnotes = new Travelnotes(req.body['docid'],txtCategory1,txtCategory2,txtCategory3,rtfImg,txtText,txtTitle,txtAbbr);
-        travelnotes.update(function (err) {
-
-            if (err == "error") {
-                console.log("error!");
-            }
-            res.redirect('/view_travel');
-        });
-    }
+			if(err == "error") {
+				console.log("error!");
+			}
+			res.redirect('/view_travel');
+		});
+	}
 };
 
 exports.userdo = function(req, res) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	var sql = req.params.sql;
-	if (sql == "checkLogin") {
+	if(sql == "checkLogin") {
 		var uname = req.param("uname");
 		var pwd = req.param("pwd");
 		var sql = "select * from admin where username = '" + uname + "'";
 		debug(sql);
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
-			if (!result[0]) {
+			if(err) return console.error(err.stack);
+			if(!result[0]) {
 				res.send("400");
 				return;
 			}
-			if (result[0].password == pwd) {
+			if(result[0].password == pwd) {
 				res.json(result[0]);
 			} else {
 				res.send("400");
@@ -197,7 +204,7 @@ exports.userdo = function(req, res) {
 exports.newsdo = function(req, res) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	var sql = req.params.sql;
-	if (sql == "create") {
+	if(sql == "create") {
 		var mode = req.param("mode");
 		var title = req.param("title");
 		var post = req.param("post");
@@ -208,7 +215,7 @@ exports.newsdo = function(req, res) {
 		title = title.replace(/'/g, "\\'");
 		post = post.replace(/'/g, "\\'");
 		/*编辑模式*/
-		if (mode == "edit") {
+		if(mode == "edit") {
 			var sql = "update news set ";
 			sql += " title = '" + title + "',";
 			sql += " summary = '" + summary + "',";
@@ -216,21 +223,21 @@ exports.newsdo = function(req, res) {
 			sql += " post = '" + post + "'";
 			sql += " where id = " + editid;
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		} else {
 			var sql = "insert into news (title,post,summary,publishAt,source) values ('" + title + "','" + post + "','" + summary + "',now(),'" + source + "')";
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		}
-	} else if (sql == "get") {
+	} else if(sql == "get") {
 		var page = parseInt(req.param("indexPage"));
 		var LIMIT = 8;
 		page = (page && page > 0) ? page : 1;
@@ -243,19 +250,19 @@ exports.newsdo = function(req, res) {
 		debug(sql1);
 		async.waterfall([function(callback) {
 			mysql.query(sql1, function(err, result) {
-				if (err) return console.error(err.stack);
-				for (var i in result) {
+				if(err) return console.error(err.stack);
+				for(var i in result) {
 					result[i].publishAt = (result[i].publishAt).Format("yyyy-MM-dd hh:mm:ss");
 				}
 				callback(null, result);
 			});
 		}, function(result, callback) {
 			mysql.query(sql2, function(err, rows) {
-				if (err) return console.error(err.stack);
+				if(err) return console.error(err.stack);
 				callback(err, rows, result);
 			});
 		}], function(err, rows, result) {
-			if (err) {
+			if(err) {
 				console.log(err);
 			} else {
 
@@ -274,33 +281,33 @@ exports.newsdo = function(req, res) {
 				res.json(ret);
 			}
 		});
-	} else if (sql == "del") {
+	} else if(sql == "del") {
 		var id = req.param("id");
 		var sql = "delete from news where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
-			if (result.affectedRows == 1) {
+			if(err) return console.error(err.stack);
+			if(result.affectedRows == 1) {
 				res.send("300");
 			}
 		});
-	} else if (sql == "getById") {
+	} else if(sql == "getById") {
 		var id = req.param("id");
 		var sql = "select * from news where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
-	} else if (sql == "getByIdAndNext") {
+	} else if(sql == "getByIdAndNext") {
 		var id = req.param("id");
 		var sql = "select * from news where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			var sql1 = "select * from news where id = (select max(id) from news where id < " + id + ")";
 			mysql.query(sql1, function(err1, result1) {
-				if (err1) return console.error(err1.stack);
+				if(err1) return console.error(err1.stack);
 				var sql2 = "select * from news where id = (select min(id) from news where id > " + id + ")";
 				mysql.query(sql2, function(err2, result2) {
-					if (err2) return console.error(err2.stack);
+					if(err2) return console.error(err2.stack);
 					result[0].front = result1;
 					result[0].next = result2;
 					res.json(result);
@@ -313,7 +320,7 @@ exports.newsdo = function(req, res) {
 exports.faqdo = function(req, res) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	var sql = req.params.sql;
-	if (sql == "create") {
+	if(sql == "create") {
 		var mode = req.param("mode");
 		var title = req.param("title");
 		var post = req.param("post");
@@ -322,27 +329,27 @@ exports.faqdo = function(req, res) {
 		title = title.replace(/'/g, "\\'");
 		post = post.replace(/'/g, "\\'");
 		/*编辑模式*/
-		if (mode == "edit") {
+		if(mode == "edit") {
 			var sql = "update faq set ";
 			sql += " title = '" + title + "',";
 			sql += " post = '" + post + "'";
 			sql += " where id = " + editid;
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		} else {
 			var sql = "insert into faq (title,post) values ('" + title + "','" + post + "')";
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		}
-	} else if (sql == "get") {
+	} else if(sql == "get") {
 		var page = parseInt(req.param("indexPage"));
 		var LIMIT = 8;
 		page = (page && page > 0) ? page : 1;
@@ -355,16 +362,16 @@ exports.faqdo = function(req, res) {
 		debug(sql1);
 		async.waterfall([function(callback) {
 			mysql.query(sql1, function(err, result) {
-				if (err) return console.error(err.stack);
+				if(err) return console.error(err.stack);
 				callback(null, result);
 			});
 		}, function(result, callback) {
 			mysql.query(sql2, function(err, rows) {
-				if (err) return console.error(err.stack);
+				if(err) return console.error(err.stack);
 				callback(err, rows, result);
 			});
 		}], function(err, rows, result) {
-			if (err) {
+			if(err) {
 				console.log(err);
 			} else {
 
@@ -383,44 +390,44 @@ exports.faqdo = function(req, res) {
 				res.json(ret);
 			}
 		});
-	} else if (sql == "del") {
+	} else if(sql == "del") {
 		var id = req.param("id");
 		var sql = "delete from faq where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
-			if (result.affectedRows == 1) {
+			if(err) return console.error(err.stack);
+			if(result.affectedRows == 1) {
 				res.send("300");
 			}
 		});
-	} else if (sql == "getById") {
+	} else if(sql == "getById") {
 		var id = req.param("id");
 		var sql = "select * from faq where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
-	} else if (sql == "getByIdAndNext") {
+	} else if(sql == "getByIdAndNext") {
 		var id = req.param("id");
 		var sql = "select * from news where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			var sql1 = "select * from news where id = (select max(id) from news where id < " + id + ")";
 			mysql.query(sql1, function(err1, result1) {
-				if (err1) return console.error(err1.stack);
+				if(err1) return console.error(err1.stack);
 				var sql2 = "select * from news where id = (select min(id) from news where id > " + id + ")";
 				mysql.query(sql2, function(err2, result2) {
-					if (err2) return console.error(err2.stack);
+					if(err2) return console.error(err2.stack);
 					result[0].front = result1;
 					result[0].next = result2;
 					res.json(result);
 				});
 			});
 		});
-	} else if (sql == "getAll") {
+	} else if(sql == "getAll") {
 		var id = req.param("id");
 		var sql = "select * from faq";
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
 	}
@@ -429,7 +436,7 @@ exports.faqdo = function(req, res) {
 exports.noticedo = function(req, res) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	var sql = req.params.sql;
-	if (sql == "create") {
+	if(sql == "create") {
 		var mode = req.param("mode");
 		var title = req.param("title");
 		var post = req.param("post");
@@ -438,27 +445,27 @@ exports.noticedo = function(req, res) {
 		title = title.replace(/'/g, "\\'");
 		post = post.replace(/'/g, "\\'");
 		/*编辑模式*/
-		if (mode == "edit") {
+		if(mode == "edit") {
 			var sql = "update notice set ";
 			sql += " title = '" + title + "',";
 			sql += " post = '" + post + "'";
 			sql += " where id = " + editid;
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		} else {
 			var sql = "insert into notice (title,post,publishAt) values ('" + title + "','" + post + "',now())";
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		}
-	} else if (sql == "get") {
+	} else if(sql == "get") {
 		var page = parseInt(req.param("indexPage"));
 		var LIMIT = 8;
 		page = (page && page > 0) ? page : 1;
@@ -471,19 +478,19 @@ exports.noticedo = function(req, res) {
 		debug(sql1);
 		async.waterfall([function(callback) {
 			mysql.query(sql1, function(err, result) {
-				if (err) return console.error(err.stack);
-				for (var i in result) {
+				if(err) return console.error(err.stack);
+				for(var i in result) {
 					result[i].publishAt = (result[i].publishAt).Format("yyyy-MM-dd hh:mm:ss");
 				}
 				callback(null, result);
 			});
 		}, function(result, callback) {
 			mysql.query(sql2, function(err, rows) {
-				if (err) return console.error(err.stack);
+				if(err) return console.error(err.stack);
 				callback(err, rows, result);
 			});
 		}], function(err, rows, result) {
-			if (err) {
+			if(err) {
 				console.log(err);
 			} else {
 
@@ -502,40 +509,40 @@ exports.noticedo = function(req, res) {
 				res.json(ret);
 			}
 		});
-	} else if (sql == "del") {
+	} else if(sql == "del") {
 		var id = req.param("id");
 		var sql = "delete from notice where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
-			if (result.affectedRows == 1) {
+			if(err) return console.error(err.stack);
+			if(result.affectedRows == 1) {
 				res.send("300");
 			}
 		});
-	} else if (sql == "getById") {
+	} else if(sql == "getById") {
 		var id = req.param("id");
 		var sql = "select * from notice where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
-	} else if (sql == "getemergency") {
+	} else if(sql == "getemergency") {
 		var sql = "select * from notice order by id desc";
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
-	} else if (sql == "getcal") {
+	} else if(sql == "getcal") {
 		var d1 = new Date();
 		d1 = d1.Format("yyyy-MM-dd");
-		var sql = "select * from cruise_cal where datestart = '"+d1+"'";
+		var sql = "select * from cruise_cal where datestart = '" + d1 + "'";
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
-	} else if (sql == "getcalAll") {
+	} else if(sql == "getcalAll") {
 		var sql = "select * from cruise_cal";
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
 	}
@@ -544,7 +551,7 @@ exports.noticedo = function(req, res) {
 exports.staticdo = function(req, res) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	var sql = req.params.sql;
-	if (sql == "create") {
+	if(sql == "create") {
 		var mode = req.param("mode");
 		var name = req.param("name");
 		var post = req.param("post");
@@ -553,27 +560,27 @@ exports.staticdo = function(req, res) {
 		name = name.replace(/'/g, "\\'");
 		post = post.replace(/'/g, "\\'");
 		/*编辑模式*/
-		if (mode == "edit") {
+		if(mode == "edit") {
 			var sql = "update staticpage set ";
 			sql += " name = '" + name + "',";
 			sql += " post = '" + post + "'";
 			sql += " where id = " + editid;
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		} else {
 			var sql = "insert into staticpage (name,post) values ('" + name + "','" + post + "')";
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		}
-	} else if (sql == "get") {
+	} else if(sql == "get") {
 		var page = parseInt(req.param("indexPage"));
 		var LIMIT = 8;
 		page = (page && page > 0) ? page : 1;
@@ -586,16 +593,16 @@ exports.staticdo = function(req, res) {
 		debug(sql1);
 		async.waterfall([function(callback) {
 			mysql.query(sql1, function(err, result) {
-				if (err) return console.error(err.stack);
+				if(err) return console.error(err.stack);
 				callback(null, result);
 			});
 		}, function(result, callback) {
 			mysql.query(sql2, function(err, rows) {
-				if (err) return console.error(err.stack);
+				if(err) return console.error(err.stack);
 				callback(err, rows, result);
 			});
 		}], function(err, rows, result) {
-			if (err) {
+			if(err) {
 				console.log(err);
 			} else {
 
@@ -614,39 +621,39 @@ exports.staticdo = function(req, res) {
 				res.json(ret);
 			}
 		});
-	} else if (sql == "del") {
+	} else if(sql == "del") {
 		var id = req.param("id");
 		var sql = "delete from notice where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
-			if (result.affectedRows == 1) {
+			if(err) return console.error(err.stack);
+			if(result.affectedRows == 1) {
 				res.send("300");
 			}
 		});
-	} else if (sql == "getById") {
+	} else if(sql == "getById") {
 		var id = req.param("id");
 		var sql = "select * from staticpage where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
-	} else if (sql == "getByName") {
+	} else if(sql == "getByName") {
 		var name = req.param("name");
 		var sql = "select * from staticpage where name = '" + name + "'";
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
-	} else if (sql == "getemergency") {
+	} else if(sql == "getemergency") {
 		var sql = "select top 1 * from notice where showInhome = 1";
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
-	} else if(sql == "getShip"){
+	} else if(sql == "getShip") {
 		var sql = "select * from note";
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
 	}
@@ -655,7 +662,7 @@ exports.staticdo = function(req, res) {
 exports.notedo = function(req, res) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	var sql = req.params.sql;
-	if (sql == "create") {
+	if(sql == "create") {
 		var mode = req.param("mode");
 		var name = req.param("name");
 		var post = req.param("post");
@@ -664,27 +671,27 @@ exports.notedo = function(req, res) {
 		name = name.replace(/'/g, "\\'");
 		post = post.replace(/'/g, "\\'");
 		/*编辑模式*/
-		if (mode == "edit") {
+		if(mode == "edit") {
 			var sql = "update note set ";
 			sql += " name = '" + name + "',";
 			sql += " post = '" + post + "'";
 			sql += " where id = " + editid;
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		} else {
 			var sql = "insert into note (name,post) values ('" + name + "','" + post + "')";
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		}
-	} else if (sql == "get") {
+	} else if(sql == "get") {
 		var page = parseInt(req.param("indexPage"));
 		var LIMIT = 8;
 		page = (page && page > 0) ? page : 1;
@@ -697,16 +704,16 @@ exports.notedo = function(req, res) {
 		debug(sql1);
 		async.waterfall([function(callback) {
 			mysql.query(sql1, function(err, result) {
-				if (err) return console.error(err.stack);
+				if(err) return console.error(err.stack);
 				callback(null, result);
 			});
 		}, function(result, callback) {
 			mysql.query(sql2, function(err, rows) {
-				if (err) return console.error(err.stack);
+				if(err) return console.error(err.stack);
 				callback(err, rows, result);
 			});
 		}], function(err, rows, result) {
-			if (err) {
+			if(err) {
 				console.log(err);
 			} else {
 
@@ -725,33 +732,33 @@ exports.notedo = function(req, res) {
 				res.json(ret);
 			}
 		});
-	} else if (sql == "del") {
+	} else if(sql == "del") {
 		var id = req.param("id");
 		var sql = "delete from note where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
-			if (result.affectedRows == 1) {
+			if(err) return console.error(err.stack);
+			if(result.affectedRows == 1) {
 				res.send("300");
 			}
 		});
-	} else if (sql == "getById") {
+	} else if(sql == "getById") {
 		var id = req.param("id");
 		var sql = "select * from note where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
-	} else if (sql == "getByName") {
+	} else if(sql == "getByName") {
 		var name = req.param("name");
 		var sql = "select * from note where name = '" + name + "'";
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
-	} else if (sql == "getemergency") {
+	} else if(sql == "getemergency") {
 		var sql = "select top 1 * from note where showInhome = 1";
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
 	}
@@ -760,7 +767,7 @@ exports.notedo = function(req, res) {
 exports.traveldo = function(req, res) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	var sql = req.params.sql;
-	if (sql == "create") {
+	if(sql == "create") {
 		var mode = req.param("mode");
 		var title = req.param("title");
 		var post = req.param("post");
@@ -771,7 +778,7 @@ exports.traveldo = function(req, res) {
 		title = title.replace(/'/g, "\\'");
 		post = post.replace(/'/g, "\\'");
 		/*编辑模式*/
-		if (mode == "edit") {
+		if(mode == "edit") {
 			var sql = "update news set ";
 			sql += " title = '" + title + "',";
 			sql += " summary = '" + summary + "',";
@@ -779,21 +786,21 @@ exports.traveldo = function(req, res) {
 			sql += " post = '" + post + "'";
 			sql += " where id = " + editid;
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		} else {
 			var sql = "insert into news (title,post,summary,publishAt,source) values ('" + title + "','" + post + "','" + summary + "',now(),'" + source + "')";
 			mysql.query(sql, function(err, result) {
-				if (err) return console.error(err.stack);
-				if (result.affectedRows == 1) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
 					res.send("300");
 				}
 			});
 		}
-	} else if (sql == "get") {
+	} else if(sql == "get") {
 		var page = parseInt(req.param("indexPage"));
 		var LIMIT = 8;
 		page = (page && page > 0) ? page : 1;
@@ -806,17 +813,17 @@ exports.traveldo = function(req, res) {
 		debug(sql1);
 		async.waterfall([function(callback) {
 			mysql.query(sql1, function(err, result) {
-				if (err) return console.error(err.stack);
-				
+				if(err) return console.error(err.stack);
+
 				callback(null, result);
 			});
 		}, function(result, callback) {
 			mysql.query(sql2, function(err, rows) {
-				if (err) return console.error(err.stack);
+				if(err) return console.error(err.stack);
 				callback(err, rows, result);
 			});
 		}], function(err, rows, result) {
-			if (err) {
+			if(err) {
 				console.log(err);
 			} else {
 
@@ -835,33 +842,33 @@ exports.traveldo = function(req, res) {
 				res.json(ret);
 			}
 		});
-	} else if (sql == "del") {
+	} else if(sql == "del") {
 		var id = req.param("id");
 		var sql = "delete from travel_notes where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
-			if (result.affectedRows == 1) {
+			if(err) return console.error(err.stack);
+			if(result.affectedRows == 1) {
 				res.send("300");
 			}
 		});
-	} else if (sql == "getById") {
+	} else if(sql == "getById") {
 		var id = req.param("id");
 		var sql = "select * from news where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			res.json(result);
 		});
-	} else if (sql == "getByIdAndNext") {
+	} else if(sql == "getByIdAndNext") {
 		var id = req.param("id");
 		var sql = "select * from news where id = " + id;
 		mysql.query(sql, function(err, result) {
-			if (err) return console.error(err.stack);
+			if(err) return console.error(err.stack);
 			var sql1 = "select * from news where id = (select max(id) from news where id < " + id + ")";
 			mysql.query(sql1, function(err1, result1) {
-				if (err1) return console.error(err1.stack);
+				if(err1) return console.error(err1.stack);
 				var sql2 = "select * from news where id = (select min(id) from news where id > " + id + ")";
 				mysql.query(sql2, function(err2, result2) {
-					if (err2) return console.error(err2.stack);
+					if(err2) return console.error(err2.stack);
 					result[0].front = result1;
 					result[0].next = result2;
 					res.json(result);
@@ -883,21 +890,23 @@ exports.uploadImg = function(req, res) {
 exports.postdo = function(req, res) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	var fname = req.files.fileUp.path.replace("public\\upload\\", "").replace("public/upload/", "");
-	res.writeHead(200, {'Content-type' : 'text/html'});
+	res.writeHead(200, {
+		'Content-type': 'text/html'
+	});
 	res.write('<script>');
-	res.write('window.parent.postMessage("'+fname+'","*");');
+	res.write('window.parent.postMessage("' + fname + '","*");');
 	res.end('</script>');
 }
 
 exports.c_destination = function(req, res) {
 	var med = new Med();
 	med.get(function(result) {
-		if (result[1] == "r") {
+		if(result[1] == "r") {
 			console.log("get info error!");
 		} else {
 			var port = new Port();
 			port.get(function(result1) {
-				if (result1[1] == "r") {
+				if(result1[1] == "r") {
 					console.log("get info error!");
 				} else {
 					res.render('c_destination', {
@@ -915,12 +924,12 @@ exports.c_destination = function(req, res) {
 exports.c_curisecompany = function(req, res) {
 	var cruisecompany = new Cruisecompany();
 	cruisecompany.get(function(result) {
-		if (result[1] == "r") {
+		if(result[1] == "r") {
 			console.log("get info error!");
 		} else {
 			var cruiseship = new Cruiseship();
 			cruiseship.get(function(result1) {
-				if (result1[1] == "r") {
+				if(result1[1] == "r") {
 					console.log("get info error!");
 				} else {
 					res.render('c_curisecompany', {
@@ -939,27 +948,27 @@ exports.c_destination_sec = function(req, res) {
 	var pathid = req.query.pid;
 	var med = new Med();
 	med.get(function(result) {
-		if (result[1] == "r") {
+		if(result[1] == "r") {
 			console.log("get info error!");
 		} else {
 			var port = new Port();
 			port.get(function(result1) {
-				if (result1[1] == "r") {
+				if(result1[1] == "r") {
 					console.log("get info error!");
 				} else {
 					var cruiseship = new Cruiseship();
 					cruiseship.get(function(result3) {
-						if (result3[1] == "r") {
+						if(result3[1] == "r") {
 							console.log("get info error!");
 						} else {
 							var travelnotes = new Travelnotes();
 							travelnotes.get(function(result6) {
-								if (result6[1] == "r") {
+								if(result6[1] == "r") {
 									console.log("get info error!");
 								} else {
 									var cruiselineinfo = new Cruiselineinfo();
 									cruiselineinfo.get(function(result2) {
-										if (result2[1] == "r") {
+										if(result2[1] == "r") {
 											console.log("get info error!");
 										} else {
 											res.render('c_destination_sec', {
@@ -988,27 +997,27 @@ exports.c_destinationsp_sec = function(req, res) {
 	var pathid = req.query.pid;
 	var med = new Med();
 	med.get(function(result) {
-		if (result[1] == "r") {
+		if(result[1] == "r") {
 			console.log("get info error!");
 		} else {
 			var port = new Port();
 			port.get(function(result1) {
-				if (result1[1] == "r") {
+				if(result1[1] == "r") {
 					console.log("get info error!");
 				} else {
 					var cruiselineinfo = new Cruiselineinfo();
 					cruiselineinfo.get(function(result2) {
-						if (result2[1] == "r") {
+						if(result2[1] == "r") {
 							console.log("get info error!");
 						} else {
 							var cruiseship = new Cruiseship();
 							cruiseship.get(function(result3) {
-								if (result3[1] == "r") {
+								if(result3[1] == "r") {
 									console.log("get info error!");
 								} else {
 									var travelnotes = new Travelnotes();
 									travelnotes.get(function(result6) {
-										if (result6[1] == "r") {
+										if(result6[1] == "r") {
 											console.log("get info error!");
 										} else {
 											res.render('c_destinationsp_sec', {
@@ -1038,28 +1047,28 @@ exports.c_destinationport_sec = function(req, res) {
 	var pathid = req.query.pid;
 	var med = new Med();
 	med.get(function(result) {
-		if (result[1] == "r") {
+		if(result[1] == "r") {
 			console.log("get info error!");
 		} else {
 			var port = new Port();
 			port.get(function(result1) {
-				if (result1[1] == "r") {
+				if(result1[1] == "r") {
 					console.log("get info error!");
 				} else {
 					var cruiselineinfo = new Cruiselineinfo();
 					cruiselineinfo.get(function(result2) {
-						if (result2[1] == "r") {
+						if(result2[1] == "r") {
 							console.log("get info error!");
 						} else {
 							var cruiseship = new Cruiseship();
 							cruiseship.get(function(result3) {
-								if (result3[1] == "r") {
+								if(result3[1] == "r") {
 									console.log("get info error!");
 								} else {
 
 									var travelnotes = new Travelnotes();
 									travelnotes.get(function(result6) {
-										if (result6[1] == "r") {
+										if(result6[1] == "r") {
 											console.log("get info error!");
 										} else {
 											res.render('c_destinationport_sec', {
@@ -1089,27 +1098,27 @@ exports.c_curisecompanysp_sec = function(req, res) {
 	var pathid = req.query.pid;
 	var cruisecompany = new Cruisecompany();
 	cruisecompany.get(function(result) {
-		if (result[1] == "r") {
+		if(result[1] == "r") {
 			console.log("get info error!");
 		} else {
 			var cruiseship = new Cruiseship();
 			cruiseship.get(function(result1) {
-				if (result1[1] == "r") {
+				if(result1[1] == "r") {
 					console.log("get info error!");
 				} else {
 					var cruiselineinfo = new Cruiselineinfo();
 					cruiselineinfo.get(function(result2) {
-						if (result2[1] == "r") {
+						if(result2[1] == "r") {
 							console.log("get info error!");
 						} else {
 							var med = new Med();
 							med.get(function(result3) {
-								if (result3[1] == "r") {
+								if(result3[1] == "r") {
 									console.log("get info error!");
 								} else {
 									var travelnotes = new Travelnotes();
 									travelnotes.get(function(result5) {
-										if (result5[1] == "r") {
+										if(result5[1] == "r") {
 											console.log("get info error!");
 										} else {
 											res.render('c_curisecompanysp_sec', {
@@ -1138,27 +1147,27 @@ exports.c_curisecompany_sec = function(req, res) {
 	var pathid = req.query.pid;
 	var cruisecompany = new Cruisecompany();
 	cruisecompany.get(function(result) {
-		if (result[1] == "r") {
+		if(result[1] == "r") {
 			console.log("get info error!");
 		} else {
 			var cruiseship = new Cruiseship();
 			cruiseship.get(function(result1) {
-				if (result1[1] == "r") {
+				if(result1[1] == "r") {
 					console.log("get info error!");
 				} else {
 					var cruiselineinfo = new Cruiselineinfo();
 					cruiselineinfo.get(function(result2) {
-						if (result2[1] == "r") {
+						if(result2[1] == "r") {
 							console.log("get info error!");
 						} else {
 							var med = new Med();
 							med.get(function(result3) {
-								if (result3[1] == "r") {
+								if(result3[1] == "r") {
 									console.log("get info error!");
 								} else {
 									var travelnotes = new Travelnotes();
 									travelnotes.get(function(result5) {
-										if (result5[1] == "r") {
+										if(result5[1] == "r") {
 											console.log("get info error!");
 										} else {
 											res.render('c_curisecompany_sec', {
@@ -1187,37 +1196,37 @@ exports.c_curisecship_sec = function(req, res) {
 	var pathid = req.query.pid;
 	var cruisecompany = new Cruisecompany();
 	cruisecompany.get(function(result) {
-		if (result[1] == "r") {
+		if(result[1] == "r") {
 			console.log("get info error!");
 		} else {
 			var cruiseship = new Cruiseship();
 			cruiseship.get(function(result1) {
-				if (result1[1] == "r") {
+				if(result1[1] == "r") {
 					console.log("get info error!");
 				} else {
 					var shipcabin = new Shipcabin();
 					shipcabin.get(function(result2) {
-						if (result2[1] == "r") {
+						if(result2[1] == "r") {
 							console.log("get info error!");
 						} else {
 							var shipservice = new Shipservice();
 							shipservice.get(function(result3) {
-								if (result3[1] == "r") {
+								if(result3[1] == "r") {
 									console.log("get info error!");
 								} else {
 									var cruiselineinfo = new Cruiselineinfo();
 									cruiselineinfo.get(function(result4) {
-										if (result4[1] == "r") {
+										if(result4[1] == "r") {
 											console.log("get info error!");
 										} else {
 											var shipdinner = new Shipdinner();
 											shipdinner.get(function(result5) {
-												if (result5[1] == "r") {
+												if(result5[1] == "r") {
 													console.log("get info error!");
 												} else {
 													var travelnotes = new Travelnotes();
 													travelnotes.get(function(result7) {
-														if (result7[1] == "r") {
+														if(result7[1] == "r") {
 															console.log("get info error!");
 														} else {
 															res.render('c_curisecship_sec', {
@@ -1251,35 +1260,20 @@ exports.c_curisecship_sec = function(req, res) {
 exports.c_theme = function(req, res) {
 	var theme = new Theme();
 	theme.get(function(result) {
-		if (result[1] == "r") {
+		if(result[1] == "r") {
 			console.log("get info error!");
 		} else {
 			var travelnotes = new Travelnotes();
 			travelnotes.get(function(result1) {
-				if (result1[1] == "r") {
+				if(result1[1] == "r") {
 					console.log("get info error!");
 				} else {
 					var cruiselineinfo = new Cruiselineinfo();
-					cruiselineinfo.get(function(result2) {
-						if (result2[1] == "r") {
-							console.log("get info error!");
-						} else {
-							var med = new Med();
-							med.get(function(result3) {
-								if (result3[1] == "r") {
-									console.log("get info error!");
-								} else {
-									res.render('c_theme', {
-										layout: 'c_layouts',
-										title: '邮轮度假主题',
-										theme: result,
-										r1: result1,
-										r2: result2,
-										med: result3
-									});
-								}
-							});
-						}
+					res.render('c_theme', {
+						layout: 'c_layouts',
+						title: '邮轮度假主题',
+						theme: result,
+						r1: result1
 					});
 				}
 			});
@@ -1290,12 +1284,12 @@ exports.c_theme = function(req, res) {
 exports.c_share = function(req, res) {
 	var share = new Share();
 	share.get(function(result) {
-		if (result[1] == "r") {
+		if(result[1] == "r") {
 			console.log("get info error!");
 		} else {
 			var travelnotes = new Travelnotes();
 			travelnotes.get(function(result1) {
-				if (result1[1] == "r") {
+				if(result1[1] == "r") {
 					console.log("get info error!");
 				} else {
 					res.render('c_share', {
@@ -1310,71 +1304,86 @@ exports.c_share = function(req, res) {
 	});
 };
 
-exports.c_theme_sec = function (req, res) {
-    var pathid = req.query.id;
-    var theme = new Theme();
-    theme.get(function (result) {
-        if (result[1] == "r") {
-            console.log("get info error!");
-        } else {
-            var travelnotes = new Travelnotes();
-            travelnotes.get(function (result1) {
-                if (result1[1] == "r") {
-                    console.log("get info error!");
-                } else {
-                    res.render('c_theme_sec', {title: '邮轮度假主题',layout: 'c_layouts',menu_path: pathid, share: result,r1:result1});
-                }
-            });
-        }
-    });
+exports.c_theme_sec = function(req, res) {
+	var pathid = req.query.id;
+	var theme = new Theme();
+	theme.get(function(result) {
+		if(result[1] == "r") {
+			console.log("get info error!");
+		} else {
+			var travelnotes = new Travelnotes();
+			travelnotes.get(function(result1) {
+				if(result1[1] == "r") {
+					console.log("get info error!");
+				} else {
+					res.render('c_theme_sec', {
+						title: '邮轮度假主题',
+						layout: 'c_layouts',
+						menu_path: pathid,
+						share: result,
+						r1: result1
+					});
+				}
+			});
+		}
+	});
 };
 
-exports.c_share_sec = function (req, res) {
-    var pathid = req.query.pid;
-    var share = new Share();
-    share.get(function (result) {
-        if (result[1] == "r") {
-            console.log("get info error!");
-        } else {
-            var travelnotes = new Travelnotes();
-            travelnotes.get(function (result1) {
-                if (result1[1] == "r") {
-                    console.log("get info error!");
-                } else {
-                    res.render('c_share_sec', {
-                    	layout: 'c_layouts',
-                        title: '游记文章',
-                        menu_path: pathid,
-                        share: result, r1: result1
-                    });
-                }
-            });
-        }
-    });
+exports.c_share_sec = function(req, res) {
+	var pathid = req.query.pid;
+	var share = new Share();
+	share.get(function(result) {
+		if(result[1] == "r") {
+			console.log("get info error!");
+		} else {
+			var travelnotes = new Travelnotes(pathid);
+			travelnotes.get(function(result1) {
+				if(result1[1] == "r") {
+					console.log("get info error!");
+				} else {
+					travelnotes.getById(function(result2) {
+						if(result2[1] == "r") {
+							console.log("get info error!");
+						} else {
+							res.render('c_share_sec', {
+								layout: 'c_layouts',
+								title: '游记文章',
+								menu_path: pathid,
+								share: result,
+								r1: result1,
+								r0:result2
+							});
+						}
+					});
+				}
+			});
+		}
+	});
 };
 
-exports.c_sharetheme_sec = function (req, res) {
-    var pathid = req.query.id;
-    var share = new Share();
-    share.get(function (result) {
-        if (result[1] == "r") {
-            console.log("get info error!");
-        } else {
-            var travelnotes = new Travelnotes();
-            travelnotes.get(function (result1) {
-                if (result1[1] == "r") {
-                    console.log("get info error!");
-                } else {
-                    res.render('c_sharetheme_sec', {
-                    	layout: 'c_layouts',
-                        title: '游记文章',
-                        menu_path: pathid,
-                        share: result, r1: result1
-                    });
-                }
-            });
-        }
-    });
+exports.c_sharetheme_sec = function(req, res) {
+	var pathid = req.query.id;
+	var share = new Share();
+	share.get(function(result) {
+		if(result[1] == "r") {
+			console.log("get info error!");
+		} else {
+			var travelnotes = new Travelnotes();
+			travelnotes.get(function(result1) {
+				if(result1[1] == "r") {
+					console.log("get info error!");
+				} else {
+					res.render('c_sharetheme_sec', {
+						layout: 'c_layouts',
+						title: '游记文章',
+						menu_path: pathid,
+						share: result,
+						r1: result1
+					});
+				}
+			});
+		}
+	});
 };
 
 Date.prototype.Format = function(fmt) {
@@ -1388,11 +1397,11 @@ Date.prototype.Format = function(fmt) {
 		"q+": Math.floor((d.getMonth() + 3) / 3), //季度
 		"S": d.getMilliseconds() //毫秒
 	};
-	if (/(y+)/.test(fmt)) {
+	if(/(y+)/.test(fmt)) {
 		fmt = fmt.replace(RegExp.$1, (d.getFullYear() + "").substr(4 - RegExp.$1.length));
 	}
-	for (var k in o) {
-		if (new RegExp("(" + k + ")").test(fmt)) {
+	for(var k in o) {
+		if(new RegExp("(" + k + ")").test(fmt)) {
 			fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
 		}
 	}

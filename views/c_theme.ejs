@@ -53,148 +53,20 @@
         <div id="yj<%=no1%>4" class="myp1sm" style="overflow:hidden;height: 50px;;width:200px"><%=im4%>...</div>
         <div class="myh1b"  onclick="urlTo3('/c_share_sec?pid*<%=im1%>');">查看详情 >>></div>
         <%}%>
-        <br/><br/>
-        <%
-        var x = 0;
-        var im1 = "";
-        var im2 = "";
-        var im3 = "";
-        var im4 = "";
-        var no1 = "";
-        var labc = 0;
-        for (var w in r1) {
-        if(r1[w].txtCategory2 == theme[i].txtName){
-        if(x==1){
-        labc = 1;
-        im1 = r1[w].id;
-        im2 = r1[w].rtfImg;
-        im3 = r1[w].txtTitle;
-        im4 = r1[w].txtAbbr;
-        no1 = theme[i].txtNo;
-        }
-        x = x + 1;
-        }
-        }
-        if(labc == 1){
-        %>
-        <a onclick="urlTo3('/c_share_sec?pid*<%=im1%>');" href="#">
-            <img class="img_4" src="<%=im2%>" width="200px" height="124" /></a>
-        <br/><div class="myh1sm" style="height: 40px;"><%=im3%></div>
-        <div id="yj<%=no1%>4" class="myp1sm" style="overflow:hidden;height: 50px;;width:200px"><%=im4%>...</div>
-        <div class="myh1b" onclick="urlTo3('/c_share_sec?pid*<%=im1%>');">查看详情 >>></div>
-        <%}%>
+        
         <br/>
         <div class="myh1b" onclick="urlTo2('/c_theme_sec?id*<%=theme[i].txtNo%>');"><img src="http://www.youlunshidai.com/images/more.jpg" /></div>
     </td>
     </tr>
     <tr>
         <td width="220px">
-            <%
-                var k = 0;
-                var name1 = "";
-                var no1 = "";
-                var img2 = "";
-                for (var c in r2) {
-                    if(r2[c].txtCVruiselineProperty) {
-                        if ((r2[c].txtCVruiselineProperty).indexOf(theme[i].txtName) != -1) {
-                            k = k + 1;
-                            if (k == 1) {
-                                name1 = r2[c].txtCruiselineName;
-                                no1 = r2[c].txtCruiselineNo;
-
-                                for (var b in med) {
-                                    if (med[b].txtCruiseArea == r2[c].txtRoutingArea.replace(/\s+/g, "")) {
-                                        var img1 = med[b].rtfImg;
-                                        var tmp = img1.split("@");
-                                        img2 = tmp[2];
-
-                                    }
-                                }
-
-                            }
-                        }
-                    }
-                }
-            %>
-            <%if(img2!=""){%>
-            <a>
-                <img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=img2%>.jpg" width="200px" height="124" /></a> <br/>
-            <div class="myh1sm">主题推荐产品</div>
-            <div class="myp1sm"><%=name1%></div>
-            <div class="myh1b" onclick="" >了解详情 >>></div>
-            <%}%>
+            
         </td>
         <td width="220px">
-            <%
-                var k = 0;
-                var name1 = "";
-                var no1 = "";
-                var img2 = "";
-                for (var c in r2) {
-                    if(r2[c].txtCVruiselineProperty) {
-                        if ((r2[c].txtCVruiselineProperty).indexOf(theme[i].txtName) != -1) {
-                            k = k + 1;
-                            if (k == 2) {
-                                name1 = r2[c].txtCruiselineName;
-                                no1 = r2[c].txtCruiselineNo;
-
-                                for (var b in med) {
-                                    if (med[b].txtCruiseArea == r2[c].txtRoutingArea.replace(/\s+/g, "")) {
-                                        var img1 = med[b].rtfImg;
-                                        var tmp = img1.split("@");
-                                        img2 = tmp[2];
-
-                                    }
-                                }
-
-                            }
-                        }
-                    }
-                }
-            %>
-            <%if(img2!=""){%>
-            <a>
-                <img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=img2%>.jpg" width="200px" height="124" /></a> <br/>
-            <div class="myh1sm">主题推荐产品</div>
-            <div class="myp1sm"><%=name1%></div>
-            <div class="myh1b" >了解详情 >>></div>
-            <%}%>
+            
         </td>
         <td width="220px">
-            <%
-                var k = 0;
-                var name1 = "";
-                var no1 = "";
-                var img2 = "";
-                for (var c in r2) {
-                    if(r2[c].txtCVruiselineProperty) {
-                        if ((r2[c].txtCVruiselineProperty).indexOf(theme[i].txtName) != -1) {
-                            k = k + 1;
-                            if (k == 3) {
-                                name1 = r2[c].txtCruiselineName;
-                                no1 = r2[c].txtCruiselineNo;
-
-                                for (var b in med) {
-                                    if (med[b].txtCruiseArea == r2[c].txtRoutingArea.replace(/\s+/g, "")) {
-                                        var img1 = med[b].rtfImg;
-                                        var tmp = img1.split("@");
-                                        img2 = tmp[2];
-
-                                    }
-                                }
-
-                            }
-                        }
-                    }
-                }
-            %>
-            <%if(img2!=""){%>
-            <a>
-                <img class="img_4" src="http://www.youlunshidai.com/databaseimages/<%=img2%>.jpg" width="200px" height="124" /></a> <br/>
-            <div class="myh1sm">主题推荐产品</div>
-            <div class="myp1sm"><%=name1%></div>
-            <div class="myh1b" >了解详情 >>></div>
-            <%}%>
+            
         </td>
     </tr>
     </table>

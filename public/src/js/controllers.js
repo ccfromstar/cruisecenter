@@ -638,7 +638,7 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 								case "海洋水手号":
 								  c_color = "293E92";	
 								  break;
-								case "歌诗达赛琳娜号":
+								case "赛琳娜号":
 								  c_color = "FEA52F";	
 								  break;
 								case "海洋量子号":
@@ -653,7 +653,7 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 								case "千禧年号":
 								  c_color = "BDA2CD";	
 								  break;
-								case "歌诗达维多利亚号":
+								case "维多利亚号":
 								  c_color = "FEA52F";	
 								  break;
 								}

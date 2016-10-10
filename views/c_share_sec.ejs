@@ -22,25 +22,25 @@
     <tr>
         <td rowspan="2"  style="width:600px;background-color: #FFFFFF">
             <%
-            for(var i in r1){
-            if(r1[i].id == menu_path){
+            for(var i in r0){
+            if(r0[i].id == menu_path){
             %>
-            <%  if(r1[i].txtCategory1=="邮轮视频"){
+            <%  if(r0[i].txtCategory1=="邮轮视频"){
                 %>
 
-            <embed style="margin-left: 60px;margin-top: -230px;" width="480" height="338" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="dock=true&plugins=drelated-1&drelated.dxmlpath=relatedclips.xml&drelated.dposition=center&drelated.dshow=complete&drelated.dskin=grayskin.swf&drelated.dtarget=_self&skin=chrome.zip&image=http://blog.fity.cn/images/video.jpg" salign="lt" wmode="opaque" allowscriptaccess="always" allowfullscreen="true" quality="high" bgcolor="#000000" name="ply" id="ply" src="http://blog.fity.cn/demo/mp4player/fity.cn_player.swf?file=http://www.youlunshidai.com/video/<%=r1[i].rtfImg%>.mp4" type="application/x-shockwave-flash">
+            <embed style="margin-left: 60px;margin-top: -230px;" width="480" height="338" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="dock=true&plugins=drelated-1&drelated.dxmlpath=relatedclips.xml&drelated.dposition=center&drelated.dshow=complete&drelated.dskin=grayskin.swf&drelated.dtarget=_self&skin=chrome.zip&image=http://blog.fity.cn/images/video.jpg" salign="lt" wmode="opaque" allowscriptaccess="always" allowfullscreen="true" quality="high" bgcolor="#000000" name="ply" id="ply" src="http://blog.fity.cn/demo/mp4player/fity.cn_player.swf?file=http://www.youlunshidai.com/video/<%=r0[i].rtfImg%>.mp4" type="application/x-shockwave-flash">
 
                 <% }else{
                 %>
-            <img src="<%=r1[i].rtfImg%>" width="100%"/>
+            <img src="<%=r0[i].rtfImg%>" width="100%"/>
                 <% }
                 %>
 
-                <br/> <br/><br/>
-            <div style="text-align: center;width: 100%;font-weight: bold;font-size:18px;font-family:微软雅黑;"><%=r1[i].txtTitle%></div>
+                <br/><br/><br/>
+            <div style="text-align: center;width: 100%;font-weight: bold;font-size:18px;font-family:微软雅黑;"><%=r0[i].txtTitle%></div>
             <div id="yjS00011" class="myp1" style="padding-left: 35px;padding-right: 35px;padding-bottom: 35px;padding-top: 15px;text-indent: 0em;text-align: justify;">
                 <br/>
-                <%-r1[i].txtText%>
+                <%-r0[i].txtText%>
             </div>
             <%
             }
