@@ -589,6 +589,7 @@ function toPage(i, page) {
 					html += "<tr>";
 					html += "<td>" + record[i].name + "</td>";
 					html += "<td><button type='button' onclick='editDoc(5," + record[i].id + ")' class='am-btn am-btn-default am-btn-xs am-text-secondary'><span class='am-icon-pencil-square-o'></span> 编辑</button>";
+					html += "<button type='button' onclick='showDelCofirm(" + record[i].id + ")' class='am-btn am-btn-default am-btn-xs am-text-danger'><span class='am-icon-trash-o'></span> 删除</button></td>";
 					html += "</tr>";
 				}
 				var isFirstPage = data.isFirstPage ? "am-disabled" : "";
