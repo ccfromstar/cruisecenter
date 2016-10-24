@@ -1,0 +1,114 @@
+<div ui-view="nav"></div>
+<div class="center content_page">
+		<!--产品详情-->
+		<div id="prodetail">
+			<div class="am-panel am-panel-primary">
+				<div class="am-panel-hd">基本信息</div>
+				<img id="headerimg" alt="" />
+				<div class="am-panel-bd" id="jbxx">
+					数据加载中...
+				</div>
+			</div>
+			<div class="am-panel am-panel-primary">
+				<div class="am-panel-hd">价格信息</div>
+				<div class="am-panel-bd" id="jgxx">数据加载中...
+				</div>
+			</div>
+			<div class="am-panel am-panel-primary">
+				<div class="am-panel-hd">费用说明</div>
+				<div class="am-panel-bd" id="fysm">数据加载中...
+				</div>
+			</div>
+			<div class="am-panel am-panel-primary">
+				<div class="am-panel-hd">取消政策</div>
+				<div class="am-panel-bd" id="qxzc">数据加载中...
+				</div>
+			</div>
+			<div class="am-panel am-panel-primary">
+				<div class="am-panel-hd">航线信息</div>
+				<div class="am-panel-bd" id="hxxx">数据加载中...
+				</div>
+			</div>
+		</div>
+</div>
+<style>
+	#headerimg{
+		width:900px;
+	}
+</style>
+<script>
+var url = window.location.href;
+var loadinfo = "加载中...";
+/*加载产品详情*/
+function loadDetail() {
+	//var $modal = $('#my-modal-loading');
+	//$('.am-modal-hd').html(loadinfo);
+	//$modal.modal();
+	url = url.replace(/%2F/g,'/');
+	console.log(url);
+	var arr1 = url.split('?p=');
+	/*兼容微信*/
+	var arr2 = arr1[1].split('&from=');
+	//console.log(arr1);
+	$.ajax({
+		type: "POST",
+		data: {
+			url: arr2[0]
+		},
+		url: "http://www.huiyoulun.com:8088/service/getDetail",
+		success: function(data) {
+			
+			var html = '';
+			var imglist = data[0].imglist;
+			for(i in imglist){
+				html += '<li>';
+				html += '<img src="'+imglist[i]+'">';
+				html += '</li>';
+			}
+			$('#headerimg').attr('src',imglist[0]);
+			$('#fysm').html(data[0].fysm);
+			$('#qxzc').html(data[0].qxzc);
+			//$('#hxxx').html(data[0].hxxx);
+			var jbxx = data[0].infolist;
+			$('#jbxx').html(jbxx[0].p1+'<br/>'+jbxx[0].p2+'<br/>'+jbxx[0].p3+'<br/>'+jbxx[0].p4);
+			//console.log(data[0].pricelist);
+			var plist = data[0].pricelist;
+			html = '<table class="am-table am-table-bordered am-table-radius am-table-striped">';
+			for(var j in plist){
+				html+='<tr>';
+				html+='<td>'+plist[j].p1+'</td>';
+				html+='<td>'+plist[j].p2+'</td>';
+				html+='<td>'+plist[j].p3+'</td>';
+				html+='<td>'+plist[j].p4+'</td>';
+				html+='<td>'+plist[j].p5+'</td>';
+				html+='<td>'+plist[j].p6+'</td>';
+				html+='</tr>';
+			}
+			html+='</table>';
+			$('#jgxx').html(html);
+			/*加载行程*/
+			var hlist = data[0].xingchenglist;
+			html = '<ul class="am-list">';
+			for(var j in hlist){
+				html+='<li class="am-g">';
+				html+='<p class="p1">'+hlist[j].p1+'</p>';
+				html+='<p><b>'+hlist[j].p2+'</b></p>';
+				html+='<p class="p3">'+hlist[j].p3+'</p>';
+				html+='<p>'+hlist[j].p4+'</p>';
+				html+='</li>';
+			}
+			html+='</ul>';
+			$('#hxxx').html(html);
+			/*生成header*/
+			var arr1 = (jbxx[0].p1).split('：');
+			var arr2 = (jbxx[0].p2).split('：');
+			var arr3 = (jbxx[0].p3).split('：');
+			var arr4 = (jbxx[0].p4).split('：');
+			$('title').html(arr1[1]+' '+arr2[1]+' '+arr3[1]+' '+arr4[1]);
+			//$modal.modal('close');
+		}
+	});
+}
+
+loadDetail();
+</script>

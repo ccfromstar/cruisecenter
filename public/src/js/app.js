@@ -800,6 +800,20 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('index.detail', {
+			url: '/detail',
+			views: {
+				'main@index': {
+					templateUrl: 'tpls/detail.html',
+					controller: function($scope, $location, $sce, $http) {
+						$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮产品详情');
+					}
+				},
+				'nav@index.detail': {
+					templateUrl: 'tpls/nav.html'
+				}
+			}
+		})
 		.state('index.share', {
 			url: '/share',
 			views: {
