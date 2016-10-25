@@ -171,7 +171,7 @@ i,em{font-style: normal;}
 .slide{position:relative;width:1250px;}
 .slide-ul{position:relative;width:1250px;}
 .slide-ul img{width: 320px; height: auto;}
-.slide-ul li{float:left;display:inline;overflow:hidden;margin:3px 9px;width:320px;height:438px;border-radius: 5px;border:1px solid #dddddd;}
+.slide-ul li{float:left;display:inline;overflow:hidden;margin:10px 9px;width:320px;height:438px;border-radius: 5px;border:1px solid #dddddd;}
 .slide-ul li:hover{background: #22c0d8;color: #fff;cursor: pointer;}
 .slide-ul .producetion{width: 380px; height: 215px;}
 .font-main_title{position: relative;}
