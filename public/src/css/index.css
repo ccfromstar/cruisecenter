@@ -8,12 +8,14 @@ i,em{font-style: normal;}
 #bigSlideUl{
 	padding-left:0;
 }
+#searchForm {
+	width:1200px;
+}
 #result_combox{
 	margin-top:10px;
 }
 .searchArea{
-	height: 100px;
-	line-height: 100px;
+	padding:20px 0 0 0;
 	background: #F0F0F0;
 	width: 100%;
 }
