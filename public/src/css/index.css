@@ -8,10 +8,26 @@ i,em{font-style: normal;}
 #bigSlideUl{
 	padding-left:0;
 }
+#result_combox{
+	margin-top:10px;
+}
+.searchArea{
+	height: 100px;
+	line-height: 100px;
+	background: #F0F0F0;
+	width: 100%;
+}
+.am-form-field{
+	background: #fff !important;
+}
 .am-list h1{
 	font-weight: normal;
 	padding-top: 5px;
 	font-size: 18px;
+}
+.searchByKey {
+	background: #1F2B5B;
+	border-color: #1F2B5B;
 }
 .am-list>li{
 	height:50px;
@@ -834,25 +850,27 @@ i,em{font-style: normal;}
 	width: 1200px;
 	margin: 0 auto;
 	overflow-x: hidden;
-	height: 105px;
+	height: 505px;
 	position: relative;
 	border-left: 1px solid transparent;
 	border-right: 1px solid transparent;
 }
 .hgc_shipBrand ul {
 	width: 1200px;
-	height: 105px;
+	height: 505px;
 	margin: 0 auto;
 	position: absolute;
 	top: 0;
 	left: 0;
 }
+.pinpai li{
+	display: inline-block;
+}
 .hgc_shipBrand ul li{
-	float: left;
+	
 }
 .hgc_shipBrand ul li img{
-	display: block;
-	float: left;
+	display: inline-block;
 	border: 1px solid #ddd;
 	margin-left: 24px;
 	width: 178px;
