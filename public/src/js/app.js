@@ -378,7 +378,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 									case "海洋水手号":
 										c_color = "293E92";
 										break;
-									case "歌诗达赛琳娜号":
+									case "赛琳娜号":
 										c_color = "FEA52F";
 										break;
 									case "海洋量子号":
