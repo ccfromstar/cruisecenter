@@ -305,7 +305,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					var dd = new Date();
 					var yyyy = dd.getFullYear();
 					var m = (dd.getMonth() + 1) + 1;
-					if(m == 12) {
+					if(m == 13) {
 						yyyy = yyyy + 1;
 						m = 1
 					}
