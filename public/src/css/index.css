@@ -20,8 +20,10 @@ i,em{font-style: normal;}
 	width: 100%;
 }
 .am-alert-danger{
-	width:1000px;
+	width:150px;
 	background-color:#C30D24;
+	margin-left: 425px;
+	margin-top:0;
 }
 .am-alert-danger>p{
 	color:#FFFFFF;
@@ -32,7 +34,12 @@ i,em{font-style: normal;}
 .am-list h1{
 	font-weight: normal;
 	padding-top: 5px;
-	font-size: 18px;
+	font-size: 16px;
+	margin-top:10px;
+}
+.am-badge{
+	font-size: 14px;
+	margin-top:-20px;
 }
 .searchByKey {
 	background: #1F2B5B;
