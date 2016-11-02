@@ -19,6 +19,13 @@ i,em{font-style: normal;}
 	background: #F0F0F0;
 	width: 100%;
 }
+.am-alert-danger{
+	width:1000px;
+	background-color:#C30D24;
+}
+.am-alert-danger>p{
+	color:#FFFFFF;
+}
 .am-form-field{
 	background: #fff !important;
 }
