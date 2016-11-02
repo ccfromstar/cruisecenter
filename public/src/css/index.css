@@ -20,9 +20,9 @@ i,em{font-style: normal;}
 	width: 100%;
 }
 .am-alert-danger{
-	width:150px;
+	width:1000px;
 	background-color:#C30D24;
-	margin-left: 425px;
+	text-align: center;
 	margin-top:0;
 }
 .am-alert-danger>p{
@@ -39,7 +39,9 @@ i,em{font-style: normal;}
 }
 .am-badge{
 	font-size: 14px;
-	margin-top:-20px;
+	margin-top:-18px;
+	font-weight: normal !important;
+	width:100px;
 }
 .searchByKey {
 	background: #1F2B5B;
@@ -49,6 +51,9 @@ i,em{font-style: normal;}
 	height:50px;
 	cursor:pointer;
 	background: #F0F0F0;
+}
+.am-list>li:hover{
+	background: #fff;
 }
 .header{
 	background: none;
