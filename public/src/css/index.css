@@ -34,6 +34,7 @@ i,em{font-style: normal;}
 .am-list>li{
 	height:50px;
 	cursor:pointer;
+	background: #F0F0F0;
 }
 .header{
 	background: none;
