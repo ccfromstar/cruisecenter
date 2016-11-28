@@ -726,10 +726,10 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 		console.log("error");
 	});
 	$http({
-		url: hosts + 'notice/get',
+		url: hosts + 'notice/getemergencyhome',
 		method: 'POST'
 	}).success(function(data) {
-		var o = data.record;
+		var o = data;
 		var _list = "";
 		for (var i in o) {
 			var title = o[i].title;

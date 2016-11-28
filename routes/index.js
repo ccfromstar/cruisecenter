@@ -531,6 +531,12 @@ exports.noticedo = function(req, res) {
 			if(err) return console.error(err.stack);
 			res.json(result);
 		});
+	} else if(sql == "getemergencyhome") {
+		var sql = "select * from notice order by id desc limit 0,6";
+		mysql.query(sql, function(err, result) {
+			if(err) return console.error(err.stack);
+			res.json(result);
+		});
 	} else if(sql == "getcal") {
 		var d1 = new Date();
 		d1 = d1.Format("yyyy-MM-dd");
