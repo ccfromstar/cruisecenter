@@ -662,6 +662,89 @@ exports.staticdo = function(req, res) {
 			if(err) return console.error(err.stack);
 			res.json(result);
 		});
+	} else if(sql == "getExchange") {
+		request({
+		    url: 'http://op.juhe.cn/onebox/exchange/currency?key=9ad0ed90238c78e611fffd7430af77c4&from=CNY&to=USD',
+		    method: 'GET'
+		}, function(err, response, body1) {
+		    if (!err && response.statusCode == 200) {
+		    	var b1 = JSON.parse(body1);
+		        request({
+				    url: 'http://op.juhe.cn/onebox/exchange/currency?key=9ad0ed90238c78e611fffd7430af77c4&from=CNY&to=JPY',
+				    method: 'GET'
+				}, function(err, response, body2) {
+				    if (!err && response.statusCode == 200) {
+				    	var b2 = JSON.parse(body2);
+				        request({
+						    url: 'http://op.juhe.cn/onebox/exchange/currency?key=9ad0ed90238c78e611fffd7430af77c4&from=CNY&to=KER',
+						    method: 'GET'
+						}, function(err, response, body3) {
+						    if (!err && response.statusCode == 200) {
+						    	var b3 = JSON.parse(body3);
+						        request({
+								    url: 'http://op.juhe.cn/onebox/exchange/currency?key=9ad0ed90238c78e611fffd7430af77c4&from=CNY&to=GBP',
+								    method: 'GET'
+								}, function(err, response, body4) {
+								    if (!err && response.statusCode == 200) {
+								    	var b4 = JSON.parse(body4);
+								        request({
+										    url: 'http://op.juhe.cn/onebox/exchange/currency?key=9ad0ed90238c78e611fffd7430af77c4&from=CNY&to=EUR',
+										    method: 'GET'
+										}, function(err, response, body5) {
+										    if (!err && response.statusCode == 200) {
+										    	var b5 = JSON.parse(body5);
+										        var o = {
+										        	USD: b1.result[1].exchange,
+										        	JPY: b2.result[1].exchange,
+										        	KER: b3.result[1].exchange,
+										        	GBP: b4.result[1].exchange,
+										        	EUR: b5.result[1].exchange
+										        };
+										        res.json(o);
+										    }
+										});
+								    }
+								});
+						    }
+						});
+				    }
+				});
+		    }
+		});
+	}else if(sql == "getUserExchange") {
+		var from = req.param("from");
+		var to = req.param("to");
+		var money = req.param("money");
+		request({
+			url: 'http://op.juhe.cn/onebox/exchange/currency?key=9ad0ed90238c78e611fffd7430af77c4&from='+from+'&to='+to,
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				var b = JSON.parse(body);
+				var r = Number(b.result[0].exchange)*Number(money);
+				r = r + " ";
+				res.send(r);
+			}
+		});
+	} else if(sql == "getList"){
+		request({
+			url: 'http://op.juhe.cn/onebox/exchange/list?key=9ad0ed90238c78e611fffd7430af77c4',
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				var b = JSON.parse(body);
+				var o = b.result.list;
+				//console.log(o);
+				var option_list = '';
+				for(var i in o){
+					if(o[i].code =='KRW'){
+						o[i].code = 'KER';
+					}
+					option_list += '<option value="'+o[i].code+'">'+o[i].name+'('+o[i].code+')</option>';
+				}
+				res.send(option_list);
+			}
+		});
 	}
 }
 

@@ -566,6 +566,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 			url: '/currency',
 			templateUrl: 'tpls/services/currency.html',
 			controller: function($scope, $sce, $http) {
+				/*
 				$http({
 					url: hosts + 'static/getByName',
 					method: 'POST',
@@ -574,6 +575,33 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					}
 				}).success(function(data) {
 					$scope.post = $sce.trustAsHtml(data[0].post);
+				}).error(function() {
+					console.log("error");
+				});*/
+				var exchange_load = "加载中...";
+					$scope.exchange1 = $sce.trustAsHtml(exchange_load);
+					$scope.exchange2 = $sce.trustAsHtml(exchange_load);
+					$scope.exchange3 = $sce.trustAsHtml(exchange_load);
+					$scope.exchange4 = $sce.trustAsHtml(exchange_load);
+					$scope.exchange5 = $sce.trustAsHtml(exchange_load);
+				$http({
+					url: hosts + 'static/getExchange',
+					method: 'POST'
+				}).success(function(data) {
+					$scope.exchange1 = $sce.trustAsHtml(data.USD);
+					$scope.exchange2 = $sce.trustAsHtml(data.JPY);
+					$scope.exchange3 = $sce.trustAsHtml(data.KER);
+					$scope.exchange4 = $sce.trustAsHtml(data.GBP);
+					$scope.exchange5 = $sce.trustAsHtml(data.EUR);
+				}).error(function() {
+					console.log("error");
+				});
+				/*获取货币列表*/
+				$http({
+					url: hosts + 'static/getList',
+					method: 'POST'
+				}).success(function(data) {
+					$scope.option1 = $sce.trustAsHtml(data);
 				}).error(function() {
 					console.log("error");
 				});
@@ -677,6 +705,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						if(i != index) {
 							cla = "none";
 						}
+						console.log(i);
 						html += "<div class='note_post " + cla + "' id='note_" + i + "'>";
 						html += "<h4>" + data[i].name + "</h4>";
 						html += "<div class='nav_shadow'></div>";

@@ -1,3 +1,130 @@
+<style>
+	/*计算器*/
+.chart_tool { width:558px; border: 1px solid #e1e2e3; margin: 20px auto; padding-bottom:20px; }
+.chart_tool h3 { border-bottom: 1px dotted #e1e2e3; width:500px; margin: 0px auto;height: 40px;line-height: 40px;}
+.chart_tool form{margin:8px 0 0 103px; overflow:hidden;}
+.chart_tool form table{ float:left; width:400px; margin-left:12px; display:inline; margin-top:12px; border:0;}
+.chart_tool form table td{ float:left; line-height:40px; height:40px; text-align:left; border:0;}
+.chart_tool form table select{ width:259px; height:24px; line-height:24px; font-size:12px; margin-left:3px; padding:2px;border: 1px solid #e1e2e3; border-radius: 2px; margin-top: 8px;}
+.chart_tool form table input.input_size{ width:255px; height:24px; line-height:24px; margin-left:3px; display:inline; border: 1px solid #e1e2e3; border-radius: 2px; margin-top: 8px;}
+.chart_tool form table input.change_btn{width:180px; height:30px; border:0; cursor:pointer;  background: #de4139; text-align: center; line-height: 30px; color: #fff; font-size: 14px; border-radius: 2px;}
+.chart_tool .change_result{ width:257px; height:24px; line-height:24px; text-indent:6px; background:#ececec; border:1px solid #e1e2e3; margin-left:3px; color:#f00; margin-top:8px;}
+.change_result_btn{ margin-top:10px; float:left;}
+</style>
 <h4>外币兑换</h4>
 <div class="nav_shadow"></div>
-<div class="static_post" data-ng-bind-html="post"> </div>
+<div class="static_post" style="display:none" data-ng-bind-html="post"> </div>
+<br/>
+<table class="table table-bordered">
+	<caption></caption>
+	<thead>
+		<tr>
+			<th>币种</th>
+			<th>实时汇率</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>人民币</td>
+			<td style="width:60%;">1</td>
+		</tr>
+		<tr>
+			<td>美元</td>
+			<td data-ng-bind-html="exchange1"></td>
+		</tr>
+		<tr>
+			<td>日元</td>
+			<td data-ng-bind-html="exchange2"></td>
+		</tr>
+		<tr>
+			<td>韩元</td>
+			<td data-ng-bind-html="exchange3"></td>
+		</tr>
+		<tr>
+			<td>英镑</td>
+			<td data-ng-bind-html="exchange4"></td>
+		</tr>
+		<tr>
+			<td>欧元</td>
+			<td data-ng-bind-html="exchange5"></td>
+		</tr>
+	</tbody>
+</table>
+<!-- tool -->
+<div class="chart_tool chart_zst">
+	<h3>外汇兑换计算器</h3>
+	<div class="hs_change_con">
+		<form action="convs.do" name="convsForm" id="convsForm">
+			<table cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+					<tr>
+						<td width="60">兑换金额：</td>
+						<td><input type="text" class="input_size" name="amount" id="amount"></td>
+					</tr>
+					<tr>
+						<td width="60">持有货币：</td>
+						<td>
+							<select name="form_tkc" id="form_tkc" data-ng-bind-html="option1"></select>
+						</td>
+					</tr>
+					<tr>
+						<td width="60">兑换货币：</td>
+						<td>
+							<select name="to_tkc" id="to_tkc" data-ng-bind-html="option1"></select>
+						</td>
+					</tr>
+					<tr>
+						<td width="60">兑换结果：</td>
+						<td>
+							<div class="change_result" id="result">&nbsp;</div>
+						</td>
+					</tr>
+					<tr class="change_result_btn">
+						<td width="63"></td>
+						<td><input type="button" value="计算" class="change_btn" onclick="convert()" name="cal"></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+<script>
+	function convert(){
+		var money=$("#amount").val();
+		var regex = /^[0-9]*(\.[0-9]{1,2})?$/;
+		if(money==""){
+		   alert("请输入兑换金额！");   
+		  	   $("#amount").focus();  
+		  	   return false;
+		    } 
+		    if(!regex.test(money)){   
+			   alert("兑换金额输入不正确！");   
+		   $("#amount").focus();   
+		   return false;   
+		}
+		if($("#to_tkc").val() == "otherCode" || $("#form_tkc").val() == "otherCode"){
+			alert("暂不提供该种兑换服务！");   
+		   	$("#to_tkc").focus();   
+		   	return false;   
+		}
+		var from = $("#form_tkc").val();
+		var to = $("#to_tkc").val();
+		if(from == to){
+			 alert("持有货币和兑换货币不能一样！");  
+			 return false;
+		}
+		$("#result").html('计算中...');
+		$.ajax({
+			type: "post",
+			url: hosts + "static/getUserExchange",
+			data: {
+				from:from,
+				to:to,
+				money:money
+			},
+			success: function(data) {
+				$("#result").html(data);
+			}
+		});
+	}
+</script>
