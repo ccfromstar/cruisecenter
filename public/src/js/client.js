@@ -213,6 +213,14 @@ function iFrameHeight() {
 	ifm.style.marginTop = "-20px";
 }
 
+function iFrameHeightP() {
+	var ifm = document.getElementById("iframepage");
+	ifm.height = 2500;
+	ifm.width = 1000;
+	ifm.style.display = "block";
+	ifm.style.marginTop = "-20px";
+}
+
 function showNote(i) {
 	$('.note_post').hide();
 	$('#note_' + i).show();

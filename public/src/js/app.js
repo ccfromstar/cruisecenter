@@ -836,6 +836,9 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					templateUrl: 'tpls/detail.html',
 					controller: function($scope, $location, $sce, $http) {
 						$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮产品详情');
+						var url = $location.absUrl();
+						var arr = url.split('?p=');
+						$scope.srcPage = '/cds-agent/index.html?p='+arr[1];
 					}
 				},
 				'nav@index.detail': {
