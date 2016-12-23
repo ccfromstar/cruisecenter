@@ -206,15 +206,15 @@ i,em{font-style: normal;}
 .main-first .main-first_title{width:1200px;text-align: center;margin-top: 30px;font-size: 24px;font-weight:bold;font-family:"微软雅黑";color: #666666}
 .main-first .main-first_content{width:1200px;padding-top: 30px;font-size: 30px;font-family:"Microsoft YaHei";color: #333333;display: none;}
 .main-first .main-first_content.current{display: block;}
-.slide{position:relative;width:1250px;}
+.slide_p{position:relative;width:1250px;}
 .slide-ul{position:relative;width:1250px;}
 .slide-ul img{width: 320px; height: auto;}
-.slide-ul li{float:left;display:inline;overflow:hidden;margin:10px 9px;width:320px;height:438px;border-radius: 5px;border:1px solid #dddddd;}
+.slide-ul li{float:left;display:inline;overflow:hidden;margin:10px 9px;width:320px;height:378px;border-radius: 5px;border:1px solid #dddddd;}
 .slide-ul li:hover{background: #22c0d8;color: #fff;cursor: pointer;}
 .slide-ul .producetion{width: 380px; height: 215px;}
 .font-main_title{position: relative;}
 .font-main_title small{position: absolute;}
-.font-main_title span{font-size: 24px;font-weight: 900;}
+.font-main_title span{font-size: 18px;font-weight: 900;}
 .slide-ul li:hover .font-main{color: #fff;}
 .slide-ul li:hover .font-main .font-main_english{color:#fff;}
 .slide-ul li:hover .font-main .font-main_mains{color:#fff;}

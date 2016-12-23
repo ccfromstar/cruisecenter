@@ -745,6 +745,15 @@ exports.staticdo = function(req, res) {
 				res.send(option_list);
 			}
 		});
+	} else if(sql == "getProduct"){
+		request({
+			url: 'http://139.196.87.14:1339/product/get4calendar?time=123456',
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				res.json(JSON.parse(body));
+			}
+		});
 	}
 }
 

@@ -9,6 +9,8 @@
         </slide>
     </carousel>
 </div>-->
+<link rel="stylesheet" href="http://www.imptrip.com/pc/css/public.css" />
+<link rel="stylesheet" href="../src/css/index.css" />
 <div class="home_content" ng-controller="homeController">
 	<div id="myCarousel" class="carousel slide carousel_home">
 		<!-- 轮播（Carousel）指标 -->
@@ -181,6 +183,7 @@
 			<div class="more" ng-click="toTop()" ui-sref="index.product">更多内容>>></div>
 			<div class="shadow_a"></div>
 		</div>
+		<!--
 		<div class="pro_left" ng-click="toTop()" ui-sref="index.product">
 			<img src="../../src/image/sales_1.jpg">
 			<div>
@@ -243,7 +246,34 @@
 				</div>
 			</div>
 		</div>
-		<div style="clear:both"></div>
+		<div style="clear:both"></div>-->
+		<div class="prd_list">
+			<!-- 幻灯图片 -->
+			<div class="slide_p">
+				<ul id="bigSlideUl" class="slide-ul clearfix">
+	
+					<li ng-repeat="item in items">
+						<a class="picimglink" href="/src/#/index/detail?p={{ item.id }}" target="_blank">
+							<img src="{{ item.img }}" alt="邮轮图片" class="producetion" />
+							<div class="font-main">
+								<div class="font-main_title"><span>{{ item.title }}</span></div>
+								<!--<div class="font-main_english">Quantum of the seas</div>
+								<div class="font-main_mains" title="上海-福冈-上海">上海-福冈-上海</div>-->
+								<div class="font-main_mains">{{ item.startDate }}{{ item.startLocation }}出发</div>
+								<div><small class="color-orange">￥</small><span class="price_list color-orange">{{ item.price }}</span><small>起/人</small></div>
+							</div>
+						</a>
+					</li>
+					
+					
+			</div>
+			<!-- 幻灯焦点 -->
+			<ul id="smallSlideUl" class="info-btn clearfix">
+	
+			</ul>
+			<em class="tab-shadow"></em>
+	
+		</div>
 	</div>
 	<!--行业动态-->
 	<div class="center home_section">

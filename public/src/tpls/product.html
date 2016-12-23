@@ -10,88 +10,23 @@
 	-->
 	<div class="prd_list">
 		<!-- 幻灯图片 -->
-		<div class="slide">
+		<div class="slide_p">
 			<ul id="bigSlideUl" class="slide-ul clearfix">
 
-				<li>
-					<a class="picimglink" href="/src/#/index/detail?p=1927" target="_blank">
-						<img src="http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqe2p3bsk1k1t19v0sfpj10jsc.jpg" alt="音谱旅行" class="producetion" />
+				<li ng-repeat="item in items">
+					<a class="picimglink" href="/src/#/index/detail?p={{ item.id }}" target="_blank">
+						<img src="{{ item.img }}" alt="邮轮图片" class="producetion" />
 						<div class="font-main">
-							<div class="font-main_title"><span>海洋量子号</span><small>4晚5天</small></div>
-							<div class="font-main_english">Quantum of the seas</div>
-							<div class="font-main_mains" title="上海-福冈-上海">上海-福冈-上海</div>
-							<div class="font-main_mains">2016-11-21上海出发</div>
-							<div><img src="http://www.imptrip.com/pc/images/fen.png" alt="音谱旅行"></div>
-							<div><small class="color-orange">￥</small><span class="price_list color-orange">3199</span><small>起/人</small></div>
+							<div class="font-main_title"><span>{{ item.title }}</span></div>
+							<!--<div class="font-main_english">Quantum of the seas</div>
+							<div class="font-main_mains" title="上海-福冈-上海">上海-福冈-上海</div>-->
+							<div class="font-main_mains">{{ item.startDate }}{{ item.startLocation }}出发</div>
+							<div><small class="color-orange">￥</small><span class="price_list color-orange">{{ item.price }}</span><small>起/人</small></div>
 						</div>
 					</a>
 				</li>
-				<li>
-					<a class="picimglink" href="/src/#/index/detail?p=1927" target="_blank">
-						<img src="http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdqa44i1ugng1l1801nk5rcpc.jpg" alt="音谱旅行" class="producetion" />
-						<div class="font-main">
-							<div class="font-main_title"><span>海洋水手号  </span><small>7晚8天</small></div>
-							<div class="font-main_english">Mariner of the Seas</div>
-							<div class="font-main_mains" title="新加坡-巴生-普吉岛-新加坡">新加坡-巴生-普吉岛-新加坡</div>
-							<div class="font-main_mains">2017-01-26上海出发</div>
-							<div><img src="http://www.imptrip.com/pc/images/fen.png" alt="音谱旅行"></div>
-							<div><small class="color-orange">￥</small><span class="price_list color-orange">11599</span><small>起/人</small></div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a class="picimglink" href="/src/#/index/detail?p=1927" target="_blank">
-						<img src="http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdqa44i1ugng1l1801nk5rcpc.jpg" alt="音谱旅行" class="producetion" />
-						<div class="font-main">
-							<div class="font-main_title"><span>海洋水手号  </span><small>4晚5天</small></div>
-							<div class="font-main_english">Mariner of the Seas</div>
-							<div class="font-main_mains" title="新加坡-巴生-普吉岛-新加坡">新加坡-巴生-普吉岛-新加坡</div>
-							<div class="font-main_mains">2017-01-27上海出发</div>
-							<div><img src="http://www.imptrip.com/pc/images/fen.png" alt="音谱旅行"></div>
-							<div><small class="color-orange">￥</small><span class="price_list color-orange">4799</span><small>起/人</small></div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a class="picimglink" href="/src/#/index/detail?p=1927" target="_blank">
-						<img src="http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdqa44i1ugng1l1801nk5rcpc.jpg" alt="音谱旅行" class="producetion" />
-						<div class="font-main">
-							<div class="font-main_title"><span>海洋水手号 </span><small>7晚8天</small></div>
-							<div class="font-main_english">Mariner of the Seas</div>
-							<div class="font-main_mains" title="新加坡-巴生-普吉岛-新加坡">新加坡-巴生-普吉岛-新加坡</div>
-							<div class="font-main_mains">2017-01-26上海出发</div>
-							<div><img src="http://www.imptrip.com/pc/images/fen.png" alt="音谱旅行"></div>
-							<div><small class="color-orange">￥</small><span class="price_list color-orange">17999</span><small>起/人</small></div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a class="picimglink" href="/src/#/index/detail?p=1927" target="_blank">
-						<img src="http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqe2p3bsk1k1t19v0sfpj10jsc.jpg" alt="音谱旅行" class="producetion" />
-						<div class="font-main">
-							<div class="font-main_title"><span>海洋量子号</span><small>5晚6天</small></div>
-							<div class="font-main_english">Quantum of the seas</div>
-							<div class="font-main_mains" title="上海-高知-宫崎-上海">上海-高知-宫崎-上海</div>
-							<div class="font-main_mains">2016-11-08上海出发</div>
-							<div><img src="http://www.imptrip.com/pc/images/fen.png" alt="音谱旅行"></div>
-							<div><small class="color-orange">￥</small><span class="price_list color-orange">3599</span><small>起/人</small></div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a class="picimglink" href="/src/#/index/detail?p=1927" target="_blank">
-						<img src="http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqe2p3bsk1k1t19v0sfpj10jsc.jpg" alt="音谱旅行" class="producetion" />
-						<div class="font-main">
-							<div class="font-main_title"><span>海洋量子号 </span><small>5晚6天</small></div>
-							<div class="font-main_english">Quantum of the seas</div>
-							<div class="font-main_mains" title="上海-高知-宫崎-上海">上海-高知-宫崎-上海</div>
-							<div class="font-main_mains">2017-01-03上海出发</div>
-							<div><img src="http://www.imptrip.com/pc/images/fen.png" alt="音谱旅行"></div>
-							<div><small class="color-orange">￥</small><span class="price_list color-orange">3899</span><small>起/人</small></div>
-						</div>
-					</a>
-				</li>
-
+				
+				
 		</div>
 		<!-- 幻灯焦点 -->
 		<ul id="smallSlideUl" class="info-btn clearfix">
@@ -101,7 +36,7 @@
 
 	</div>
 </div>
-<div class="searchArea">
+<div class="searchArea" style="display:none">
 	<div class="center ">
 		<!--查询功能-->
 		<form class="am-form" id="searchForm">

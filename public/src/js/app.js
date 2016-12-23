@@ -67,6 +67,30 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						}).error(function() {
 							console.log("error");
 						});
+						
+						/*获取产品列表数据*/
+						$http({
+							url: hosts + 'static/getProduct',
+							method: 'POST',
+							data: {
+								
+							}
+						}).success(function(data) {
+							//console.log(data);
+							for(var i in data){
+								var t = data[i].title;
+								if(t.indexOf('水手') != -1){
+									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdqa44i1ugng1l1801nk5rcpc.jpg';
+								}else if(t.indexOf('蓝宝石') != -1){
+									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdljvac102k1sarn7411ovov5e.jpg';
+								}else if(t.indexOf('量子') != -1){
+									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqe2p3bsk1k1t19v0sfpj10jsc.jpg';
+								}
+							}
+							$scope.items = data;
+						}).error(function() {
+							console.log("error");
+						});
 					}
 				}
 			}
@@ -822,6 +846,29 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					templateUrl: 'tpls/product.html',
 					controller: function($scope, $location, $sce, $http) {
 						$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮产品');
+						/*获取产品列表数据*/
+						$http({
+							url: hosts + 'static/getProduct',
+							method: 'POST',
+							data: {
+								
+							}
+						}).success(function(data) {
+							//console.log(data);
+							for(var i in data){
+								var t = data[i].title;
+								if(t.indexOf('水手') != -1){
+									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdqa44i1ugng1l1801nk5rcpc.jpg';
+								}else if(t.indexOf('蓝宝石') != -1){
+									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdljvac102k1sarn7411ovov5e.jpg';
+								}else if(t.indexOf('量子') != -1){
+									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqe2p3bsk1k1t19v0sfpj10jsc.jpg';
+								}
+							}
+							$scope.items = data;
+						}).error(function() {
+							console.log("error");
+						});
 					}
 				},
 				'nav@index.product': {
