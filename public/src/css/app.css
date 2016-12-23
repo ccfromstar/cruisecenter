@@ -1222,7 +1222,7 @@ h1 {
 
 .pro_left>img {
 	width: 325px;
-	height: 490px;
+	height: 454px;
 }
 
 .pro_left>div>hgroup {
@@ -1238,7 +1238,7 @@ h1 {
 	line-height: 1.5;
 }
 
-.pro_left>div>hgroup>img {
+.pro_left>div>hgroup>a>img {
 	width: 70px;
 	cursor: pointer;
 	margin-top: 23px;
@@ -1294,7 +1294,7 @@ h1 {
 	line-height: 1.5;
 }
 
-.pro_right>div>div>hgroup>img {
+.pro_right>div>div>hgroup>a>img {
 	width: 70px;
 	cursor: pointer;
 	margin-top: 23px;

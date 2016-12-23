@@ -183,97 +183,80 @@
 			<div class="more" ng-click="toTop()" ui-sref="index.product">更多内容>>></div>
 			<div class="shadow_a"></div>
 		</div>
-		<!--
-		<div class="pro_left" ng-click="toTop()" ui-sref="index.product">
-			<img src="../../src/image/sales_1.jpg">
+		<div class="pro_left">
+			<img src="{{ items[0].img }}">
 			<div>
 				<p>
-					<h1>11月8日出发 6天5晚【海洋量子号】上海-高知-宫崎-上海</h1> 特惠，3599元起限量抢购！
+					<h1>{{ items[0].title }}</h1> {{ items[0].startDate }}{{ items[0].startLocation }}出发
 				</p>
 				<hgroup>
-					<h1><span>￥</span>3599<span>起</span></h1>
-					<img src="../../src/image/booking.png" onMouseOver="this.src='../../src/image/booking_on.png'" onMouseOut="this.src='../../src/image/booking.png'">
+					<h1><span>￥</span>{{ items[0].price }}<span>起</span></h1>
+					<a href="/src/#/index/detail?p={{ items[0].id }}" target="_blank">
+						<img src="../../src/image/booking.png" onMouseOver="this.src='../../src/image/booking_on.png'" onMouseOut="this.src='../../src/image/booking.png'">
+					</a>
 				</hgroup>
 			</div>
 		</div>
-		<div class="pro_right" ng-click="toTop()" ui-sref="index.product">
+		<div class="pro_right">
 			<div>
-				<img src="../../src/image/sales_2.jpg">
+				<img src="{{ items[1].img }}">
 				<div>
 					<p>
-						<h1>12月8日出发 5天4晚【蓝宝石公主号】济州+福冈</h1> 特惠，2699元起限量抢购！
+						<h1>{{ items[1].title }}</h1> {{ items[1].startDate }}{{ items[1].startLocation }}出发
 					</p>
 					<hgroup>
-						<h1><span>￥</span>2699<span>起</span></h1>
-						<img src="../../src/image/booking.png" onMouseOver="this.src='../../src/image/booking_on.png'" onMouseOut="this.src='../../src/image/booking.png'">
-					</hgroup>
-				</div>
-			</div>
-			<div>
-				<img src="../../src/image/sales_3.jpg">
-				<div>
-					<p>
-						<h1>11月6日出发 6天5晚【海洋水手号】巴生+普吉岛</h1> 往返直飞机票+新加坡1晚自选酒店！
-					</p>
-					<hgroup>
-						<h1><span>￥</span>7378<span>起</span></h1>
-						<img src="../../src/image/booking.png" onMouseOver="this.src='../../src/image/booking_on.png'" onMouseOut="this.src='../../src/image/booking.png'">
-					</hgroup>
-				</div>
-			</div>
-			<div>
-				<img src="../../src/image/sales_4.jpg">
-				<div>
-					<p>
-						<h1>11月19日出发 6天5晚【蓝宝石公主号】济州+釜山+福冈</h1> 错峰日韩游！早定优惠六天仅1799起！
-					</p>
-					<hgroup>
-						<h1><span>￥</span>1799<span>起</span></h1>
-						<img src="../../src/image/booking.png" onMouseOver="this.src='../../src/image/booking_on.png'" onMouseOut="this.src='../../src/image/booking.png'">
-					</hgroup>
-				</div>
-			</div>
-			<div>
-				<img src="../../src/image/sales_5.jpg">
-				<div>
-					<p>
-						<h1>12月18日出发 6天5晚【海洋水手号】槟城+兰卡威+普吉岛</h1> 上海刚出发，寻访东南亚精选，新加坡直飞…
-					</p>
-					<hgroup>
-						<h1><span>￥</span>9598<span>起</span></h1>
-						<img src="../../src/image/booking.png" onMouseOver="this.src='../../src/image/booking_on.png'" onMouseOut="this.src='../../src/image/booking.png'">
-					</hgroup>
-				</div>
-			</div>
-		</div>
-		<div style="clear:both"></div>-->
-		<div class="prd_list">
-			<!-- 幻灯图片 -->
-			<div class="slide_p">
-				<ul id="bigSlideUl" class="slide-ul clearfix">
-	
-					<li ng-repeat="item in items">
-						<a class="picimglink" href="/src/#/index/detail?p={{ item.id }}" target="_blank">
-							<img src="{{ item.img }}" alt="邮轮图片" class="producetion" />
-							<div class="font-main">
-								<div class="font-main_title"><span>{{ item.title }}</span></div>
-								<!--<div class="font-main_english">Quantum of the seas</div>
-								<div class="font-main_mains" title="上海-福冈-上海">上海-福冈-上海</div>-->
-								<div class="font-main_mains">{{ item.startDate }}{{ item.startLocation }}出发</div>
-								<div><small class="color-orange">￥</small><span class="price_list color-orange">{{ item.price }}</span><small>起/人</small></div>
-							</div>
+						<h1><span>￥</span>{{ items[1].price }}<span>起</span></h1>
+						<a href="/src/#/index/detail?p={{ items[1].id }}" target="_blank">
+							<img src="../../src/image/booking.png" onMouseOver="this.src='../../src/image/booking_on.png'" onMouseOut="this.src='../../src/image/booking.png'">
 						</a>
-					</li>
-					
-					
+					</hgroup>
+				</div>
 			</div>
-			<!-- 幻灯焦点 -->
-			<ul id="smallSlideUl" class="info-btn clearfix">
-	
-			</ul>
-			<em class="tab-shadow"></em>
-	
+			<div>
+				<img src="{{ items[2].img }}">
+				<div>
+					<p>
+						<h1>{{ items[2].title }}</h1> {{ items[2].startDate }}{{ items[2].startLocation }}出发
+					</p>
+					<hgroup>
+						<h1><span>￥</span>{{ items[2].price }}<span>起</span></h1>
+						<a href="/src/#/index/detail?p={{ items[2].id }}" target="_blank">
+							<img src="../../src/image/booking.png" onMouseOver="this.src='../../src/image/booking_on.png'" onMouseOut="this.src='../../src/image/booking.png'">
+						</a>	
+					</hgroup>
+				</div>
+			</div>
+			<br/><br/>
+			<div>
+				<img src="{{ items[3].img }}">
+				<div>
+					<p>
+						<h1>{{ items[3].title }}</h1> {{ items[3].startDate }}{{ items[3].startLocation }}出发
+					</p>
+					<hgroup>
+						<h1><span>￥</span>{{ items[3].price }}<span>起</span></h1>
+						<a href="/src/#/index/detail?p={{ items[3].id }}" target="_blank">
+							<img src="../../src/image/booking.png" onMouseOver="this.src='../../src/image/booking_on.png'" onMouseOut="this.src='../../src/image/booking.png'">
+						</a>
+					</hgroup>
+				</div>
+			</div>
+			<div>
+				<img src="{{ items[4].img }}">
+				<div>
+					<p>
+						<h1>{{ items[4].title }}</h1> {{ items[4].startDate }}{{ items[4].startLocation }}出发
+					</p>
+					<hgroup>
+						<h1><span>￥</span>{{ items[4].price }}<span>起</span></h1>
+						<a href="/src/#/index/detail?p={{ items[4].id }}" target="_blank">
+							<img src="../../src/image/booking.png" onMouseOver="this.src='../../src/image/booking_on.png'" onMouseOut="this.src='../../src/image/booking.png'">
+						</a>
+					</hgroup>
+				</div>
+			</div>
 		</div>
+		<div style="clear:both"></div>
 	</div>
 	<!--行业动态-->
 	<div class="center home_section">
