@@ -1632,3 +1632,10 @@ h1 {
 	font-size: 16px;
 	color:#C30D24;
 }
+
+.pf {
+	width:325px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}

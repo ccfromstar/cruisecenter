@@ -223,7 +223,7 @@ i,em{font-style: normal;}
 .slide-ul li .font-main{width:320px;height:auto;text-align: center;font-size:26px !important;padding:20px 0 0 5px;}
 .slide-ul li .font-main .font-main_english{width:320px;font-size:16px;color: #999;line-height: 25px}
 .price_list {font-size:26px !important;}
-.slide-ul li .font-main .font-main_mains{width:320px;font-size:16px;color: #000;line-height: 25px;height:25px;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.slide-ul li .font-main .font-main_mains{width:310px;font-size:12px;color: #000;height:35px;display:block;overflow:hidden; text-overflow:ellipsis;margin-top:10px;margin-bottom:10px}
 .slide-ul li .font-main small{font-size:14px;padding:20px 5px;}
 .slide-ul li .font-main small{font-size:14px;padding:20px 5px;}
 .slide-ul li .font-main .price{font-size:30px;color:#ff6600}
