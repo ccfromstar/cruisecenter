@@ -76,6 +76,7 @@ a:active {
 .right_search {
 	margin-top: 15px;
 	display: -webkit-box;
+	display: -ms-box;
 }
 
 .right_top {
@@ -95,7 +96,7 @@ a:active {
 .goto {
 	height: 36px;
 	line-height: 36px;
-	/*display: inline-block;*/
+	display: inline-block;
 	background: #C30D24;
 	color: #fff;
 	width: 72px;
@@ -103,7 +104,11 @@ a:active {
 	border-top-right-radius: 20px;
 	border-bottom-right-radius: 20px;
 	cursor:pointer;
-	/*margin-left:-5px;*/
+	margin-left:-5px;
+}
+
+#bdcsMain {
+	vertical-align: inherit !important;
 }
 
 .login {
