@@ -238,5 +238,10 @@ if(product.visaComment){
             scrollTop:scroll_offset.top  //让body的scrollTop等于pos的top，就实现了滚动
         },1000);
     }
-    $("#code").qrcode("http://tcjr.holidaycloud.cn/detail/<%=product.id%>");
+    $("#code").qrcode({
+    	width: 200, //宽度
+    	height:200, //高度 
+    	text: "http://wap.huiyoulun.com/detail/<%=product.id%>"
+    });
+    
 </script>
