@@ -603,7 +603,7 @@ headerApp.controller('footerController', function($scope) {
 
 headerApp.controller('homeController', function($scope, $http, $sce) {
 	setBD(1);
-	setFW(0);
+	setFW(2);
 	/*计算行程周历*/
 	var d = new Date;
 	var w = d.getDay();
