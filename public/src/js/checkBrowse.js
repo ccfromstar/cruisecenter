@@ -8,7 +8,7 @@ function _checkIE() {
 	}
 	var version = b_version.split(";");
 	var trim_Version = version[1].replace(/[ ]/g, "");
-	//alert(trim_Version);
+	//alert(browser);
 	if (browser == "Microsoft Internet Explorer" && trim_Version == "MSIE6.0") {
 		//alert("IE 6.0"); 
 		_showNotAllow();
