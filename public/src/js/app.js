@@ -89,7 +89,9 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1b19597k713171vm2187o1fbs1v5ec.png';
 								}else if(t.indexOf('大西洋') != -1){
 									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdnjfk91ve12s21adv1an4qeqc.jpg';
-								}
+								}else if(t.indexOf('喜悦') != -1){
+                                    data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1atqje9ocsuedpp3pk10hfvdc.jpg';
+                                }
 							}
 							$scope.items = data;
 						}).error(function() {
@@ -871,7 +873,9 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1b19597k713171vm2187o1fbs1v5ec.png';
 								}else if(t.indexOf('大西洋') != -1){
 									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdnjfk91ve12s21adv1an4qeqc.jpg';
-								}
+								}else if(t.indexOf('喜悦') != -1){
+									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1atqje9ocsuedpp3pk10hfvdc.jpg';
+								}	
 							}
 							$scope.items = data;
 						}).error(function() {
