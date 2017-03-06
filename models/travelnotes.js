@@ -103,7 +103,7 @@ Travelnotes.prototype.update = function save(callback) {
 }
 
 Travelnotes.prototype.get = function get(callback) {
-    var selectSQL  = 'select id,txtCategory1,txtCategory2,txtCategory3,rtfImg,txtTitle,txtAbbr from travel_notes order by id desc';
+    var selectSQL  = 'select id,txtCategory1,txtCategory2,txtCategory3,rtfImg,txtTitle,txtAbbr,txtText from travel_notes order by id desc';
     console.log(selectSQL);
     mysql.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> " + err);
