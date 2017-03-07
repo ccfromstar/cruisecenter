@@ -54,4 +54,8 @@ module.exports = function (app, routes) {
     app.get('/c_share_sec', routes.c_share_sec);
     
     app.get('/c_sharetheme_sec', routes.c_sharetheme_sec);
+    
+    app.get('/getopenid',routes.getopenid);
+    
+    app.post('/service/:sql',routes.servicedo);
 };

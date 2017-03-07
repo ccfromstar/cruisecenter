@@ -996,6 +996,19 @@ exports.postdo = function(req, res) {
 	res.end('</script>');
 }
 
+exports.servicedo = function(req,res){
+	var sql = req.params.sql;
+    if (sql == "setTurnplate") {
+		var ip = req.param("ip");
+		var reward_id = req.param("reward_id");
+		var sql = "insert into turnplate(ip,reward_id) values('"+ip+"',"+reward_id+")";
+		console.log(sql);
+		mysql.query(sql, function(err2, result2) {
+			if(err2) return console.error(err2.stack);
+		});
+	}
+}
+
 exports.c_destination = function(req, res) {
 	var med = new Med();
 	med.get(function(result) {
@@ -1483,6 +1496,25 @@ exports.c_sharetheme_sec = function(req, res) {
 		}
 	});
 };
+
+exports.getopenid = function(req, res) {
+	var code = req.query.code;
+	var appId = settings.AppID;
+	var appSecret = settings.AppSecret;
+	var url = "https://api.weixin.qq.com/sns/oauth2/access_token?grant_type=authorization_code&appid=" + appId + "&secret=" + appSecret + "&code=" + code;
+	request(url, function(err, response, body) {
+		if (!err && response.statusCode == 200) {
+			if (JSON.parse(body).errcode != null) {
+				console.log(body);
+				res.redirect(req.url);
+				return false;
+			}
+			console.log(body);
+			var openid = JSON.parse(body).openid;
+			res.redirect(settings.hosts + "/turnplate/index.html?openid=" + openid);
+		}
+	});
+}
 
 Date.prototype.Format = function(fmt) {
 	var d = this;
