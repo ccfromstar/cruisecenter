@@ -92,8 +92,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 								}else if(t.indexOf('喜悦') != -1){
                                     data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1atqje9ocsuedpp3pk10hfvdc.jpg';
                                 }
+								data[i].show = true;
 							}
 							$scope.items = data;
+							console.log(data);
 						}).error(function() {
 							console.log("error");
 						});
