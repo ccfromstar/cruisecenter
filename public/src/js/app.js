@@ -80,17 +80,19 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 							for(var i in data){
 								var t = data[i].title;
 								if(t.indexOf('水手') != -1){
-									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdqa44i1ugng1l1801nk5rcpc.jpg';
+									data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqdqa44i1ugng1l1801nk5rcpc.jpg';
 								}else if(t.indexOf('蓝宝石') != -1){
-									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdljvac102k1sarn7411ovov5e.jpg';
+									data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqdljvac102k1sarn7411ovov5e.jpg';
 								}else if(t.indexOf('量子') != -1){
-									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqe2p3bsk1k1t19v0sfpj10jsc.jpg';
+									data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqe2p3bsk1k1t19v0sfpj10jsc.jpg';
 								}else if(t.indexOf('新世纪') != -1){
-									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1b19597k713171vm2187o1fbs1v5ec.png';
+									data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1b19597k713171vm2187o1fbs1v5ec.png';
 								}else if(t.indexOf('大西洋') != -1){
-									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdnjfk91ve12s21adv1an4qeqc.jpg';
+									data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqdnjfk91ve12s21adv1an4qeqc.jpg';
 								}else if(t.indexOf('喜悦') != -1){
-                                    data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1atqje9ocsuedpp3pk10hfvdc.jpg';
+                                    data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1atqje9ocsuedpp3pk10hfvdc.jpg';
+                                }else if(t.indexOf('处女') != -1){
+                                    data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/imptrip_img.jpg';
                                 }
 								data[i].show = true;
 							}
@@ -866,18 +868,20 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 							for(var i in data){
 								var t = data[i].title;
 								if(t.indexOf('水手') != -1){
-									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdqa44i1ugng1l1801nk5rcpc.jpg';
+									data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqdqa44i1ugng1l1801nk5rcpc.jpg';
 								}else if(t.indexOf('蓝宝石') != -1){
-									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdljvac102k1sarn7411ovov5e.jpg';
+									data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqdljvac102k1sarn7411ovov5e.jpg';
 								}else if(t.indexOf('量子') != -1){
-									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqe2p3bsk1k1t19v0sfpj10jsc.jpg';
+									data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqe2p3bsk1k1t19v0sfpj10jsc.jpg';
 								}else if(t.indexOf('新世纪') != -1){
-									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1b19597k713171vm2187o1fbs1v5ec.png';
+									data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1b19597k713171vm2187o1fbs1v5ec.png';
 								}else if(t.indexOf('大西洋') != -1){
-									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1aqdnjfk91ve12s21adv1an4qeqc.jpg';
+									data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqdnjfk91ve12s21adv1an4qeqc.jpg';
 								}else if(t.indexOf('喜悦') != -1){
-									data[i].img = 'http://7xs3pn.com1.z0.glb.clouddn.com/o_1atqje9ocsuedpp3pk10hfvdc.jpg';
-								}	
+                                    data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1atqje9ocsuedpp3pk10hfvdc.jpg';
+                                }else if(t.indexOf('处女') != -1){
+                                    data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/imptrip_img.jpg';
+                                }	
 							}
 							$scope.items = data;
 						}).error(function() {

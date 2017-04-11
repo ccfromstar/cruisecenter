@@ -171,6 +171,34 @@ a:active {
 	cursor: pointer;
 }
 
+/**/
+.menu_bus {
+	margin-top: 20px;
+	padding: 0px;
+	margin-left: 0px;
+	margin-bottom: 0px;
+	display: inline-block;
+}
+
+.menu_bus li {
+	display: inline-block;
+	width: 150px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 900;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #E6EAEB;
+	color: #726666;
+}
+
+.menu_bus li:hover,
+.menu_bus .active {
+	background-color: #1E2A5A;
+	color: #fff;
+	cursor: pointer;
+}
+
 .am-slides img {
 	height: 300px;
 }
@@ -1643,4 +1671,8 @@ h1 {
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+}
+
+.note_post img{
+	width:100%;
 }
