@@ -38,9 +38,9 @@
 <!--预订须知-->
 	<div>
 		<ul id="FW" class="menu_bus">
-			<li onclick="setFW(0)" class="active">预订须知</li>
-			<li onclick="setFW(1)">虹桥火车站指引</li>
-			<li onclick="setFW(2)">虹桥机场T2指引</li>
+			<li onclick="setFW1(0)" class="active">预订须知</li>
+			<li onclick="setFW1(1)">虹桥火车站指引</li>
+			<li onclick="setFW1(2)">虹桥机场T2指引</li>
 		</ul>
 		<div class="shadow_a"></div>
 		<div id="fw1" class="fw_div">
@@ -180,7 +180,7 @@
 		});
 	}
 	
-	function setFW(i) {
+	function setFW1(i) {
 		$('#FW li').removeClass('active');
 		$('#FW li').eq(i).addClass('active');
 		$('.fw_div').css('display','none');
