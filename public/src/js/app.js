@@ -649,10 +649,32 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					url: hosts + 'static/getByName',
 					method: 'POST',
 					data: {
-						name: '巴士服务',
+						name: '预订须知',
 					}
 				}).success(function(data) {
-					$scope.post = $sce.trustAsHtml(data[0].post);
+					$scope.post1 = $sce.trustAsHtml(data[0].post);
+				}).error(function() {
+					console.log("error");
+				});
+				$http({
+					url: hosts + 'static/getByName',
+					method: 'POST',
+					data: {
+						name: '虹桥火车站指引',
+					}
+				}).success(function(data) {
+					$scope.post2 = $sce.trustAsHtml(data[0].post);
+				}).error(function() {
+					console.log("error");
+				});
+				$http({
+					url: hosts + 'static/getByName',
+					method: 'POST',
+					data: {
+						name: '虹桥机场T2指引',
+					}
+				}).success(function(data) {
+					$scope.post3 = $sce.trustAsHtml(data[0].post);
 				}).error(function() {
 					console.log("error");
 				});
