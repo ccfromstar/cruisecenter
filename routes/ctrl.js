@@ -26,6 +26,9 @@ module.exports = function (app, routes) {
     app.get('/travel',routes.travel);
     app.post('/travel/:sql',routes.traveldo);
     
+    app.get('/view_tt',routes.view_tt);
+    app.post('/tt/:sql',routes.ttdo);
+    
     app.post('/travel',routes.travelsubmit);
     
     app.post('/post/:sql',routes.postdo);

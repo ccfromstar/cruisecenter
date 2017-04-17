@@ -1,0 +1,55 @@
+<div class="am-cf am-padding">
+	<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">直通车订票</strong> / <small>列表</small></div>
+</div>
+<div class="am-g">
+	
+
+	<div class="am-g">
+		<div class="am-u-sm-12">
+			<form class="am-form">
+				<table class="am-table am-table-striped am-table-hover table-main jdt-table">
+					<thead>
+						<tr>
+							<th>姓名</th>
+							<th>手机号</th>
+							<th>人数</th>
+							<th>船名</th>
+							<th>产品名称</th>
+							<th>价格</th>
+							<th>预订时间</th>
+							<th>乘车日期1</th>
+							<th>乘车日期2</th>
+						</tr>
+					</thead>
+					<tbody id="json_tbody">
+						
+					</tbody>
+				</table>
+				<div class="am-cf">
+					共<span id="total"></span>条记录
+					<div class="am-fr">
+						<ul class="am-pagination" id="pagination">
+							
+						</ul>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="am-modal am-modal-confirm" tabindex="-1" id="del-confirm">
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd">提示</div>
+			<div class="am-modal-bd">
+				你，确定要删除这条记录吗？
+			</div>
+			<div class="am-modal-footer">
+				<span class="am-modal-btn" data-am-modal-cancel>取消</span>
+				<span class="am-modal-btn" data-am-modal-confirm onClick="delDoc(5)">确定</span>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<script>
+	loadTT();
+</script>

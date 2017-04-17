@@ -615,6 +615,53 @@ function toPage(i, page) {
 				$modal.modal('close');
 			}
 		});
+	}else if (i == 6) {
+		$.ajax({
+			type: "post",
+			url: "/tt/get",
+			data: {
+				indexPage: indexPage
+			},
+			success: function(data) {
+				console.log(data);
+				var html = "";
+				var record = data.record;
+				for (var i in record) {
+					html += "<tr>";
+					html += "<td>" + record[i].name + "</td>";
+					html += "<td>" + record[i].mobile + "</td>";
+					html += "<td>" + record[i].num + "</td>";
+					html += "<td>" + record[i].line + "</td>";
+					html += "<td>" + record[i].product + "</td>";
+					html += "<td>" + record[i].price + "</td>";
+					html += "<td>" + record[i].createAt + "</td>";
+					html += "<td>" + record[i].date1 + "</td>";
+					html += "<td>" + record[i].date2 + "</td>";
+					html += "</tr>";
+				}
+				var isFirstPage = data.isFirstPage ? "am-disabled" : "";
+				var isLastPage = data.isLastPage ? "am-disabled" : "";
+				var pager = "";
+				var iPa = Number(window.sessionStorage.getItem("indexPage"));
+				iPa = iPa ? iPa : 1;
+				for (var i = 1; i < data.totalpage + 1; i++) {
+					var hasClass = "";
+					if (i == iPa) {
+						hasClass = "am-active";
+					}
+
+					pager += '<li class="' + hasClass + '"><a href="#" onclick="toPage(5,' + i + ')">' + i + '</a></li>';
+
+				}
+				var pagination = "<li class='" + isFirstPage + "'><a href='#' onClick='toPage(5," + (Number(window.sessionStorage.getItem("indexPage")) - 1) + ")'>«</a></li>";
+				pagination += pager;
+				pagination += "<li class='" + isLastPage + "'><a href='#' onClick='toPage(5," + (Number(window.sessionStorage.getItem("indexPage")) + 1) + ")'}>»</a></li>";
+				$("#json_tbody").html(html);
+				$("#total").html(data.total);
+				$('#pagination').html(pagination);
+				$modal.modal('close');
+			}
+		});
 	}
 }
 
@@ -640,4 +687,8 @@ function loadFaq() {
 
 function loadNote() {
 	toPage(5, 1);
+}
+
+function loadTT() {
+	toPage(6, 1);
 }

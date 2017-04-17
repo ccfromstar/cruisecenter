@@ -80,6 +80,12 @@ exports.faq = function(req, res) {
 	});
 }
 
+exports.view_tt = function(req, res) {
+	res.render('view_tt', {
+		layout: "layout"
+	});
+}
+
 exports.static_page = function(req, res) {
 	res.render('static_page', {
 		layout: "layout"
@@ -753,6 +759,114 @@ exports.staticdo = function(req, res) {
 			if (!err && response.statusCode == 200) {
 				res.json(JSON.parse(body));
 			}
+		});
+	}
+}
+
+exports.ttdo = function(req, res) {
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	var sql = req.params.sql;
+	if(sql == "create") {
+		var mode = req.param("mode");
+		var name = req.param("name");
+		var post = req.param("post");
+		var editid = req.param("editid");
+		/*对单引号进行转义*/
+		name = name.replace(/'/g, "\\'");
+		post = post.replace(/'/g, "\\'");
+		/*编辑模式*/
+		if(mode == "edit") {
+			var sql = "update note set ";
+			sql += " name = '" + name + "',";
+			sql += " post = '" + post + "'";
+			sql += " where id = " + editid;
+			mysql.query(sql, function(err, result) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
+					res.send("300");
+				}
+			});
+		} else {
+			var sql = "insert into note (name,post) values ('" + name + "','" + post + "')";
+			mysql.query(sql, function(err, result) {
+				if(err) return console.error(err.stack);
+				if(result.affectedRows == 1) {
+					res.send("300");
+				}
+			});
+		}
+	} else if(sql == "get") {
+		var page = parseInt(req.param("indexPage"));
+		var LIMIT = 8;
+		page = (page && page > 0) ? page : 1;
+		var limit = (limit && limit > 0) ? limit : LIMIT;
+
+		var change = "";
+
+		var sql1 = "select * from ttbooking where 1=1 " + change + " order by id desc limit " + (page - 1) * limit + "," + limit;
+		var sql2 = "select count(*) as count from ttbooking where 1=1 " + change;
+		debug(sql1);
+		async.waterfall([function(callback) {
+			mysql.query(sql1, function(err, result) {
+				if(err) return console.error(err.stack);
+				for(var i in result) {
+					result[i].createAt = (result[i].createAt).Format("yyyy-MM-dd hh:mm:ss");
+				}
+				callback(null, result);
+			});
+		}, function(result, callback) {
+			mysql.query(sql2, function(err, rows) {
+				if(err) return console.error(err.stack);
+				callback(err, rows, result);
+			});
+		}], function(err, rows, result) {
+			if(err) {
+				console.log(err);
+			} else {
+
+				var total = rows[0].count;
+				var totalpage = Math.ceil(total / limit);
+				var isFirstPage = page == 1;
+				var isLastPage = ((page - 1) * limit + result.length) == total;
+
+				var ret = {
+					total: total,
+					totalpage: totalpage,
+					isFirstPage: isFirstPage,
+					isLastPage: isLastPage,
+					record: result
+				};
+				res.json(ret);
+			}
+		});
+	} else if(sql == "del") {
+		var id = req.param("id");
+		var sql = "delete from note where id = " + id;
+		mysql.query(sql, function(err, result) {
+			if(err) return console.error(err.stack);
+			if(result.affectedRows == 1) {
+				res.send("300");
+			}
+		});
+	} else if(sql == "getById") {
+		var id = req.param("id");
+		var sql = "select * from note where id = " + id;
+		mysql.query(sql, function(err, result) {
+			if(err) return console.error(err.stack);
+			res.json(result);
+		});
+	} else if(sql == "getByName") {
+		var name = req.param("name");
+		var sql = "select * from note where name = '" + name + "'";
+		mysql.query(sql, function(err, result) {
+			if(err) return console.error(err.stack);
+			res.json(result);
+		});
+	} else if(sql == "getemergency") {
+		var sql = "select top 1 * from note where showInhome = 1";
+		mysql.query(sql, function(err, result) {
+			if(err) return console.error(err.stack);
+			res.json(result);
 		});
 	}
 }
