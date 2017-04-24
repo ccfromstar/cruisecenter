@@ -37,7 +37,7 @@
 		  <fieldset>
 		    <legend>带团申请</legend>
 		    	<div class="am-form-group">
-					2017-04-25 赛琳娜
+					2017-04-27 歌诗达大西洋
 				</div>
 				<div class="am-form-group">
 					<input type="text" class="" id="no" placeholder="领队证号">
@@ -64,6 +64,10 @@
 					success: function(data) {
 						if(data == "200"){
 							alert("申请成功！");
+						}else if(data == "300"){
+							alert("报名名额已满！");
+						}else if(data == "500"){
+							alert("您已报名，不能重复报名！");
 						}else{
 							alert("领队证号错误！");
 						}

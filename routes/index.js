@@ -1128,18 +1128,35 @@ exports.servicedo = function(req,res){
 		});
 	}else if (sql == "applyleader") {
 		var no = req.param("no");
-		var sql1 = "select * from leader where no = '"+no+"'";
-		mysql.query(sql1, function(err, result1) {
+		var sql0  = "select count(id) as count from applyleader where line = '2017-04-27 歌诗达大西洋'";
+		mysql.query(sql0, function(err, result0) {
 			if(err) return console.error(err.stack);
-			if(!result1[0]){
-				res.send("400");
-			}else{
-				var sql2 = "insert into applyleader(no) value('"+no+"')";
-				mysql.query(sql2, function(err, result2) {
-					if(err) return console.error(err.stack);
-					res.send("200");
-				});
+			console.log(result0);
+			if(result0[0].count > 6){
+				res.send("300");
+				return false;
 			}
+			var sql1 = "select * from leader where no = '"+no+"'";
+			mysql.query(sql1, function(err, result1) {
+				if(err) return console.error(err.stack);
+				if(!result1[0]){
+					res.send("400");
+					return false;
+				}
+				var sql3 = "select * from applyleader where no ='"+no+"' and line = '2017-04-27 歌诗达大西洋'";
+				mysql.query(sql3, function(err, result3) {
+					if(err) return console.error(err.stack);
+					if(result3[0]){
+						res.send("500");
+						return false;
+					}
+					var sql2 = "insert into applyleader(no,createAt) value('"+no+"',now())";
+					mysql.query(sql2, function(err, result2) {
+						if(err) return console.error(err.stack);
+						res.send("200");
+					});
+				});
+			});
 		});
 	}
 }
