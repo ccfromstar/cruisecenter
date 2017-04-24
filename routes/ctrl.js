@@ -61,4 +61,6 @@ module.exports = function (app, routes) {
     app.get('/getopenid',routes.getopenid);
     
     app.post('/service/:sql',routes.servicedo);
+    
+    app.get('/leader',routes.leader);
 };

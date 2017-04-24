@@ -38,6 +38,12 @@ exports.view_news = function(req, res) {
 	});
 }
 
+exports.leader = function(req, res) {
+	res.render('leader', {
+		layout: false
+	});
+}
+
 exports.news = function(req, res) {
 	res.render('news', {
 		layout: "layout"
@@ -1119,6 +1125,21 @@ exports.servicedo = function(req,res){
 		console.log(sql);
 		mysql.query(sql, function(err2, result2) {
 			if(err2) return console.error(err2.stack);
+		});
+	}else if (sql == "applyleader") {
+		var no = req.param("no");
+		var sql1 = "select * from leader where no = '"+no+"'";
+		mysql.query(sql1, function(err, result1) {
+			if(err) return console.error(err.stack);
+			if(!result1[0]){
+				res.send("400");
+			}else{
+				var sql2 = "insert into applyleader(no) value('"+no+"')";
+				mysql.query(sql2, function(err, result2) {
+					if(err) return console.error(err.stack);
+					res.send("200");
+				});
+			}
 		});
 	}
 }
