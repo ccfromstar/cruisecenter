@@ -627,6 +627,12 @@ function toPage(i, page) {
 				var html = "";
 				var record = data.record;
 				for (var i in record) {
+					var remark = record[i].remark;
+					if(!remark){
+						remark = "";
+					}else if(remark == "领队预订"){
+						remark = "领队自乘";
+					}
 					html += "<tr>";
 					html += "<td>" + record[i].name + "</td>";
 					html += "<td>" + record[i].mobile + "</td>";
@@ -637,6 +643,7 @@ function toPage(i, page) {
 					html += "<td>" + record[i].createAt + "</td>";
 					html += "<td>" + record[i].date1 + "</td>";
 					html += "<td>" + record[i].date2 + "</td>";
+					html += "<td>" + remark + "</td>";
 					html += "</tr>";
 				}
 				var isFirstPage = data.isFirstPage ? "am-disabled" : "";
