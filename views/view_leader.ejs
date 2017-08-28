@@ -1,0 +1,58 @@
+<div class="am-cf am-padding">
+	<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">邮轮领队</strong> / <small>列表</small></div>
+</div>
+<div class="am-g">
+	<div class="am-u-sm-12 am-u-md-12">
+		<div class="am-btn-toolbar">
+			<div class="am-btn-group am-btn-group-xs">
+				<button id="btn_add" onclick="newFrom('leader1')" type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="am-g">
+		<div class="am-u-sm-12">
+			<form class="am-form">
+				<table class="am-table am-table-striped am-table-hover table-main jdt-table">
+					<thead>
+						<tr>
+							<th>姓名</th>
+							<th>领队证号</th>
+							<th>电话</th>
+							<th>图片名称</th>
+							<th>微信号</th>
+							<th class="am-hide-sm-only table-set">操作</th>
+						</tr>
+					</thead>
+					<tbody id="json_tbody">
+						
+					</tbody>
+				</table>
+				<div class="am-cf">
+					共<span id="total"></span>条记录
+					<div class="am-fr">
+						<ul class="am-pagination" id="pagination">
+							
+						</ul>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="am-modal am-modal-confirm" tabindex="-1" id="del-confirm">
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd">提示</div>
+			<div class="am-modal-bd">
+				你，确定要删除这条记录吗？
+			</div>
+			<div class="am-modal-footer">
+				<span class="am-modal-btn" data-am-modal-cancel>取消</span>
+				<span class="am-modal-btn" data-am-modal-confirm onClick="delDoc(7)">确定</span>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<script>
+	loadLeader();
+</script>

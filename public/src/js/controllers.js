@@ -731,13 +731,17 @@ headerApp.controller('homeController', function($scope, $http, $sce) {
 	}).success(function(data) {
 		var o = data;
 		var _list = "";
+		var d = new Date();
 		for (var i in o) {
 			var title = o[i].title;
-			if (title.length > 22) {
-				title = title.substring(0, 22) + '...';
+			if (title.length > 20) {
+				title = title.substring(0, 20) + '...';
 			}
 			//_list += '<p>【'+(o[i].publishAt+'').substring(0,10) + '】' + title + '</p>';
 			o[i].title = title;
+			if(o[i].publishAt > d){
+				o[i].class="A"
+			}
 		}
 		$scope.notice_list = o;
 	}).error(function() {

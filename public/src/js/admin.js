@@ -206,6 +206,39 @@ function saveForm(table) {
 				}
 			}
 		});
+	} else if (table == 'leader') {
+		var name = $('#name').val();
+		var no = $('#no').val();
+		var tel = $('#tel').val();
+		var img = $('#img').val();
+		var weixin = $('#weixin').val();
+
+		//html = editor.html();
+		//editor.sync();
+
+		//var post = $('#post').val();
+		
+		$.ajax({
+			type: "post",
+			url: "/leader/create",
+			data: {
+				mode: mode,
+				name: name,
+				no: no,
+				tel: tel,
+				img: img,
+				weixin: weixin,
+				editid: window.sessionStorage.getItem("editid")
+			},
+			success: function(data) {
+				if (data == "300") {
+					$('.successinfo').html('<p>保存成功</p>').removeClass("none");
+					setTimeout(function() {
+						window.location = 'view_leader';
+					}, 1000);
+				}
+			}
+		});
 	} 
 }
 
@@ -318,6 +351,24 @@ function delDoc(i) {
 				}
 			}
 		});
+	}else if (i == 7) {
+		//
+		$.ajax({
+			type: "post",
+			url: "leader/del",
+			data: {
+				id: window.sessionStorage.getItem("delid")
+			},
+			success: function(data) {
+				if (data == "300") {
+					toPage(7,window.sessionStorage.getItem("indexPage"));
+					$('.successinfo').html('<p>删除成功</p>').removeClass("none");
+					setTimeout(function() {
+						$('.successinfo').addClass("none");
+					}, 2000);
+				}
+			}
+		});
 	}
 }
 
@@ -350,6 +401,11 @@ function editDoc(i, id) {
 		window.sessionStorage.setItem("editid", id);
 		window.sessionStorage.setItem("mode", "edit");
 		window.location = '/note';
+	}else if (i == 7) {
+		//静态内容
+		window.sessionStorage.setItem("editid", id);
+		window.sessionStorage.setItem("mode", "edit");
+		window.location = '/leader1';
 	}
 }
 
@@ -657,12 +713,60 @@ function toPage(i, page) {
 						hasClass = "am-active";
 					}
 
-					pager += '<li class="' + hasClass + '"><a href="#" onclick="toPage(5,' + i + ')">' + i + '</a></li>';
+					pager += '<li class="' + hasClass + '"><a href="#" onclick="toPage(6,' + i + ')">' + i + '</a></li>';
 
 				}
-				var pagination = "<li class='" + isFirstPage + "'><a href='#' onClick='toPage(5," + (Number(window.sessionStorage.getItem("indexPage")) - 1) + ")'>«</a></li>";
+				var pagination = "<li class='" + isFirstPage + "'><a href='#' onClick='toPage(6," + (Number(window.sessionStorage.getItem("indexPage")) - 1) + ")'>«</a></li>";
 				pagination += pager;
-				pagination += "<li class='" + isLastPage + "'><a href='#' onClick='toPage(5," + (Number(window.sessionStorage.getItem("indexPage")) + 1) + ")'}>»</a></li>";
+				pagination += "<li class='" + isLastPage + "'><a href='#' onClick='toPage(6," + (Number(window.sessionStorage.getItem("indexPage")) + 1) + ")'}>»</a></li>";
+				$("#json_tbody").html(html);
+				$("#total").html(data.total);
+				$('#pagination').html(pagination);
+				$modal.modal('close');
+			}
+		});
+	}else if (i == 7) {
+		$.ajax({
+			type: "post",
+			url: "/leader/get",
+			data: {
+				indexPage: indexPage
+			},
+			success: function(data) {
+				console.log(data);
+				var html = "";
+				var record = data.record;
+				var img = '',weixin = '';
+				for (var i in record) {
+					html += "<tr>";
+					html += "<td>" + record[i].name + "</td>";
+					html += "<td>" + record[i].no + "</td>";
+					html += "<td>" + record[i].tel + "</td>";
+					img = record[i].img?record[i].img:"";
+					weixin = record[i].weixin?record[i].weixin:"";
+					html += "<td>" + img + "</td>";
+					html += "<td>" + weixin + "</td>";
+					html += "<td><button type='button' onclick='editDoc(7," + record[i].id + ")' class='am-btn am-btn-default am-btn-xs am-text-secondary'><span class='am-icon-pencil-square-o'></span> 编辑</button>";
+					html += "<button type='button' onclick='showDelCofirm(" + record[i].id + ")' class='am-btn am-btn-default am-btn-xs am-text-danger'><span class='am-icon-trash-o'></span> 删除</button></td>";
+					html += "</tr>";
+				}
+				var isFirstPage = data.isFirstPage ? "am-disabled" : "";
+				var isLastPage = data.isLastPage ? "am-disabled" : "";
+				var pager = "";
+				var iPa = Number(window.sessionStorage.getItem("indexPage"));
+				iPa = iPa ? iPa : 1;
+				for (var i = 1; i < data.totalpage + 1; i++) {
+					var hasClass = "";
+					if (i == iPa) {
+						hasClass = "am-active";
+					}
+
+					pager += '<li class="' + hasClass + '"><a href="#" onclick="toPage(7,' + i + ')">' + i + '</a></li>';
+
+				}
+				var pagination = "<li class='" + isFirstPage + "'><a href='#' onClick='toPage(7," + (Number(window.sessionStorage.getItem("indexPage")) - 1) + ")'>«</a></li>";
+				pagination += pager;
+				pagination += "<li class='" + isLastPage + "'><a href='#' onClick='toPage(7," + (Number(window.sessionStorage.getItem("indexPage")) + 1) + ")'}>»</a></li>";
 				$("#json_tbody").html(html);
 				$("#total").html(data.total);
 				$('#pagination').html(pagination);
@@ -698,4 +802,8 @@ function loadNote() {
 
 function loadTT() {
 	toPage(6, 1);
+}
+
+function loadLeader(){
+	toPage(7, 1);
 }

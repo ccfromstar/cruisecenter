@@ -16,6 +16,7 @@
 var turnplate={
 		restaraunts:[],				//大转盘奖品名称
 		colors:[],					//大转盘奖品区块对应背景颜色
+		rate:[],
 		outsideRadius:192,			//大转盘外圆的半径
 		textRadius:155,				//大转盘奖品位置距离圆心的距离
 		insideRadius:68,			//大转盘内圆的半径
@@ -26,10 +27,11 @@ var turnplate={
 
 $(document).ready(function(){
 	//动态添加大转盘的奖品与奖品区域背景颜色
-	turnplate.restaraunts = ["身份证保护套", "不锈钢便携镜", "面巾纸","宝珠笔","卡包","豪华笔记本"];
+	turnplate.restaraunts = ["卡套", "面巾纸","宝珠笔","卡通风扇","护照夹","便携镜"];
 	turnplate.colors = ["#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF"];
+	turnplate.rate = [799,50,20,40,98,25];
 
-	var time = window.localStorage.getItem("timer");
+	var time = window.localStorage.getItem("timer2");
 	if(time){
 		$('#result').html(time);
 	}
@@ -70,7 +72,7 @@ $(document).ready(function(){
 	};
 
 	$('.pointer').click(function (){
-		var time = window.localStorage.getItem("timer");
+		var time = window.localStorage.getItem("timer2");
 		/*判断是不是第一次点击*/
 		if(time){
 			alert("对不起，您已经参与过了！");
@@ -117,8 +119,8 @@ $(document).ready(function(){
 		} */
 		console.log(item);
 		item  = item - 1;
-		var a1 = ["身份证保护套", "不锈钢便携镜", "面巾纸","宝珠笔","卡包","豪华笔记本"];
-		window.localStorage.setItem("timer",a1[item]);
+		var a1 = ["卡套", "面巾纸","宝珠笔","卡通风扇","护照夹","便携镜"];
+		window.localStorage.setItem("timer2",a1[item]);
 		//插入兑换记录
 		var ip = returnCitySN["cip"];
 		$.ajax({
@@ -164,6 +166,7 @@ function drawRouletteWheel() {
 	  ctx.font = '20px Microsoft YaHei';      
 	  for(var i = 0; i < turnplate.restaraunts.length; i++) {       
 		  var angle = turnplate.startAngle + i * arc;
+		  //console.log(angle);
 		  ctx.fillStyle = turnplate.colors[i];
 		  ctx.beginPath();
 		  //arc(x,y,r,起始角,结束角,绘制方向) 方法创建弧/曲线（用于创建圆或部分圆）    

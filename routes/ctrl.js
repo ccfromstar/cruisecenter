@@ -28,6 +28,10 @@ module.exports = function (app, routes) {
     
     app.get('/view_tt',routes.view_tt);
     app.post('/tt/:sql',routes.ttdo);
+
+    app.get('/view_leader',routes.view_leader);
+    app.post('/leader/:sql',routes.leaderdo);
+    app.get('/leader1',routes.leader1);
     
     app.post('/travel',routes.travelsubmit);
     

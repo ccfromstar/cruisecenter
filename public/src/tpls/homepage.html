@@ -43,15 +43,18 @@
 		<a class="carousel-control left" href="#myCarousel" data-slide="prev"></a>
 		<a class="carousel-control right" href="#myCarousel" data-slide="next"></a>
 	</div>
-	<!--查询区域-->
-	<div class="query" style="display:none">
-		<!--紧急公告-->
+	<div class="query">
+	<!--紧急公告-->
 		<div class="notice_div">
 			<img src="../../src/image/notice_news.png" />
 			<p>紧急公告：</p>
 			<!--<marquee behavior="scroll" contenteditable="false" data-ng-bind-html="emergency_notice"></marquee>-->
 			<div data-ng-bind-html="emergency_notice"></div>
 		</div>
+	</div>
+	<!--查询区域-->
+	<div class="query" style="display:none">
+		
 		<div class="query_div">
 			<div class="query_left">
 				<ul>
@@ -285,7 +288,7 @@
 			<div class="news_right">
 				<p><img src="../../src/image/notice_news.png" />紧急公告 NOTICE</p>
 				<div class="notice_home">
-					<p ng-repeat="item in notice_list" ng-click="openDoc('notice',item.id)">【{{ item.publishAt | limitTo:10 }}】{{ item.title }}</p>
+					<p ng-repeat="item in notice_list" ng-style="item.class" ng-click="openDoc('notice',item.id)">【{{ item.publishAt | limitTo:10 }}】{{ item.title }}</p>
 				</div>
 			</div>
 			<div style="clear:both;"></div>
