@@ -34,10 +34,27 @@
 	<div class="am-g am-margin-top">
 		<div class="am-u-sm-12 am-u-md-12">
 			图片
-			<input type="text" id="img" class="am-input-sm" />
+			<input type="text" id="img" readonly class="am-input-sm" />
 		</div>
 	</div>
 </div>
+
+
+
+<form id="form1" method="post" target="frameFilebuy" action="http://upload.qiniu.com/" enctype="multipart/form-data">
+<div class="am-form-file" style="margin-left: 20px;margin-top:20px;">
+	<button type="button" class="am-btn am-btn-default am-btn-sm">
+		<i class="am-icon-cloud-upload"></i> 领队图片上传
+	</button>
+  <input name="file" name="fileUpbuy" type="file" onChange="UploadBuy()" />
+</div>
+  
+  <input name="key" type="hidden">
+  <input name="token" type="hidden" value="<%=uploadToken%>">
+</form>
+<iframe id="frameFile" name="frameFilebuy" style="display:none"></iframe>
+
+<div id="file_div" style="margin-left: 20px;margin-top:20px;"></div>
 
 <div class="am-margin">
 	<button type="button" onclick="saveForm('leader')" class="btn-c am-btn am-btn-primary am-btn-xs">保存</button>
@@ -87,5 +104,32 @@
 					$('#weixin').val(data[0].weixin);
 				}
 			});
+		}
+
+		function UploadBuy(){
+				var path = document.all.file.value;
+				var arr1 = path.split("\\");
+				//$('#img').val(arr1[arr1.length-1];);
+				document.all.key.value = arr1[arr1.length-1];
+				if(!path){return false;}
+		        $('#form1').submit();
+		        setTimeout(function() { 
+		        	var f = $("#file_div").html();
+		        	var s = $('#img').val();
+		        	if(f == ""){
+		        		f = "<img style='height:200px' src='http://oo6q63jiz.bkt.clouddn.com/"+arr1[arr1.length-1]+"' />";
+		        		
+		        	}else{
+		        		f = f + "<img style='height:200px' src='http://oo6q63jiz.bkt.clouddn.com/"+arr1[arr1.length-1]+"' />";
+		        	}	
+
+		        	if(s==""){
+						s = arr1[arr1.length-1];
+		        	}else{
+		        		s = s + ";" + arr1[arr1.length-1];
+		        	}
+		        	$("#file_div").html(f);
+		        	$('#img').val(s);
+		        }, 2000);
 		}
 </script>

@@ -7,6 +7,7 @@ var fs = require("fs");
 var formidable = require('formidable');
 var request = require("request");
 var crypto = require("crypto");
+var qiniu = require("qiniu");
 var Iconv = require('iconv-lite');
 var Med = require('../models/med.js');
 var Port = require('../models/port.js');
@@ -75,8 +76,20 @@ exports.view_faq = function(req, res) {
 }
 
 exports.leader1 = function(req, res) {
+	var accessKey = settings.accessKey;
+	var secretKey = settings.secretKey;
+	var bucket = 'leader';
+	var mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
+	console.log(mac);
+	var options = {
+  		scope: bucket,
+	};
+	var putPolicy = new qiniu.rs.PutPolicy(options);
+	var uploadToken=putPolicy.uploadToken(mac);
+	console.log(uploadToken);
 	res.render('leader1', {
-		layout: "layout"
+		layout: "layout",
+		uploadToken:uploadToken
 	});
 }
 
