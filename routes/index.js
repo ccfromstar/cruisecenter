@@ -235,6 +235,25 @@ exports.userdo = function(req, res) {
 				res.send("400");
 			}
 		});
+	}else if(sql == "getInfo") {
+		var shipNo = req.param("shipNo");
+		var passPort = req.param("passPort");
+										request({
+										    url: 'http://106.14.63.154:8068/Tagapi/FindNameByCardNo?cardNo='+passPort+'&key=0D914187595A4602BF820A9AF4E9A264',
+										    method: 'GET'
+										}, function(err, response, body) {
+										    if (!err && response.statusCode == 200) {
+										    	console.log(body);
+										    	var r = JSON.parse(body);
+										    	var result = (r.result);
+										    	var name = (r.content);
+										    	var o = {
+										    		name:name,
+										    		result:result
+										    	}
+										    	res.json(o);
+										    }
+										});
 	}
 }
 
