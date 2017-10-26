@@ -410,7 +410,7 @@ exports.newsdo = function(req, res) {
 		}
 	} else if(sql == "get") {
 		var page = parseInt(req.param("indexPage"));
-		var LIMIT = 30;
+		var LIMIT = 10;
 		page = (page && page > 0) ? page : 1;
 		var limit = (limit && limit > 0) ? limit : LIMIT;
 

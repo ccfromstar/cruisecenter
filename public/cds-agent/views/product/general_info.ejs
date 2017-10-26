@@ -86,7 +86,7 @@
                                     <span style="font-family:georgia;color:#FFFFFF">RMB</span>&nbsp;<span style="font-size:18px;font-family:georgia;color:#FFFFFF"><%=minPrice%></span>
                                     <p style="text-align:right;font-size:13px;font-family:微软雅黑;color:#FFFFFF">/人起</p>
                                 </div>
-                                <!--<p style="padding-top:30px;text-align:left"><span onclick="onClickBooking(<%=i%>)" style="cursor:pointer;color:#F37041;font-size:14px;font-weight:bold">详细价格>>></span></p>-->
+                                <p style="padding-top:30px;text-align:left"><span onclick="booking('<%=product.productNumber%>');" style="cursor:pointer;color:#F37041;font-size:14px;font-weight:bold">立即预订>>></span></p>
                             </div>
 
                         </div>
@@ -218,6 +218,7 @@ if(product.visaComment){
 <!--<div class="p_hr p_hr_16"></div>-->
 
 <script type="text/javascript">
+
     $("#code").hide();
     $(".wxdtb,#divWX").mouseenter(function(){     //微信图标
         $(".wxxtb").show();
@@ -243,5 +244,20 @@ if(product.visaComment){
     	height:200, //高度 
     	text: "http://wap.huiyoulun.com/detail/<%=product.id%>"
     });
+
+    function booking(pnum){
+        window.parent.location=window.parent.location+'#topAnchor';
+        setCookie('username','用户名');
+        setCookie('logousername','用户名');
+        window.location='http://www.huiyoulun.com/productdetailbooking?p='+pnum;
+    }
+
+    function setCookie(c_name,value,expiredays)
+    {
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    }
     
 </script>
