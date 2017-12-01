@@ -917,6 +917,7 @@ exports.staticdo = function(req, res) {
 			}
 		});
 	} else if(sql == "getProduct"){
+		/*
 		request({
 			url: 'http://139.196.87.14:1339/product/get4calendar?time=123456',
 			method: 'GET'
@@ -927,9 +928,58 @@ exports.staticdo = function(req, res) {
 			}else{
 				console.log(err);
 			}
+		});*/
+
+		var p = req.param("page");
+
+		console.log(p);
+
+		if(!p || p == null){
+			p = 1;
+		}
+		console.log("p:"+p);
+		request({
+			url: 'http://b.youlunhai.com/youlh/voyage/findVouageListBySearch',
+			method: 'POST',
+			headers: {
+				'reqSource':'cruiseCenter158950b8e66a44c78784adc2b0890c75'
+			},
+			form:{
+				page:p
+			}
+		}, function(err, response, body) {
+			console.log(response);
+			if (!err && response.statusCode == 200) {
+				console.log(JSON.parse(body));
+				res.json(JSON.parse(body));
+			}else{
+				console.log(err);
+			}
+		});
+	}else if(sql == "getDetail"){
+		var p = req.param("page");
+
+		request({
+			url: 'http://b.youlunhai.com/youlh/voyage/findVoyageListItem',
+			method: 'GET',
+			headers: {
+				'reqSource':'cruiseCenter158950b8e66a44c78784adc2b0890c75'
+			},
+			form:{
+				voyageNo:p
+			}
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				//console.log(JSON.parse(body));
+				res.json(JSON.parse(body));
+			}else{
+				console.log(err);
+			}
 		});
 	}
 }
+
+
 
 exports.ttdo = function(req, res) {
 	res.setHeader("Access-Control-Allow-Origin", "*");

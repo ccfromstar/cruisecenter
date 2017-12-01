@@ -366,6 +366,16 @@ listApp.controller('newsFormController', function($scope, $http, $location, $sta
 	$scope.items = ($.parseJSON(newsitems));
 });
 
+var proApp = angular.module('proApp', []);
+proApp.controller('proController', function($scope, $http, $location, $state) {
+
+	$scope.toPages = function(i) {
+		gotop();
+		window.location = "/src/#/index/product?p="+i;
+		window.location.reload();
+	}
+});	
+
 listApp.controller('listController', function($scope, $http, $location, $state) {
 	var toPage = function(i) {
 		//console.log(i);

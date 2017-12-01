@@ -15,6 +15,7 @@ module.exports = function (app, routes) {
     app.post('/static/:sql',routes.staticdo);
     
     app.get('/view_note',routes.view_note);
+    //app.get('/staticgetProduct',routes.staticgetProduct);
     app.get('/note',routes.note);
     app.post('/note/:sql',routes.notedo);
     

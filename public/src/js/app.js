@@ -1,4 +1,4 @@
-var routerApp = angular.module('routerApp', ['ui.router', 'listApp', 'headerApp', 'ngGrid', 'ftitApp', 'adminApp', 'resApp', 'navApp', 'expanderModule', 'applyApp', 'repeatApp', 'directiveapp', 'factoryApp', 'tanktest', 'httptest', 'locationtest', 'BookListModule', 'BookDetailModule']);
+var routerApp = angular.module('routerApp', ['ui.router', 'listApp','proApp','headerApp', 'ngGrid', 'ftitApp', 'adminApp', 'resApp', 'navApp', 'expanderModule', 'applyApp', 'repeatApp', 'directiveapp', 'factoryApp', 'tanktest', 'httptest', 'locationtest', 'BookListModule', 'BookDetailModule']);
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
  * 这里的run方法只会在angular启动的时候运行一次。
@@ -93,6 +93,8 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                                     data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1atqje9ocsuedpp3pk10hfvdc.jpg';
                                 }else if(t.indexOf('处女') != -1){
                                     data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/imptrip_img.jpg';
+                                }else if(t.indexOf('赛琳娜') != -1){
+                                    data[i].img = 'http://oh4xjldea.bkt.clouddn.com/o_1b9i96e6q1ha3boa3112751tcs7.jpg/imptrip_img';
                                 }
 								data[i].show = true;
 							}
@@ -878,15 +880,47 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 					templateUrl: 'tpls/product.html',
 					controller: function($scope, $location, $sce, $http) {
 						$scope.path = $sce.trustAsHtml('<a href="#/index">首页</a> > 邮轮产品');
+						var url = $location.absUrl();
+						var arr = url.split('?p=');
 						/*获取产品列表数据*/
 						$http({
 							url: hosts + 'static/getProduct',
 							method: 'POST',
 							data: {
-								
+								page:arr[1]
 							}
 						}).success(function(data) {
-							//console.log(data);
+							console.log(data);
+							/*新版
+							for(var i in data.rows){
+								var t = data.rows[i].cruiseName;
+								var price = data.rows[i].listPrice[0].peerPrice;
+								if(price == -1){
+									data.rows[i].listPrice[0].peerPrice = '-';
+								}
+								if(t.indexOf('水手') != -1){
+									data.rows[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqdqa44i1ugng1l1801nk5rcpc.jpg';
+								}else if(t.indexOf('蓝宝石') != -1){
+									data.rows[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqdljvac102k1sarn7411ovov5e.jpg';
+								}else if(t.indexOf('量子') != -1){
+									data.rows[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqe2p3bsk1k1t19v0sfpj10jsc.jpg';
+								}else if(t.indexOf('新世纪') != -1){
+									data.rows[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1b19597k713171vm2187o1fbs1v5ec.png';
+								}else if(t.indexOf('大西洋') != -1){
+									data.rows[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1aqdnjfk91ve12s21adv1an4qeqc.jpg';
+								}else if(t.indexOf('喜悦') != -1){
+                                    data.rows[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1atqje9ocsuedpp3pk10hfvdc.jpg';
+                                }else if(t.indexOf('处女') != -1){
+                                    data.rows[i].img = 'http://oo15kg1a4.bkt.clouddn.com/imptrip_img.jpg';
+                                }else if(t.indexOf('抒情') != -1){
+                                    data.rows[i].img = 'http://oo15kg1a4.bkt.clouddn.com/imptrip_img.jpg';
+                                }else if(t.indexOf('赛琳娜') != -1){
+                                    data.rows[i].img = 'http://oh4xjldea.bkt.clouddn.com/o_1b9i96e6q1ha3boa3112751tcs7.jpg/imptrip_img';
+                                }else if(t.indexOf('盛世') != -1){
+                                    data.rows[i].img = 'http://oo15kg1a4.bkt.clouddn.com/imptrip_img.jpg';
+                                }	
+							}
+							$scope.items = data.rows;*/
 							for(var i in data){
 								var t = data[i].title;
 								if(t.indexOf('水手') != -1){
@@ -903,9 +937,22 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
                                     data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/o_1atqje9ocsuedpp3pk10hfvdc.jpg';
                                 }else if(t.indexOf('处女') != -1){
                                     data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/imptrip_img.jpg';
+                                }else if(t.indexOf('抒情') != -1){
+                                    data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/imptrip_img.jpg';
+                                }else if(t.indexOf('赛琳娜') != -1){
+                                    data[i].img = 'http://oh4xjldea.bkt.clouddn.com/o_1b9i96e6q1ha3boa3112751tcs7.jpg/imptrip_img';
+                                }else if(t.indexOf('盛世') != -1){
+                                    data[i].img = 'http://oo15kg1a4.bkt.clouddn.com/imptrip_img.jpg';
                                 }	
 							}
 							$scope.items = data;
+							var total = data.total;
+							total = total/20;
+							var pages = [];
+							for(var i=0;i<total;i++){
+								pages[i] = i+1;
+							}
+							$scope.pages = pages;
 						}).error(function() {
 							console.log("error");
 						});
@@ -926,6 +973,18 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 						var url = $location.absUrl();
 						var arr = url.split('?p=');
 						$scope.srcPage = '/cds-agent/index.html?p='+arr[1];
+						/*获取产品列表数据*/
+						$http({
+							url: hosts + 'static/getDetail',
+							method: 'POST',
+							data: {
+								page:arr[1]
+							}
+						}).success(function(data) {
+							$scope.pro = data;
+						}).error(function() {
+							console.log("error");
+						});
 					}
 				},
 				'nav@index.detail': {

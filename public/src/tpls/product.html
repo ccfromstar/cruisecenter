@@ -1,7 +1,7 @@
 <div ui-view="nav"></div>
 <link rel="stylesheet" href="http://www.imptrip.com/styles/cruise/index.1ed5cf87.css" />
 <link rel="stylesheet" href="../src/css/index.css" />
-<div class="center content_page">
+<div class="center content_page" >
 	<!--
 	<img class="pro_img" src="../../src/image/product3.jpg" alt="" />
 	<img class="pro_img" src="../../src/image/product1.jpg" alt="" />
@@ -14,6 +14,18 @@
 			<ul id="bigSlideUl" class="slide-ul clearfix">
 
 				<li ng-repeat="item in items">
+					<!--新版-->
+					<a class="picimglink" href="/src/#/index/detail?p={{ item.voyageNo }}" target="_blank" style="display: none">
+						<img src="{{ item.img }}" alt="邮轮图片" class="producetion" />
+						<div class="font-main">
+							<div class="font-main_title"><span>{{ item.sailingDate }}{{ item.cruiseName }}{{ item.routes }}</span></div>
+							<!--<div class="font-main_english">Quantum of the seas</div>
+							<div class="font-main_mains" title="上海-福冈-上海">上海-福冈-上海</div>-->
+							<!--<div class="font-main_mains">{{ item.storeward }}</div>-->
+							<div><small class="color-orange">￥</small><span class="price_list color-orange">{{ item.listPrice[0].peerPrice }}</span><small>起/人</small></div>
+						</div>
+					</a>
+					<!--旧版-->
 					<a class="picimglink" href="/src/#/index/detail?p={{ item.id }}" target="_blank">
 						<img src="{{ item.img }}" alt="邮轮图片" class="producetion" />
 						<div class="font-main">
@@ -26,7 +38,6 @@
 					</a>
 				</li>
 				
-				
 		</div>
 		<!-- 幻灯焦点 -->
 		<ul id="smallSlideUl" class="info-btn clearfix">
@@ -36,6 +47,19 @@
 
 	</div>
 </div>
+
+<div class="center content_page" ng-controller="proController">
+	<div class="am-cf">
+					<div class="am-fr">
+						<ul class="am-pagination" id="pagination">
+							<li ng-repeat="page in pages" class="{{ page.class }}">
+								<a ng-click="toPages(page)">{{ page }}</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+</div>			
+
 <div class="searchArea" style="display:none">
 	<div class="center ">
 		<!--查询功能-->
@@ -119,9 +143,9 @@
 	var url = window.location.href;
 	var loadinfo = "加载中...";
 
-	loadCompany();
-	loadPort();
-	loadDay();
+	//loadCompany();
+	//loadPort();
+	//loadDay();
 	/*
 	if(window.sessionStorage.getItem("data_4_1")){
 		$('#startdate1').datepicker('setValue', window.sessionStorage.getItem("data_4_1"));
