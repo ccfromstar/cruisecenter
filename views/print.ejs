@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>上海港邮轮登船凭证管理系统</title>
+
+		<link rel="stylesheet" href="framework/amazeui/amazeui.min.css" />
+
+		<link rel="stylesheet" href="framework/css/admin.css">
+		<script src="framework/JsBarcode.all.js"></script>
+		<script type="text/javascript">
+			function doPrint() {      
+			        bdhtml=window.document.body.innerHTML;      
+			        sprnstr="<!--startprint-->";      
+			        eprnstr="<!--endprint-->";      
+			        prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);      
+			        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));      
+			        window.document.body.innerHTML=prnhtml;   
+			        window.print();      
+			}      
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<p>Name：<%=result.name%></p>
+			<img id="barcode5"/>
+			<script>JsBarcode("#barcode5", "<%=result.ticket_code%>",{
+				format: "CODE128",
+				width:3,//设置条之间的宽度
+	  			height:50,//高度
+			});</script>
+		</div>
+		
+		<div>
+			<p>Name：<%=result.name%> (with two zero on the front)</p>
+			<img id="barcode2"/>
+			<script>JsBarcode("#barcode2", "00<%=result.ticket_code%>",{
+				format: "CODE128",
+				width:3,//设置条之间的宽度
+	  			height:50,//高度
+			});</script>
+		</div>
+
+		<div>
+			<p>Name：<%=result.name%> (luggage)</p>
+			<img id="barcode4"/>
+			<script>JsBarcode("#barcode4", "<%=result.ticket_code%>1",{
+				format: "CODE128",
+				width:3,//设置条之间的宽度
+	  			height:100,//高度
+			});</script>
+		</div>
+
+		<div>
+			<p>Name：<%=result.name%> (luggage with two zero on the front)</p>
+			<img id="barcode3"/>
+			<script>JsBarcode("#barcode3", "00<%=result.ticket_code%>1",{
+				format: "CODE128",
+				width:3,//设置条之间的宽度
+	  			height:100,//高度
+			});</script>
+		</div>
+		<!--
+		<p>
+			<button type='button' onclick='doPrint()' style='margin-left:20px;margin-top: 20px;' class='am-btn am-btn-default am-text-success'><span class='am-icon-print'></span> 打印</button>
+		</p>-->
+		<!--startprint-->
+		<img src="framework/costa.png" style="width:720px" >
+		<!--endprint-->  
+		<!--数据区域-->
+		<div id="ticket_date" style="display:none" >
+			<img src="framework/Coata.png" style="position:fixed;top:20px;left:60px;width:170px">
+			<div style="font-weight:bolder;position:fixed;top:171px;left:120px;font-size: 20px"><%=result.price_type%></div>
+			<div style="font-weight:bolder;position:fixed;top:158px;left:550px;font-size: 18px;"><%=result.ticket_code%></div>
+			<div>
+				<img id="barcode1" style="position:fixed;top:183px;left:415px" />
+				<script>JsBarcode("#barcode1", "<%=result.ticket_code%>",{
+					format: "CODE128",
+					width:2,//设置条之间的宽度
+		  			height:50,//高度
+		  			displayValue:false,
+				});</script>
+			</div>
+			<div style="font-weight:bolder;position:fixed;top:305px;left:120px;font-size: 14px;line-height: 1">歌诗达邮轮有限公司<br/>Costa Crociere S.p.A</div>
+			<div style="font-weight:bolder;position:fixed;top:340px;left:120px;font-size: 18px;line-height: 1">赛琳娜号<br/>Costa Serena</div>
+			<div style="font-weight:bolder;position:fixed;top:405px;left:120px;font-size: 18px;">SE20171222</div>
+			<div style="font-weight:bolder;position:fixed;top:450px;left:120px;font-size: 18px;">2017.12.22</div>
+			<div style="font-weight:bolder;position:fixed;top:495px;left:120px;font-size: 18px;">吴淞口国际邮轮港</div>
+			<div style="font-weight:bolder;position:fixed;top:515px;left:120px;font-size: 14px;">Wusongkou ICT</div>
+			<div style="font-weight:bolder;position:fixed;top:545px;left:120px;font-size: 14px;">2017.12.22 上海 Shanghai<br/>2017.12.24 鹿儿岛 Luerdao<br/>2017.12.26 上海 Shanghai</div>
+
+			<div style="font-weight:bolder;position:fixed;top:305px;left:460px;font-size: 18px"><%=result.booking_no%></div>
+			<div style="font-weight:bolder;position:fixed;top:340px;left:460px;font-size: 28px"><%=result.deck_num%></div>
+			<div style="font-weight:bolder;position:fixed;top:390px;left:460px;font-size: 28px"><%=result.cabin_num%></div>
+			<div style="font-weight:bolder;position:fixed;top:442px;left:642px;font-size: 28px;color:#fff"><%=result.muster_station%></div>
+
+			<div style="font-weight:bolder;position:fixed;top:710px;left:120px;font-size: 18px;line-height: 1"><%=result.name%><br/><%=result.lastname%> <%=result.firstname%></div>
+			<div style="font-weight:bolder;position:fixed;top:765px;left:120px;font-size: 18px;"><%=result.nationality%></div>
+			<div style="font-weight:bolder;position:fixed;top:810px;left:120px;font-size: 18px;"><%=result.passport_no%></div>
+			<div style="font-weight:bolder;position:fixed;top:855px;left:120px;font-size: 18px;"><%=result.id_no%></div>
+			<div style="font-weight:bolder;position:fixed;top:900px;left:120px;font-size: 18px;"><%=result.mobile%></div>
+		</div>
+	</body>
+
+</html>

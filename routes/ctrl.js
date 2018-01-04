@@ -68,4 +68,6 @@ module.exports = function (app, routes) {
     app.post('/service/:sql',routes.servicedo);
     
     app.get('/leader',routes.leader);
+
+    app.get('/print',routes.print);
 };

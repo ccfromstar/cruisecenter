@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" manifest="demo.appcache">
 
 	<head>
 		<title>港区通关系统</title>
@@ -9,10 +9,6 @@
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<script src="../src/framework/jquery-1.9.1.js"></script>
-		<script src="../src/framework/amazeui/amazeui.min.js"></script>
-		<script type="text/javascript" src="../js/login.js"></script>
-		<link rel="stylesheet" href="../src/framework/amazeui/amazeui.min.css" />
-		<link rel="stylesheet" href="../css/basic.css" />
 		<style>
 			.header {
 				text-align: center;
@@ -37,60 +33,72 @@
 				text-align:left;
 				text-indent: 10px;
 			}
+			.footer{
+				position: fixed;
+				bottom: 0;
+				left:0;
+			}
 		</style>
 	</head>
 
 	<body>
 		<div class="header">
 			<div class="am-g">
-				<img style="width:300px;margin-top:50px;" src="/src/image/logo3.png">
-				<h1>港区凭票入港智能识别系统</h1>
-				<table class="am-table am-table-bordered" id="table1" style="width:80%;margin: auto">
-					<tr>
-						<td>姓名：</td>
-						<td>陈**</td>
-					</tr>
-					<tr>
-						<td>护照号：</td>
-						<td>E89***852</td>
-					</tr>
-					<tr>
-						<td>日期：</td>
-						<td>2017年08月22日</td>
-					</tr>
-					<tr>
-						<td>邮轮：</td>
-						<td>赛琳娜号</td>
-					</tr>
-					<tr>
-						<td>通关人数：</td>
-						<td>198/2411</td>
-					</tr>
-					<tr>
-						<td><img src="/src/image/IMG_0363.JPG" style="width:150px"></td>
-						<td><img src="/src/image/face-16.jpg" style="width:500px"></td>
-					</tr>
-				</table>
-				<!--
+				<img style="width:300px;margin-top:20px;" src="/src/image/logo3.png">
+				<h2 style="margin-top: 0px;margin-bottom: 5px;">港区凭票入港智能识别系统</h2>
+				<!--				
 				<h1><span class="passNo" id="hname">&nbsp;</span></h1>
 				<h1>护照号：<span class="passNo" id="hpp"></span></h1>
-				<h1>您是2017年08月22日登乘</h1>
+				<h1>您是2017年12月22日登乘</h1>
 				<h1>歌诗达</h1>
 				<h1>赛琳娜号的</h1>
 				<h1><span class="passNo" id="num">0</span>/2411</h1>
 				<h1>乘客</h1>
-				<h1>欢迎您</h1>-->
+				<h1>欢迎您</h1>
 				<hr/>
-				扫描区：<input type="text" name="code" id="code">
+				-->
+				<div style="margin-bottom: 10px;display:none" id="web_info"></div>
+				扫码认证区：<input type="text" name="code" id="code">
 				<br/>
-				<h1 id="info"></h1>
+				<h2 id="info" style="color:#ff0000;margin-top: 10px;margin-bottom: 5px;"></h2>
+				<div id="img_info" style="margin-top: 15px;"></div>
 			</div>
 		</div>
-		<div class="am-alert am-alert-danger none errorinfo" data-am-alert></div>
+		<div class="footer">
+			<p style="margin-top:0px;margin-bottom: 0px"><input type="button" value="下载数据" onclick="getDate()">本地数据：<span id="localdate"></span></p>
+			<p style="margin-top:0px;margin-bottom: 0px"><input type="button" value="上传数据" onclick="uploadDate()">本设备已扫人数：<span id="localnum"></span>/<span id="localpero">0</span></p>	
+		</div>
 	</body>
 	<script type="text/javascript">
-		var plist = '';
+		var web_info = '';
+
+		$('#localdate').html(localStorage.localdate);
+		$('#localpero').html(localStorage.localpero);
+
+		if(localStorage.localnum){
+
+		}else{
+			localStorage.localnum = 0;
+		}
+		$('#localnum').html(localStorage.localnum);
+ 		var localnum = localStorage.localnum;
+		var url = window.location.href;
+		/*
+		if(url.indexOf('?nocache=') == -1){
+			window.location = window.location.href+"?nocache="+rnd10();
+		}*/
+		
+	    
+	    var plist = '';
+		if(localStorage.plist){
+			plist = localStorage.plist;
+		}
 		var t1 = window.setInterval(function(){
+			/*判断联网状态*/
+			if (navigator.onLine) 
+			{ web_info = '网络状态：联网';}
+			else { web_info = '网络状态：离线';}
+			$('#web_info').html(web_info);
 			document.getElementById("code").focus();
 			var code = $("#code").val();
 			var num = Number($("#num").html());
@@ -98,8 +106,36 @@
 				$("#code").val("");
 				var shipNo = code.substring(0,2);
 				var passPort = code.replace(shipNo,'');
-				var len = passPort.length;
-				var HidePassPort = passPort.substr(0,3)+ "***" + passPort.substr(len-3);
+				/*离线版判断*/
+				var flag = "<img style='width:150px' src='/src/image/check.png'>";
+				var info = "通过";
+				if(passPort == ''){
+					info = "无条码信息";
+					flag = "<img style='width:150px' src='/src/image/delete.png'>";
+				}else{
+					var localdate = localStorage.ldate;
+					if(localdate.indexOf(passPort) != -1 && passPort.length == 9){
+						if(plist.indexOf(passPort) != -1){
+							info = "条码已验证";
+							flag = "<img style='width:150px' src='/src/image/warning.png'>";
+						}else{
+							plist = plist + ";" + passPort+"@"+getNowFormatDate();
+							localnum = Number(localnum) + 1;
+						}
+					}else{
+							info = "无条码信息";
+							flag = "<img style='width:150px' src='/src/image/delete.png'>";
+					}
+				}
+				
+
+						$("#info").html(info);
+						localStorage.localnum = localnum;
+						$('#localnum').html(localStorage.localnum);
+						localStorage.plist = plist;
+						$('#img_info').html(flag);
+						$("#code").val("");
+				/*
 				$.ajax({
 					type: "post",
 					url: "user/getInfo",
@@ -108,25 +144,89 @@
 						passPort: passPort
 					},
 					success: function(data) {
+						var flag = "<img style='width:150px' src='/src/image/check.png'>";
+						var info = "通过";
 						if(plist.indexOf(passPort) != -1){
-							$("#info").html('该条码已经扫描过');return false;
+							info = "条码已验证";
+							flag = "<img style='width:150px' src='/src/image/warning.png'>";
 						}
 						if(data.result == 'error'){
-							$("#info").html('无此人信息');return false;
+							info = "无条码信息";
+							flag = "<img style='width:150px' src='/src/image/delete.png'>";
 						}
-						$("#info").html('');
+						$("#info").html(info);
 						plist = plist + ";" + passPort;
+						localStorage.plist = plist;
 						var name = data.name;
-						var len = name.length;
-						name = "**" + name.substr(len-1);
-						$("#hname").html(name);
-						$("#hpp").html(HidePassPort);
-						num+=1;
-						$("#num").html(num);
+
+						$('#img_info').html(flag);
 						$("#code").val("");
 					}
-				});
+				});*/
 			}
 		},100); 
+
+		function uploadDate(){
+				$.ajax({
+					type: "post",
+					url: "user/uploadInfo",
+					data: {
+						plist: localStorage.plist
+					},
+					success: function(data) {
+						alert("数据上传成功！");
+						localStorage.localnum = 0;
+						localStorage.plist = '';
+						plist = '';
+						$('#localnum').html(localStorage.localnum);
+						localnum = 0;
+					}
+				});
+		}
+		function getDate(){
+				$.ajax({
+					type: "post",
+					url: "user/getInfo",
+					success: function(data) {
+						var d = new Date();
+						var today = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+						//计算总人数
+						var perTotal = data.split(";");
+						localStorage.localdate = today;
+						localStorage.ldate = data;
+						localStorage.localpero = perTotal.length;
+						$('#localdate').html(localStorage.localdate);
+						$('#localpero').html(localStorage.localpero);
+					}
+				});
+		}
+		function rnd10(){
+			var rand = "";
+			for(var i = 0; i < 10; i++){
+			    var r = Math.floor(Math.random() * 10);
+
+			    rand += r;
+
+			}
+			return rand;
+		}
+
+		function getNowFormatDate() {
+		    var date = new Date();
+		    var seperator1 = "-";
+		    var seperator2 = ":";
+		    var month = date.getMonth() + 1;
+		    var strDate = date.getDate();
+		    if (month >= 1 && month <= 9) {
+		        month = "0" + month;
+		    }
+		    if (strDate >= 0 && strDate <= 9) {
+		        strDate = "0" + strDate;
+		    }
+		    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+		            + " " + date.getHours() + seperator2 + date.getMinutes()
+		            + seperator2 + date.getSeconds();
+		    return currentdate;
+		}
 	</script>
 </html>

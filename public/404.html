@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN" manifest="test.manifest">
+
+	<head>
+		<title>404error</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<script src="../src/framework/jquery-1.9.1.js"></script>
+		<script src="../src/framework/amazeui/amazeui.min.js"></script>
+		<script type="text/javascript" src="../js/login.js"></script>
+		<link rel="stylesheet" href="../src/framework/amazeui/amazeui.min.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<style>
+			.header {
+				text-align: center;
+			}
+			
+			.header h1 {
+				font-size: 200%;
+				color: #333;
+				margin-top: 30px;
+			}
+			
+			.header p {
+				font-size: 14px;
+			}
+
+			.passNo {
+				font-weight: bold;
+				font-size: 24px;
+			}
+			#table1 td{
+				font-size: 18px;
+				text-align:left;
+				text-indent: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header">
+			<div class="am-g">
+				<img style="width:300px;margin-top:30px;" src="/src/image/logo3.png">
+				<h1 style="margin-top: 0px;">港区凭票入港智能识别系统</h1>
+				<!--
+				<table class="am-table am-table-bordered" id="table1" style="width:80%;margin: auto">
+					<tr>
+						<td>姓名：</td>
+						<td>陈**</td>
+					</tr>
+					<tr>
+						<td>护照号：</td>
+						<td>E89***852</td>
+					</tr>
+					<tr>
+						<td>日期：</td>
+						<td>2017年08月22日</td>
+					</tr>
+					<tr>
+						<td>邮轮：</td>
+						<td>赛琳娜号</td>
+					</tr>
+					<tr>
+						<td>通关人数：</td>
+						<td>198/2411</td>
+					</tr>
+					<tr>
+						<td><img src="/src/image/IMG_0363.JPG" style="width:150px"></td>
+						<td><img src="/src/image/face-16.jpg" style="width:500px"></td>
+					</tr>
+				</table>
+				
+				<h1><span class="passNo" id="hname">&nbsp;</span></h1>
+				<h1>护照号：<span class="passNo" id="hpp"></span></h1>
+				<h1>您是2017年12月22日登乘</h1>
+				<h1>歌诗达</h1>
+				<h1>赛琳娜号的</h1>
+				<h1><span class="passNo" id="num">0</span>/2411</h1>
+				<h1>乘客</h1>
+				<h1>欢迎您</h1>
+				<hr/>
+				-->
+				扫码认证区：<input type="text" name="code" id="code">
+				<br/>
+				<h1 id="info" style="color:#ff0000"></h1>
+				<div id="img_info"></div>
+			</div>
+		</div>
+		<div class="am-alert am-alert-danger none errorinfo" data-am-alert></div>
+	</body>
+	<script type="text/javascript">
+		var plist = '';
+		var t1 = window.setInterval(function(){
+			document.getElementById("code").focus();
+			var code = $("#code").val();
+			var num = Number($("#num").html());
+			if(code!=""){
+				$("#code").val("");
+				var shipNo = code.substring(0,2);
+				var passPort = code.replace(shipNo,'');
+				var len = passPort.length;
+				var HidePassPort = passPort.substr(0,3)+ "***" + passPort.substr(len-3);
+				$.ajax({
+					type: "post",
+					url: "user/getInfo",
+					data: {
+						shipNo: shipNo,
+						passPort: passPort
+					},
+					success: function(data) {
+						var flag = "<img style='width:150px' src='/src/image/check.png'>";
+						var info = "通过";
+						if(plist.indexOf(passPort) != -1){
+							info = "条码已验证";
+							flag = "<img style='width:150px' src='/src/image/warning.png'>";
+						}
+						if(data.result == 'error'){
+							info = "无条码信息";
+							flag = "<img style='width:150px' src='/src/image/delete.png'>";
+						}
+						$("#info").html(info);
+						plist = plist + ";" + passPort;
+						var name = data.name;
+						//alert(flag);
+						//var len = name.length;
+						//name = "**" + name.substr(len-1);
+						/*
+						$("#hname").html(name);
+						$("#hpp").html(HidePassPort);
+						num+=1;
+						$("#num").html(num);*/
+						$('#img_info').html(flag);
+						$("#code").val("");
+					}
+				});
+			}
+		},100); 
+	</script>
+</html>

@@ -21,6 +21,19 @@ var Shipdinner = require('../models/shipdinner.js');
 var Theme = require('../models/theme.js');
 var Share = require('../models/share.js');
 
+exports.print = function(req, res) {
+	var id = req.query.id;
+	var sql = "select * from v_passenger where id = "+id;
+	mysql.query(sql, function(err, result) {
+		if(err) return console.error(err.stack);
+		console.log(result);
+		res.render('print', {
+			layout: false,
+			result:result[0]
+		});
+	});
+}
+
 exports.home = function(req, res) {
 	res.render('home', {
 		layout: "layout"
@@ -236,6 +249,16 @@ exports.userdo = function(req, res) {
 			}
 		});
 	}else if(sql == "getInfo") {
+										request({
+										    url: 'http://www.cruisesh.com:7777/test',
+										    method: 'GET'
+										}, function(err, response, body) {
+										    if (!err && response.statusCode == 200) {
+
+										    	res.send(body);
+										    }
+										});
+		/*
 		var shipNo = req.param("shipNo");
 		var passPort = req.param("passPort");
 										request({
@@ -254,6 +277,25 @@ exports.userdo = function(req, res) {
 										    	res.json(o);
 										    }
 										});
+		*/
+	}else if(sql == "uploadInfo") {
+		
+		var plist = req.param("plist");
+		console.log(plist);
+		var arr1 = plist.split(";");
+		for(var i=1;i<arr1.length;i++){
+			if(arr1[i].indexOf("@")!=-1){
+				console.log(arr1[i]);
+				var arr2 = arr1[i].split("@");
+				console.log(arr2[0]);
+				console.log(arr2[1]);
+				var sql1 = "insert into checkin_log(no,time) values('"+arr2[0]+"','"+arr2[1]+"')";
+				mysql.query(sql1, function(err, result) {
+					if(err) return console.error(err.stack);
+					res.send("300");
+				});
+			}
+		}
 	}
 }
 
@@ -917,7 +959,7 @@ exports.staticdo = function(req, res) {
 			}
 		});
 	} else if(sql == "getProduct"){
-		/*
+		
 		request({
 			url: 'http://139.196.87.14:1339/product/get4calendar?time=123456',
 			method: 'GET'
@@ -928,8 +970,8 @@ exports.staticdo = function(req, res) {
 			}else{
 				console.log(err);
 			}
-		});*/
-
+		});
+		/*
 		var p = req.param("page");
 
 		console.log(p);
@@ -955,7 +997,7 @@ exports.staticdo = function(req, res) {
 			}else{
 				console.log(err);
 			}
-		});
+		});*/
 	}else if(sql == "getDetail"){
 		var p = req.param("page");
 
