@@ -70,4 +70,5 @@ module.exports = function (app, routes) {
     app.get('/leader',routes.leader);
 
     app.get('/print',routes.print);
+    app.get('/admin_checkin',routes.admin_checkin);
 };

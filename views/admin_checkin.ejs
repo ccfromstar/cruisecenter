@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>凭票进港数据分析系统</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="stylesheet" href="css/amazeui.min.css" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/amazeui.min.js"></script>
+		<style>
+			.am-alert{
+				position: fixed;
+				top:0;
+				left:0;
+				z-index:9999;
+				margin-top:0 !important;
+				width:100%;
+			}
+			.none{
+				display: none;
+			}
+			.am-header-title{
+				font-size: 14px !important;
+			}
+		</style>
+	</head>
+	<body class="am-with-fixed-navbar">
+		<!-- Header -->
+		<header data-am-widget="header" class="am-header am-header-default am-no-layout am-header-fixed">
+			<img style="width:100px;position: fixed;top:15px;left:10px" src="src/image/logo3.png">
+			<h1 class="am-header-title">
+    			<a href="#title-link">凭票进港数据分析系统</a>
+  			</h1>
+		</header>
+		<form class="am-form">
+		 
+		    <div class="am-form-group">
+		      <div class="am-input-group am-datepicker-date" data-am-datepicker="{format: 'yyyy-mm-dd'}">
+				  <input type="text" class="am-form-field" id="date" placeholder="选择日期" readonly>
+				  <span class="am-input-group-btn am-datepicker-add-on">
+				    <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span> </button>
+				  </span>
+			   </div>
+		    </div>
+	
+		</form>
+
+		&nbsp;&nbsp;<button class="am-btn am-btn-default" type="button" onclick="getNum()">数据分析查询</button>
+		<ul class="am-list" id="list1">
+		</ul>
+		
+
+		</div>
+		<script>
+			var arrlist = "";
+
+			function getNum(){
+				$.ajax({
+					type: "POST",
+					url: "/service/py_getShip",
+					data: {
+						date: $("#date").val()
+					},
+					success: function(data) {
+						arrlist = '';
+						if(data==""){
+							$("#list1").html("<li>&nbsp;&nbsp;无数据</li>");
+							return false;
+						}
+						var arr = data.split(";");
+						for(var i=1;i<arr.length;i++){
+							getTotal(arr[i]);
+						}
+					}
+				});
+			}
+
+			function getTotal(ship_id){
+				$.ajax({
+					type: "POST",
+					url: "/service/py_getTotal",
+					data: {
+						date: $("#date").val(),
+						ship_id:ship_id
+					},
+					success: function(data) {
+						//console.log(data);
+						arrlist = arrlist + "<li>&nbsp;&nbsp;船名："+data.ship_id+"<br/>&nbsp;&nbsp;扫码进港人数："+data.scan_num+"人<br/>&nbsp;&nbsp;游客总人数："+data.total_num+"人<br/><br/>&nbsp;&nbsp;游客进港时间段：<br/>&nbsp;&nbsp;"+data.range+"<br/>&nbsp;&nbsp;总用时："+parseInt(data.dif)+"分钟<br/></li>";
+						$("#list1").html(arrlist);
+					}
+				});
+			}
+			
+		</script>
+	</body>
+</html>

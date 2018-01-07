@@ -34,6 +34,12 @@ exports.print = function(req, res) {
 	});
 }
 
+exports.admin_checkin = function(req, res) {
+		res.render('admin_checkin', {
+			layout: false
+		});
+}
+
 exports.home = function(req, res) {
 	res.render('home', {
 		layout: "layout"
@@ -287,9 +293,7 @@ exports.userdo = function(req, res) {
 			if(arr1[i].indexOf("@")!=-1){
 				console.log(arr1[i]);
 				var arr2 = arr1[i].split("@");
-				console.log(arr2[0]);
-				console.log(arr2[1]);
-				var sql1 = "insert into checkin_log(no,time) values('"+arr2[0]+"','"+arr2[1]+"')";
+				var sql1 = "insert into checkin_log(no,time,ship_no) values('"+arr2[1]+"','"+arr2[2]+"','"+arr2[0]+"')";
 				mysql.query(sql1, function(err, result) {
 					if(err) return console.error(err.stack);
 					res.send("300");
@@ -1412,7 +1416,67 @@ exports.servicedo = function(req,res){
 				});
 			});
 		});
+	}else if(sql == "py_getShip"){
+		var date = req.param("date");
+		request({
+			url: 'http://www.cruisesh.com:7777/getShip?startDate='+date,
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				//console.log(body);
+				//res.json(JSON.parse(body));
+				res.send(body);
+			}else{
+				console.log(err);
+			}
+		});
+	}else if(sql == "py_getTotal"){
+		var date = req.param("date");
+		var ship_id = req.param("ship_id");
+		request({
+			url: 'http://www.cruisesh.com:7777/getTotal?startDate='+date+'&shortEn='+ship_id,
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+					var sql2 = "select count(DISTINCT no) as count,min(time) as min,max(time) as max from checkin_log where time like '"+date+"%' and ship_no='"+ship_id+"'" ;
+					mysql.query(sql2, function(err, result2) {
+						if(err) return console.error(err.stack);
+						request({
+							url: 'http://www.cruisesh.com:7777/getShipName?shortEn='+ship_id,
+							method: 'GET'
+						}, function(err, response, body2) {
+							if (!err && response.statusCode == 200) {
+								var dif = 0;
+								range = '';
+								if(result2[0].count != 0){
+									dif = GetDateDiff(result2[0].min,result2[0].max);
+									range = result2[0].min+"~"+result2[0].max
+								}
+								var o = {
+									scan_num:result2[0].count,
+									total_num:body,
+									ship_id:body2,
+									range:range,
+									dif:dif
+								};
+								res.json(o);
+							}else{
+								console.log(err);
+							}
+						});
+					});
+			}else{
+				console.log(err);
+			}
+		});
 	}
+}
+
+function GetDateDiff(startDate,endDate)  {  
+    var startTime = new Date(Date.parse(startDate.replace(/-/g,   "/"))).getTime();     
+    var endTime = new Date(Date.parse(endDate.replace(/-/g,   "/"))).getTime();     
+    var dates = Math.abs((startTime - endTime))/(1000*60);     
+    return  dates;    
 }
 
 exports.c_destination = function(req, res) {
