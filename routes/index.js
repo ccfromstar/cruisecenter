@@ -1423,7 +1423,6 @@ exports.servicedo = function(req,res){
 			method: 'GET'
 		}, function(err, response, body) {
 			if (!err && response.statusCode == 200) {
-				//console.log(body);
 				//res.json(JSON.parse(body));
 				res.send(body);
 			}else{
@@ -1446,20 +1445,62 @@ exports.servicedo = function(req,res){
 							method: 'GET'
 						}, function(err, response, body2) {
 							if (!err && response.statusCode == 200) {
-								var dif = 0;
-								range = '';
-								if(result2[0].count != 0){
-									dif = GetDateDiff(result2[0].min,result2[0].max);
-									range = result2[0].min+"~"+result2[0].max
-								}
-								var o = {
-									scan_num:result2[0].count,
-									total_num:body,
-									ship_id:body2,
-									range:range,
-									dif:dif
-								};
-								res.json(o);
+								var sql3 = "select a.time from checkin_log a right join (select max(id) id from checkin_log  where time like '"+date+"%' group by no) b on b.id = a.id where a.id is not null order by a.time";
+								mysql.query(sql3, function(err, result3) {
+									if(err) return console.error(err.stack);
+									var dif = 0;
+									range = '';
+									var arr1 = [];
+									var arr2 = [];
+									if(result2[0].count != 0){
+										dif = GetDateDiff(result2[0].min+"",result2[0].max+"");
+										range = (result2[0].min).Format("hh:mm:ss")+"~"+(result2[0].max).Format("hh:mm:ss");
+										/*根据result3计算chart的值*/
+										var node_min = (result2[0].min).Format("yyyy-MM-dd hh:mm:ss");
+										var node_max = (result2[0].max).Format("yyyy-MM-dd hh:mm:ss");
+										var tmp1 = node_min.split(":");
+										node_min = tmp1[0]+":"+tmp1[1];
+										var tmp2 = node_max.split(":");
+										node_max = tmp2[0]+":"+tmp2[1];
+										var j = 0;
+										for(var i=0;i<parseInt(dif)+2;i++){
+											var m = new Date(node_min);
+											var n = new Date(m.getTime() + 1000 * 60 * i);
+											var mn = n.Format("yyyy-MM-dd hh:mm");
+											var s_mn =  n.Format("hh:mm");
+											arr1.push(s_mn);
+										    /*计算这1分钟的人数*/
+										    var np = 0;
+										    
+										    while(j<result3.length){
+										    	var t = (result3[j].time).Format("yyyy-MM-dd hh:mm:ss") +"";
+										  
+										    	if(t.indexOf(mn) != -1){
+										    		np++;
+										    		j++;
+										    	}else{
+										    		break;
+										    	}
+										    }
+										    arr2.push(np);
+										}
+										/*
+										for(var j=0;j<result3.length;j++){
+											console.log(result3[j]);
+										}*/	
+									}
+									
+									var o = {
+										scan_num:result2[0].count,
+										total_num:body,
+										ship_id:body2,
+										range:range,
+										dif:dif,
+										x:arr1,
+										y:arr2
+									};
+									res.json(o);
+								});
 							}else{
 								console.log(err);
 							}
