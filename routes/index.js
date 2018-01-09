@@ -1445,7 +1445,7 @@ exports.servicedo = function(req,res){
 							method: 'GET'
 						}, function(err, response, body2) {
 							if (!err && response.statusCode == 200) {
-								var sql3 = "select a.time from checkin_log a right join (select max(id) id from checkin_log  where time like '"+date+"%' group by no) b on b.id = a.id where a.id is not null order by a.time";
+								var sql3 = "select a.time from checkin_log a right join (select max(id) id from checkin_log  where time like '"+date+"%' group by no) b on b.id = a.id where a.id is not null and a.ship_no = '"+ship_id+"' order by a.time";
 								mysql.query(sql3, function(err, result3) {
 									if(err) return console.error(err.stack);
 									var dif = 0;
@@ -1474,7 +1474,7 @@ exports.servicedo = function(req,res){
 										    
 										    while(j<result3.length){
 										    	var t = (result3[j].time).Format("yyyy-MM-dd hh:mm:ss") +"";
-										  
+										 
 										    	if(t.indexOf(mn) != -1){
 										    		np++;
 										    		j++;
