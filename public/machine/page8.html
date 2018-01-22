@@ -1,0 +1,466 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>自助打票系统</TITLE>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<SCRIPT LANGUAGE="JavaScript">
+//Loading recognition engine
+
+function LoadRecogKenal()
+{
+    document.IDScanRecog.result.innerText = "";
+    if(!objIDCard.IsLoaded())
+    {
+       var strDllPath = "";
+       var nRet = objIDCard.InitIDCard(document.IDScanRecog.UserID.value,1);
+
+       document.IDScanRecog.result.innerText = "";
+       if(nRet==0)
+       { 
+          document.IDScanRecog.result.innerText = "The recognition engine is loaded successfully.";
+       }
+       else
+       {
+         document.IDScanRecog.result.innerText = "The recognition engine is loaded failure.\r\n Return Value£º";
+      
+         document.IDScanRecog.result.innerText += nRet;
+         if(nRet==1)
+         {
+            document.IDScanRecog.result.innerText += "(Invalid UserID)";
+         }
+       }
+    }
+    else
+    {
+		document.IDScanRecog.result.innerText = "The recognition engine is loaded successfully.";
+    }
+ 
+}
+//Release engine
+function FreeRecogKenal()
+{
+    objIDCard.FreeIdcard();
+    document.IDScanRecog.result.innerText = "";
+}
+//recognition
+function RecognizeImg()
+{
+    if(objIDCard.IsLoaded())
+    {
+    
+	 
+		alert("SetIDCardType 1");
+     	objIDCard.SetIDCardType(document.IDScanRecog.CardMainID.value,0);
+        alert("SetIDCardType 2");
+      	nResult = objIDCard.ClassifyIDCard(); 
+		alert("CardType:"+nResult);
+		var nCardType = nResult;
+		
+		var nImg = checkDg("image");
+		var nImg = checkDg("image");
+		var nViz = checkVIZ();
+		 
+		if( nCardType == 1)
+		{
+			nResult = objIDCard.RecogChipCard(nDG,nViz,nImg);
+		}
+		  
+		if( nCardType == 2)
+		{
+			nResult = objIDCard.RecogGeneralMRZCard(nViz,nImg);
+		}
+		  
+		if( nCardType == 3)
+		{
+			nResult = objIDCard.RecogCommonCard(nImg);
+		}
+		
+		if(nResult <= 0)
+        {
+          
+           var strError = "recognition failure\r\nReturn value£º";
+           strError += nResult;
+           document.IDScanRecog.result.innerText = strError;
+           return;
+        } 
+	  
+        //display the recognition results
+        DisplayResult();
+        //save images
+		objIDCard.SaveImageEx(document.IDScanRecog.ImgPath.value,nImg);  
+    }
+    else
+    {
+        document.IDScanRecog.result.innerText = "Please successful loading recognition engine.";
+    }
+   
+}
+
+//ÏÔÊ¾Ê¶±ð½á¹û
+function DisplayResult()
+{	
+	/*
+     document.IDScanRecog.result.innerText = "";   
+     var strResult = "recognition successful\r\n";   
+    
+	
+    var nFieldNum = objIDCard.GetRecogFieldNum();
+     
+    if(nFieldNum>0)
+    {  
+        for(var i=1;i<=nFieldNum;++i) 
+        {
+			strResult += objIDCard.GetFieldName(i);
+            strResult += ":";
+            strResult += objIDCard.GetRecogResult(i);
+			//alert(objIDCard.GetRecogResult(i));
+			strResult += "\r\n";
+        }
+    }*/
+
+    var strResult = "";
+
+    var nFieldNum = objIDCard.GetRecogFieldNum();
+
+    strResult = objIDCard.GetRecogResult(1);
+
+    //document.IDScanRecog.result.innerText = strResult;
+
+    window.location = "page4.html?p="+strResult; 
+}
+//display the recognition results
+function GetSDKVersion()
+{
+   if(objIDCard.IsLoaded())
+   {
+     document.IDScanRecog.result.innerText = objIDCard.GetVersionInfo(); 
+   }
+   else
+   {
+     document.IDScanRecog.result.innerText = "Please successful loading recognition engine.";
+   }
+
+}
+//check device online or not
+function DeviceIsOnLine()
+{
+   if(objIDCard.IsLoaded())
+   {
+   
+      if(objIDCard.CheckDeviceOnline()==1)
+      {
+        document.IDScanRecog.result.innerText = "The device is online.";
+      }
+      else
+      {
+        document.IDScanRecog.result.innerText = "The device is not online.";
+      }
+   }
+   else
+   {
+     document.IDScanRecog.result.innerText = "Please successful loading recognition engine.";
+   }
+}
+//get device name
+function GetDeviceName()
+{
+   if(objIDCard.IsLoaded())
+   {
+        document.IDScanRecog.result.innerText = objIDCard.GetCurrentDevice();
+   }
+   else
+   {
+     document.IDScanRecog.result.innerText = "Please successful loading recognition engine.";
+   }
+}
+
+function GetDeviceSNCode()
+{
+    if(objIDCard.IsLoaded())
+    {
+        
+        var nResult = objIDCard.GetDeviceSN();
+       
+       document.IDScanRecog.result.innerText = nResult ;
+ 
+        
+    }
+    else
+    {
+       document.IDScanRecog.result.innerText = "Please successful loading recognition engine.";
+    }
+}
+function ShowImage()
+{  
+     objIDCard.ShowImage(document.IDScanRecog.ImgPath.value); 
+}
+
+function AutoClassifyCard()
+{
+	if( objIDCard.IsLoaded())
+	{
+		var nRet = objIDCard.GetGrabSignalType();
+		if( nRet == 1)
+		{          
+          objIDCard.SetIDCardType(2,0);
+          objIDCard.AddIDCardType(3,0);
+          objIDCard.AddIDCardType(4,0);
+          objIDCard.AddIDCardType(5,0);
+          objIDCard.AddIDCardType(5,0);
+          objIDCard.AddIDCardType(6,0);
+          objIDCard.AddIDCardType(7,0);
+          objIDCard.AddIDCardType(9,0);
+          objIDCard.AddIDCardType(10,0);
+          objIDCard.AddIDCardType(11,0);
+          objIDCard.AddIDCardType(12,0);
+          objIDCard.AddIDCardType(13,0);
+          objIDCard.AddIDCardType(14,0);
+          objIDCard.AddIDCardType(15,0);
+		  objIDCard.AddIDCardType(16,0);
+          objIDCard.AddIDCardType(22,0);
+          objIDCard.AddIDCardType(25,0);
+          objIDCard.AddIDCardType(26,0);
+		  
+		  //
+		  var nResult = objIDCard.ClassifyIDCard();
+		  if( nResult < 0)
+		  {
+			 var strError = "classify failed\r\nReturn Value£º";
+              strError += nResult;
+              document.IDScanRecog.result.innerText = strError;
+              return;
+		  }
+
+		  var nCardType = nResult;
+		  var nMainType = 0;//nResult >> 4; 
+		  
+		  //alert("nCardType: "+nCardType + "mainID: "+nMainType);
+		  
+		  var nDG = checkDg("DG");		//Ê¶±ð²ÎÊý
+		  var nImg = checkDg("image");
+		  var nViz = checkVIZ();
+		  
+		  
+		  if( nCardType == 1)
+		  {
+			nResult = objIDCard.RecogChipCard(nDG,nViz,nImg);
+		  }
+		  
+		  if( nCardType == 2)
+		  {
+			nResult = objIDCard.RecogGeneralMRZCard(nViz,nImg);
+		  }
+		  
+		  if( nCardType == 3)
+		  {
+			nResult = objIDCard.RecogCommonCard(nImg);
+		  }
+		  
+		  if(nResult < 0)
+		  { 
+			var strError = "recognition failure\r\nReturn value£º";
+			strError += nResult;
+			document.IDScanRecog.result.innerText = strError;
+			return;
+		   } 
+			
+
+		  var arr = GetDGArr();
+		  DisplayDG(arr,nCardType);
+
+		  //display
+          DisplayResult();
+          //Save images
+          objIDCard.SaveImageEx(document.IDScanRecog.ImgPath.value,nImg); 
+		}
+	}
+	else
+	{
+		document.IDScanRecog.result.innerText="Please successful loading recognition engine.";
+	}
+}
+
+function checkDg(name)
+{
+	var x = document.getElementsByName(name); 
+	var num = 0;
+	for(var i = 0;i < x.length;i++)
+	{ 
+		if(x[i].checked == true)
+		{ 
+			num |= (1 << (x[i].value - 1));
+		} 
+	} 
+	//alert("num: " +num);
+	return num;
+}
+
+function checkVIZ()
+{
+	var x = document.getElementsByName("seeRead");
+	for( var i = 0; i < x.length; i++)
+	{
+		if( x[i].checked == true)
+			return x[i].value;
+	}
+	return 0;
+}
+
+function GetDGArr()
+{
+	var x = document.getElementsByName("DG"); 
+	
+	var arr = new Array();
+	for(var i = 0;i < x.length;i++)
+	{ 
+		if(x[i].checked == true)
+		{ 
+			arr.push(x[i].value);
+		} 
+	} 
+	return arr;
+}
+
+function DisplayDG(arr,nType)
+{	
+	//alert(arr);
+	if( nType == 1)
+	{
+		var strResult = "DG information\r\n"
+		for( var i = 0; i < arr.length; i++)
+		{
+			strResult += "DG" + arr[i];
+			strResult += ": ";
+			strResult += objIDCard.GetDataGroupContent(arr[i],1);
+			strResult += "\r\n";
+		}
+		document.IDScanRecog.DGinfo.innerText = strResult;
+	}
+	else
+	{
+		var strResult = "not any DG info!"
+		document.IDScanRecog.DGinfo.innerText = strResult;
+	}
+}
+
+setInterval("AutoClassifyCard()", 100);
+
+setTimeout(LoadRecogKenal,1000);
+
+</SCRIPT>
+<style>
+.div1{float:left;width:250px;border-right:1px;}
+.div2{float:left;width:300px;}
+.div3{float:left;width:200px;}
+
+.divv{top:430px;width:900px;position:fixed;clear:both;float:left;}
+.div4{
+		float:left;
+		width:600px;
+		padding-right:10px;
+	  }
+.div5{float:left;width:280px;}
+</style>
+</HEAD>
+
+<BODY style="margin:0 !important;overflow: hidden">
+<img src="img/自助打印界面-08.jpg" style="width:1280px;height: 1024px;">
+<OBJECT style="float:right" classid="clsid:10EC554B-357B-4188-9E5E-AC5039454D8B" id="objIDCard" width="300" height="200"></OBJECT>
+
+<FORM NAME="IDScanRecog" style="display:none">
+<center>
+<table   border=1 cellspacing="0" >
+	<tr>
+		<td rowspan=3 >
+		<p>UserID:  <INPUT type="text" name="UserID" value="48006677327528634019" size="10"></p>
+<p>TypeID:  <INPUT type="text" name="CardMainID" value="13" size="10"></p>
+<INPUT type="button" name="BtnLoadKenal" value="Loading"  style="width:100px" onClick=LoadRecogKenal()></p>
+<INPUT type="button" name="BtnFreeKenal" value="Unloading" onClick=FreeRecogKenal() style="width:100px"></p>
+<INPUT style=" width:102px;text-align:center;" type="button" name="BtnRecog" value="Recognition" style="width:100px" onClick=RecognizeImg()></p>
+Image Path&nbsp;&nbsp;<INPUT type="text" name="ImgPath" value="c:\\test.jpg" size="50"></p> 
+		</td>
+		<td>
+			set DG</p>
+			<table>
+				<tr>
+				<td height=30 width=60><input type="checkbox" name="DG" value=1  checked="checked">DG1</td>
+				<td width=60><input type="checkbox" name="DG" value=2  checked="checked">DG2</td>
+				<td width=60><input type="checkbox" name="DG" value=3  checked="checked">DG3</td>
+				<td width=60><input type="checkbox" name="DG" value=4  checked="checked">DG4</td>
+				</tr>
+				<tr>
+				<td height=30><input type="checkbox" name="DG" value=5 >DG5</td>
+				<td><input type="checkbox" name="DG" value=6 >DG6</td>
+				<td><input type="checkbox" name="DG" value=7 >DG7</td>
+				<td><input type="checkbox" name="DG" value=8 >DG8</td>
+				</tr>
+				<tr>
+				<td height=30><input type="checkbox" name="DG" value=9 >DG9</td>
+				<td><input type="checkbox" name="DG" value=10 >DG10</td>
+				<td><input type="checkbox" name="DG" value=11 >DG11</td>
+				<td><input type="checkbox" name="DG" value=12>DG12</td>
+				</tr>
+				<tr>
+				<td height=30><input type="checkbox" name="DG" value=13 >DG13</td>
+				<td><input type="checkbox" name="DG" value=14 >DG14</td>
+				<td><input type="checkbox" name="DG" value=15 >DG15</td>
+				<td><input type="checkbox" name="DG" value=16 >DG16</td>
+				</tr>
+				<tr>
+				<td height=30><input type="checkbox" name="DG" value=17 >DG17</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				</tr>
+			</table>
+		</td>
+		<td rowspan=3>
+		<INPUT type="button" name="BtnVersion" value="SDK version" style="width:120px" onClick=GetSDKVersion()></p>
+
+<INPUT type="button" name="BtnDeviceName" value="Device name" style="width:120px" onClick=GetDeviceName()></p>
+<INPUT type="button" name="BtnOnLine" value="Check online" style="width:120px" onClick=DeviceIsOnLine()></p>
+
+<INPUT type="button" name="BtnSN" value="Device SN" style="width:120px" onClick=GetDeviceSNCode()></p>
+
+<INPUT type="button" name="BtnShowImage" value="Show Image" style="width:120px" onClick=ShowImage()></p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Save Image Type</p>
+<input type="checkbox" name="image" value=1 checked="checked">VI&nbsp;&nbsp;
+<input type="checkbox" name="image" value=2 checked="checked">IR&nbsp;&nbsp;
+<input type="checkbox" name="image" value=3>UV </p> 
+<input type="checkbox" name="image" value=5>chip head &nbsp;
+<input type="checkbox" name="image" value=4>VIZ head</p>
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+		VIZ</p>
+<input type="radio" name="seeRead" value= 1 checked="checked"> Y
+<input type="radio" name="seeRead" value= 0> N
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2>
+		</br>
+		result:</br></br>
+<textarea name="result" cols="75" rows="25" ></textarea>
+</br></br>
+		</td>
+		<td>
+		</br>
+		DG information</br></br>
+		<textarea name="DGinfo" cols="13" rows="25" ></textarea>
+		</br></br>
+		</td>
+		
+	</tr>
+</table>
+</center>
+</FORM>
+</BODY>
+</HTML>

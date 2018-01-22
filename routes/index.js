@@ -112,6 +112,49 @@ exports.leader1 = function(req, res) {
 	});
 }
 
+function GetRandomNum(Min,Max)
+{   
+	var Range = Max - Min;   
+	var Rand = Math.random();   
+	return(Min + Math.round(Rand * Range));   
+}   
+
+var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
+function generateMixed(n) {
+     var res = "";
+     for(var i = 0; i < n ; i ++) {
+         var id = Math.ceil(Math.random()*35);
+         res += chars[id];
+     }
+     return res;
+}
+
+
+
+function getName(){
+	return generateMixed(8);
+}
+
+function getPwd(){
+	var a = "";
+	for(var i=1;i<13;i++){
+		a = a + GetRandomNum(1,9);
+	}
+	return a;
+}
+
+exports.card = function(req, res) {
+	for(var i=1;i<101;i++){
+		var sql = "insert into card(id,no,pwd)values("+i+",'"+getName()+"','"+getPwd()+"')";
+		mysql.query(sql, function(err, result) {
+			if(err) return console.error(err.stack);
+			console.log(i);
+		});
+	}
+	
+}
+
 exports.view_note = function(req, res) {
 	res.render('view_note', {
 		layout: "layout"
@@ -1415,6 +1458,35 @@ exports.servicedo = function(req,res){
 					});
 				});
 			});
+		});
+	}else if(sql == "getUserInfo"){
+		var passNo = req.param("passNo");
+		console.log(passNo);
+		request({
+			url: 'http://www.cruisesh.com:7777/getUserinfo?cardNo='+passNo,
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				//res.json(JSON.parse(body));
+				res.send(body);
+			}else{
+				console.log(err);
+			}
+		});
+	}else if(sql == "doPrint1"){
+		var printId = req.param("printId");
+		var lineId = req.param("lineId");
+		console.log("run");
+		request({
+			url: 'http://www.cruisesh.com:7777/doPrint1?printId='+printId+'&lineId='+lineId,
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				//res.json(JSON.parse(body));
+				res.send(body);
+			}else{
+				console.log(err);
+			}
 		});
 	}else if(sql == "py_getShip"){
 		var date = req.param("date");

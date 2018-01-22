@@ -1,0 +1,23 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>自助打票系统</TITLE>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+</HEAD>
+
+<BODY style="margin:0 !important;overflow: hidden">
+<img src="img/自助打印界面-02.jpg" style="width:1280px;height: 1024px;" onclick="pageto()">
+<script type="text/javascript">
+	function pageto(){
+		var e = event || window.event;
+        var x = e.clientX;
+        if(x<600){
+        	window.location='page8.html';
+        }else if(x>679){
+        	alert("身份证识别功能暂未开通！");
+        }
+	}
+</script>
+</BODY>
+</HTML>

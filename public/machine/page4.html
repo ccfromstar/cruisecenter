@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+
+<TITLE>自助打票系统</TITLE>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<script src="js/jquery-1.9.1.js"></script>
+<style type="text/css">
+	.info{
+		position:fixed;
+		font-size: 30px;
+		font-weight: bold;
+		color:orange;
+	}
+</style>
+</HEAD>
+
+<BODY style="margin:0 !important;overflow: hidden">
+<img src="img/自助打印界面-041.jpg" style="width:1280px;height: 1024px;" onclick="pageto()">
+<div id="v1" class="info" style="top:330px;left:420px"></div>
+<div id="v2" class="info" style="top:330px;left:800px"></div>
+<div id="v3" class="info" style="top:420px;left:370px"></div>
+<div id="v4" class="info" style="top:420px;left:800px"></div>
+<div id="v5" class="info" style="top:510px;left:450px"></div>
+<script type="text/javascript">
+	var passNo = "";
+	var url = window.location.href;
+	var arr1 = url.split("?p=");
+	passNo = arr1[1];
+	var printId = 0;
+	var lineId = 0;
+
+	function pageto(){
+		var e = event || window.event;
+        var x = e.clientX;
+        if(x<600){
+        	doprint();
+        }else if(x>679){
+        	window.location = "page1.html";
+        }
+	}
+
+	function getInfo(){
+		$.ajax({
+			type: "post",
+			url: "/service/getUserInfo",
+			data: {
+				passNo: passNo
+			},
+			success: function(data) {
+				var arr2 = data.split("@");
+				printId = arr2[0];
+				lineId = arr2[3];
+				$("#v1").html(arr2[6]);
+				$("#v2").html(arr2[4]);
+				$("#v3").html(arr2[2]);
+				$("#v4").html(arr2[1]);
+				$("#v5").html(arr2[5]);
+			}
+		});
+	}
+
+	getInfo();
+
+	
+
+	function doprint(){
+		$.ajax({
+			type: "post",
+			url: "/service/doPrint1",
+			data: {
+				printId: printId,
+				lineId:lineId
+			},
+			success: function(data) {
+				window.location = "page5.html";
+			}
+		});
+	}
+</script>
+</BODY>
+</HTML>

@@ -91,6 +91,8 @@
 						arrlist = '';
 						if(data==""){
 							$("#list1").html("<li>&nbsp;&nbsp;无数据</li>");
+							$("#btn_tool").html("");
+							$('#canvas').remove(); // this is my <canvas> element
 							return false;
 						}
 						var arr = data.split(";");
