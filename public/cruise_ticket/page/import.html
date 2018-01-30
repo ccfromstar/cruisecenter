@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>上海港邮轮登船凭证管理系统(SCSPMS)</title>
+
+		<link rel="stylesheet" href="../framework/amazeui/amazeui.min.css" />
+
+		<link rel="stylesheet" href="../framework/css/admin.css">
+		<script src="../framework/jquery-1.9.1.js"></script>
+		<script src="../framework/main.js"></script>
+	</head>
+
+	<body>
+		<div>
+			<header class="am-topbar am-topbar-inverse admin-header">
+				<div class="am-topbar-brand">
+					<strong>上海港邮轮登船凭证管理系统</strong> <small>(SCSPMS)</small>
+				</div>
+
+				<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+				<div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+					<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+						<li><a href="javascript:;"><span class="am-icon-user"></span> 当前用户 <span id="cname"></span></a></li>
+						<li><a href="#" onclick="exitUser()"><span class="am-icon-power-off"></span> 退出</a></li>
+					</ul>
+				</div>
+			</header>
+			<div class="am-cf admin-main">
+				<!-- sidebar start -->
+				<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+					<div class="am-offcanvas-bar admin-offcanvas-bar">
+						<ul class="am-list admin-sidebar-list">
+							<li><a href="import.html"><span class="am-icon-pencil-square-o"></span> 游客信息导入</a></li>
+							<li><a href="query.html"><span class="am-icon-pencil-square-o"></span> 游客信息查询</a></li>
+							<li><a href="line.html"><span class="am-icon-pencil-square-o"></span> 航班信息维护</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- sidebar end -->
+				<!-- content start -->
+				<div class="admin-content" ng-controller="AdminController">
+					<div class="admin-content-body">
+						<div class="am-cf am-padding">
+							<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">游客信息导入</strong> / <small>表单</small></div>
+						</div>
+						<div class="am-form bg-form">
+							<div class="am-g am-margin-top">
+								<table class="am-table am-table-bordered" style="width:600px;margin-left:20px;">
+									<tr>
+										<td>选择航次</td>
+										<td>
+											<select style="display:inline;width:200px;">
+												<option>2017-12-06 盛世公主号</option>
+												<option>2017-12-06 赛琳娜号</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>游客数据Excel表</td>
+										<td>
+											<div class="am-form-group am-form-file">
+											  <button type="button" class="am-btn am-btn-default am-btn-sm">
+											    <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+											  <input type="file" multiple>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>Excel表模板下载</td>
+										<td>
+											<a href="../framework/导入模板.xlsx" target="_blank">导入模板.xlsx</a>
+										</td>
+									</tr>
+								</table>
+							</div>
+							
+						</div>
+
+						<div class="am-margin">
+							<button type="button" onclick="saveForm('news')" class="btn-c am-btn am-btn-primary am-btn-xs">导入</button>
+						</div>
+					</div>
+				</div>
+				<!-- content end -->
+			</div>
+		</div>
+
+	</body>
+
+</html>

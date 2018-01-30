@@ -23,15 +23,21 @@ var Share = require('../models/share.js');
 
 exports.print = function(req, res) {
 	var id = req.query.id;
-	var sql = "select * from v_passenger where id = "+id;
-	mysql.query(sql, function(err, result) {
-		if(err) return console.error(err.stack);
-		console.log(result);
-		res.render('print', {
-			layout: false,
-			result:result[0]
+		request({
+			url: 'http://www.cruisesh.com:7777/getVinfo?id='+id,
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				//res.json(JSON.parse(body));
+				console.log(body);
+				res.render('print', {
+					layout:false,
+					result:body
+				});
+			}else{
+				console.log(err);
+			}
 		});
-	});
 }
 
 exports.admin_checkin = function(req, res) {
@@ -1473,6 +1479,19 @@ exports.servicedo = function(req,res){
 				console.log(err);
 			}
 		});
+	}else if(sql == "createTicket"){
+		var idlist = req.param("idlist");
+		request({
+			url: 'http://39.104.66.119/createTicket?idlist='+idlist,
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				//res.json(JSON.parse(body));
+				res.send(body);
+			}else{
+				console.log(err);
+			}
+		});
 	}else if(sql == "doPrint1"){
 		var printId = req.param("printId");
 		var lineId = req.param("lineId");
@@ -1501,6 +1520,74 @@ exports.servicedo = function(req,res){
 				console.log(err);
 			}
 		});
+	}else if(sql == "getLine"){
+		var companyId = req.param("companyId");
+		var startDate = req.param("startDate");
+		request({
+			url: 'http://www.cruisesh.com:7777/getLine?startDate='+startDate+'&companyId='+companyId,
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				//res.json(JSON.parse(body));
+				res.send(body);
+			}else{
+				console.log(err);
+				res.send("400");
+			}
+		});
+	}else if(sql == "getVistor"){
+		var companyId = req.param("companyId");
+		var startDate = req.param("startDate");
+		var teamNo = req.param("teamNo");
+		var uname = req.param("uname");
+		request({
+			url: 'http://www.cruisesh.com:7777/getVistor?startDate='+startDate+'&companyId='+companyId+'&teamNo='+teamNo+'&uname='+uname,
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				//res.json(JSON.parse(body));
+				res.send(body);
+			}else{
+				console.log(err);
+				res.send("400");
+			}
+		});
+	}else if(sql == "updateLine"){
+		var descr = req.param("descr");
+		var lineId = req.param("lineId");
+		request({
+			url: 'http://www.cruisesh.com:7777/updateLine?descr='+descr+'&lineId='+lineId,
+			method: 'GET'
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				//res.json(JSON.parse(body));
+				res.send(body);
+			}else{
+				console.log(err);
+				res.send("400");
+			}
+		});
+	}else if(sql == "checkTUser"){
+		var username = req.param("username");
+		var password = req.param("password");
+		var Sql = "select pwd,company,companyId from ticket_user where username = '"+username+"'";
+	    mysql.query(Sql ,function(error,obj){
+	          if(error){console.log(error);res.send("400");return false;}
+	          if(obj[0]){
+	          	  if(obj[0].pwd == password){
+	                  res.send({
+	                  	username:username,
+	                  	company:obj[0].company,
+	                  	companyId:obj[0].companyId
+	                  });
+		          }else{
+		              res.send("400");
+		          }
+	          }else{
+	          	  res.send("400");
+	          }
+	          
+	    });
 	}else if(sql == "py_getTotal"){
 		var date = req.param("date");
 		var ship_id = req.param("ship_id");
