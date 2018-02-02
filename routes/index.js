@@ -1632,7 +1632,7 @@ exports.servicedo = function(req,res){
 	}else if(sql == "checkTUser"){
 		var username = req.param("username");
 		var password = req.param("password");
-		var Sql = "select pwd,company,companyId from ticket_user where username = '"+username+"'";
+		var Sql = "select * from ticket_user where username = '"+username+"'";
 	    mysql.query(Sql ,function(error,obj){
 	          if(error){console.log(error);res.send("400");return false;}
 	          if(obj[0]){
@@ -1640,7 +1640,8 @@ exports.servicedo = function(req,res){
 	                  res.send({
 	                  	username:username,
 	                  	company:obj[0].company,
-	                  	companyId:obj[0].companyId
+	                  	companyId:obj[0].companyId,
+	                  	activeUpload:obj[0].activeUpload
 	                  });
 		          }else{
 		              res.send("400");

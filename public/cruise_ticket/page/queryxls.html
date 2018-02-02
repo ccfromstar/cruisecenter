@@ -46,10 +46,10 @@
 							json_tbody += '<td><input type="checkbox" name="idlist" value="'+data[i].id+'*'+data[i].cabin_num+'-'+data[i].nameEn+'"></td>';
 							json_tbody += '<td>'+data[i].ticket_code+'</td>';
 							json_tbody += '<td>'+data[i].booking_no+'</td>';
-							json_tbody += '<td></td>';
+							//json_tbody += '<td></td>';
 							json_tbody += '<td>'+data[i].termNo+'</td>';
 							json_tbody += '<td>'+data[i].cabin_num+'</td>';
-							json_tbody += '<td></td>';
+							//json_tbody += '<td></td>';
 							json_tbody += '<td>'+data[i].name+'</td>';
 							json_tbody += '<td>'+data[i].nameEn+'</td>';
 							json_tbody += '<td>'+data[i].nationality+'</td>';
@@ -88,10 +88,10 @@
 							json_tbody += '<td><input type="checkbox" name="idlist" value="'+data[i].id+'*'+data[i].cabin_num+'-'+data[i].nameEn+'"></td>';
 							json_tbody += '<td>'+data[i].ticket_code+'</td>';
 							json_tbody += '<td>'+data[i].booking_no+'</td>';
-							json_tbody += '<td></td>';
+							//json_tbody += '<td></td>';
 							json_tbody += '<td>'+data[i].termNo+'</td>';
 							json_tbody += '<td>'+data[i].cabin_num+'</td>';
-							json_tbody += '<td></td>';
+							//json_tbody += '<td></td>';
 							json_tbody += '<td>'+data[i].name+'</td>';
 							json_tbody += '<td>'+data[i].nameEn+'</td>';
 							json_tbody += '<td>'+data[i].nationality+'</td>';
@@ -216,10 +216,7 @@
 				<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
 					<div class="am-offcanvas-bar admin-offcanvas-bar">
 						<ul class="am-list admin-sidebar-list">
-							<li><a href="import.html"><span class="am-icon-pencil-square-o"></span> 游客信息导入</a></li>
-							<li><a href="queryxls.html"><span class="am-icon-pencil-square-o"></span> 游客信息查询（来源：导入）</a></li>
-							<li><a href="query.html"><span class="am-icon-pencil-square-o"></span> 游客信息查询（来源：口岸）</a></li>
-							<li><a href="line.html"><span class="am-icon-pencil-square-o"></span> 航班信息维护</a></li>
+							
 						</ul>
 					</div>
 				</div>
@@ -229,7 +226,7 @@
 					<div class="admin-content-body">
 						
 						<div class="am-cf am-padding">
-							<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">游客信息</strong> / <small>列表</small></div>
+							<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">游客信息查询（来源：导入）</strong> / <small>列表</small></div>
 						</div>
 						<!--
 						<div class="am-g">
@@ -276,10 +273,8 @@
 													<th><input type="checkbox" name="idlistall" onclick="changeState()" value="1">全选</th>
 													<th>船票认证码</th>
 													<th>预定编号</th>
-													<th>船舱楼层</th>
 													<th>团号</th>
 													<th>房间号码</th>
-													<th>逃生集合区</th>
 													<th>姓名</th>
 													<th>英文姓名</th>
 													<th>国籍</th>
