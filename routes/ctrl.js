@@ -70,7 +70,12 @@ module.exports = function (app, routes) {
     app.get('/leader',routes.leader);
 
     app.get('/print',routes.print);
+    app.get('/printxls',routes.printxls);
     app.get('/admin_checkin',routes.admin_checkin);
 
     app.get('/card',routes.card);
+
+    app.get('/upload',routes.upload);
+    app.get('/uploadsuccess',routes.uploadsuccess);
+    app.post('/upload/uploaddo',routes.uploaddo);
 };

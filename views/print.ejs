@@ -1,4 +1,18 @@
-<%var arr = result.split("@");%>
+<%var arr = result.split("@");
+  var lineno = '';
+  var shipno = '';
+	if(arr[9]=="赛琳娜号"){
+		shipno = 'SE';
+	}
+	lineno = arr[8].replace(/-/g,'')+shipno;
+	var roomNo = arr[1];
+	var roomLevel = 0;
+	if(roomNo.length == 4){
+		roomLevel = roomNo.substring(0,1);
+	}else{
+		roomLevel = roomNo.substring(0,2);
+	}
+%>
 <!doctype html>
 <html lang="en">
 
@@ -25,15 +39,15 @@
 
 	<body>
 		<!--startprint-->
-		<img src="framework/costa.png" style="width:720px" >
+		<img src="framework/costa1.png" style="width:720px;margin-left:100px;margin-top:100px" >
 		<!--endprint-->  
 		<!--数据区域-->
 		<div id="ticket_date" >
-			<img src="framework/Coata.png" style="position:fixed;top:20px;left:60px;width:170px">
-			<div style="font-weight:bolder;position:fixed;top:171px;left:120px;font-size: 20px"></div>
-			<div style="font-weight:bolder;position:fixed;top:158px;left:550px;font-size: 18px;"></div>
+			<img src="framework/Coata.png" style="position:fixed;top:120px;left:160px;width:170px">
+			<div style="font-weight:bolder;position:fixed;top:271px;left:220px;font-size: 20px">团队</div>
+			<div style="font-weight:bolder;position:fixed;top:258px;left:650px;font-size: 18px;"></div>
 			<div>
-				<img id="barcode1" style="position:fixed;top:183px;left:415px" />
+				<img id="barcode1" style="position:fixed;top:283px;left:515px" />
 				<script>JsBarcode("#barcode1", "",{
 					format: "CODE128",
 					width:2,//设置条之间的宽度
@@ -41,24 +55,24 @@
 		  			displayValue:false,
 				});</script>
 			</div>
-			<div style="font-weight:bolder;position:fixed;top:305px;left:120px;font-size: 14px;line-height: 1"><%=arr[10]%></div>
-			<div style="font-weight:bolder;position:fixed;top:340px;left:120px;font-size: 18px;line-height: 1"><%=arr[9]%></div>
-			<div style="font-weight:bolder;position:fixed;top:405px;left:120px;font-size: 18px;"></div>
-			<div style="font-weight:bolder;position:fixed;top:450px;left:120px;font-size: 18px;"><%=arr[8]%></div>
-			<div style="font-weight:bolder;position:fixed;top:495px;left:120px;font-size: 18px;">吴淞口国际邮轮港</div>
-			<div style="font-weight:bolder;position:fixed;top:515px;left:120px;font-size: 14px;">Wusongkou ICT</div>
-			<div style="font-weight:bolder;position:fixed;top:545px;left:120px;font-size: 14px;"></div>
+			<div style="font-weight:bolder;position:fixed;top:405px;left:220px;font-size: 14px;line-height: 1"><%=arr[10]%><br/><%=arr[13]%></div>
+			<div style="font-weight:bolder;position:fixed;top:440px;left:220px;font-size: 18px;line-height: 1"><%=arr[9]%><br/><%=arr[12]%></div>
+			<div style="font-weight:bolder;position:fixed;top:505px;left:220px;font-size: 18px;"><%=lineno%></div>
+			<div style="font-weight:bolder;position:fixed;top:550px;left:220px;font-size: 18px;"><%=arr[8]%></div>
+			<div style="font-weight:bolder;position:fixed;top:595px;left:220px;font-size: 18px;">吴淞口国际邮轮港</div>
+			<div style="font-weight:bolder;position:fixed;top:615px;left:220px;font-size: 14px;">Wusongkou ICT</div>
+			<div style="font-weight:bolder;position:fixed;top:645px;left:220px;font-size: 14px;"><%-arr[11].replace(/\n/g,'<br/>')%></div>
 
-			<div style="font-weight:bolder;position:fixed;top:305px;left:460px;font-size: 18px"></div>
-			<div style="font-weight:bolder;position:fixed;top:340px;left:460px;font-size: 28px"></div>
-			<div style="font-weight:bolder;position:fixed;top:390px;left:460px;font-size: 28px"><%=arr[1]%></div>
-			<div style="font-weight:bolder;position:fixed;top:442px;left:642px;font-size: 28px;color:#fff"></div>
+			<div style="font-weight:bolder;position:fixed;top:405px;left:560px;font-size: 18px"></div>
+			<div style="font-weight:bolder;position:fixed;top:440px;left:560px;font-size: 28px"><%=roomLevel%></div>
+			<div style="font-weight:bolder;position:fixed;top:490px;left:560px;font-size: 28px"><%=arr[1]%></div>
+			<div style="font-weight:bolder;position:fixed;top:542px;left:742px;font-size: 28px;color:#fff"></div>
 
-			<div style="font-weight:bolder;position:fixed;top:710px;left:120px;font-size: 18px;line-height: 1"><%=arr[2]%><br/><%=arr[3]%></div>
-			<div style="font-weight:bolder;position:fixed;top:765px;left:120px;font-size: 18px;"><%=arr[4]%></div>
-			<div style="font-weight:bolder;position:fixed;top:810px;left:120px;font-size: 18px;"><%=arr[5]%></div>
-			<div style="font-weight:bolder;position:fixed;top:855px;left:120px;font-size: 18px;"><%=arr[7]%></div>
-			<div style="font-weight:bolder;position:fixed;top:900px;left:120px;font-size: 18px;"><%=arr[6]%></div>
+			<div style="font-weight:bolder;position:fixed;top:810px;left:220px;font-size: 18px;line-height: 1"><%=arr[2]%><br/><%=arr[3]%></div>
+			<div style="font-weight:bolder;position:fixed;top:865px;left:220px;font-size: 18px;"><%=arr[4]%></div>
+			<div style="font-weight:bolder;position:fixed;top:910px;left:220px;font-size: 18px;"><%=arr[5]%></div>
+			<div style="font-weight:bolder;position:fixed;top:955px;left:220px;font-size: 18px;"><%=arr[7]%></div>
+			<div style="font-weight:bolder;position:fixed;top:1000px;left:220px;font-size: 18px;"><%=arr[6]%></div>
 		</div>
 	</body>
 

@@ -20,6 +20,7 @@ var Shipservice = require('../models/shipservice.js');
 var Shipdinner = require('../models/shipdinner.js');
 var Theme = require('../models/theme.js');
 var Share = require('../models/share.js');
+var xlsx = require('node-xlsx');
 
 exports.print = function(req, res) {
 	var id = req.query.id;
@@ -38,6 +39,18 @@ exports.print = function(req, res) {
 				console.log(err);
 			}
 		});
+}
+
+exports.printxls = function(req, res) {
+	var id = req.query.id;
+	var sql = "select * from passenger_info where id = "+id;
+	mysql.query(sql, function(err, result) {
+		if(err) return console.error(err.stack);
+		res.render('printxls', {
+			layout:false,
+			result:result[0]
+		});
+	});
 }
 
 exports.admin_checkin = function(req, res) {
@@ -1479,11 +1492,48 @@ exports.servicedo = function(req,res){
 				console.log(err);
 			}
 		});
+	}else if(sql == "importXls"){
+		//读取文件内容
+		var obj = xlsx.parse('public/cruise_ticket/framework/导入模板.xlsx');
+		var excelObj=obj[0].data;
+		console.log(excelObj);
+
+		var data = [];
+		for(var i in excelObj){
+		    var arr=[];
+		    var value=excelObj[i];
+		    for(var j in value){
+		        arr.push(value[j]);
+		        console.log(value[j]);
+		    }
+		    data.push(arr);
+		}
 	}else if(sql == "createTicket"){
 		var idlist = req.param("idlist");
+		var namelist = req.param("namelist");
 		request({
-			url: 'http://39.104.66.119/createTicket?idlist='+idlist,
-			method: 'GET'
+			url: 'http://39.104.66.119/createTicket?idlist='+idlist+'&namelist='+namelist,
+			method: 'GET',
+			headers:{
+				"content-type": "charset=utf-8"
+			}
+		}, function(err, response, body) {
+			if (!err && response.statusCode == 200) {
+				//res.json(JSON.parse(body));
+				res.send(body);
+			}else{
+				console.log(err);
+			}
+		});
+	}else if(sql == "createTicketXls"){
+		var idlist = req.param("idlist");
+		var namelist = req.param("namelist");
+		request({
+			url: 'http://39.104.66.119/createTicketXls?idlist='+idlist+'&namelist='+namelist,
+			method: 'GET',
+			headers:{
+				"content-type": "charset=utf-8"
+			}
 		}, function(err, response, body) {
 			if (!err && response.statusCode == 200) {
 				//res.json(JSON.parse(body));
@@ -1552,6 +1602,18 @@ exports.servicedo = function(req,res){
 				res.send("400");
 			}
 		});
+	}else if(sql == "getXVistor"){
+		var companyId = req.param("companyId");
+		var startDate = req.param("startDate");
+		var teamNo = req.param("teamNo");
+		var uname = req.param("uname");
+		var sql = "select * from passenger_info where termNo like '%"+teamNo+"%' and companyname='"+companyId+"' and sailing_date = '"+startDate+"' and name like '%"+uname+"%'";
+		console.log(sql);
+		mysql.query(sql, function(err2, result2) {
+			if(err2) return console.error(err2.stack);
+			res.send(result2);
+		});
+		
 	}else if(sql == "updateLine"){
 		var descr = req.param("descr");
 		var lineId = req.param("lineId");
@@ -2185,6 +2247,53 @@ exports.getopenid = function(req, res) {
 		}
 	});
 }
+
+exports.upload = function(req, res) {
+	res.render('upload',{layout:false});
+};
+
+function getUrl(req) {
+	return req.url;
+}
+
+exports.uploadsuccess = function(req, res) {
+	var p = req.query.p;
+	res.render('uploadsuccess', {
+		layout:false,
+		url: getUrl(req),
+		p: p
+	});
+};
+
+exports.uploaddo = function(req, res) {
+	var fname = req.files.img_url.path.replace("public\\upload\\", "").replace("public/upload/", "");
+	var line_info_list = req.body.line_info_list;
+	var arr1 = line_info_list.split("@");
+	/*解析数据生成记录*/
+	//读取文件内容
+	var obj = xlsx.parse('public/upload/'+fname);
+		var excelObj=obj[0].data;
+		//console.log(excelObj);
+
+		//var data = [];
+		for(var i in excelObj){
+		    var arr=[];
+		    var value=excelObj[i];
+		    if(i>0 && value[0]){
+		    	for(var j in value){
+			        arr.push(value[j]);
+			    }
+			    var sql = "insert into passenger_info(ticket_code,price_type,booking_no,cabin_num,name,nameEn,nationality,passport_no,id_no,mobile,sailing_date,shipname,companynameEn,companyname,shipnameEn,descr,termNo) values ('"+arr[0]+"','"+arr[1]+"','"+arr[2]+"','"+arr[3]+"','"+arr[4]+"','"+arr[5]+"','"+arr[6]+"','"+arr[7]+"','"+arr[8]+"','"+arr[9]+"','"+arr1[0]+"','"+arr1[1]+"','"+arr1[2]+"','"+arr1[3]+"','"+arr1[4]+"','"+arr1[5]+"','"+arr[10]+"')";
+				console.log(sql);
+				mysql.query(sql, function(err, result) {
+					if(err) return console.error(err.stack);
+				});
+		    }
+		    
+		    //data.push(arr);
+		}
+	res.redirect("uploadsuccess?p=" + fname);
+};
 
 Date.prototype.Format = function(fmt) {
 	var d = this;

@@ -24,7 +24,11 @@
 			var idlist = '';
 			var namelist = '';
 
-			function search(){
+			function refreshPage(){
+				$('#ticketlist').html("取消中...");
+				var $modal = $('#doc-modal-1');
+				$modal.modal('toggle');
+				
 				$.ajax({
 					type: "post",
 					url: "/service/getVistor",
@@ -35,6 +39,7 @@
 						uname:$("#uname").val()
 					},
 					success: function(data) {
+						$modal.modal('toggle');
 						var arr = data.split("|");
 						$("#total").html(arr[0]);
 						var arr1 = arr[1].split("@");
@@ -49,6 +54,7 @@
 						var json_tbody = '';
 						for(var i=1;i<arr1.length;i++){
 							json_tbody += '<tr>';
+							json_tbody += '<td><input type="checkbox" name="idlist" value="'+arr9[i]+'*'+arr2[i]+'-'+arr3[i]+'"></td>';
 							json_tbody += '<td></td>';
 							json_tbody += '<td></td>';
 							json_tbody += '<td></td>';
@@ -61,34 +67,155 @@
 							json_tbody += '<td>'+arr6[i]+'</td>';
 							json_tbody += '<td>'+arr7[i]+'</td>';
 							json_tbody += '<td>'+arr8[i]+'</td>';
+							//json_tbody += '<td>'+arr9[i]+'</td>';
 							json_tbody += '</tr>';
 						}
 						$("#json_tbody").html(json_tbody);
-						idlist = (arr[9]);
-						namelist = arr[1];
+						//idlist = (arr[9]);
+						//namelist = arr[3];
 					}
 				});
 			}
 
+			function search(){
+				if($("#startDate").val() == ""){
+					alert("出发日期必选");return false;
+				}
+				$('#ticketlist').html("数据检索中...");
+				var $modal = $('#doc-modal-1');
+				$modal.modal('toggle');
+				
+				$.ajax({
+					type: "post",
+					url: "/service/getVistor",
+					data: {
+						companyId:sessionStorage.companyId,
+						startDate:$("#startDate").val(),
+						teamNo:$("#teamNo").val(),
+						uname:$("#uname").val()
+					},
+					success: function(data) {
+						$modal.modal('toggle');
+						var arr = data.split("|");
+						$("#total").html(arr[0]);
+						var arr1 = arr[1].split("@");
+						var arr2 = arr[2].split("@");
+						var arr3 = arr[3].split("@");
+						var arr4 = arr[4].split("@");
+						var arr5 = arr[5].split("@");
+						var arr6 = arr[6].split("@");
+						var arr7 = arr[7].split("@");
+						var arr8 = arr[8].split("@");
+						var arr9 = arr[9].split("@");
+						var json_tbody = '';
+						for(var i=1;i<arr1.length;i++){
+							json_tbody += '<tr>';
+							json_tbody += '<td><input type="checkbox" name="idlist" value="'+arr9[i]+'*'+arr2[i]+'-'+arr3[i]+'"></td>';
+							json_tbody += '<td></td>';
+							json_tbody += '<td></td>';
+							json_tbody += '<td></td>';
+							json_tbody += '<td>'+arr5[i]+'</td>';
+							json_tbody += '<td>'+arr2[i]+'</td>';
+							json_tbody += '<td></td>';
+							json_tbody += '<td>'+arr1[i]+'</td>';
+							json_tbody += '<td>'+arr3[i]+'</td>';
+							json_tbody += '<td>'+arr4[i]+'</td>';
+							json_tbody += '<td>'+arr6[i]+'</td>';
+							json_tbody += '<td>'+arr7[i]+'</td>';
+							json_tbody += '<td>'+arr8[i]+'</td>';
+							//json_tbody += '<td>'+arr9[i]+'</td>';
+							json_tbody += '</tr>';
+						}
+						$("#json_tbody").html(json_tbody);
+						//idlist = (arr[9]);
+						//namelist = arr[3];
+					}
+				});
+			}
+
+			 function jqchk(name){ //jquery获取复选框值
+			      var chk_value = '';
+			      $('input[name="' + name + '"]:checked').each(function (){
+			      		var val = $(this).val();
+			      		var arr1 = val.split("*");
+			            chk_value = chk_value + "@" + arr1[0];
+			      });
+			      chk_value = chk_value + "|";
+			      $('input[name="' + name + '"]:checked').each(function (){
+			      		var val = $(this).val();
+			      		var arr1 = val.split("*");
+			            chk_value = chk_value + "@" + arr1[1];
+			      });
+			      return chk_value;
+			  }
+
+			function changeState(){
+				console.log(jqchk1("idlistall"));
+				if(jqchk1("idlistall")=="1"){
+					$("input[name='idlist']").attr("checked","checked"); 
+				}else{
+					$("input[name='idlist']").removeAttr("checked"); 
+					refreshPage();
+				}
+			}
+
+			function jqchk1(name){ //jquery获取复选框值
+			      var chk_value = '';
+			      $('input[name="' + name + '"]:checked').each(function (){
+			          if (chk_value == ""){
+			              chk_value = $(this).val();
+			          }else{
+			              chk_value = chk_value + "*" + $(this).val();
+			          }
+			      }
+			      );
+			      return chk_value;
+			  }
+
 			function createTicket(){
+				var arrL = idlist.split("@");
+				var num = 1;
+				var len = arrL.length - 1;
+
+				var result = (jqchk("idlist"));
+				if(result=="|"){
+					alert("您没有选择");
+					return false;
+				}
+
+				var arrRES = result.split("|");
+
+				var t = setInterval(function(){
+					var infoshow = num+"/"+len;
+					//$('#ticketlist').html(infoshow);
+					num += 1;
+				},2500);
+
+				$('#ticketlist').html("船票生成中...");
+				var $modal = $('#doc-modal-1');
+				$modal.modal('toggle');
+
 				$.ajax({
 					type: "post",
 					url: "/service/createTicket",
 					data: {
-						idlist:idlist
+						idlist:arrRES[0],
+						namelist:arrRES[1]
 					},
 					success: function(data) {
-						alert("生成成功");
+						//alert("生成成功");
 						console.log(data);
+						clearInterval(t);
+
 						var tlist = '';
 						var arrT = idlist.split("@");
 						var arrN = namelist.split("@");
-						for(var i=1;i<arrT.length;i++){
-							tlist = tlist+"<a target='blank' href='http://39.104.66.119/static/"+arrT[i]+".pdf'>"+arrN[i]+".pdf</a>&nbsp;&nbsp;&nbsp;";
-						}
+						//for(var i=1;i<arrT.length;i++){
+						//	tlist = tlist+"<a target='blank' href='http://39.104.66.119/static/"+arrT[i]+".pdf'>"+arrN[i]+".pdf</a>&nbsp;&nbsp;&nbsp;";
+						//}
+						tlist = "船票已生成完毕！<br/>请点击<a target='blank' href='http://39.104.66.119/static/zip/"+data+".zip'>船票.zip</a>下载";
 						$('#ticketlist').html(tlist);
-						var $modal = $('#doc-modal-1');
-						$modal.modal('toggle');
+						
 					}
 				});
 			}
@@ -118,7 +245,8 @@
 					<div class="am-offcanvas-bar admin-offcanvas-bar">
 						<ul class="am-list admin-sidebar-list">
 							<li><a href="import.html"><span class="am-icon-pencil-square-o"></span> 游客信息导入</a></li>
-							<li><a href="query.html"><span class="am-icon-pencil-square-o"></span> 游客信息查询</a></li>
+							<li><a href="queryxls.html"><span class="am-icon-pencil-square-o"></span> 游客信息查询（来源：导入）</a></li>
+							<li><a href="query.html"><span class="am-icon-pencil-square-o"></span> 游客信息查询（来源：口岸）</a></li>
 							<li><a href="line.html"><span class="am-icon-pencil-square-o"></span> 航班信息维护</a></li>
 						</ul>
 					</div>
@@ -163,7 +291,7 @@
 					      	<input type="" id="teamNo" class="am-form-field" style="width:120px;display: inline-block;" placeholder="团号" >
 					      	<input type="" id="uname" class="am-form-field" style="width:120px;display: inline-block;" placeholder="姓名" >
 					      	<button type="button" onclick="search()" class="btn-c am-btn am-btn-primary am-btn">检索</button>
-					      	<button type="button" onclick="createTicket()" class="btn-c am-btn am-btn-default am-btn">批量生成船票</button>
+					      	<button type="button" onclick="createTicket()" class="btn-c am-btn am-btn-default am-btn">生成船票</button>
 					      </div>
 
 
@@ -173,6 +301,7 @@
 										<table class="am-table am-table-striped am-table-hover table-main jdt-table">
 											<thead>
 												<tr>
+													<th><input type="checkbox" name="idlistall" onclick="changeState()" value="1">全选</th>
 													<th>船票认证码</th>
 													<th>预定编号</th>
 													<th>船舱楼层</th>
@@ -225,7 +354,7 @@
 
 		<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
 		  <div class="am-modal-dialog">
-		    <div class="am-modal-hd">船票列表
+		    <div class="am-modal-hd">提示信息
 		      <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
 		    </div>
 		    <div id="ticketlist" class="am-modal-bd">

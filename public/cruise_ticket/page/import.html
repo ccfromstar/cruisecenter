@@ -9,7 +9,70 @@
 
 		<link rel="stylesheet" href="../framework/css/admin.css">
 		<script src="../framework/jquery-1.9.1.js"></script>
+
+		<script src="../framework/amazeui/amazeui.min.js"></script>
 		<script src="../framework/main.js"></script>
+
+		<script type="text/javascript">
+			$(function(){
+				
+			});
+
+			var lineId = '';
+
+			function search(){
+				$.ajax({
+					type: "post",
+					url: "/service/getLine",
+					data: {
+						companyId:sessionStorage.companyId,
+						startDate:$("#startDate").val()
+					},
+					success: function(data) {
+						if(data == '400'){
+							alert('当日无船');
+							$("#curiseName").val('');
+							$("#curiseNameEn").val('');
+							return false;
+						}
+						var arr1 = data.split("@");
+						$("#curiseName").val(arr1[1]);
+
+						$("#line_info_list").val($("#startDate").val()+"@"+arr1[1]+"@"+arr1[4]+"@"+arr1[0]+"@"+arr1[6]+"@"+arr1[5]);
+						lineId = arr1[3];
+					}
+				});
+			}
+
+			function saveForm(){
+				$.ajax({
+					type: "post",
+					url: "/service/updateLine",
+					data: {
+						descr:$("#descr").val(),
+						lineId:lineId
+					},
+					success: function(data) {
+						alert("保存成功");
+					}
+				});
+			}
+
+			function importXls(){
+				$.ajax({
+					type: "post",
+					url: "/service/importXls",
+					data: {
+						
+					},
+					success: function(data) {
+						console.log(data);
+						
+						
+					}
+				});
+			}
+		</script>
 	</head>
 
 	<body>
@@ -35,7 +98,8 @@
 					<div class="am-offcanvas-bar admin-offcanvas-bar">
 						<ul class="am-list admin-sidebar-list">
 							<li><a href="import.html"><span class="am-icon-pencil-square-o"></span> 游客信息导入</a></li>
-							<li><a href="query.html"><span class="am-icon-pencil-square-o"></span> 游客信息查询</a></li>
+							<li><a href="queryxls.html"><span class="am-icon-pencil-square-o"></span> 游客信息查询（来源：导入）</a></li>
+							<li><a href="query.html"><span class="am-icon-pencil-square-o"></span> 游客信息查询（来源：口岸）</a></li>
 							<li><a href="line.html"><span class="am-icon-pencil-square-o"></span> 航班信息维护</a></li>
 						</ul>
 					</div>
@@ -49,40 +113,39 @@
 						</div>
 						<div class="am-form bg-form">
 							<div class="am-g am-margin-top">
-								<table class="am-table am-table-bordered" style="width:600px;margin-left:20px;">
+								<table class="am-table am-table-bordered" style="width:750px;margin-left:20px;">
 									<tr>
-										<td>选择航次</td>
+										<td>启航日期</td>
 										<td>
-											<select style="display:inline;width:200px;">
-												<option>2017-12-06 盛世公主号</option>
-												<option>2017-12-06 赛琳娜号</option>
-											</select>
+											<input type="text" id="startDate" class="am-form-field" placeholder="日历组件" data-am-datepicker readonly />
+											<button type="button" onclick="search()" class="btn-c am-btn am-btn-primary am-btn">检索</button>
+										</td>
+									</tr>
+									<tr>
+										<td>船名</td>
+										<td>
+											<input type="" id="curiseName" class="am-form-field" readonly="readonly" >
 										</td>
 									</tr>
 									<tr>
 										<td>游客数据Excel表</td>
 										<td>
-											<div class="am-form-group am-form-file">
-											  <button type="button" class="am-btn am-btn-default am-btn-sm">
-											    <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
-											  <input type="file" multiple>
-											</div>
+											<iframe frameborder=0 src="/upload" style="width:550px;height:60px"></iframe>
 										</td>
 									</tr>
 									<tr>
 										<td>Excel表模板下载</td>
 										<td>
-											<a href="../framework/导入模板.xlsx" target="_blank">导入模板.xlsx</a>
+											<a style="margin-left:10px;" href="../framework/导入模板.xlsx" target="_blank">导入模板.xlsx</a>
 										</td>
 									</tr>
 								</table>
 							</div>
+
+							<input type="hidden" name="line_info_list" id="line_info_list" >
 							
 						</div>
 
-						<div class="am-margin">
-							<button type="button" onclick="saveForm('news')" class="btn-c am-btn am-btn-primary am-btn-xs">导入</button>
-						</div>
 					</div>
 				</div>
 				<!-- content end -->

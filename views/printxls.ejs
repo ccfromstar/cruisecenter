@@ -1,0 +1,79 @@
+<%
+  var lineno = '';
+  var shipno = '';
+	if(result.shipname=="赛琳娜号"){
+		shipno = 'SE';
+	}
+	lineno = (result.sailing_date).replace(/-/g,'')+result.shipno;
+	var roomNo = result.cabin_num + "";
+	var roomLevel = 0;
+	if(roomNo.length == 4){
+		roomLevel = roomNo.substring(0,1);
+	}else{
+		roomLevel = roomNo.substring(0,2);
+	}
+%>
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>上海港邮轮登船凭证管理系统</title>
+
+		<link rel="stylesheet" href="framework/amazeui/amazeui.min.css" />
+
+		<link rel="stylesheet" href="framework/css/admin.css">
+		<script src="framework/JsBarcode.all.js"></script>
+		<script type="text/javascript">
+			function doPrint() {      
+			        bdhtml=window.document.body.innerHTML;      
+			        sprnstr="<!--startprint-->";      
+			        eprnstr="<!--endprint-->";      
+			        prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);      
+			        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));      
+			        window.document.body.innerHTML=prnhtml;   
+			        window.print();      
+			}      
+		</script>
+	</head>
+
+	<body>
+		<!--startprint-->
+		<img src="framework/costa1.png" style="width:720px;margin-left:100px;margin-top:100px" >
+		<!--endprint-->  
+		<!--数据区域-->
+		<div id="ticket_date" >
+			<img src="framework/Coata.png" style="position:fixed;top:120px;left:160px;width:170px">
+			<div style="font-weight:bolder;position:fixed;top:271px;left:220px;font-size: 20px">团队</div>
+			<div style="font-weight:bolder;position:fixed;top:258px;left:650px;font-size: 18px;"></div>
+			<div>
+				<img id="barcode1" style="position:fixed;top:283px;left:515px" />
+				<script>JsBarcode("#barcode1", "<%=result.ticket_code%>",{
+					format: "CODE128",
+					width:2,//设置条之间的宽度
+		  			height:50,//高度
+		  			displayValue:false,
+				});</script>
+			</div>
+			<div style="font-weight:bolder;position:fixed;top:405px;left:220px;font-size: 14px;line-height: 1"><%=result.companyname%><br/><%=result.companynameEn%></div>
+			<div style="font-weight:bolder;position:fixed;top:440px;left:220px;font-size: 18px;line-height: 1"><%=result.shipname%><br/><%=result.shipnameEn%></div>
+			<div style="font-weight:bolder;position:fixed;top:505px;left:220px;font-size: 18px;"><%=lineno%></div>
+			<div style="font-weight:bolder;position:fixed;top:550px;left:220px;font-size: 18px;"><%=result.sailing_date%></div>
+			<div style="font-weight:bolder;position:fixed;top:595px;left:220px;font-size: 18px;">吴淞口国际邮轮港</div>
+			<div style="font-weight:bolder;position:fixed;top:615px;left:220px;font-size: 14px;">Wusongkou ICT</div>
+			<div style="font-weight:bolder;position:fixed;top:645px;left:220px;font-size: 14px;"><%-(result.descr).replace(/\n/g,'<br/>')%></div>
+
+			<div style="font-weight:bolder;position:fixed;top:405px;left:560px;font-size: 18px"></div>
+			<div style="font-weight:bolder;position:fixed;top:440px;left:560px;font-size: 28px"><%=roomLevel%></div>
+			<div style="font-weight:bolder;position:fixed;top:490px;left:560px;font-size: 28px"><%=result.cabin_num%></div>
+			<div style="font-weight:bolder;position:fixed;top:542px;left:742px;font-size: 28px;color:#fff"></div>
+
+			<div style="font-weight:bolder;position:fixed;top:810px;left:220px;font-size: 18px;line-height: 1"><%=result.name%><br/><%=result.nameEn%></div>
+			<div style="font-weight:bolder;position:fixed;top:865px;left:220px;font-size: 18px;"><%=result.nationality%></div>
+			<div style="font-weight:bolder;position:fixed;top:910px;left:220px;font-size: 18px;"><%=result.passport_no%></div>
+			<div style="font-weight:bolder;position:fixed;top:955px;left:220px;font-size: 18px;"><%=result.id_no%></div>
+			<div style="font-weight:bolder;position:fixed;top:1000px;left:220px;font-size: 18px;"><%=result.mobile%></div>
+		</div>
+	</body>
+
+</html>
