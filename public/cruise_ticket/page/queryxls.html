@@ -40,6 +40,7 @@
 					},
 					success: function(data) {
 						$modal.modal('toggle');
+						var count = 0;
 						var json_tbody = '';
 						for(var i in data){
 							json_tbody += '<tr>';
@@ -57,7 +58,9 @@
 							json_tbody += '<td>'+data[i].id_no+'</td>';
 							json_tbody += '<td>'+data[i].mobile+'</td>';
 							json_tbody += '</tr>';
+							count +=1;
 						}
+						$("#total").html(count);
 						$("#json_tbody").html(json_tbody);
 					}
 				});
@@ -83,6 +86,7 @@
 					success: function(data) {
 						var json_tbody = '';
 						$modal.modal('toggle');
+						var count = 0;
 						for(var i in data){
 							json_tbody += '<tr>';
 							json_tbody += '<td><input type="checkbox" name="idlist" value="'+data[i].id+'*'+data[i].cabin_num+'-'+data[i].nameEn+'"></td>';
@@ -99,7 +103,9 @@
 							json_tbody += '<td>'+data[i].id_no+'</td>';
 							json_tbody += '<td>'+data[i].mobile+'</td>';
 							json_tbody += '</tr>';
+							count +=1;
 						}
+						$("#total").html(count);
 						$("#json_tbody").html(json_tbody);
 					}
 				});
